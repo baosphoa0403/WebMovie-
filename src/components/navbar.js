@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-
+import logo from "../images/img/logo2.png";
 export default class Navbar extends Component {
+  constructor(props){
+     super(props);
+     this.state = {
+       img:""
+     }
+  }
+  
   render() {
     return (
       <div>
         <section className="menu">
           <nav
             className="navbar navbar-expand-md bg-dark navbar-dark"
-            style={{ width: "100%", margin: "-10px 0px" }}
           >
             {/* Brand */}
             {/* Toggler/collapsibe Button */}
@@ -22,15 +28,15 @@ export default class Navbar extends Component {
             {/* Navbar links */}
             <div className="row">
               <div className="collapse navbar-collapse" id="collapsibleNavbar">
-                <div className="col-sm-2">
+                <div className="col-3">
                   <div className="logo">
                     <a href>
-                      <img src="../images/img/logo2.png" alt />
+                    <img src={logo}  /> 
                     </a>
                   </div>
                 </div>
-                <div className="col-sm-8">
-                  <ul className="navbar-nav" style={{ margin: "0px 180px" }}>
+                <div className="col-6">
+                  <ul className="navbar-nav">
                     <li className="nav-item dropdown">
                       <a
                         className="nav-link dropdown-toggle"
@@ -74,7 +80,7 @@ export default class Navbar extends Component {
                     </li>
                   </ul>
                 </div>
-                <div className="col-sm-2">
+                <div className="col-3">
                   <div className="sign-language">
                     <ul>
                       <li>
@@ -96,3 +102,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+{/* <img src="../images/img/logo2.png"  />  */}

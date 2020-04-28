@@ -4,3 +4,4 @@ home  là thành phần trên thanh navbar , phải có pageNotFound
 redux 
 scss cho từng trang home , about , listMovie , trang index.scss để import tất cả các trang con 
 
+ 

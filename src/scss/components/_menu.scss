@@ -1,71 +1,118 @@
-header{
-    .row{
-     display: flex;
-     justify-content: center;
-     position: relative;
-     .header-left{
-         position: absolute;
-         top: 20px;
-         .logo{
-              img{
-                  width: 100%;
-             }
-         }
-     }
- }
-     
-     .header-right{
-         width: 70%;
-         position: absolute;
-         top: 25px;
-         left: 400px;
-         .col-md-8 {
-             display: flex;
-             justify-content: space-around;
-             align-items: center;
-             form{
-                 width: 50%;
-                 @include search(rgba(20, 23 , 28, 0.05));
-             }
-            
-             .sign-language{
-                 width: 50%;
-                 text-align: center;
-                 ul{
-                     li{
-                         list-style: none;
-                         text-decoration: none;
-                         display: flex;
-                         justify-content: center;
-                         padding: 5px 0px;
-                         i{
-                             width: 25px;
-                             height: 25px;
-                             padding: 2px 0px;
-                             border-radius: 50px;
-                             margin-right: 5px;
-                             border: 1px solid black;
-                             &:hover{
-                                 background-color: $color-black;
-                                 color: $color-yellow;
-                             }
-                         }
-                         a{
-                             color: $color-black;
-                             text-transform: uppercase;
-                             &:hover{
-                                 text-decoration: none !important;
-                                 color: $color-yellow;
-                             }
-                         }
-                     }
-                 }
-             }
-         }
-         
-        
-     }
+.menu{
+    position: fixed;
+    z-index: 999;
+    .logo{
+        a{
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .navbar{
+        background-color: #000000!important;
+        .sign-language{
+            text-align: left;
+            color: $color-white;
+            margin: 15px 0px;
+            ul{
+                display: flex;
+                li{
+                    list-style: none;
+                    a{
+                    text-decoration: none; 
+                    color: $color-white;
+                    &:hover{
+                        color: $color-yellow;
+                    }
+                    }
+                    i{
+                    margin: 0px 5px;
+                    border: 1px solid white;
+                    width: 50px;
+                    height: 50px;
+                    padding: 4px 13px;
+                    border-radius: 50%;
+                    &:hover{
+                    color: $color-yellow;
+                    border: 1px solid $color-yellow;
+                    }
+                    }
+                }
+            }
+        }
+
+    }
+   
+
+
+
+    @include menu();
+    .nav-item.dropdown{
+        &:hover .dropdown-menu.menu-movie{
+            display: block;
+        }
+    }
+    .nav-item{
+        font-size: 13px;
+        .nav-link{
+            margin: 0px 20px;
+        }
+    }
     
- 
-    
- }
+    .nav-item.dropdown{
+        &:hover .dropdown-menu{
+            display: block;
+        }
+        .dropdown-menu{
+            a{
+                margin: 10px 0px;
+            }
+        }
+       
+    }
+   
+    .dropdown-menu{
+        display: none;
+    }
+    .dropdown-menu.menu-movie{
+        display: none;
+        width: 1040px;
+        height: 514px;
+        a{
+            color: $color-white;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            &:hover{
+                color: $color-yellow;
+            }
+        }
+        a::after{
+            display: block;
+            width: 125px;
+            height: 2px;
+            margin-top: 8px;
+            content: '';
+            background-color: $color-yellow;
+        }
+        .movie {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 138px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            @include movie();
+            a::after{
+                display: block;
+                width: 50px;
+                height: 2px;
+                margin-top: 8px;
+                content: none;
+                background-color: $color-yellow;
+            }
+        }
+    }
+}
