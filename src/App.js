@@ -1,12 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/navbar';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Total from "./components/total";
 
 function App() {
-  return (
-    <Navbar/>
-  );
+  return <Total />;
 }
 
 export default App;
