@@ -30,36 +30,18 @@ export default class Navbar extends Component {
                 </div>
                 <div className="col-6">
                   <ul className="navbar-nav">
-                    <li className="nav-item dropdown">
+                    <li className="nav-item ">
                       <a
-                        className="nav-link dropdown-toggle"
+                        className="nav-link "
                         href="#"
-                        id="navbardrop"
-                        data-toggle="dropdown"
                       >
                         phim
                       </a>
                     </li>
-                    <li className="nav-item dropdown">
-                      <a
-                        className="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbardrop"
-                        data-toggle="dropdown"
-                      >
-                        sự kiện
+                    <li className="nav-item">
+                      <a className="nav-link" href="#stadium">
+                        Sự kiện
                       </a>
-                      <div
-                        className="dropdown-menu"
-                        style={{ margin: "0px -55px" }}
-                      >
-                        <a className="dropdown-item" href="#party">
-                          ưu đãi
-                        </a>
-                        <a className="dropdown-item" href="#">
-                          phim hay tháng{" "}
-                        </a>
-                      </div>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#stadium">

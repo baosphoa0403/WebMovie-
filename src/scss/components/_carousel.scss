@@ -1,0 +1,76 @@
+// #carousel {
+//   position: relative;
+//   .owl-dots {
+//     position: absolute;
+//     z-index: 999;
+//     bottom: 100px;
+//     left: 665px;
+//   }
+//   .owl-nav {
+//     .owl-prev {
+//       position: absolute;
+//       top: 35%;
+//       left: 20px;
+//       font-size: 70px;
+//       &:hover {
+//         background: none !important;
+//       }
+//     }
+//     .owl-next {
+//       position: absolute;
+//       top: 35%;
+//       right: 20px;
+//       font-size: 70px;
+//       &:hover {
+//         background: none !important;
+//       }
+//     }
+//   }
+//   .carousel_item {
+//     position: $pos1;
+//     overflow: hidden;
+//     margin: 88px 0px;
+//     img{
+//       width: 100%;
+//     }
+//   }
+//   .carousel_overlay {
+//     position: absolute;
+//     background: black;
+//     width: 800px;
+//     height: 100%;
+//     top: 0;
+//     left: -400%;
+//     transition: all 0.5s;
+//     opacity: 0.8;
+//   }
+
+//   .carousel_item:hover .carousel_overlay {
+//     left: -100%;
+//     color: white;
+//   }
+//   .carousel_detail {
+//     position: absolute;
+//     top: 48%;
+//     opacity: 0;
+//     left: 0;
+//     transition: all 0.3s;
+//   }
+//   .carousel_item:hover .carousel_detail {
+//     opacity: 1;
+//     color: white;
+//   }
+//   .carousel_detail i {
+//     color: white;
+//     font-size: 50px;
+//     border: 3px solid white;
+//     width: 100px;
+//     height: 100px;
+//     padding-top: 22px;
+//     padding-bottom: 50px;
+//     margin: 30px;
+//     margin-top: -80px;
+//     padding-left: 10px;
+//     border-radius: 50%;
+//   }
+// }
