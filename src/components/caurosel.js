@@ -23,62 +23,18 @@ export default class Caurosel extends Component {
     };
     return (
       <div>
-        <Slider id="carousel" {...settings}>
-          <div className="carousel_item_cotent">
-            <div className="owl-carousel owl-theme">
-              <div className="carousel_item" style={{ margin: "75px 0px" }}>
-                <img src={banner1}  style={{    width: "100%"}}/>
-                <div className="carousel_overlay" />
-                <div className="carousel_detail w-100 text-center text-white">
-                  <a
-                    className="venobox"
-                    data-vbtype="video"
-                    href="https://youtu.be/kSufj59H4K4"
-                  >
-                    <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-                  </a>
-                </div>
-              </div>
-              <div className="carousel_item" style={{ margin: "75px 0px" }}>
-                <img src={banner2}  style={{    width: "100%"}}/>
-                <div className="carousel_overlay" />
-                <div className="carousel_detail w-100 text-center text-white">
-                  <a
-                    className="venobox"
-                    data-vbtype="video"
-                    href="https://youtu.be/kSufj59H4K4"
-                  >
-                    <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-                  </a>
-                </div>
-              </div>
-              <div className="carousel_item" style={{ margin: "75px 0px" }}>
-                <img src={banner4}  style={{    width: "100%"}}/>
-                <div className="carousel_overlay" />
-                <div className="carousel_detail w-100 text-center text-white">
-                  <a
-                    className="venobox"
-                    data-vbtype="video"
-                    href="https://youtu.be/kSufj59H4K4"
-                  >
-                    <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-                  </a>
-                </div>
-              </div>
-              <div className="carousel_item" style={{ margin: "75px 0px" }}>
-                <img src={banner6} style={{    width: "100%"}} />
-                <div className="carousel_overlay" />
-                <div className="carousel_detail w-100 text-center text-white">
-                  <a
-                    className="venobox"
-                    data-vbtype="video"
-                    href="https://youtu.be/kSufj59H4K4"
-                  >
-                    <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-                  </a>
-                </div>
-              </div>
-            </div>
+        <Slider {...settings}>
+          <div>
+            <img src={banner1} style={{width: "100%"}}/>
+          </div>
+          <div>
+            <img src={banner2} style={{width: "100%"}}/>
+          </div>
+          <div>
+            <img src={banner4} style={{width: "100%"}}/>
+          </div>
+          <div>
+            <img src={banner6} style={{width: "100%"}}/>
           </div>
         </Slider>
       </div>
