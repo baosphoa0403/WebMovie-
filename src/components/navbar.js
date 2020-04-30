@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import logo from "../images/img/logo2.png";
 export default class Navbar extends Component {
-  constructor(props){
-     super(props);
-     this.state = {
-       img:""
-     }
-  }
-  
   render() {
     return (
       <div>

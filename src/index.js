@@ -8,13 +8,16 @@ import "jquery/dist/jquery.min.js";
 import "popper.js/dist/umd/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../src/scss/index.scss"
+// set up redux
+import {Provider} from "react-redux"
+import {createStore} from "redux"
+import {rootReducers} from "./redux/reducers/rootReducers"
 
-
-
+const store = createStore(rootReducers)
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
       <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
