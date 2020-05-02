@@ -10,10 +10,16 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "../src/scss/index.scss"
 // set up redux
 import {Provider} from "react-redux"
-import {createStore} from "redux"
+import {createStore, applyMiddleware, compose} from "redux"
 import {rootReducers} from "./redux/reducers/rootReducers"
+import thunk from "redux-thunk"
 
-const store = createStore(rootReducers)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducers,
+  composeEnhancers(applyMiddleware(thunk))
+);
 ReactDOM.render(
   <Provider store={store}>
       <App />
