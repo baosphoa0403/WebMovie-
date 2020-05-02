@@ -1,138 +1,20 @@
-// #carousel {
-//   .carousel_item_cotent{
-//     display: flex;
-//   }
-//   position: relative;
-//   .owl-dots {
-//     position: absolute;
-//     z-index: 999;
-//     bottom: 100px;
-//     left: 665px;
-//   }
-//   .owl-nav {
-//     .owl-prev {
-//       position: absolute;
-//       top: 35%;
-//       left: 20px;
-//       font-size: 70px;
-//       &:hover {
-//         background: none !important;
-//       }
-//     }
-//     .owl-next {
-//       position: absolute;
-//       top: 35%;
-//       right: 20px;
-//       font-size: 70px;
-//       &:hover {
-//         background: none !important;
-//       }
-//     }
-//   }
-//   .carousel_item {
-//     position: $pos1;
-//     overflow: hidden;
-//     margin: 88px 0px;
-//     img{
-//       width: 100%;
-//     }
-//   }
-//   .carousel_overlay {
-//     position: absolute;
-//     background: black;
-//     width: 800px;
-//     height: 100%;
-//     top: 0;
-//     left: -400%;
-//     transition: all 0.5s;
-//     opacity: 0.8;
-//   }
+.slick-slide img {
+  margin-top: 103px;
+  display: block;
+}
+.slick-arrow {
+  position: absolute;
+  margin-right: 80px;
+}
+.slick-next:before {
+  font-family: "slick";
+  font-size: 53px;
+}
+.slick-dots {
+    margin-bottom: 60px;
+    li button:before{
+        font-size: 16px;
+        color: white;
+    }
+}
 
-//   .carousel_item:hover .carousel_overlay {
-//     left: -100%;
-//     color: white;
-//   }
-//   .carousel_detail {
-//     position: absolute;
-//     top: 48%;
-//     opacity: 0;
-//     left: 0;
-//     transition: all 0.3s;
-//   }
-//   .carousel_item:hover .carousel_detail {
-//     opacity: 1;
-//     color: white;
-//   }
-//   .carousel_detail i {
-//     color: white;
-//     font-size: 50px;
-//     border: 3px solid white;
-//     width: 100px;
-//     height: 100px;
-//     padding-top: 22px;
-//     padding-bottom: 50px;
-//     margin: 30px;
-//     margin-top: -80px;
-//     padding-left: 10px;
-//     border-radius: 50%;
-//   }
-// }
-
-
-
-// <div className="carousel_item_cotent">
-//             <div className="owl-carousel owl-theme">
-//               <div className="carousel_item" style={{ margin: "75px 0px" }}>
-//                 <img src={banner1}  style={{    width: "100%"}}/>
-//                 <div className="carousel_overlay" />
-//                 <div className="carousel_detail w-100 text-center text-white">
-//                   <a
-//                     className="venobox"
-//                     data-vbtype="video"
-//                     href="https://youtu.be/kSufj59H4K4"
-//                   >
-//                     <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-//                   </a>
-//                 </div>
-//               </div>
-//               <div className="carousel_item" style={{ margin: "75px 0px" }}>
-//                 <img src={banner2}  style={{    width: "100%"}}/>
-//                 <div className="carousel_overlay" />
-//                 <div className="carousel_detail w-100 text-center text-white">
-//                   <a
-//                     className="venobox"
-//                     data-vbtype="video"
-//                     href="https://youtu.be/kSufj59H4K4"
-//                   >
-//                     <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-//                   </a>
-//                 </div>
-//               </div>
-//               <div className="carousel_item" style={{ margin: "75px 0px" }}>
-//                 <img src={banner4}  style={{    width: "100%"}}/>
-//                 <div className="carousel_overlay" />
-//                 <div className="carousel_detail w-100 text-center text-white">
-//                   <a
-//                     className="venobox"
-//                     data-vbtype="video"
-//                     href="https://youtu.be/kSufj59H4K4"
-//                   >
-//                     <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-//                   </a>
-//                 </div>
-//               </div>
-//               <div className="carousel_item" style={{ margin: "75px 0px" }}>
-//                 <img src={banner6} style={{    width: "100%"}} />
-//                 <div className="carousel_overlay" />
-//                 <div className="carousel_detail w-100 text-center text-white">
-//                   <a
-//                     className="venobox"
-//                     data-vbtype="video"
-//                     href="https://youtu.be/kSufj59H4K4"
-//                   >
-//                     <i className="fa fa-play d-block mx-auto mb-3 video-play" />
-//                   </a>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
