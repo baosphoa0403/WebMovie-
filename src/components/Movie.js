@@ -1,9 +1,10 @@
+import {Link} from "react-router-dom"
+import {connect} from "react-redux";
 import React, { Component } from "react";
-
-export default class Movie extends Component {
+// import {button} from "react-router-dom";
+ class Movie extends Component {
   render() {
       let {movie} = this.props;
-      
     return (
       <div className="col-sm-3">
         <div className="card text-center"n>
@@ -11,10 +12,12 @@ export default class Movie extends Component {
           <div className="card-body">
             <h4 className="card-title">{movie.tenPhim}</h4>
             <p className="card-text">{movie.moTa.length > 10 ? movie.moTa.replace(movie.moTa.slice(10, 100)) + "..."  : movie.moTa }</p>
-            {/* <p className="card-text" >{movie.moTa}</p> */}
+            <Link className="btn btn-danger " to={`/detail/${movie.maPhim}`}>Chi Tiết</Link>
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default Movie;

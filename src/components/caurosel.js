@@ -6,13 +6,8 @@ import banner4 from "../images/img/banner4.jpg";
 import banner6 from "../images/img/banner6.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Mvideo from "./mvideo";
 export default class Caurosel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      img: "",
-    };
-  }
   render() {
     const settings = {
       dots: true,
@@ -25,19 +20,58 @@ export default class Caurosel extends Component {
       <div>
         <Slider {...settings}>
           <div>
-            <img src={banner1} style={{width: "100%"}}/>
+            <div>
+              <img
+                src={banner1}
+                style={{ width: "100%", position: "relative" }}
+              />
+            </div>
           </div>
           <div>
-            <img src={banner2} style={{width: "100%"}}/>
+            <img
+              src={banner2}
+              style={{ width: "100%", position: "relative" }}
+            />
           </div>
           <div>
-            <img src={banner4} style={{width: "100%"}}/>
+            <img
+              src={banner4}
+              style={{ width: "100%", position: "relative" }}
+            />
           </div>
           <div>
-            <img src={banner6} style={{width: "100%"}}/>
+            <img
+              src={banner6}
+              style={{ width: "100%", position: "relative" }}
+            />
           </div>
         </Slider>
       </div>
     );
   }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     isOpen: false,
+  //   };
+  //   this.openModal = this.openModal.bind(this);
+  // }
+
+  // openModal() {
+  //   this.setState({ isOpen: true });
+  // }
+
+  // render() {
+  //   return (
+  //     <div>
+  //       <ModalVideo
+  //         channel="youtube"
+  //         isOpen={this.state.isOpen}
+  //         videoId="42Gtm4-Ax2U"
+  //         onClose={() => this.setState({ isOpen: false })}
+  //       />
+  //       <button onClick={this.openModal}>Open</button>
+  //     </div>
+  //   );
+  // }
 }

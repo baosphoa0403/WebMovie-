@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Movie from '../../components/Movie';
-import Axios from "axios";
-import * as action from "../../redux/action"
+import Movie from '../components/Movie';
+import * as action from "../redux/action"
 import {connect} from "react-redux";
  class ListMovie extends Component {
     renderListMovie = () => {
@@ -11,6 +10,7 @@ import {connect} from "react-redux";
     }
     render() {
         console.log(this.props.listMovie);
+        
         return (
             <div>
                 <h1 className="text-center">ListMovie</h1>
