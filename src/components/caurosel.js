@@ -10,6 +10,17 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 export default class Caurosel extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false,
+    };
+    this.openModal = this.openModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({ isOpen: true });
+  }
   render() {
     return (
       <div>
