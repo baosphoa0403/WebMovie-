@@ -1,77 +1,79 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
+
+import ModalVideo from "react-modal-video";
 import banner1 from "../images/img/banner1.jpg";
 import banner2 from "../images/img/banner2.jpg";
 import banner4 from "../images/img/banner4.jpg";
 import banner6 from "../images/img/banner6.png";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Mvideo from "./mvideo";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 export default class Caurosel extends Component {
   render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
     return (
       <div>
-        <Slider {...settings}>
-          <div>
+        <div>
+          <OwlCarousel items={1} className="owl-theme" loop nav margin={4}>
             <div>
               <img
+                className="img"
                 src={banner1}
-                style={{ width: "100%", position: "relative" }}
+                style={{ position: "relative" }}
               />
+              <div>
+                <ModalVideo
+                  style={{ position: "absolute" }}
+                  channel="youtube"
+                  isOpen={this.state.isOpen}
+                  videoId="Rszr56AH3Co"
+                  onClose={() => this.setState({ isOpen: false })}
+                />
+                <button onClick={this.openModal}>Open</button>
+              </div>
             </div>
-          </div>
-          <div>
-            <img
-              src={banner2}
-              style={{ width: "100%", position: "relative" }}
-            />
-          </div>
-          <div>
-            <img
-              src={banner4}
-              style={{ width: "100%", position: "relative" }}
-            />
-          </div>
-          <div>
-            <img
-              src={banner6}
-              style={{ width: "100%", position: "relative" }}
-            />
-          </div>
-        </Slider>
+            <div>
+              <img className="img" src={banner2} />
+              <div>
+                <ModalVideo
+                  style={{ position: "absolute" }}
+                  channel="youtube"
+                  isOpen={this.state.isOpen}
+                  videoId="x3HbbzHK5Mc"
+                  onClose={() => this.setState({ isOpen: false })}
+                />
+                <button onClick={this.openModal}>Open</button>
+              </div>
+            </div>
+            <div>
+              <img className="img" src={banner4} />
+              <div>
+                <ModalVideo
+                  style={{ position: "absolute" }}
+                  channel="youtube"
+                  isOpen={this.state.isOpen}
+                  videoId="J_xN8O0Ag5U"
+                  onClose={() => this.setState({ isOpen: false })}
+                />
+                <button onClick={this.openModal}>Open</button>
+              </div>
+            </div>
+            <div>
+              <img className="img" src={banner6} />
+              <div>
+                <ModalVideo
+                  style={{ position: "absolute" }}
+                  channel="youtube"
+                  isOpen={this.state.isOpen}
+                  videoId="yiBo3wgJ860"
+                  onClose={() => this.setState({ isOpen: false })}
+                />
+                <button onClick={this.openModal}>Open</button>
+              </div>
+            </div>
+          </OwlCarousel>
+        </div>
       </div>
     );
   }
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     isOpen: false,
-  //   };
-  //   this.openModal = this.openModal.bind(this);
-  // }
-
-  // openModal() {
-  //   this.setState({ isOpen: true });
-  // }
-
-  // render() {
-  //   return (
-  //     <div>
-  //       <ModalVideo
-  //         channel="youtube"
-  //         isOpen={this.state.isOpen}
-  //         videoId="42Gtm4-Ax2U"
-  //         onClose={() => this.setState({ isOpen: false })}
-  //       />
-  //       <button onClick={this.openModal}>Open</button>
-  //     </div>
-  //   );
-  // }
 }
