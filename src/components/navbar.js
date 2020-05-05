@@ -35,22 +35,22 @@ export default class Navbar extends Component {
                         className="nav-link "
                         href="#"
                       >
-                        phim
+                        Trang Chủ
                       </a>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#stadium">
-                        Sự kiện
+                        Phim
                       </a>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#stadium">
-                        Cụm rạp
+                       Lịch Chiếu
                       </a>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#the-end">
-                        Liên hệ
+                       Cụm rạp
                       </a>
                     </li>
                   </ul>
