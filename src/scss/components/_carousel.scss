@@ -10,6 +10,12 @@
   font-family: "slick";
   font-size: 53px;
 }
+.owl-item{
+  position: relative;
+  i{
+    position: absolute;
+  }
+}
 .slick-dots {
     margin-bottom: 60px;
     li button:before{

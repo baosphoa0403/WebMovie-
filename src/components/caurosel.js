@@ -21,6 +21,7 @@ export default class Caurosel extends Component {
   openModal() {
     this.setState({ isOpen: true });
   }
+
   render() {
     return (
       <div>
@@ -28,6 +29,7 @@ export default class Caurosel extends Component {
           <OwlCarousel items={1} className="owl-theme" loop nav margin={4}>
             <div>
               <img className="img" src={banner1} />
+              <i class="fa fa-play"></i>
             </div>
             <div>
               <img className="img" src={banner2} />

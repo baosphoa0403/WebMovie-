@@ -7,7 +7,7 @@ class TicketBooking extends Component {
     if (this.props.listChair.danhSachGhe !== undefined) {
       if (this.props.listChair.danhSachGhe.length > 0) {
         return this.props.listChair.danhSachGhe.map(item => {
-          return <button key={item.maGhe} className="btn btn-danger">{item.tenGhe}</button>;
+          return <button key={item.maGhe} className="btn btn-danger seat">{item.tenGhe}</button>;
         });
       }
     }
