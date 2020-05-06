@@ -1,0 +1,74 @@
+.ng-scope{
+    #homeApp {
+        padding: 120px 0 80px 0;
+        background: url(../../images/img/blockApp/backapp.jpg);
+        background-size: contain;
+        .mainMaxWidth {
+            max-width: 940px;
+            float: none;
+            margin: auto;
+            clear: both;
+        }
+        .textLeft{
+            color: #fff;
+            font-weight: 700;
+            font-size: xx-large;
+        }
+        .textSmallLeft{
+            color: #fff;
+            font-size: medium;
+        }
+        .buttonLeft{
+            background-color: #fb4226;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: medium;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+        }
+        .textAppUnder{
+            color: #fff;
+            padding-top: 10px;
+            display: flex;
+            .tagA{
+                color: #fff;
+                border-bottom: 1px solid #fff;
+                cursor: hand;
+                margin: 0px 10px;
+            }
+        }
+        .right{
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+            .img-responsive{
+                padding: 0 28%;
+            }
+            img{
+                width: 100%;
+            }
+            .sliderScreen{
+                position: absolute;
+                padding: 1.5% 29.3% 0 29.3%;
+                top: 0;
+                left: 0;
+                width: 100%;
+                img{
+                    border-radius: 20px;
+                    width: 100%;
+                    height: 442px !important;
+                }
+                .slick-prev:before {
+                    content: none;
+                }
+                .slick-next:before {
+                    content: none;
+                }
+            }
+        }
+    }
+    .col-xs-12 {
+        width: 100%;
+    }
+}
