@@ -25,13 +25,26 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "video-react": "^0.14.1"
+    "video-react": "^0.14.1",
+    "@types/react": "16.9.23",
+    "chart.js": "2.9.3",
+    "classnames": "2.2.6",
+    "history": "4.10.1",
+    "perfect-scrollbar": "1.5.0",
+    "prop-types": "15.7.2",
+    "react-chartjs-2": "2.9.0",
+    "react-google-maps": "9.4.5",
+    "react-notification-alert": "0.0.12"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile-scss": "node-sass src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css",
+    "minify-sass": "node-sass src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css --source-map true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +53,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
@@ -48,8 +62,16 @@
       "last 1 safari version"
     ]
   },
+  "optionalDependencies": {
+    "@types/googlemaps": "3.39.3",
+    "@types/markerclustererplus": "2.1.33",
+    "eslint-plugin-flowtype": "3.13.0",
+    "typescript": "3.8.3"
+  },
   "devDependencies": {
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8"
   }
   
 }

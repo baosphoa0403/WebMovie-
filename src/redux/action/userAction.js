@@ -14,7 +14,7 @@ export const actGetListUserAPI = () => {
     }
     
 }
-export const actCheckSignIn = (user, history) => {
+export const actCheckSignInAdmin = (user, history) => {
     return dispatch => {
         Axios({
             method: "POST",
@@ -34,6 +34,27 @@ export const actCheckSignIn = (user, history) => {
                alert("bạn đã nhập sai");
            }
         })
+    }
+}
+
+export const actCheckSignInUser = () => {
+    return dispatch => {    
+        Axios({
+            method: "POST",
+            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+            data: user
+        }).then((rs)=>{
+           console.log(rs);
+           if (rs.data.maLoaiNguoiDung === "KhachHang") {
+               localStorage.getItem("userAdmin", JSsd là ;gvcxvp  \][  /.,ok0polbnm[['
+               ghm4rhjkl;'';,l ..lkjkl
+               l/.,msjkl;'
+               'ON.stringify(rs.data));
+               history.push("/admin/dashboard"); 
+           }else {
+               alert("tài khoản bị sai");
+           }
+        })    
     }
 }
 const actGetListUser = (listUser) => {

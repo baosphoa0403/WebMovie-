@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "../images/img/logo2.png";
+import {Link} from "react-router-dom"
 export default class Navbar extends Component {
   render() {
     return (
@@ -60,11 +61,7 @@ export default class Navbar extends Component {
                     <ul>
                       <li>
                         <i className="fa fa-user" />
-                        <a href="#">Đăng Nhập</a>
-                      </li>
-                      <li>
-                        <span>/</span>
-                        <a href="#">Đăng Ký</a>
+                        <Link to="/form">Đăng Nhập</Link>
                       </li>
                     </ul>
                   </div>

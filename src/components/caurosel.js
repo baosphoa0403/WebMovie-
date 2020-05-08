@@ -5,42 +5,11 @@ import banner1 from "../images/img/banner1.jpg";
 import banner2 from "../images/img/banner2.jpg";
 import banner4 from "../images/img/banner4.jpg";
 import banner6 from "../images/img/banner6.png";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-
 export default class Caurosel extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isOpen: false
-    };
-    this.openModal = this.openModal.bind(this);
-  }
-
-  openModal() {
-    this.setState({ isOpen: true });
-  }
 
   render() {
     return (
       <div>
-        {/* <div>
-          <OwlCarousel items={1} className="owl-theme" loop nav margin={4}>
-            <React.Fragment>
-              <img className="img" src={banner1} />
-            </React.Fragment>
-            <React.Fragment>
-              <img className="img" src={banner2} />
-            </React.Fragment>
-            <React.Fragment>
-              <img className="img" src={banner4} />
-            </React.Fragment>
-            <React.Fragment>
-              <img className="img" src={banner6} />
-            </React.Fragment>
-          </OwlCarousel>
-        </div> */}
         <div id="carouselId" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
             <li
@@ -50,19 +19,24 @@ export default class Caurosel extends React.Component {
             />
             <li data-target="#carouselId" data-slide-to={1} />
             <li data-target="#carouselId" data-slide-to={2} />
+            <li data-target="#carouselId" data-slide-to={3} />
           </ol>
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
               <img src={banner1} />
+              <i class="fa fa-play"></i>
             </div>
             <div className="carousel-item">
               <img src={banner2} />
+              <i class="fa fa-play"></i>
             </div>
             <div className="carousel-item">
               <img src={banner4} />
+              <i class="fa fa-play"></i>
             </div>
             <div className="carousel-item">
               <img src={banner6} />
+              <i class="fa fa-play"></i>
             </div>
           </div>
           <a
