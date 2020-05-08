@@ -18,7 +18,7 @@ class Admin extends Component {
   }
   handleOnlogin = (event) => {
       event.preventDefault();
-      this.props.checkLogin(this.state, this.props.history);
+      this.props.checkLoginAdmin(this.state, this.props.history);
 
   }
   render() {
@@ -85,7 +85,7 @@ class Admin extends Component {
                 </div>
               </div>
               </form>
-              <div className="sign-up-htm">
+              {/* <div className="sign-up-htm">
                 <div className="group">
                   <label htmlFor="user" className="label">
                     Username
@@ -131,7 +131,7 @@ class Admin extends Component {
                 <div className="foot-lnk">
                   <label htmlFor="tab-1">Already Member?</label>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -141,8 +141,8 @@ class Admin extends Component {
 }
 const  mapDispatchToProps = (dispatch) =>{
   return {
-    checkLogin: (user, history) => {
-      dispatch(action.actCheckSignIn(user, history))
+    checkLoginAdmin: (user, history) => {
+      dispatch(action.actCheckSignInAdmin(user, history))
     }
   }
 }

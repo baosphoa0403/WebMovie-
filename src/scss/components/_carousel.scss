@@ -1,0 +1,21 @@
+.carousel-item{
+    position: relative;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    i{
+        position: $pos2;
+        color: $color-white;
+        font-size: 45px;
+        left: 50%;
+        bottom: 50%;
+        width: 100px;
+        height: 100px;
+        border: 1px solid white;
+        padding: 28px 35px;
+        margin: -35px -60px;
+        border-radius: 50%;
+    }
+    
+}
