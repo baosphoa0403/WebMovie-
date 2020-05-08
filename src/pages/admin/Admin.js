@@ -1,5 +1,26 @@
 import React, { Component } from "react";
+import * as action from "../../redux/action/userAction"
+import {connect} from "react-redux";
 class Admin extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      taiKhoan: "",
+      matKhau: ""
+    }
+  }
+  handleOnChange = (event) => {
+    let {name, value} = event.target;
+    this.setState({
+      [name]: value
+    });
+     
+  }
+  handleOnlogin = (event) => {
+      event.preventDefault();
+      this.props.checkLogin(this.state, this.props.history);
+
+  }
   render() {
     return (
       <div className ="login-admin">
@@ -20,22 +41,24 @@ class Admin extends Component {
               Sign Up
             </label>
             <div className="login-form">
+              <form onSubmit={this.handleOnlogin}>
               <div className="sign-in-htm">
                 <div className="group">
                   <label htmlFor="user" className="label">
                     Username
                   </label>
-                  <input id="user" type="text" className="input" />
+                  <input name="taiKhoan" type="text" className="input" onChange={this.handleOnChange} />
                 </div>
                 <div className="group">
                   <label htmlFor="pass" className="label">
                     Password
                   </label>
                   <input
-                    id="pass"
+                    name="matKhau"
                     type="password"
                     className="input"
                     data-type="password"
+                    onChange={this.handleOnChange}
                   />
                 </div>
                 <div className="group">
@@ -61,6 +84,7 @@ class Admin extends Component {
                   <a href="#forgot">Forgot Password?</a>
                 </div>
               </div>
+              </form>
               <div className="sign-up-htm">
                 <div className="group">
                   <label htmlFor="user" className="label">
@@ -115,5 +139,11 @@ class Admin extends Component {
     );
   }
 }
-
-export default Admin;
+const  mapDispatchToProps = (dispatch) =>{
+  return {
+    checkLogin: (user, history) => {
+      dispatch(action.actCheckSignIn(user, history))
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(Admin);

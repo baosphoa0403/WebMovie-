@@ -9,11 +9,11 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
-export default class Caurosel extends Component {
+export default class Caurosel extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
+      isOpen: false
     };
     this.openModal = this.openModal.bind(this);
   }
@@ -21,24 +21,68 @@ export default class Caurosel extends Component {
   openModal() {
     this.setState({ isOpen: true });
   }
+
   render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <OwlCarousel items={1} className="owl-theme" loop nav margin={4}>
-            <div>
+            <React.Fragment>
               <img className="img" src={banner1} />
-            </div>
-            <div>
+            </React.Fragment>
+            <React.Fragment>
               <img className="img" src={banner2} />
-            </div>
-            <div>
+            </React.Fragment>
+            <React.Fragment>
               <img className="img" src={banner4} />
-            </div>
-            <div>
+            </React.Fragment>
+            <React.Fragment>
               <img className="img" src={banner6} />
-            </div>
+            </React.Fragment>
           </OwlCarousel>
+        </div> */}
+        <div id="carouselId" className="carousel slide" data-ride="carousel">
+          <ol className="carousel-indicators">
+            <li
+              data-target="#carouselId"
+              data-slide-to={0}
+              className="active"
+            />
+            <li data-target="#carouselId" data-slide-to={1} />
+            <li data-target="#carouselId" data-slide-to={2} />
+          </ol>
+          <div className="carousel-inner" role="listbox">
+            <div className="carousel-item active">
+              <img src={banner1} />
+            </div>
+            <div className="carousel-item">
+              <img src={banner2} />
+            </div>
+            <div className="carousel-item">
+              <img src={banner4} />
+            </div>
+            <div className="carousel-item">
+              <img src={banner6} />
+            </div>
+          </div>
+          <a
+            className="carousel-control-prev"
+            href="#carouselId"
+            role="button"
+            data-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            <span className="sr-only">Previous</span>
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#carouselId"
+            role="button"
+            data-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <span className="sr-only">Next</span>
+          </a>
         </div>
       </div>
     );

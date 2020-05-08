@@ -1,6 +1,8 @@
 import {combineReducers} from "redux"; 
 import movieReducer from "./movieReducer";
+import userReducer from "./userReducer";
 export const rootReducers = combineReducers({
     // nơi chứ các reducer con
-    movieReducer: movieReducer
+    movieReducer: movieReducer,
+    userReducer: userReducer
 })
