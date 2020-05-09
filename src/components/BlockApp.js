@@ -20,12 +20,10 @@ import Slider from "react-slick";
 export default class BlockApp extends Component {
   render() {
     const settings = {
-      dots: true,
-      infinite: true,
-      speed: 360,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
+      autoplaySpeed: 1500,
     };
 
     return (
@@ -77,8 +75,9 @@ export default class BlockApp extends Component {
                       alt
                       className="img-responsive phone-img"
                     />
+                    <div className="sliderScreen">
                     <Slider {...settings}>
-                      {/* <div className="sliderScreen"> */}
+                      
                       <div>
                         <img src={slide1} alt />
                       </div>
@@ -119,7 +118,7 @@ export default class BlockApp extends Component {
                         <img src={slide16} alt />
                       </div>
                     </Slider>
-                    {/* </div> */}
+                    </div>
                   </div>
                 </div>
               </div>

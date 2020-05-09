@@ -46,9 +46,9 @@ export const actCheckSignInUser = (user, history) => {
         }).then((rs)=>{
            console.log(rs);
            if (rs.data.maLoaiNguoiDung === "KhachHang") {
-               localStorage.setItem("userAdmin", JSON.stringify(rs.data));
+               localStorage.setItem("user", JSON.stringify(rs.data));
                history.push("/"); 
-               dispatch(actPostDetailUser(rs.data))
+               dispatch(actPostUser(rs.data));
            }else {
                alert("tài khoản bị sai");
            }
@@ -61,9 +61,9 @@ const actGetListUser = (listUser) => {
         data: listUser
     }
 }
-const actPostDetailUser = (detailUser) => {
-     return{
-         type: ActionType.POST_DETAIL_USER,
-         data: detailUser
-     }    
+const actPostUser =(dataUser)=>{
+    return{
+        type: ActionType.POST_DETAIL_USER,
+        data: dataUser
+    }
 }

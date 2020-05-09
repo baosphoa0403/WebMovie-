@@ -12,7 +12,7 @@ class Home extends Component {
         <Navbar />
         <Carousel />
         <ListMovie />
-        {/* <BlockApp/> */}
+        <BlockApp/>
         <Footer />
       </div>
     );

@@ -1,8 +1,9 @@
 import * as Actiontype from "../constants/ActionType"
 let initialState = {
-    listUser: [], 
+    listUser: [],
     detailUser: {}
 }
+
 
 const userReducer = (state = initialState, action) => {
 switch (action.type) {
@@ -10,8 +11,9 @@ switch (action.type) {
        state.listUser = action.data;
         break;
     case Actiontype.POST_DETAIL_USER:
-        state.detailUser = action.data;
+        state.detailUser =action.data;
         break;
+        
     default:
         break;
 }
