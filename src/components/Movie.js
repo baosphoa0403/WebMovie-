@@ -1,7 +1,5 @@
 import {Link} from "react-router-dom"
-import {connect} from "react-redux";
 import React, { Component } from "react";
-// import {button} from "react-router-dom";
  class Movie extends Component {
   render() {
       let {movie} = this.props;
