@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
 import * as action from "../redux/action/userAction"
-export default class Form extends Component {
+ class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +18,7 @@ export default class Form extends Component {
       }
       handleOnlogin = (event) => {
           event.preventDefault();
-          this.props.checkLogin(this.state, this.props.history);
+          this.props.checkLoginUser(this.state, this.props.history);
     
       }
     render() {
@@ -142,8 +142,9 @@ export default class Form extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        checkLoginUser: () => {
-            dispatch()
+        checkLoginUser: (user, history) => {
+            dispatch(action.actCheckSignInUser(user, history))
         }
     }
 }
+export default connect(null, mapDispatchToProps)(Form);
