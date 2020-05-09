@@ -6,21 +6,28 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailUser: {},
+      detailUser: {}
     };
   }
   componentDidMount() {
     if (JSON.parse(localStorage.getItem("user"))) {
       this.setState({
-        detailUser: JSON.parse(localStorage.getItem("user")),
-      })
-    }else{
+        detailUser: JSON.parse(localStorage.getItem("user"))
+      });
+    } else {
+     this.setState({
+       detailUser: null
+     })
+    }
+  }
+  handleLoginOut = () =>{
+    if (JSON.parse(localStorage.getItem("user"))) {
+      localStorage.removeItem("user");
       this.setState({
         detailUser: null
       })
     }
   }
-  
 
   render() {
     return (
@@ -80,7 +87,27 @@ export default class Navbar extends Component {
                           <Link to="/form">Đăng Nhập</Link>
                         </li>
                       ) : (
-                        <p>hello {this.state.detailUser.hoTen}</p>
+                       
+                        <div className="dropdown">
+                          <button
+                            className="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenu2"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                         <p>hello {this.state.detailUser.hoTen}</p>
+                          </button>
+                          <div
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenu2"
+                          >
+                            <button className="dropdown-item" type="button" onClick={this.handleLoginOut}>
+                             Log out
+                            </button>
+                          </div>
+                        </div>
                       )}
                     </ul>
                   </div>

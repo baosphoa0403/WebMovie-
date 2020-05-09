@@ -12,7 +12,6 @@ switch (action.type) {
         break;
     case Actiontype.POST_DETAIL_USER:
         state.detailUser =action.data;
-        // console.log(action.data);
         break;
         
     default:

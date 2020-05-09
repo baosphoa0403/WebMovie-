@@ -31,7 +31,7 @@ export const actCheckSignInAdmin = (user, history) => {
         })
         .catch((err)=>{
            if (err) {
-               alert("bạn đã nhập sai");
+               alert("bạn đã nhập mật khẩu sai");
            }
         })
     }
