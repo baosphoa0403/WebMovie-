@@ -21,9 +21,9 @@ export const actCheckSignInAdmin = (user, history) => {
             url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
             data: user
         }).then((rs)=>{
-        //    console.log(rs);
+           console.log(rs);
            if (rs.data.maLoaiNguoiDung === "QuanTri") {
-               localStorage.getItem("userAdmin", JSON.stringify(rs.data));
+               localStorage.setItem("userAdmin", JSON.stringify(rs.data));
                history.push("/admin/dashboard"); 
            }else{
                alert("bạn không có quyền đăng nhập ");
@@ -37,7 +37,7 @@ export const actCheckSignInAdmin = (user, history) => {
     }
 }
 
-export const actCheckSignInUser = () => {
+export const actCheckSignInUser = (user, history) => {
     return dispatch => {    
         Axios({
             method: "POST",
@@ -46,11 +46,9 @@ export const actCheckSignInUser = () => {
         }).then((rs)=>{
            console.log(rs);
            if (rs.data.maLoaiNguoiDung === "KhachHang") {
-               localStorage.getItem("userAdmin", JSsd là ;gvcxvp  \][  /.,ok0polbnm[['
-               ghm4rhjkl;'';,l ..lkjkl
-               l/.,msjkl;'
-               'ON.stringify(rs.data));
-               history.push("/admin/dashboard"); 
+               localStorage.setItem("user", JSON.stringify(rs.data));
+               history.push("/"); 
+               dispatch(actPostUser(rs.data));
            }else {
                alert("tài khoản bị sai");
            }
@@ -61,5 +59,11 @@ const actGetListUser = (listUser) => {
     return {
         type: ActionType.GET_LIST_USER ,
         data: listUser
+    }
+}
+const actPostUser =(dataUser)=>{
+    return{
+        type: ActionType.POST_DETAIL_USER,
+        data: dataUser
     }
 }
