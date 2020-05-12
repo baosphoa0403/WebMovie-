@@ -9,7 +9,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <Carousel />
         <ListMovie />
         <BlockApp/>

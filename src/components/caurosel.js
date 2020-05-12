@@ -24,19 +24,35 @@ export default class Caurosel extends React.Component {
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
               <img src={banner1} />
-              <i class="fa fa-play"></i>
+            <div>
+               <a  className="watchTrailerrailer" href="https://youtu.be/kSufj59H4K4" data-lity>
+                  <i class="fa fa-play video-play"></i>
+              </a>
+            </div>
             </div>
             <div className="carousel-item">
               <img src={banner2} />
-              <i class="fa fa-play"></i>
+             <div>
+               <a  className="watchTrailerrailer" href="https://youtu.be/kSufj59H4K4" data-lity>
+                  <i class="fa fa-play video-play"></i>
+              </a>
+            </div>
             </div>
             <div className="carousel-item">
               <img src={banner4} />
-              <i class="fa fa-play"></i>
+             <div>
+               <a  className="watchTrailerrailer" href="https://youtu.be/kSufj59H4K4" data-lity>
+                  <i class="fa fa-play video-play"></i>
+              </a>
+            </div>
             </div>
             <div className="carousel-item">
               <img src={banner6} />
-              <i class="fa fa-play"></i>
+             <div>
+               <a  className="watchTrailerrailer" href="https://youtu.be/kSufj59H4K4" data-lity>
+                  <i class="fa fa-play video-play"></i>
+              </a>
+            </div>
             </div>
           </div>
           <a
