@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../redux/action/userAction";
-class Form extends Component {
+import {Formik, Form, Field } from "formik"
+class FormSignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -151,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(FormSignIn);
