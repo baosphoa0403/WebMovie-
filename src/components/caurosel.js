@@ -24,6 +24,7 @@ export default class Caurosel extends React.Component {
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
               <img src={banner1} />
+              
               <i class="fa fa-play"></i>
             </div>
             <div className="carousel-item">
