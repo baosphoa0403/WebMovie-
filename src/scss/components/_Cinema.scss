@@ -1,0 +1,213 @@
+.homeMovies {
+  padding-bottom: spacing(4);
+  .homeMovies__content {
+    max-width: spacing(94);
+    margin: auto;
+    padding-top: spacing(12);
+    background: url(../../images/img/back-news.png);
+    background-repeat: no-repeat;
+    // background-position: center;
+    background-size: 100%;
+    .homeMovies__bg {
+      background-color: $color-white-0;
+      .row {
+        width: 100%;
+        margin: 0;
+        .col-12 {
+          .parentListPCinemas {
+            float: left;
+            padding: 0;
+            min-height: spacing(70.5);
+            max-width: spacing(9.2);
+            border: 1px solid $color-gray-4;
+            border-top-left-radius: $border-radius-4;
+            border-bottom-left-radius: $border-radius-4;
+            .nav-pills {
+              .nav-link.active {
+                background-color: transparent;
+                color: transparent;
+                opacity: 1;
+              }
+              .nav-link {
+                opacity: 0.5;
+                padding: spacing(2);
+                position: relative;
+                &:hover {
+                  opacity: 1;
+                }
+                &::after {
+                  content: " ";
+                  position: absolute;
+                  bottom: 0;
+                  left: 50%;
+                  transform: translate(-50%);
+                  width: calc(100% - 40px);
+                  border-bottom: 1px solid rgba(238, 238, 238, 0.88);
+                  // border-color: rgba(238,238,238,0.88);
+                }
+                img {
+                  width: spacing(5);
+                }
+              }
+            }
+          }
+          .listCinemas {
+            float: left;
+            height: spacing(70.5);
+            min-height: spacing(70.5);
+            border-top: 1px solid $color-gray-4;
+            border-bottom: 1px solid $color-gray-4;
+            width: 30%;
+            padding: 0;
+            .tab-content {
+              .tab-pane.active {
+                opacity: 1;
+              }
+              .tab-pane {
+                .homeMovies__scope {
+                  .homeMovies__cinema {
+                    display: block;
+                    position: relative;
+                    padding: spacing(2) spacing(1.5) spacing(1.5) spacing(2);
+                    opacity: 0.5;
+                    cursor: pointer;
+                    &::after {
+                      content: " ";
+                      position: absolute;
+                      bottom: 0;
+                      left: 50%;
+                      transform: translate(-50%);
+                      width: calc(100% - 40px);
+                      border-bottom: 1px solid rgba(238, 238, 238, 0.88);
+                    }
+                    &:hover {
+                      opacity: 1;
+                    }
+                    &.active {
+                      opacity: 1;
+                    }
+                    .homeMovies__picture {
+                      float: left;
+                      width: spacing(5);
+                      img {
+                        width: 100%;
+                      }
+                    }
+                    .homeMovies__text {
+                      padding-left: spacing(6);
+                      p {
+                        line-height: 1.4;
+                        margin: 0;
+                      }
+                      .homeMovies__nameMovieCinema {
+                        font-size: $fs-4;
+                        font-weight: $fw-medium;
+                        color: $color-black-0;
+                        .homeMovies__colorCinema {
+                          color: $color-red-2;
+                          font-weight: $fw-bold;
+                        }
+                        .homeMovies__colorCinema.BHD {
+                          color: $color-lime-2;
+                        }
+                        .homeMovies__colorCinema.GLX {
+                          color: $color-orange-1;
+                        }
+                        .homeMovies__colorCinema.DDC {
+                          color: $color-gray-5;
+                        }
+                        .homeMovies__colorCinema.MegaGS {
+                          color: $color-orange-2;
+                        }
+                        .homeMovies__colorCinema.Dcine {
+                          color: $color-black-0;
+                        }
+                        .homeMovies__colorCinema.Lotte {
+                          color: $color-red-4;
+                        }
+                      }
+                      .homeMovies__infoMovieCinema {
+                        font-size: $fs-2;
+                        color: $color-gray-1;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                      }
+                      .homeMovies__showingDetailCinema {
+                        a {
+                          font-size: $fs-2;
+                          font-weight: $fw-bold;
+                          color: $color-red-2;
+                          text-decoration: none;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &.selectScroll {
+                height: spacing(70.5);
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                  width: 4px;
+                }
+              }
+              &.selectScroll:hover {
+                height: spacing(70.5);
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                  width: 4px;
+                  display: block;
+                }
+                &::-webkit-scrollbar-track {
+                  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                  border-radius: 10px;
+                }
+                &::-webkit-scrollbar-thumb {
+                  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                  border-radius: 10px;
+                }
+              }
+            }
+          }
+          .listMovies {
+            float: left;
+            height: spacing(70.5);
+            min-height: spacing(70.5);
+            width: calc(100% - 30% - 92px);
+            border-top-right-radius: $border-radius-4;
+            border-bottom-right-radius: $border-radius-4;
+            border: 1px solid rgba(238, 238, 238, 0.88);
+            .homeMovies__contentCinema {
+              text-align: center;
+              margin-top: spacing(3);
+              font-size: $fs-13;
+              font-family: "SF Medium", sans-serif;
+              font-weight: $fw-bold;
+              .homeMoies__textCinema {
+                margin: 0 0 spacing(1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: getBreakpoint("medium")) {
+  .homeMovies {
+    .homeMovies__content {
+      .homeMovies__bg {
+        .col-sm-12 {
+          width: 100% !important;
+          border: none !important;
+        }
+        .parentListPCinemas {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

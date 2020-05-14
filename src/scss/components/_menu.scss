@@ -6,7 +6,6 @@
     a {
       img {
         width: 68%;
-        // height: 100%;
       }
     }
   }
@@ -19,15 +18,19 @@
       text-align: left;
       color: $color-white;
       margin: 15px 0px;
-     
+
       ul {
-        display: flex;
-        .dropdown{
+        p {
+          margin-bottom: 3px;
+        }
+        .dropdown-toggle {
+          margin-left: 60px;
+          display: flex;
           .btn-secondary {
             color: none !important;
             background-color: none !important;
             border-color: #6c757d;
-          } 
+          }
         }
         li {
           list-style: none;
@@ -53,6 +56,13 @@
         }
       }
     }
+  }
+  .dropdown-toggle::after {
+    margin-left: 23px;
+    margin-top: 11px;
+  }
+  .dropdown-menu.show{
+    margin-left: 59px;
   }
 
   @include menu();

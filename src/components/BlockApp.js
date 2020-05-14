@@ -52,7 +52,7 @@ export default class BlockApp extends Component {
                       CINEMAX có hai phiên bản
                       <a
                         className="tagA"
-                        target="_blank"
+                        // target="_blank"
                         style={{ width: 25 }}
                         href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8"
                       >
@@ -61,7 +61,7 @@ export default class BlockApp extends Component {
                       &amp;
                       <a
                         className="tagA"
-                        target="_blank"
+                        // target="_blank"
                         style={{ width: 56 }}
                         href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123"
                       >
@@ -72,52 +72,51 @@ export default class BlockApp extends Component {
                   <div className="col-md-6 right">
                     <img
                       src={mobile}
-                      alt
+                      alt=""
                       className="img-responsive phone-img"
                     />
                     <div className="sliderScreen">
-                    <Slider {...settings}>
-                      
-                      <div>
-                        <img src={slide1} alt />
-                      </div>
-                      <div>
-                        <img src={slide2} alt />
-                      </div>
-                      <div>
-                        <img src={slide3} alt />
-                      </div>
-                      <div>
-                        <img src={slide5} alt />
-                      </div>
-                      <div>
-                        <img src={slide6} alt />
-                      </div>
-                      <div>
-                        <img src={slide7} alt />
-                      </div>
-                      <div>
-                        <img src={slide8} alt />
-                      </div>
-                      <div>
-                        <img src={slide10} alt />
-                      </div>
-                      <div>
-                        <img src={slide11} alt />
-                      </div>
-                      <div>
-                        <img src={slide12} alt />
-                      </div>
-                      <div>
-                        <img src={slide13} alt />
-                      </div>
-                      <div>
-                        <img src={slide15} alt />
-                      </div>
-                      <div>
-                        <img src={slide16} alt />
-                      </div>
-                    </Slider>
+                      <Slider {...settings}>
+                        <div>
+                          <img src={slide1} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide2} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide3} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide5} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide6} alt=""/>
+                        </div>
+                        <div>
+                          <img src={slide7} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide8} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide10} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide11} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide12} alt=""/>
+                        </div>
+                        <div>
+                          <img src={slide13} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide15} alt="" />
+                        </div>
+                        <div>
+                          <img src={slide16} alt="" />
+                        </div>
+                      </Slider>
                     </div>
                   </div>
                 </div>

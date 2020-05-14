@@ -30,7 +30,7 @@ class DeatailMovie extends Component {
         <div className="container">
           <div className="row">
             <div className="col-6">
-              <img src={detailMovie.hinhAnh}/>
+              <img src={detailMovie.hinhAnh} alt=""/>
             </div>
             <div className="col-6">
               <table class="table">

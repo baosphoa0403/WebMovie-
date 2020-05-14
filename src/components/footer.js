@@ -25,7 +25,7 @@ export default class Footer extends Component {
             <div className="row">
               <div className="col-3">
                 <div className="footer_item icon1">
-                  <img src={logo2} style={{ width: 232 }} />
+                  <img src={logo2} style={{ width: 232 }}  alt="" />
                   <p>
                     Cinemax giúp bạn mua vé trực tuyến và cập nhật thường xuyên
                     các trailer, tin tức, thông tin rạp, suất chiếu, các đánh
@@ -92,62 +92,62 @@ export default class Footer extends Component {
                   <ul>
                     <li>
                       <a href="https://www.vietinbank.vn/web/home/vn/index.html">
-                        <img src={vietinbank}  />
+                        <img src={vietinbank} alt=""  />
                       </a>
                     </li>
                     <li>
                       <a href="https://cinestar.com.vn/">
-                        <img src={cinestar} />
+                        <img src={cinestar} alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://cinemaxvn.com/">
-                        <img src={cnx} />
+                        <img src={cnx} alt=""  />
                       </a>
                     </li>
                     <li>
                       <a href="https://www.dcine.vn/">
-                        <img src={dcine}  />
+                        <img src={dcine}  alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="http://ddcinema.vn/">
-                        <img src={dongdacinema} />
+                        <img src={dongdacinema} alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://www.galaxycine.vn/">
-                        <img src={galaxycine}  />
+                        <img src={galaxycine}  alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://www.megagscinemas.vn/">
-                        <img src={megags}  />
+                        <img src={megags} alt=""  />
                       </a>
                     </li>
                     <li>
                       <a href="https://www.payoo.vn/">
-                        <img src={payoo} />
+                        <img src={payoo} alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://starlight.vn/">
-                        <img src={starlight} />
+                        <img src={starlight} alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://touchcinema.com/">
-                        <img src={TOUCH}  />
+                        <img src={TOUCH}  alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://portal.vietcombank.com.vn/Pages/Home.aspx">
-                        <img src={VCB} />
+                        <img src={VCB} alt="" />
                       </a>
                     </li>
                     <li>
                       <a href="https://zalopay.vn/">
-                        <img src={zalopay_icon}  />
+                        <img src={zalopay_icon}  alt="" />
                       </a>
                     </li>
                   </ul>

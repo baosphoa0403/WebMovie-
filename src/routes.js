@@ -1,6 +1,6 @@
 import Home from "./pages/home/Home";
 import ListMovie from "./components/ListMovie";
-import Admin from "./pages/admin/Admin";
+// import Admin from "./pages/admin/Admin";
 import DashBoard from "./pages/admin/DashBoard";
 import Form from "./components/Form";
 

@@ -10,7 +10,7 @@ class Movie extends Component {
             className="card-img-top"
             src={movie.hinhAnh}
             style={{ width: "100%", height: "90%" }}
-            alt
+            alt =""
           />
           <div className="card-body">
             <h4 className="card-title">{movie.tenPhim}</h4>

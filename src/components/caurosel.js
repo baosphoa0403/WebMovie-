@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-
-// import ModalVideo from "react-modal-video";
+import React from "react";
 import banner1 from "../images/img/banner1.jpg";
 import banner2 from "../images/img/banner2.jpg";
 import banner4 from "../images/img/banner4.jpg";
 import banner6 from "../images/img/banner6.png";
 export default class Caurosel extends React.Component {
-
   render() {
     return (
       <div>
@@ -23,21 +20,52 @@ export default class Caurosel extends React.Component {
           </ol>
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
-              <img src={banner1} />
-              
-              <i class="fa fa-play"></i>
+              <img src={banner1} alt="" />
+              <div>
+                <a
+                  className="watchTrailerrailer"
+                  href="https://youtu.be/kSufj59H4K4"
+                  data-lity
+                >
+                  <i class="fa fa-play video-play"></i>
+                </a>
+              </div>
             </div>
             <div className="carousel-item">
-              <img src={banner2} />
-              <i class="fa fa-play"></i>
+              <img src={banner2} alt="" />
+              <div>
+                <a
+                  className="watchTrailerrailer"
+                  href="https://youtu.be/kSufj59H4K4"
+                  data-lity
+                >
+                  <i class="fa fa-play video-play"></i>
+                </a>
+              </div>
             </div>
             <div className="carousel-item">
-              <img src={banner4} />
-              <i class="fa fa-play"></i>
+              <img src={banner4} alt="" />
+              <div>
+                <a
+                  className="watchTrailerrailer"
+                  href="https://youtu.be/kSufj59H4K4"
+                  data-lity
+                >
+                  <i class="fa fa-play video-play"></i>
+                </a>
+              </div>
             </div>
             <div className="carousel-item">
-              <img src={banner6} />
-              <i class="fa fa-play"></i>
+              <img src={banner6} alt="" />
+              <div>
+                <a
+                  className="watchTrailerrailer"
+                  href="https://youtu.be/kSufj59H4K4"
+                  data-lity
+                >
+                  <i class="fa fa-play video-play"></i>
+                </a>
+              </div>
             </div>
           </div>
           <a

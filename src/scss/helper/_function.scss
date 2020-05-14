@@ -1,0 +1,12 @@
+@function getBreakpoint($bk){
+    @if map-has-key($map:$breakpoints, $key: $bk){
+        @return map-get($map:$breakpoints, $key: $bk);
+    }
+    @else{
+        @warn "your breakpoint is invalid";
+    }
+}
+
+@function spacing($num){  
+    @return $num * $default-spacing;
+}

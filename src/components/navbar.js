@@ -49,7 +49,7 @@ export default class Navbar extends Component {
                 <div className="col-3">
                   <div className="logo">
                     <a href>
-                      <img src={logo} />
+                      <img src={logo} alt=""  />
                     </a>
                   </div>
                 </div>
@@ -88,14 +88,14 @@ export default class Navbar extends Component {
                       ) : (
                         <div className="dropdown">
                           <button
-                            className="btn btn-secondary dropdown-toggle"
+                            className="btn btn-success dropdown-toggle"
                             type="button"
                             id="dropdownMenu2"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            <p>hello {this.state.detailUser.hoTen}</p>
+                            <p>HELLO , {this.state.detailUser.hoTen}</p>
                           </button>
                           <div
                             className="dropdown-menu"
@@ -123,13 +123,4 @@ export default class Navbar extends Component {
   }
 }
 
-{
-  /* <img src="../images/img/logo2.png"  />  */
-}
-// const mapStateToProps = (state)=>{
-//   return {
-//     detailUser : state.userReducer.detailUser
 
-//   }
-// }
-// export default connect(mapStateToProps,null)(Navbar);

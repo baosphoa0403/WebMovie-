@@ -1,5 +1,6 @@
 .carousel-item{
     position: relative;
+    margin-top: 77px;
     img{
         width: 100%;
         height: 100%;
@@ -16,7 +17,12 @@
         padding: 28px 35px;
         margin: -35px -60px;
         border-radius: 50%;
+        display: none;
     }
+    &:hover i {
+        display: block;
+     }
+    
     
 }
 
