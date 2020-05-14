@@ -1,25 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../redux/action/userAction";
-// import {Formik, Form, Field } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+const signUpUserSchema = yup.object().shape({
+   taiKhoan: yup.string().required("* Field is required"),
+   matKhau: yup.string().required("* Field is required"),
+   hoTen: yup.string().required("* Field is required"),
+   email: yup.string().required("* Field is required").email("* Email is invalid"),
+   soDT: yup.string().required("* Field is required")
+   .matches(/^[0-9]+$/).required("Phone is invalid")
+   .min(8)
+   .max(10)
+
+})
+const signInUserSchema = yup.object().shape({
+  taiKhoan: yup.string().required("* Field is required"),
+  matKhau: yup.string().required("* Field is required"),
+})
 class FormSignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taiKhoan: "",
-      matKhau: "",
-    };
+  handleOnlogin = (values) => {
+    this.props.checkLoginUser(values, this.props.history);
+    // console.log(values);
+    
+  };
+  handleSubmit = (values) => {
+  console.log(values);
+  //   callAPI
+    
   }
-  handleOnChange = (event) => {
-    let { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-  handleOnlogin = (event) => {
-    event.preventDefault();
-    this.props.checkLoginUser(this.state, this.props.history);
-  };
   render() {
     return (
       <div className="login-admin">
@@ -40,102 +50,170 @@ class FormSignIn extends Component {
               Sign Up
             </label>
             <div className="login-form">
-              <form onSubmit={this.handleOnlogin}>
-                <div className="sign-in-htm">
-                  <div className="group">
-                    <label htmlFor="user" className="label">
-                      Username
-                    </label>
-                    <input
-                      name="taiKhoan"
-                      type="text"
-                      className="input"
-                      onChange={this.handleOnChange}
-                    />
-                  </div>
-                  <div className="group">
-                    <label htmlFor="pass" className="label">
-                      Password
-                    </label>
-                    <input
-                      name="matKhau"
-                      type="password"
-                      className="input"
-                      data-type="password"
-                      onChange={this.handleOnChange}
-                    />
-                  </div>
-                  <div className="group">
-                    <input
-                      id="check"
-                      type="checkbox"
-                      className="check"
-                      defaultChecked
-                    />
-                    <label htmlFor="check">
-                      <span className="icon" /> Keep me Signed in
-                    </label>
-                  </div>
-                  <div className="group">
-                    <input
-                      type="submit"
-                      className="button"
-                      defaultValue="Sign In"
-                    />
-                  </div>
-                  <div className="hr" />
-                  <div className="foot-lnk">
-                    <a href="#forgot">Forgot Password?</a>
-                  </div>
-                </div>
-              </form>
-              <div className="sign-up-htm">
-                <div className="group">
-                  <label htmlFor="user" className="label">
-                    Username
-                  </label>
-                  <input id="user" type="text" className="input" />
-                </div>
-                <div className="group">
-                  <label htmlFor="pass" className="label">
-                    Password
-                  </label>
-                  <input
-                    id="pass"
-                    type="password"
-                    className="input"
-                    data-type="password"
-                  />
-                </div>
-                <div className="group">
-                  <label htmlFor="pass" className="label">
-                    Repeat Password
-                  </label>
-                  <input
-                    id="pass"
-                    type="password"
-                    className="input"
-                    data-type="password"
-                  />
-                </div>
-                <div className="group">
-                  <label htmlFor="pass" className="label">
-                    Email Address
-                  </label>
-                  <input id="pass" type="text" className="input" />
-                </div>
-                <div className="group">
-                  <input
-                    type="submit"
-                    className="button"
-                    defaultValue="Sign Up"
-                  />
-                </div>
-                <div className="hr" />
-                <div className="foot-lnk">
-                  <label htmlFor="tab-1">Already Member?</label>
-                </div>
-              </div>
+              <Formik
+                initialValues={{
+                  taiKhoan: "",
+                  matKhau: ""
+                }}
+                validationSchema={signInUserSchema}
+                onSubmit={this.handleOnlogin}
+                render={(formilProps) => (
+                  <Form>
+                    <div className="sign-in-htm">
+                      <div className="group">
+                        <label htmlFor="user" className="label">
+                          Username
+                        </label>
+                        <Field
+                          name="taiKhoan"
+                          type="text"
+                          className="input"
+                          onChange={formilProps.handleChange}
+                        />
+                        <ErrorMessage  name="taiKhoan">
+                        {(msg)=><div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="pass" className="label">
+                          Password
+                        </label>
+                        <Field
+                          name="matKhau"
+                          type="password"
+                          className="input"
+                          data-type="password"
+                          onChange={formilProps.handleChange}
+                        />
+                         <ErrorMessage  name="matKhau">
+                         {(msg)=><div className="text-danger">{msg}</div>}
+                         </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <input
+                          id="check"
+                          type="checkbox"
+                          className="check"
+                          defaultChecked
+                        />
+                        <label htmlFor="check">
+                          <span className="icon" /> Keep me Signed in
+                        </label>
+                      </div>
+                      <div className="group">
+                        {/* <input
+                          type="submit"
+                          className="button"
+                          defaultValue="Sign In"
+                        /> */}
+                        <button className="btn btn-primary" style={{width: 400, height: 40}}>Submit</button>
+                      </div>
+                      <div className="hr" />
+                      <div className="foot-lnk">
+                        <a href="#forgot">Forgot Password?</a>
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              />
+{/* sign up */}
+              <Formik
+                initialValues={{
+                  taiKhoan: "",
+                  matKhau: "",
+                  hoTen: "",
+                  email: "",
+                  soDT: "",
+                  maNhom: "GP01"
+                }}
+                validationSchema={signUpUserSchema}
+                onSubmit={this.handleSubmit}
+                render={formilProps => (
+                  <Form>
+                    <div className="sign-up-htm">
+                      <div className="group">
+                        <label htmlFor="user" className="label">
+                          Username
+                        </label>
+                        <Field
+                          id="user"
+                          type="text"
+                          className="input"
+                          name="taiKhoan"
+                          onChange={formilProps.handleChange}
+                        />
+                          <ErrorMessage name="taiKhoan" >
+                            {(msg)=><div className="text-danger">{msg}</div>}
+                          </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="pass" className="label">
+                          Password
+                        </label>
+                        <Field
+                          id="pass"
+                          type="password"
+                          className="input"
+                          data-type="password"
+                          name="matKhau"
+                          onChange={formilProps.handleChange}
+                        />
+                          <ErrorMessage name="matKhau" >
+                          {(msg)=><div className="text-danger">{msg}</div>}
+                          </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="pass" className="label">
+                          Name
+                        </label>
+                        <Field
+                          id="pass"
+                          type="text"
+                          className="input"
+                          name="hoTen"
+                          onChange={formilProps.handleChange}
+                        />
+                          <ErrorMessage name="hoTen" >
+                          {(msg)=><div className="text-danger">{msg}</div>}
+                          </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="pass" className="label">
+                          Email Address
+                        </label>
+                        <Field
+                          id="pass"
+                          type="text"
+                          className="input"
+                          name="email"
+                          onChange={formilProps.handleChange}
+                        />
+                          <ErrorMessage name="email" >
+                          {(msg)=><div className="text-danger">{msg}</div>}
+                          </ErrorMessage>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="pass" className="label">
+                          Phone Number
+                        </label>
+                        <Field
+                          id="phone"
+                          type="number"
+                          className="input"
+                          name="soDT"
+                          onChange={formilProps.handleChange}
+                        />
+                          <ErrorMessage name="soDT" >
+                          {(msg)=><div className="text-danger">{msg}</div>}
+                          </ErrorMessage>
+                      </div>
+                      <div className="group">
+                      <button className="btn btn-primary" style={{width: 385, height: 40}}>Submit</button>
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              />
             </div>
           </div>
         </div>
@@ -144,11 +222,11 @@ class FormSignIn extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     checkLoginUser: (user, history) => {
       dispatch(action.actCheckSignInUser(user, history));
-    },
+    }
   };
 };
 
