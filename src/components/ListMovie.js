@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import {Carousel} from '3d-react-carousal';
  class ListMovie extends Component {
     renderListMovie = () => {
         return this.props.listMovie.map((movie, index)=>{
