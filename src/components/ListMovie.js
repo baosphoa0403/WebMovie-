@@ -16,7 +16,6 @@ import Slider from "react-slick";
    
     render() {
         var settings = {
-            dots: true,
             infinite: true,
             speed: 500,
             slidesToShow: 3,
@@ -30,12 +29,12 @@ import Slider from "react-slick";
             <div>
                 <h1 className="text-center">ListMovie</h1>
                 <div className ="container text-center">
-                      {/* <div > */}
+                      {/* <div className="row" > */}
                        <Slider {...settings} >
                           {this.renderListMovie()}
                        </Slider>
-                      </div>
-                {/* </div> */}
+                      {/* </div> */}
+                </div>
             </div>
         )
     }
