@@ -47,7 +47,7 @@ function App() {
          <Route path="/admin" component={Admin}/>
          <Route exact path="/detail/:id" component={DetailMovie}/>
          <Route exact path="/booking/:idLichChieu" component={TicketBooking}/>
-         {/* <Route  path="" component={PageNotFound}/> */}
+         <Route  path="" component={PageNotFound}/>
       </Switch>
     </BrowserRouter>
     

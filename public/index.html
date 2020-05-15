@@ -24,7 +24,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
 
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -35,6 +40,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     />
     <link rel="stylesheet" href="./css/lity/lity.css">
+    <link rel="stylesheet" href="./css/VENOBOX/venobox.css" />
     <title>React App</title>
   </head>
   <body>
@@ -52,12 +58,22 @@
     -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-latest.min.js"
+    ></script>
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   -->
     <!-- <script src="../src/js/lity/jquery.js"></script> -->
-    
+
     <script src="./js/lity/jquery.js"></script>
     <script src="./js/lity/lity.js"></script>
+
+    <script src="./js/VENOBOX/venobox.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".venobox").venobox();
+      });
+    </script>
   </body>
 </html>
 <!-- njx angular -->

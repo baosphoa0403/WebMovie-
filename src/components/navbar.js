@@ -88,7 +88,7 @@ export default class Navbar extends Component {
                       ) : (
                         <div className="dropdown">
                           <button
-                            className="btn btn-success dropdown-toggle"
+                            className="btn btn-warning dropdown-toggle"
                             type="button"
                             id="dropdownMenu2"
                             data-toggle="dropdown"

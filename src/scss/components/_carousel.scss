@@ -1,28 +1,312 @@
-.carousel-item{
-    position: relative;
-    margin-top: 77px;
-    img{
+.carousel{
+    // margin-top: spacing(6.0);
+    .carousel__content{
+        position: relative;
         width: 100%;
-        height: 100%;
+        .tixCarousel{
+            .carousel-indicators{
+                position: absolute;
+                bottom: 10%;
+                z-index: 5;
+                li{
+                    margin-right: spacing(0.5);
+                    width: $fs-2;
+                    height: $fs-2;
+                    border-radius: 50%;
+                    background-color: $color-gray-3;
+                    opacity: 1;
+                    &.active{
+                        background-color: $color-red-2;
+                    }
+                }
+            }
+            .carousel-item{
+                .carousel__bg{
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    background: linear-gradient(to top,#000,transparent 20%);
+                } 
+                .carousel__button{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    cursor: pointer;
+                    z-index: 3;
+                    border: none;
+                    background: 0 0;
+                    transition: all 0.2s;
+                    opacity: 0;
+                    &:hover{
+                        opacity: 0.7!important;
+                    }
+                }
+                &:hover .carousel__button{
+                    opacity: 1;
+                }
+            }
+            .carousel-control-prev, .carousel-control-next{
+                width: $fs-11;
+                .carousel-control-prev-icon{
+                    background-image: url(../../images//img/back-session.png);
+                }
+                  .carousel-control-next-icon{
+                    background-image: url(../../images//img/next-session.png);
+                }
+                .button{
+                    width: $fs-9;
+                    height: $fs-9;
+                }
+            }
+        }
     }
-    i{
-        position: $pos2;
-        color: $color-white;
-        font-size: 45px;
+
+    .carousel__selectMovie{
+        max-width: spacing(94.0);
+        margin: auto;
+        height: spacing(8.0);
+        position: absolute;
+        width: 100%;
         left: 50%;
-        bottom: 50%;
-        width: 100px;
-        height: 100px;
-        border: 1px solid white;
-        padding: 28px 35px;
-        margin: -35px -60px;
-        border-radius: 50%;
-        display: none;
+        transform: translate(-50%, -50%);
+        background-color: $color-white-0;
+        border-radius: $border-radius-2;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        z-index: 2;
+        .widthByPercent{
+            width: 20%;
+            float: left;
+            position: relative;
+            height: 100%;
+            &::after{
+                content: " ";
+                position: absolute;
+                right: 0;
+                height: 50%;
+                top: 50%;
+                transform: translateY(-50%);
+                border-right: 1px solid rgba(238,238,238,0.88);
+            }
+            .dropdown-toggle::after{
+                display: none;
+            }
+            .selectMenu{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                // left: 0;
+                background-color: transparent;
+                border: none;
+                color: $color-black-0;
+                cursor: pointer;
+                width: 100%;
+                padding: 7%;
+                background-image: url(../../images/img/dropdown-icon.png);
+                background-repeat: no-repeat;
+                background-position: calc(100% - 8px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding-right: spacing(2.0);
+                font-size: $fs-4;
+            }
+            .buyTicket{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: $color-gray-0;
+                border: none;
+                padding: spacing(1.0) spacing(2.5);
+                font-size: $fs-4;
+                font-weight: $fw-regular;
+            }
+
+            .selectSroll{
+                max-height: spacing(30.0);
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+                     
+                &::-webkit-scrollbar-track { //Thanh cố định
+                    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+                    border-radius: 10px;
+                }
+                     
+                &::-webkit-scrollbar-thumb { //Thanh trượt
+                    border-radius: 10px;
+                    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+                }
+            }
+            .dropdown-menu{
+                z-index: 1000;
+                min-width: spacing(16.0);
+                font-size: $fs-4;
+                padding: spacing(0.5) 0;
+                margin-top: spacing(0.2);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+                transform: translate3d(0px, 70px, 0px)!important;
+                .ng-scope{
+                    a{
+                        display: block;
+                        color: $color-black-0;
+                        font-weight: $fw-regular;
+                        white-space: nowrap;
+                        padding: spacing(0.3) spacing(2.0);
+                        transition: all 0.2s;
+                        &:hover{
+                            text-decoration: none;
+                            color: $color-white-0;
+                            background-color: $color-blue-1;
+                        }
+                    }
+                }
+            }
+        }
+        .w30p{
+            width: 30%;
+        }
+        .smallBlock{
+            width: calc(70% / 4);
+        }
     }
-    &:hover i {
-        display: block;
-     }
-    
-    
+}
+
+@media screen and (max-width: getBreakpoint("large")){
+    .carousel{
+        .carousel__content{
+            .tixCarousel{
+                .carousel-indicators{
+                    li{
+                        margin-right: 3px;
+                        width: 10px;
+                        height: 10px;
+                    }  
+                }
+                .carousel-inner{
+                    .carousel-item{
+                        .carousel__button{
+                            img{
+                                width: spacing(7.0);
+                            }
+                        }
+                    }
+                }
+                .carousel-control-prev, .carousel-control-next{
+                    width: 60px;
+                    .button{
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+        .carousel__selectMovie{
+            max-width: 840px;
+            height: 70px;
+            .widthByPercent{
+                .buyTicket{
+                    padding: 8px 12px;
+                    font-size: 12px;
+                }
+                .selectMenu{
+                    font-size: 12px;
+                }
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: getBreakpoint("medium")){
+    .carousel{
+        .carousel__content{
+            .tixCarousel{
+                .carousel-indicators{
+                    li{
+                        margin-right: 2px;
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+                .carousel-inner{
+                    .carousel-item{
+                        .carousel__button{
+                            img{
+                                width: spacing(5.0);
+                            }
+                        }
+                    }
+                }
+                .carousel-control-prev, .carousel-control-next{
+                    width: 45px;
+                    .button{
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+        }
+        .carousel__selectMovie{
+            max-width: 700px;
+            height: 60px;
+            .widthByPercent{
+                .buyTicket{
+                    padding: 7px 12px;
+                    font-size: 10px;
+                }
+                .selectMenu{
+                    font-size: 10px;
+                }
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: getBreakpoint("small")){
+    .carousel{
+        .carousel__content{
+            .tixCarousel{
+                .carousel-indicators{
+                    li{
+                        margin-right: 1px;
+                        width: 5px;
+                        height: 5px;
+                    }
+                }
+                .carousel-inner{
+                    .carousel-item{
+                        .carousel__button{
+                            img{
+                                width: spacing(3.0);
+                            }
+                        }
+                    }
+                }
+                .carousel-control-prev, .carousel-control-next{
+                    width: 30px;
+                    .button{
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+        }
+        .carousel__selectMovie{
+            max-width: 500px;
+            height: 50px;
+            .widthByPercent{
+                .buyTicket{
+                    padding: 5px 10px;
+                    font-size: 8px;
+                }
+                .selectMenu{
+                    font-size: 8px;
+                }
+            } 
+        }
+    }
 }
 

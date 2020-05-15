@@ -22,6 +22,7 @@
       ul {
         p {
           margin-bottom: 3px;
+          padding-left: 20px;
         }
         .dropdown-toggle {
           margin-left: 60px;
@@ -63,6 +64,26 @@
   }
   .dropdown-menu.show{
     margin-left: 59px;
+    background-color: #949494;
+    border: 1px solid black;
+    border-radius: 30px;
+  }
+  .dropdown-item {
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem; 
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none;
+    border-radius: 16px;
+    .button {
+      padding-left: 12px;
+    }
   }
 
   @include menu();
