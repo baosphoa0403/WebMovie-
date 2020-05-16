@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
-
+import {connect} from "react-redux";
+import TextField from '@material-ui/core/TextField';
+// import Autocomplete from '@material-ui/lab/Autocomplete';
 class SearchBar extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            phim: "phim",
+
+        }
+    }
+    renderNameMovie = () => {
+        return this.props.listMovie.map((movie)=>{
+            return (
+                <li class="ng-scope">
+                  <a href="#">{movie.tenPhim}</a>
+                </li>
+            )
+        })
+    }
     render() {
+        console.log(this.props.listMovie);
+        
         return (
             <div>
                 <div class="carousel__selectMovie">
@@ -10,46 +30,12 @@ class SearchBar extends Component {
                 class="dropdown-toggle selectMenu"
                 data-toggle="dropdown"
                 aria-expanded="false"
+               
               >
-                Phim
+                {this.state.phim}
               </div>
               <ul class="dropdown-menu selectSroll">
-                <li class="ng-scope">
-                  <a href="#">Bloddshot (C18)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Nắng 3: Lời Hứa Của Cha (C16)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Vì ANh Vẫn Tin - I Still Believe (C13)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Siêu Vệ Sĩ Sợ Vợ - The Protector (C16)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Ác Mộng Bên Hồ - Lake Of Death (C18)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Truy Tìm Phép Thuật - Onward</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Dấu Ấn Vô Cực (C18)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Loạn Nhịp - Heartbeats (C16)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Căn Hộ Của Quỷ - 32 Malasana Street (C18)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Kẻ Vô Hình - The Invisible Man (C18)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Cậu Bé Ma 2 - Brahms: The Boy 2 (C16)</a>
-                </li>
-                <li class="ng-scope">
-                  <a href="#">Sát Thủ Vô Cùng Cực - Hitman: Agent Jun (C18)</a>
-                </li>
+                {this.renderNameMovie()}
               </ul>
             </div>
             <div class="smallBlock widthByPercent dropdown selectCinema">
@@ -102,5 +88,10 @@ class SearchBar extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        listMovie: state.movieReducer.listMovie
+    }
+}
 
-export default SearchBar;
+export default connect(mapStateToProps, null) (SearchBar);
