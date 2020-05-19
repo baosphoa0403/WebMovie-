@@ -24,7 +24,7 @@ class SearchBar extends Component {
     let {listMovie} = this.props;
     //   lấy dc phim
     // console.log(value);
-    
+    // b1 setState lưu TenPhim
     this.setState({
        values: {...this.state.values, tenPhim: value},
     }, ()=>{

@@ -24,5 +24,5 @@ class Movie extends Component {
     );
   }
 }
-
+// color: rgba(227, 169, 43, 0.984);
 export default Movie;
