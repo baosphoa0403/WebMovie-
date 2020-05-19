@@ -1,0 +1,63 @@
+.calendar {
+  .calendar__bg {
+    padding: spacing(8) 0 0;
+    .calendar__content {
+      max-width: spacing(94);
+      margin: auto;
+      .nav-pills {
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: spacing(3) !important;
+        .nav-item {
+          .nav-link {
+            font-family: "SF Medium", sans-serif;
+            background-color: $color-white-0;
+            color: $color-black-0;
+            font-size: $fs-5;
+            font-weight: $fw-medium;
+            line-height: spacing(2.4);
+            transition: all 0.2s;
+            &.active {
+              color: orange;
+              font-size: $fs-6;
+            }
+            &:hover {
+              font-size: $fs-6;
+            }
+          }
+        }
+      }
+    }
+  }
+  .slick-prev:before {
+    content: "\276E";
+    color: orange;
+    font-size: 50px;
+  }
+  .slick-next:before {
+    content: "\276F";
+    color: orange;
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: getBreakpoint("small")) {
+  .calendar {
+    .calendar__bg {
+      .calendar__content {
+        .nav {
+          .nav-item {
+            .nav-link.active {
+              font-size: 20px;
+            }
+            .nav-link {
+              font-size: 16px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

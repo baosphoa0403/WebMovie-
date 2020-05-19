@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from '@material-ui/core/Button';
-
 import * as action from "../redux/action";
 class SearchBar extends Component {
   constructor(props) {

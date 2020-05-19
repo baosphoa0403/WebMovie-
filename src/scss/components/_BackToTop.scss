@@ -1,0 +1,19 @@
+.back_to_top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+.back_to_top .back_to_top_link {
+  font-size: 70px;
+  color: #ec7532;
+  opacity: 0;
+}
+
+.back_to_top .cd-top--is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.back_to_top .cd-top--fade-out {
+  opacity: 0.5;
+}
