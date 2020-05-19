@@ -47,6 +47,72 @@ export const actGetListChairBookingAPI = (id) => {
         })
     }
 }
+
+// lấy danh sách cụm rạp
+export const actGetInformationShowTimesAPI = (idMovie) => {
+    return dispatch => {
+        Axios({
+            method: "GET",
+            url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`
+        })
+        .then((rs)=>{
+           dispatch(actGetInformationShowTimes(rs.data))
+        })
+        .catch((err)=>{console.log(err)})
+    }
+} 
+//  lấy hệ thống cụm rạp
+export const actGetListSystemTheaterAPI = () => {
+    return dispatch => {
+        Axios({
+            method: "GET",
+            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap"
+        })
+        .then((rs)=>{
+           dispatch(actGetListSystemTheater(rs.data))
+        })
+        .catch((err)=>{
+           console.log(err);
+        })
+    }
+}
+//  lấy thông tin lịch chiếu theo cụm rạp và hệ thống rạp
+export const actGetListMovieFollowTheaterAPI = (maHeThongRap) =>{
+    return dispatch => {
+        Axios({
+            method: "GET",
+            url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`
+        })
+        .then((rs)=>{
+             dispatch(actGetListMovieFollowTheater(rs.data));
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+}
+export const actGetListMovieFollowTheater = (listMovieFollowTheater) => {
+     return {
+         type : ActionType.GET_LIST_MOVIE_FOLLOW_THEATER,
+         data: listMovieFollowTheater
+     }
+}
+
+export const actGetListSystemTheater = (listTheater) => {
+    return {
+        type: ActionType.GET_LIST_THEATER,
+        data: listTheater
+    }
+}
+export const actGetInformationShowTimes = (listShowTimes) => {
+    return {
+        type: ActionType.GET_LIST_SHOW_TIMES,
+        data: listShowTimes
+    }
+}
+
+
+
 export const actGetListChairBooking = (listChair) => {
     return {
         type: ActionType.GET_LIST_CHAIR_BOOKING,
