@@ -71,7 +71,7 @@ export default class Navbar extends Component {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#the-end">
+                      <a className="nav-link" href="#cinemaBlock">
                         Cụm rạp
                       </a>
                     </li>

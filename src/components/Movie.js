@@ -1,26 +1,55 @@
-import { Link } from "react-router-dom";
-import React, { Component } from "react";
-class Movie extends Component {
+import React from "react";
+import star from "../images/img/s1.png";
+import PlayVideo from "../images/img/play-video.png";
+class Movie extends React.Component {
   render() {
     let { movie } = this.props;
     return (
-      // <div className="col-sm-3">
-      <div className="card text-center">
-        <img
-          className="card-img-top"
-          src={movie.hinhAnh}
-          style={{ width: "100%", height: "100%" }}
-          alt
-        />
-        {/* <div className="card-body">
-        <div className="card text-center"n>
-          <img className="card-img-top" src={movie.hinhAnh} style={{width: "100%", height:"100%"}}alt =""/>
-          {/* <div className="card-body">
-            <h4 className="card-title">{movie.tenPhim}</h4>
-            <p className="card-text">{movie.moTa.length > 10 ? movie.moTa.replace(movie.moTa.slice(10, 100)) + "..."  : movie.moTa }</p>
-            <Link className="btn btn-danger " to={`/detail/${movie.maPhim}`}>Chi Tiết</Link>
-          </div> */}
-      </div>
+      <section>
+        <div className="calendar__film">
+          <a class="calendar__picture" href="#">
+            <div
+              className="calendar__filmThumbnail"
+              style={{
+                position: "relative",
+                backgroundImage: `url(${movie.hinhAnh})`,
+                backgroundSize: "100% 100%",
+              }}
+            >
+              <div className="calendar__overlay">
+                <button type="button" className="playTrailer1">
+                  <a
+                    className="venobox"
+                    data-vbtype="video"
+                    href={movie.trailer}
+                  >
+                    <img src={PlayVideo} alt="play-video" />
+                  </a>
+                </button>
+              </div>
+              <span className="calendar__ageType">C18</span>
+              <div className="calendar__avgPoint">
+                <p className="calendar__point">{movie.danhGia}</p>
+                <p className="calendar__star">
+                  <img src={star} alt="star1" />
+                  <img src={star} alt="star1" />
+                  <img src={star} alt="star1" />
+                  <img src={star} alt="star1" />
+                </p>
+              </div>
+            </div>
+          </a>
+          <div className="calendar__text">
+            <div class="calender_hover">
+              <a href="">Mua Vé</a>
+            </div>
+            <div className="calendar_itemtext">
+              <p className="calendar__nameFilm">{movie.tenPhim}</p>
+              {/* <p className="calendar__time">{movie.ngayKhoiChieu}</p> */}
+            </div>
+          </div>
+        </div>
+      </section>
     );
   }
 }

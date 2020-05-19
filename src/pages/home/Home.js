@@ -4,6 +4,7 @@ import ListMovie from "../../components/ListMovie";
 import BlockApp from "../../components/BlockApp";
 import Footer from "../../components/footer";
 import Cinema from "../../components/Cinema";
+import BackToTop from "../../components/BackToTop";
 
 class Home extends Component {
   render() {
@@ -14,6 +15,7 @@ class Home extends Component {
         <Cinema/>
         <BlockApp/>
         <Footer />
+        <BackToTop/>
       </div>
     );
   }
