@@ -12,26 +12,27 @@ import Ccontact10 from "../images/img/CineContact/dcine-ben-thanh.png";
 import Ccontact11 from "../images/img/CineContact/lotte-cinema-go-vap.jpg";
 import Ccontact12 from "../images/img/CineContact/lotte-cinema-thu-duc.jpg";
 import Ccontact13 from "../images/img/CineContact/lotte-cinema-phu-tho.jpg";
+import TextField from "@material-ui/core/TextField";
 import * as action from "../redux/action/index";
 import { connect } from "react-redux";
 class Cinema extends Component {
-  constructor(props){
-     super(props);
-     this.state = {
-       maHeThongRap: null
-     }
+  constructor(props) {
+    super(props);
+    this.state = {
+      maHeThongRap: null,
+    };
   }
   componentDidMount() {
     this.props.getListTheater();
   }
-  handleOnChange = maHeThongRap => {
+  handleOnChange = (maHeThongRap) => {
     console.log(maHeThongRap);
-    this.setState({maHeThongRap})
+    this.setState({ maHeThongRap });
     this.props.getListMovieFollowTheater(maHeThongRap);
   };
   renderLogo = () => {
     if (this.props.listTheater) {
-      return this.props.listTheater.map(theater => {
+      return this.props.listTheater.map((theater) => {
         return (
           <button
             className="nav-link active"
@@ -51,45 +52,105 @@ class Cinema extends Component {
       });
     }
   };
-  renderListRap = () => { 
-      if (this.props.listMovieFollowTheater) {
-        return this.props.listMovieFollowTheater.map((item)=>{
-          return item.lstCumRap.map((rap)=>{
-            return (
-              <div
-                className="tab-pane fade show active"
-                id="v-pills-CGV"
-                role="tabpanel"
-                aria-labelledby="v-pills-CGV-tab"
-              >
-                <div className="homeMovies__scope">
-                  <div className="homeMovies__cinema active">
-                    <div className="homeMovies__picture">
-                      <img src={Ccontact1} alt="CGV" />
-                    </div>
-                    <div className="homeMovies__text">
-                      <p className="homeMovies__nameMovieCinema">
-                       {rap.tenCumRap}
-                      </p>
-                      <p className="homeMovies__infoMovieCinema">
-                       {rap.diaChi}
-                      </p>
-                      <p className="homeMovies__showingDetailCinema">
-                        <a href="#">[chi tiết]</a>
-                      </p>
-                    </div>
+  renderListRap = () => {
+    if (this.props.listMovieFollowTheater) {
+      return this.props.listMovieFollowTheater.map((item) => {
+        return item.lstCumRap.map((rap) => {
+          return (
+            <div
+              className="tab-pane fade show active"
+              id="v-pills-CGV"
+              role="tabpanel"
+              aria-labelledby="v-pills-CGV-tab"
+              onClick={() => {
+                this.handleOnChange(rap.maHeThongRap);
+              }}
+            >
+              <div className="homeMovies__scope">
+                <div className="homeMovies__cinema active">
+                  <div className="homeMovies__picture">
+                    <img src={Ccontact1} alt="CGV" />
+                  </div>
+                  <div className="homeMovies__text">
+                    <p className="homeMovies__nameMovieCinema">
+                      {rap.tenCumRap}
+                    </p>
+                    <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
+                    <p className="homeMovies__showingDetailCinema">
+                      <a href="#">[chi tiết]</a>
+                    </p>
                   </div>
                 </div>
               </div>
-              )
-          })
-        })
-      
-      }
-  
-   
+            </div>
+          );
+        });
+      });
+    }
   };
- 
+
+  renderSuatChieu = () => {
+    let { heThongRapChieu } = this.props.listShowTimes;
+    if (heThongRapChieu) {
+      let index = heThongRapChieu.findIndex((rap) => {
+        return rap.tenHeThongRap === this.state.values.tenHeThongRap;
+      });
+      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
+      // console.log(this.state.values.tenRap);
+      let indexTenRap = heThongRapChieu[index].cumRapChieu.findIndex(
+        (tenRapChiTiet) => {
+          return tenRapChiTiet.tenCumRap === this.state.values.tenRap;
+        }
+      );
+      return (
+        <div>
+          <p>{tenRapChiTiet.tenRap}</p>
+          <p>{tenRapChiTiet.maRap}</p>
+          <p>{tenRapChiTiet.giaVe}</p>
+        </div>
+      );
+      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
+      // convert to day and filter day duplicate
+      // const listDay = new Set(
+      //   heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim.map(
+      //     (lichChieu) => {
+      //       return new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString();
+      //     }
+      //   )
+      // );
+      // console.log(listDay);
+
+      // const listDayUpdate = [...listDay];
+      // return (
+      // <div style={{ width: 200 }} className="input">
+      //   <Autocomplete
+      //     onChange={this.handleOnchangeNgayXem}
+      //     options={listDayUpdate.map((time) => {
+      //       return time;
+      //     })}
+      //     renderInput={(params) => {
+      //       return (
+      //         <TextField
+      //           {...params}
+      //           label="Ngày Chiếu"
+      //           margin="normal"
+      //           variant="outlined"
+      //         />
+      //       );
+      //     }}
+      //   />
+      // </div>
+
+      // );
+    } else {
+      return (
+        <div>
+          <p>Không có suất chiếu hôm lay</p>
+        </div>
+      );
+    }
+  };
+
   render() {
     console.log(this.props.listMovieFollowTheater);
 
@@ -116,164 +177,16 @@ class Cinema extends Component {
                       id="v-pills-tabContent"
                     >
                       {this.renderListRap()}
-                      <div
-                        className="tab-pane fade"
-                        id="v-pills-DDC"
-                        role="tabpanel"
-                        aria-labelledby="v-pills-DDC-tab"
-                      >
-                        <div className="homeMovies__scope">
-                          <div className="homeMovies__cinema active">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact8} alt="DDC" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema DDC">
-                                  DDC
-                                </span>{" "}
-                                - Đống Đa
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                890 Trần Hưng Đạo, Q.5
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="v-pills-MegaGS"
-                        role="tabpanel"
-                        aria-labelledby="v-pills-MegaGS-tab"
-                      >
-                        <div className="homeMovies__scope">
-                          <div className="homeMovies__cinema active">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact9} alt="MegaGS" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema MegaGS">
-                                  MegaGS
-                                </span>{" "}
-                                - Cao Thắng
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                19 Cao Thắng, Q.3
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="v-pills-Dcine"
-                        role="tabpanel"
-                        aria-labelledby="v-pills-Dcine-tab"
-                      >
-                        <div className="homeMovies__scope">
-                          <div className="homeMovies__cinema active">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact10} alt="Dcine" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema Dcine">
-                                  Dcine
-                                </span>{" "}
-                                - Bến Thành
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                6 Mạc Đĩnh Chi, Bến Nghé, Quận 1, Hồ Chí Minh
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="v-pills-LOTTE"
-                        role="tabpanel"
-                        aria-labelledby="v-pills-LOTTE-tab"
-                      >
-                        <div className="homeMovies__scope">
-                          <div className="homeMovies__cinema">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact11} alt="LOTTE" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema Lotte">
-                                  Lotte
-                                </span>{" "}
-                                - Gò Vấp
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                L3-Lotte Mart, 242 Nguyễn Văn Lượng, Gò Vấp
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="homeMovies__cinema">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact12} alt="LOTTE" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema Lotte">
-                                  Lotte
-                                </span>{" "}
-                                - Thủ Đức
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                L2-Joy Citipoint, KCX Linh Trung, Thủ Đức
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="homeMovies__cinema">
-                            <div className="homeMovies__picture">
-                              <img src={Ccontact13} alt="LOTTE" />
-                            </div>
-                            <div className="homeMovies__text">
-                              <p className="homeMovies__nameMovieCinema">
-                                <span className="homeMovies__colorCinema Lotte">
-                                  Lotte
-                                </span>{" "}
-                                - Nam Sài Gòn
-                              </p>
-                              <p className="homeMovies__infoMovieCinema">
-                                L3-Lotte Mart NSG, 469 Nguyễn Hữu Thọ, Q.7
-                              </p>
-                              <p className="homeMovies__showingDetailCinema">
-                                <a href="#">[chi tiết]</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div className="listMovies col-sm-12">
                     <div className="homeMovies__contentCinema">
-                      <p className="homeMoies__textCinema">
-                        Không có suất chiếu
-                      </p>
+                      <div
+                        className="tab-content selectScroll"
+                        id="v-pills-tabContent"
+                      >
+                        {this.renderSuatChieu()}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -286,20 +199,25 @@ class Cinema extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getListTheater: () => {
       dispatch(action.actGetListSystemTheaterAPI());
     },
-    getListMovieFollowTheater: maHeThongRap => {
+    getListMovieFollowTheater: (maHeThongRap) => {
       dispatch(action.actGetListMovieFollowTheaterAPI(maHeThongRap));
-    }
+    },
+    actGetInformationShowTimes: (idMovie) => {
+      dispatch(action.actGetInformationShowTimesAPI(idMovie));
+    },
   };
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     listTheater: state.movieReducer.listTheater,
-    listMovieFollowTheater: state.movieReducer.listMovieFollowTheater
+    listMovieFollowTheater: state.movieReducer.listMovieFollowTheater,
+    listMovie: state.movieReducer.listMovie,
+    listShowTimes: state.movieReducer.listShowTimes,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
