@@ -15,145 +15,125 @@ import Ccontact13 from "../images/img/CineContact/lotte-cinema-phu-tho.jpg";
 import TextField from "@material-ui/core/TextField";
 import * as action from "../redux/action/index";
 import { connect } from "react-redux";
+import CinemaLogo from "./cinemaTable/CinemaLogo";
+import CinemaTheater from "./cinemaTable/CinemaTheater";
 class Cinema extends Component {
   constructor(props) {
     super(props);
     this.state = {
       maHeThongRap: null,
+      maCumRap: null
     };
   }
-  componentDidMount() {
-    this.props.getListTheater();
-  }
-  handleOnChange = (maHeThongRap) => {
-    console.log(maHeThongRap);
-    this.setState({ maHeThongRap });
-    this.props.getListMovieFollowTheater(maHeThongRap);
-  };
-  renderLogo = () => {
-    if (this.props.listTheater) {
-      return this.props.listTheater.map((theater) => {
-        return (
-          <button
-            className="nav-link active"
-            id={theater.maHeThongRap}
-            data-toggle="pill"
-            href="#v-pills-CGV"
-            role="tab"
-            aria-controls="v-pills-CGV"
-            aria-selected="true"
-            onClick={() => {
-              this.handleOnChange(theater.maHeThongRap);
-            }}
-          >
-            <img src={theater.logo} alt={theater.maHeThongRap} />
-          </button>
-        );
-      });
-    }
-  };
-  renderListRap = () => {
-    if (this.props.listMovieFollowTheater) {
-      return this.props.listMovieFollowTheater.map((item) => {
-        return item.lstCumRap.map((rap) => {
-          return (
-            <div
-              className="tab-pane fade show active"
-              id="v-pills-CGV"
-              role="tabpanel"
-              aria-labelledby="v-pills-CGV-tab"
-              onClick={() => {
-                this.handleOnChange(rap.maHeThongRap);
-              }}
-            >
-              <div className="homeMovies__scope">
-                <div className="homeMovies__cinema active">
-                  <div className="homeMovies__picture">
-                    <img src={Ccontact1} alt="CGV" />
-                  </div>
-                  <div className="homeMovies__text">
-                    <p className="homeMovies__nameMovieCinema">
-                      {rap.tenCumRap}
-                    </p>
-                    <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
-                    <p className="homeMovies__showingDetailCinema">
-                      <a href="#">[chi tiết]</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        });
-      });
-    }
-  };
+  // componentDidMount() {d
+  //   this.props.getListTheater();
+  // }
+  // handleOnChange = (maHeThongRap) => {
+  //   console.log(maHeThongRap);
+  //   this.setState({ maHeThongRap });
+  //   this.props.getListMovieFollowTheater(maHeThongRap);
+  // };
+  // renderLogo = () => {
+  //   if (this.props.listTheater) {
+  //     return this.props.listTheater.map((theater) => {
+  //       return (
+  //         <button
+  //           className="nav-link active"
+  //           id={theater.maHeThongRap}
+  //           data-toggle="pill"
+  //           href="#v-pills-CGV"
+  //           role="tab"
+  //           aria-controls="v-pills-CGV"
+  //           aria-selected="true"
+  //           onClick={() => {
+  //             this.handleOnChange(theater.maHeThongRap);
+  //           }}
+  //         >
+  //           <img src={theater.logo} alt={theater.maHeThongRap} />
+  //         </button>
+  //       );
+  //     });
+  //   }
+  // };
+  // handleGetIDCumRap = (value, maPhim) => {
+  //  console.log(value);
+  //  this.setState({maCumRap: value})
+  //  console.log(maPhim);
+   
+   
+  // }
+  // renderListRap = () => {
+  //   if (this.props.listMovieFollowTheater) {
+  //     return this.props.listMovieFollowTheater.map((item) => {
+  //       return item.lstCumRap.map((rap) => {
+  //         return (
+  //           <button
+  //             className="tab-pane fade show active"
+  //             id="v-pills-CGV"
+  //             role="tabpanel"
+  //             aria-labelledby="v-pills-CGV-tab"
+  //             onClick={()=>{this.handleGetIDCumRap(rap.maCumRap)}}
+  //           >
+             
+  //             <div className="homeMovies__scope">
+  //               <div className="homeMovies__cinema active">
+  //                 <div className="homeMovies__picture">
+  //                   <img src={Ccontact1} alt="CGV" />
+  //                 </div>
+  //                 <div className="homeMovies__text">
+  //                   <p className="homeMovies__nameMovieCinema">
+  //                     {rap.tenCumRap}
+  //                   </p>
+  //                   <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
+  //                   <p className="homeMovies__showingDetailCinema">
+  //                     <a href="#">[chi tiết]</a>
+  //                   </p>
+  //                 </div>
+  //               </div>
+  //             </div> 
+  //           </button>
+  //         );
+  //       });
+  //     });
+  //   }
+  // };
 
   renderSuatChieu = () => {
-    let { heThongRapChieu } = this.props.listShowTimes;
-    if (heThongRapChieu) {
-      let index = heThongRapChieu.findIndex((rap) => {
-        return rap.tenHeThongRap === this.state.values.tenHeThongRap;
-      });
-      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
-      // console.log(this.state.values.tenRap);
-      let indexTenRap = heThongRapChieu[index].cumRapChieu.findIndex(
-        (tenRapChiTiet) => {
-          return tenRapChiTiet.tenCumRap === this.state.values.tenRap;
-        }
-      );
-      return (
-        <div>
-          <p>{tenRapChiTiet.tenRap}</p>
-          <p>{tenRapChiTiet.maRap}</p>
-          <p>{tenRapChiTiet.giaVe}</p>
-        </div>
-      );
-      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
-      // convert to day and filter day duplicate
-      // const listDay = new Set(
-      //   heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim.map(
-      //     (lichChieu) => {
-      //       return new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString();
-      //     }
-      //   )
-      // );
-      // console.log(listDay);
-
-      // const listDayUpdate = [...listDay];
-      // return (
-      // <div style={{ width: 200 }} className="input">
-      //   <Autocomplete
-      //     onChange={this.handleOnchangeNgayXem}
-      //     options={listDayUpdate.map((time) => {
-      //       return time;
-      //     })}
-      //     renderInput={(params) => {
-      //       return (
-      //         <TextField
-      //           {...params}
-      //           label="Ngày Chiếu"
-      //           margin="normal"
-      //           variant="outlined"
-      //         />
-      //       );
-      //     }}
-      //   />
-      // </div>
-
-      // );
-    } else {
-      return (
-        <div>
-          <p>Không có suất chiếu hôm lay</p>
-        </div>
-      );
+  // let index = this.props.listMovieFollowTheater.findIndex((rap)=>{
+  //   return rap.maHeThongRap === this.state.maHeThongRap
+  // })
+  //   console.log(this.props.listMovieFollowTheater[index]);
+    if (this.props.listMovieFollowTheater  && this.state.maCumRap) {
+      // return this.props.listMovieFollowTheater.map((item) => {
+      //   return item.lstCumRap.map((rap) => {
+      //     return rap.danhSachPhim.map((listDay)=>{
+      //       return listDay.tenPhim
+      //     })
+      //   })
+      // })
+      let cumRap = this.props.listMovieFollowTheater.map((item)=>{
+        return item.lstCumRap.find((rap)=>{
+            return rap.maCumRap === this.state.maCumRap
+        })
+      })
+      return cumRap.map((movie)=>{
+        return movie.danhSachPhim.map((showMovie)=>{
+          return ( 
+          <div>
+            <img src={showMovie.hinhAnh}/>
+            <p>{showMovie.tenPhim}</p>
+            
+         </div>)
+        })
+      })
+      // console.log(cumRap);
+      
     }
   };
 
   render() {
-    console.log(this.props.listMovieFollowTheater);
-
+    console.log(this.props.listMovieFollowTheater)
+   
     return (
       <div>
         <section className="homeMovies" id="cinemaBlock">
@@ -168,7 +148,8 @@ class Cinema extends Component {
                       role="tablist"
                       aria-orientation="vertical"
                     >
-                      {this.renderLogo()}
+                      {/* {this.renderLogo()} */}
+                      <CinemaLogo />
                     </div>
                   </div>
                   <div className="listCinemas col-sm-12">
@@ -176,7 +157,8 @@ class Cinema extends Component {
                       className="tab-content selectScroll"
                       id="v-pills-tabContent"
                     >
-                      {this.renderListRap()}
+                      {/* {this.renderListRap()} */}
+                      <CinemaTheater />
                     </div>
                   </div>
                   <div className="listMovies col-sm-12">
@@ -207,9 +189,7 @@ const mapDispatchToProps = (dispatch) => {
     getListMovieFollowTheater: (maHeThongRap) => {
       dispatch(action.actGetListMovieFollowTheaterAPI(maHeThongRap));
     },
-    actGetInformationShowTimes: (idMovie) => {
-      dispatch(action.actGetInformationShowTimesAPI(idMovie));
-    },
+    
   };
 };
 const mapStateToProps = (state) => {
@@ -217,7 +197,7 @@ const mapStateToProps = (state) => {
     listTheater: state.movieReducer.listTheater,
     listMovieFollowTheater: state.movieReducer.listMovieFollowTheater,
     listMovie: state.movieReducer.listMovie,
-    listShowTimes: state.movieReducer.listShowTimes,
+    
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
