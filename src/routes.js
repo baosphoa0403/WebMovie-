@@ -3,6 +3,7 @@ import ListMovie from "./components/ListMovie";
 // import Admin from "./pages/admin/Admin";
 import DashBoard from "./pages/admin/DashBoard";
 import Form from "./components/Form";
+import DeatailMovie from "./pages/home/DeatailMovie";
 
 const routesHome = [
     {
@@ -19,6 +20,11 @@ const routesHome = [
         path: "/form",
         exact: false,
         component: Form
+    },
+    {
+        path: "/detailMovie/:id",
+        exact: false,
+        component: DeatailMovie
     }
 ]
 

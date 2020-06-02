@@ -74,7 +74,7 @@ class SearchBar extends Component {
     });
   };
   renderHeThongRap = () => {
-    console.log(this.props.listShowTimes.heThongRapChieu);
+    // console.log(this.props.listShowTimes.heThongRapChieu);
     // console.log(this.state.values.tenPhim);
     let {heThongRapChieu} = this.props.listShowTimes;
     let {tenPhim} = this.state.values;
@@ -324,7 +324,7 @@ class SearchBar extends Component {
     //  này là cái mảng lấy từ server về nè
     //  h mún lấy cái time á
 
-    console.log(this.props.listMovie);
+    // console.log(this.props.listMovie);
 
     return (
       <div className="search_bar">

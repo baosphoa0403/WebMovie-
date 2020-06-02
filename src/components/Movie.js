@@ -1,6 +1,7 @@
 import React from "react";
 import star from "../images/img/s1.png";
 import PlayVideo from "../images/img/play-video.png";
+import {Link} from "react-router-dom"
 class Movie extends React.Component {
   render() {
     let { movie } = this.props;
@@ -41,7 +42,7 @@ class Movie extends React.Component {
           </a>
           <div className="calendar__text">
             <div class="calender_hover">
-              <a href="">Mua Vé</a>
+              <Link href="" to={`/detailMovie/${movie.maPhim}`}>Mua Vé</Link>
             </div>
             <div className="calendar_itemtext">
               <p className="calendar__nameFilm">{movie.tenPhim}</p>

@@ -17,123 +17,167 @@ import * as action from "../redux/action/index";
 import { connect } from "react-redux";
 import CinemaLogo from "./cinemaTable/CinemaLogo";
 import CinemaTheater from "./cinemaTable/CinemaTheater";
+import Axios from 'axios';
+import { Card } from "@material-ui/core";
+import CinemaMovie from "./cinemaTable/CinemaMovie";
+// import Ccontact1 from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
 class Cinema extends Component {
   constructor(props) {
     super(props);
     this.state = {
       maHeThongRap: null,
-      maCumRap: null
+      maCumRap: null,
+      listCumRap: [],
+      tenCumRap: null
     };
   }
-  // componentDidMount() {d
-  //   this.props.getListTheater();
-  // }
-  // handleOnChange = (maHeThongRap) => {
-  //   console.log(maHeThongRap);
-  //   this.setState({ maHeThongRap });
-  //   this.props.getListMovieFollowTheater(maHeThongRap);
-  // };
-  // renderLogo = () => {
-  //   if (this.props.listTheater) {
-  //     return this.props.listTheater.map((theater) => {
-  //       return (
-  //         <button
-  //           className="nav-link active"
-  //           id={theater.maHeThongRap}
-  //           data-toggle="pill"
-  //           href="#v-pills-CGV"
-  //           role="tab"
-  //           aria-controls="v-pills-CGV"
-  //           aria-selected="true"
-  //           onClick={() => {
-  //             this.handleOnChange(theater.maHeThongRap);
-  //           }}
-  //         >
-  //           <img src={theater.logo} alt={theater.maHeThongRap} />
-  //         </button>
-  //       );
-  //     });
-  //   }
-  // };
-  // handleGetIDCumRap = (value, maPhim) => {
-  //  console.log(value);
-  //  this.setState({maCumRap: value})
-  //  console.log(maPhim);
-   
-   
-  // }
-  // renderListRap = () => {
-  //   if (this.props.listMovieFollowTheater) {
-  //     return this.props.listMovieFollowTheater.map((item) => {
-  //       return item.lstCumRap.map((rap) => {
-  //         return (
-  //           <button
-  //             className="tab-pane fade show active"
-  //             id="v-pills-CGV"
-  //             role="tabpanel"
-  //             aria-labelledby="v-pills-CGV-tab"
-  //             onClick={()=>{this.handleGetIDCumRap(rap.maCumRap)}}
-  //           >
-             
-  //             <div className="homeMovies__scope">
-  //               <div className="homeMovies__cinema active">
-  //                 <div className="homeMovies__picture">
-  //                   <img src={Ccontact1} alt="CGV" />
-  //                 </div>
-  //                 <div className="homeMovies__text">
-  //                   <p className="homeMovies__nameMovieCinema">
-  //                     {rap.tenCumRap}
-  //                   </p>
-  //                   <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
-  //                   <p className="homeMovies__showingDetailCinema">
-  //                     <a href="#">[chi tiết]</a>
-  //                   </p>
-  //                 </div>
-  //               </div>
-  //             </div> 
-  //           </button>
-  //         );
-  //       });
-  //     });
-  //   }
-  // };
-
-  renderSuatChieu = () => {
-  // let index = this.props.listMovieFollowTheater.findIndex((rap)=>{
-  //   return rap.maHeThongRap === this.state.maHeThongRap
-  // })
-  //   console.log(this.props.listMovieFollowTheater[index]);
-    if (this.props.listMovieFollowTheater  && this.state.maCumRap) {
-      // return this.props.listMovieFollowTheater.map((item) => {
-      //   return item.lstCumRap.map((rap) => {
-      //     return rap.danhSachPhim.map((listDay)=>{
-      //       return listDay.tenPhim
-      //     })
-      //   })
-      // })
-      let cumRap = this.props.listMovieFollowTheater.map((item)=>{
-        return item.lstCumRap.find((rap)=>{
-            return rap.maCumRap === this.state.maCumRap
-        })
-      })
-      return cumRap.map((movie)=>{
-        return movie.danhSachPhim.map((showMovie)=>{
-          return ( 
-          <div>
-            <img src={showMovie.hinhAnh}/>
-            <p>{showMovie.tenPhim}</p>
-            
-         </div>)
-        })
-      })
-      // console.log(cumRap);
-      
+  componentDidMount() {
+    this.props.getListTheater();
+  }
+  handleOnChange = (maHeThongRap) => {
+    // console.log(maHeThongRap);
+    this.setState({ maHeThongRap });
+    this.props.getListMovieFollowTheater(maHeThongRap);
+  };
+  renderLogo = () => {
+    if (this.props.listTheater) {
+      return this.props.listTheater.map((theater) => {
+        return (
+          <button
+            className="nav-link active"
+            id={theater.maHeThongRap}
+            data-toggle="pill"
+            href="#v-pills-CGV"
+            role="tab"
+            aria-controls="v-pills-CGV"
+            aria-selected="true"
+            onClick={() => {
+              this.handleOnChange(theater.maHeThongRap);
+            }}
+          >
+            <img src={theater.logo} alt={theater.maHeThongRap} />
+          </button>
+        );
+      });
     }
   };
-
-  render() {
-    console.log(this.props.listMovieFollowTheater)
+  handleGetIDCumRap = (value) => {
+    this.setState({
+      maCumRap: value
+    }, () => {
+      console.log(this.state.maCumRap);
+    })
+   if (this.state.listCumRap) {
+    let rap = this.state.listCumRap.map((item) => {
+      return item.lstCumRap.find((hello) => {
+        return hello.maCumRap === this.state.maCumRap
+      })
+    })
+    console.log(rap);
+   }
    
+  }
+  renderListRapDefault = () => {
+    return this.state.listCumRap.map((item) => {
+      return item.lstCumRap.map((rap) => {
+        return (
+          <div
+            className="tab-pane fade show active"
+            id="v-pills-CGV"
+            role="tabpanel"
+            aria-labelledby="v-pills-CGV-tab"
+            onClick={() => { this.handleGetIDCumRap(rap.maCumRap) }}
+          >
+
+            <div className="homeMovies__scope">
+              <div className="homeMovies__cinema active">
+                <div className="homeMovies__picture">
+                  <img src={Ccontact1} alt="CGV" />
+                </div>
+                <div className="homeMovies__text">
+                  <p className="homeMovies__nameMovieCinema">
+                    {rap.tenCumRap}
+                  </p>
+                  <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
+                  <p className="homeMovies__showingDetailCinema">
+                    <a href="#">[chi tiết]</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      })
+    })
+  }
+  renderListRap = () => {
+    if (this.props.listMovieFollowTheater) {
+      return this.props.listMovieFollowTheater.map((item) => {
+        return item.lstCumRap.map((rap) => {
+          return (
+            <div
+              className="tab-pane fade show active"
+              id="v-pills-CGV"
+              role="tabpanel"
+              aria-labelledby="v-pills-CGV-tab"
+              onClick={() => { this.handleGetIDCumRap(rap.maCumRap) }}
+            >
+
+              <div className="homeMovies__scope">
+                <div className="homeMovies__cinema active">
+                  <div className="homeMovies__picture">
+                    <img src={Ccontact1} alt="CGV" />
+                  </div>
+                  <div className="homeMovies__text">
+                    <p className="homeMovies__nameMovieCinema">
+                      {rap.tenCumRap}
+                    </p>
+                    <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
+                    <p className="homeMovies__showingDetailCinema">
+                      <a href="#">[chi tiết]</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        });
+      });
+    }
+    // }
+  };
+  renderListPhim = () => {
+    if (this.props.listMovieFollowTheater && this.state.maHeThongRap && this.state.maCumRap ) {
+      let rap = this.props.listMovieFollowTheater.map((item) => {
+        return item.lstCumRap.find((theater) => {
+          return theater.maCumRap === this.state.maCumRap
+        })
+      })
+      return rap.map((movie) => {
+        return movie.danhSachPhim.map((showMovie) => {
+          return (
+            <div className="container">
+              <div className="row">
+                <div className="col-3">
+                <div className="card text-left">
+                  <img className="card-img-top" src={showMovie.hinhAnh}  style={{witdh: 100}}alt />
+                  <div className="card-body">
+                    <h4 className="card-title">{showMovie.tenPhim}</h4>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      })
+    }
+  }
+  render() {
+    // console.log(this.props.listMovieFollowTheater)
+    // console.log(this.state.listCumRap);
+   let {maHeThongRap, maCumRap} = this.state;
+   let {listMovieFollowTheater} = this.props;
     return (
       <div>
         <section className="homeMovies" id="cinemaBlock">
@@ -158,6 +202,7 @@ class Cinema extends Component {
                       id="v-pills-tabContent"
                     >
                       {/* {this.renderListRap()} */}
+                      {/* {this.state.maHeThongRap ? (this.renderListRap()) : (this.renderListRapDefault())} */}
                       <CinemaTheater />
                     </div>
                   </div>
@@ -167,7 +212,9 @@ class Cinema extends Component {
                         className="tab-content selectScroll"
                         id="v-pills-tabContent"
                       >
-                        {this.renderSuatChieu()}
+                       {/* {this.renderListPhim()} */}
+                       {/* <CinemaTime maHeThongRap={maHeThongRap} maCumRap={maCumRap} listMovieFollowTheater={listMovieFollowTheater}/> */}
+                       <CinemaMovie />
                       </div>
                     </div>
                   </div>
@@ -186,18 +233,11 @@ const mapDispatchToProps = (dispatch) => {
     getListTheater: () => {
       dispatch(action.actGetListSystemTheaterAPI());
     },
-    getListMovieFollowTheater: (maHeThongRap) => {
-      dispatch(action.actGetListMovieFollowTheaterAPI(maHeThongRap));
-    },
-    
   };
 };
 const mapStateToProps = (state) => {
   return {
     listTheater: state.movieReducer.listTheater,
-    listMovieFollowTheater: state.movieReducer.listMovieFollowTheater,
-    listMovie: state.movieReducer.listMovie,
-    
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
