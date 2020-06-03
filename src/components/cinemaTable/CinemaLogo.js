@@ -6,7 +6,6 @@ class CinemaLogo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      maHeThongRap: null,
       index: 0
     };
   }
@@ -48,7 +47,6 @@ class CinemaLogo extends Component {
     }
   };
   render() {
-    console.log(this.state.index);
     return <div>
     {this.renderLogo()}
     </div>;
@@ -67,17 +65,13 @@ const mapDispatchToProps = dispatch => {
       }
       dispatch(action);
     }
-    // getListMovieFollowTheater: maHeThongRap => {
-    //   dispatch(action.actGetListMovieFollowTheaterAPI(maHeThongRap));
-    // }
   };
 };
 const mapStateToProps = state => {
   return {
     // lấy thông tin hệ lịch chiếu xuống 
     listTheater: state.movieReducer.listTheater,
-    maHeThongRap: state.movieReducer.maHeThongRap
-    // listMovieFollowTheater: state.movieReducer.listMovieFollowTheater,
+    // maHeThongRap: state.movieReducer.maHeThongRap
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CinemaLogo);

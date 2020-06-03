@@ -25,7 +25,6 @@ class CinemaTheater extends Component {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${data}&maNhom=GP09`
     })
       .then(rs => {
-        // console.log(rs.data);
         this.setState(
           {
             listCumRap: rs.data
@@ -47,7 +46,6 @@ class CinemaTheater extends Component {
       this.fetchDataListTheater(nextProps.maHeThong);
       this.renderImg()
     }
-    console.log(nextProps);
   }
   renderImg = () => {
     if (this.props.maHeThong) {
@@ -75,7 +73,6 @@ class CinemaTheater extends Component {
           break;
      
       }
-      console.log(this.props.maHeThong);
       this.setState({img: imgUpdate})
     }
   };
@@ -127,9 +124,6 @@ class CinemaTheater extends Component {
     // }
   };
   render() {
-    // console.log(this.props.listMovieFollowTheater);
-    console.log(this.props.maHeThong);
-
     return <div>{this.renderListRap()}</div>;
   }
 }

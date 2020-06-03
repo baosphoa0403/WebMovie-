@@ -10,14 +10,11 @@ class CinemaMovie extends Component {
   }
   renderListMovie = () => {
     if (this.props.listCumRap && this.props.maCumRap) {
-      console.log(this.props.listCumRap);
-      console.log(this.props.maCumRap);
       let rap = this.props.listCumRap.map(item => {
         return item.lstCumRap.find(theater => {
           return theater.maCumRap === this.props.maCumRap;
         });
       });
-      console.log(rap);
       if (rap) {
         return rap.map(movie => {
           if (movie) {
@@ -30,13 +27,11 @@ class CinemaMovie extends Component {
     }
   };
   handleGetIDMovie = (maPhim) => {
-    console.log(maPhim);
     let rap = this.props.listCumRap.map(item => {
       return item.lstCumRap.find(theater => {
         return theater.maCumRap === this.props.maCumRap;
       });
     });
-    console.log(rap);
     if (rap) {
       let movie =  rap.map((cinema)=>{
        if (cinema) {
@@ -49,7 +44,6 @@ class CinemaMovie extends Component {
       let listTime = movie.map((movie)=>{
            return movie.lstLichChieuTheoPhim
       })
-      console.log(listTime);
       this.setState({listTime})
     }
    
