@@ -1,302 +1,116 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../redux/action/userAction";
-class DashBoard extends Component {
-    renderTable = () => {
-        return this.props.listUser.map((item, index)=>{
-             return (
-                 <tr key={index}>
-                     <td>{index+1}</td>
-                     <td>{item.hoTen}</td>
-                     <td>{item.email}</td>
-                     <td>{item.taiKhoan}</td>
-                     <td>{item.matKhau}</td>
-                     <td>{item.soDt}</td>
-                     <td>{item.maLoaiNguoiDung}</td>
-                     <td><button className="btn btn-danger">Xoá</button>
-                     <td><button className="btn btn-success">Sửa</button></td></td>
-                     
-                 </tr>
-             )
-        })
-    }
-  render() {
-      console.log(this.props.listUser);
-      
-    return (
-      <div>
-        {/* <h3>DashBoard</h3> */}
-        <div className="wrapper">
-          {/* Sidebar Holder */}
-          <nav id="sidebar">
-            <div className="sidebar-header">
-              <h3>DashBoard</h3>
-              <strong>BS</strong>
-            </div>
-            <ul className="list-unstyled components">
-              <li className="active">
-                <a href="#homeSubmenu">
-                  <i className="fa fa-home" />
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fa fa-briefcase" />
-                  About
-                </a>
-                <a href="#pageSubmenu">
-                  <i className="fa fa-files-o" />
-                  Pages
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fa fa-link" />
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fa fa-paperclip" />
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fa fa-paper-plane" />
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </nav>
-          {/* Page Content Holder */}
-          <div id="content">
-            
-            <div className="container">
-              <div className="card text-center">
-                {/* Header */}
-                <div className="card-header myCardHeader">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <h3 className="text-left text-primary font-weight-bold">
-                        List User
-                      </h3>
-                    </div>
-                    <div className="col-md-6 text-right">
-                      <button
-                        className="btn btn-primary btnThem"
-                        id="btnThemNV"
-                        data-toggle="modal"
-                        data-target="#myModal"
-                      >
-                        Thêm nhân viên
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/* Body */}
-                <div className="card-body">
-                  <div className="row mb-3">
-                    <div className="col">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Tên nhân viên"
-                          id="searchName"
-                        />
-                        <div className="input-group-prepend">
-                          <span className="input-group-text" id="btnTimNV">
-                            <i className="fa fa-search" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <table className="table table-bordered table-hover myTable">
-                    <thead className="text-primary">
-                      <tr>
-                        <th className="nowrap">
-                          <span className="mr-1">STT</span>
-                          <i className="fa fa-arrow-up" id="SapXepTang" />
-                          <i className="fa fa-arrow-down" id="SapXepGiam" />
-                        </th>
-                        <th>Họ Tên</th>
-                        <th>Email</th>
-                        <th>Tài Khoản</th>
-                        <th>Mật Khẩu</th>
-                        <th>Số Điện Thoại</th>
-                        <th>Mã Loại Người Dùng</th>
-                        <th>
-                          <em className="fa fa-cog" />
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody id="tableDanhSach">
-                          {this.renderTable()}
-                    </tbody>
-                  </table>
-                </div>
-                {/* Footer */}
-                <div className="card-footer myCardFooter">
-                  <nav>
-                    <ul
-                      className="pagination justify-content-center"
-                      id="ulPhanTrang"
-                    ></ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="modal fade" id="myModal">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <header className="head-form mb-0">
-                <h2 id="header-title">Log In</h2>
-              </header>
-              <div className="modal-body">
-                <form role="form">
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-user" />
-                        </span>
-                      </div>
-                      <input
-                        type="msnv"
-                        name="msnv"
-                        className="form-control input-sm"
-                        placeholder="Mã số nhân viên"
-                        id="maSV"
-                      />
-                    </div>
-                    <span className="sp-thongbao" id="tbMaNV" />
-                  </div>
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-address-book" />
-                        </span>
-                      </div>
-                      <input
-                        type="name"
-                        name="name"
-                        className="form-control input-sm"
-                        placeholder="Họ và tên"
-                        id="tenSV"
-                      />
-                    </div>
-                    <span className="sp-thongbao" id="tbTen" />
-                  </div>
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-envelope" />
-                        </span>
-                      </div>
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control input-sm"
-                        placeholder="Email"
-                        id="emailSV"
-                      />
-                    </div>
-                    <span className="sp-thongbao" id="tbEmail" />
-                  </div>
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-key" />
-                        </span>
-                      </div>
-                      <input
-                        type="password"
-                        name="password"
-                        className="form-control input-sm"
-                        placeholder="Mật khẩu"
-                        id="passwordSV"
-                      />
-                    </div>
-                    <span className="sp-thongbao" id="tbMatKhau" />
-                  </div>
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-calendar" />
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        name="ngaylam"
-                        className="form-control"
-                        placeholder="Ngày làm"
-                        id="datepicker"
-                      />
-                    </div>
-                    <span className="sp-thongbao" id="tbNgay" />
-                  </div>
-                  <div className="form-group">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="fa fa-briefcase" />
-                        </span>
-                      </div>
-                      <select className="form-control" id="chucvu">
-                        <option>Chọn chức vụ</option>
-                        <option>Sếp</option>
-                        <option>Trưởng phòng</option>
-                        <option>Nhân viên</option>
-                      </select>
-                    </div>
-                    <span className="sp-thongbao" id="tbChucVu" />
-                  </div>
-                </form>
-              </div>
-              {/* Modal footer */}
-              <div className="modal-footer" id="modal-footer">
-                <button
-                  id="btnThemNV"
-                  type="button"
-                  className="btn btn-success"
-                >
-                  Thêm người dùng
-                </button>
-                <button
-                  id="btnCapNhat"
-                  type="button"
-                  className="btn btn-success"
-                >
-                  Cập nhật
-                </button>
-                <button
-                  id="btnDong"
-                  type="button"
-                  className="btn btn-danger"
-                  data-dismiss="modal"
-                >
-                  Đóng
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+// DashBoard
+import React, { useEffect } from "react";
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Grid from '@material-ui/core/Grid';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import Navbar from "./Navbar";
+import Icon from '@material-ui/core/Icon';
+
+const useStyles = makeStyles(theme => ({
+  table: {
+    minWidth: 500
+  },
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary
   }
-  componentDidMount() {
-    this.props.getListUser();
-  }
+}));
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+function DashBoard(props) {
+  const classes = useStyles();
+  
+  useEffect(() => {
+    props.getListUser();
+    console.log(props.listUser);
+  }, []);
+  return (
+    <div>
+    <Navbar />
+    {/* <ModalSearch /> */}
+    <div className={classes.root} className="table">
+    {/* <Container fixed> */}
+      <Grid container spacing={3}>
+        <Grid item xs={1}>
+           <div className="sidebar">
+             {/* <div className="sidebar-wrapper"> */}
+               <h3>Menu</h3>
+            {/* </div> */}
+           </div>
+        </Grid>
+        <Grid item xs={11}>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>STT</StyledTableCell>
+                  <StyledTableCell align="right">Họ Tên</StyledTableCell>
+                  <StyledTableCell align="right">Email</StyledTableCell>
+                  <StyledTableCell align="right">Tai Khoản </StyledTableCell>
+                  <StyledTableCell align="right">Mật khẩu</StyledTableCell>
+                  <StyledTableCell align="right">Số Điện thoại </StyledTableCell>
+                  <StyledTableCell align="right">Mã loại người dùng</StyledTableCell>
+                  <StyledTableCell align="right">Chức năng</StyledTableCell>
+                  <StyledTableCell align="right"><PersonAddIcon/></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {props.listUser.map((item, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row">
+                      {index + 1}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{item.hoTen}</StyledTableCell>
+                    <StyledTableCell align="right">{item.email}</StyledTableCell>
+                    <StyledTableCell align="right">{item.taiKhoan}</StyledTableCell>
+                    <StyledTableCell align="right">{item.matKhau}</StyledTableCell>
+                    <StyledTableCell align="right">{item.soDt}</StyledTableCell>
+                    <StyledTableCell align="right">{item.maLoaiNguoiDung}</StyledTableCell>
+                    <StyledTableCell align="right">< EditIcon/></StyledTableCell>
+                    <StyledTableCell align="right"><DeleteOutlinedIcon/></StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
+    {/* </Container> */}
+    </div>
+  </div>
+  );
 }
+
 const mapDisptachToProps = dispatch => {
   return {
     getListUser: () => {
@@ -305,9 +119,9 @@ const mapDisptachToProps = dispatch => {
   };
 };
 const mapStateToProps = state => {
-    return {
-        listUser: state.userReducer.listUser
-    }
-}
+  return {
+    listUser: state.userReducer.listUser
+  };
+};
 
 export default connect(mapStateToProps, mapDisptachToProps)(DashBoard);
