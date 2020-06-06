@@ -41,12 +41,15 @@ export const actGetListChairBookingAPI = (id) => {
         })
         .then((rs)=>{
             dispatch(actGetListChairBooking(rs.data))
+            console.log(rs.data);
+            
         })
         .catch((err)=>{
             console.log(err);
         })
     }
 }
+
 
 // lấy danh sách cụm rạp
 export const actGetInformationShowTimesAPI = (idMovie) => {
