@@ -1,12 +1,4 @@
-.seat{
-    padding: 0px 0px;
-    width: 50px;
-    height: 50px;
-    margin: 5px 10px;
-}
-.pop-up{
-    border-bottom: 1px solid black;
-    border-left:  1px solid black;
-}
-.buy-ticket{
-}
+@import "./booking/Headerbooking";
+@import "./booking/leftBooking";
+@import "./booking/rightBooking";
+@import "./booking/seatCheckOut"
