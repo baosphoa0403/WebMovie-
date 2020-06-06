@@ -79,28 +79,7 @@ export const actGetListSystemTheaterAPI = () => {
         })
     }
 }
-//  lấy thông tin lịch chiếu theo cụm rạp và hệ thống rạp
-export const actGetListMovieFollowTheaterAPI = (maHeThongRap) =>{
-    return dispatch => {
-        Axios({
-            method: "GET",
-            url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`
-        })
-        .then((rs)=>{
-             dispatch(actGetListMovieFollowTheater(rs.data));
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    }
-}
-export const actGetListMovieFollowTheater = (listMovieFollowTheater) => {
-     return {
-         type : ActionType.GET_LIST_MOVIE_FOLLOW_THEATER,
-         data: listMovieFollowTheater
-     }
-}
-
+// gửi thông tin lịch chiếu lên store
 export const actGetListSystemTheater = (listTheater) => {
     return {
         type: ActionType.GET_LIST_THEATER,

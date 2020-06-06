@@ -74,7 +74,7 @@ class SearchBar extends Component {
     });
   };
   renderHeThongRap = () => {
-    console.log(this.props.listShowTimes.heThongRapChieu);
+    // console.log(this.props.listShowTimes.heThongRapChieu);
     // console.log(this.state.values.tenPhim);
     let {heThongRapChieu} = this.props.listShowTimes;
     let {tenPhim} = this.state.values;
@@ -136,7 +136,7 @@ class SearchBar extends Component {
       let index = heThongRapChieu.findIndex(rap => {
         return rap.tenHeThongRap === this.state.values.tenHeThongRap;
       });
-      console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
+      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
@@ -191,12 +191,12 @@ class SearchBar extends Component {
         let index = heThongRapChieu.findIndex(rap => {
           return rap.tenHeThongRap === this.state.values.tenHeThongRap;
       });
-      console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
-      console.log(this.state.values.tenRap);
+      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
+      // console.log(this.state.values.tenRap);
       let indexTenRap = heThongRapChieu[index].cumRapChieu.findIndex((tenRapChiTiet)=>{
         return tenRapChiTiet.tenCumRap === this.state.values.tenRap;
       })
-      console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
+      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
       // convert to day and filter day duplicate
       const listDay = new Set(heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim.map((lichChieu)=>{
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString())
@@ -324,7 +324,7 @@ class SearchBar extends Component {
     //  này là cái mảng lấy từ server về nè
     //  h mún lấy cái time á
 
-    console.log(this.props.listMovie);
+    // console.log(this.props.listMovie);
 
     return (
       <div className="search_bar">

@@ -5,8 +5,10 @@ let initialState = {
   listChair: [],
   listShowTimes: [],
   listTheater: [],
-  listMovieFollowTheater: [],
-  // listBooking: [],
+  // loadTable
+  listCumRap: [],
+  maHeThong: null,
+  maCumRap: null
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -27,17 +29,17 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_LIST_THEATER:
       state.listTheater = action.data;
       return { ...state };
-    case ActionType.GET_LIST_MOVIE_FOLLOW_THEATER:
-      state.listMovieFollowTheater = action.data;
-      return { ...state };
-    // case ActionType.SEND_ID_CHAIR:
-    //   console.log(action);
-    //   let listBookingUpdate = [...state.listBooking];
-    // let chair = listBookingUpdate.danhSachGhe.find((chair) => {
-    //   return chair.maGhe === action.data;
-    // });
-    // console.log(chair);
-    // return { ...state };
+      // send mã hệ thống rạp lên 
+    case ActionType.SEND_ID_THEATER: 
+      state.maHeThong = action.data;
+       return {...state}  
+    case ActionType.SEND_ID_LIST_THEATER:
+      state.maCumRap = action.data;
+       return {...state}
+    case ActionType.SEND_LIST_THEATER:
+      // console.log(action);
+       state.listCumRap = action.data    
+      return {...state}
     default:
       return { ...state };
   }
