@@ -27,8 +27,14 @@ export default class BuyTicket extends Component {
       );
     }
   };
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props.BuyTicket);
+    console.log(nextProps);
+  }
   render() {
+    console.log(this.props.BuyTicket);
     let { buyTicket } = this.props;
+
     return (
       <div>
         <div class="right">
