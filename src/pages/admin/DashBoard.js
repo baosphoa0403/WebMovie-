@@ -1,127 +1,207 @@
 import { connect } from "react-redux";
 import * as action from "../../redux/action/userAction";
+import Axios from "axios";
+// import MaterialTable,  from 'material-table';
 // DashBoard
-import React, { useEffect } from "react";
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Grid from '@material-ui/core/Grid';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import EditIcon from '@material-ui/icons/Edit';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import Navbar from "./Navbar";
-import Icon from '@material-ui/core/Icon';
+// import {MTablePagination} from "@material-ui/core";
+import React, { useEffect,  } from "react";
+import MaterialTable ,{MTableEditRow} from "material-table";
 
-const useStyles = makeStyles(theme => ({
-  table: {
-    minWidth: 500
-  },
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary
+// import Modal from "./Modal";
+
+function DashBoard() {
+  const [state, setState] = React.useState({
+    columns: [
+      { title: "Tên", field: "hoTen" },
+      { title: "Tài Khoản", field: "taiKhoan" },
+      { title: "Mật Khẩu", field: "matKhau"},
+      { title: "Email", field: "email", type: "email" },
+      {
+        title: "Số Đt",
+        field: "soDt", 
+        type: "numeric"},
+      {title: "Mã loại người dùng",field: "maLoaiNguoiDung"}
+    ],
+    data: [],
+    query: {
+      pageSizeOptions: [10, 20]
+    }
+  });
+console.log(state.data);
+
+ 
+  useEffect(()=>{
+    Axios({
+      method: "GET",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04"
+      }).then((rs)=>{
+        // dispatch(actGetListUser(rs.data))
+       setState(prevState => {
+        return {...prevState, data: rs.data};
+      })
+      })
+     .catch((err)=>{
+      console.log(err);
+    })
+  },[])
+  const handleDeleteUser = (user) => {
+     console.log(user);
+     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
+     Axios({
+       method: "DELETE",
+       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
+       headers: {
+        Authorization: `Bearer ${userAdmin.accessToken}`
+      }
+     })
+     .then((rs)=>{
+      console.log(rs);
+    })
+    .catch((err)=>{
+       console.log(err);
+    })
+     
   }
-}));
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-function DashBoard(props) {
-  const classes = useStyles();
-  
-  useEffect(() => {
-    props.getListUser();
-    console.log(props.listUser);
-  }, []);
+  // edit
+  const handleEditUser = (user) => {
+    console.log(user);
+    const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
+    let userEdit = {...user, maNhom: "GP04"}
+    // console.log(userEdit);
+    
+    if (user.maLoaiNguoiDung !== "KhachHang" && user.maLoaiNguoiDung !== "QuanTri") {
+      console.log("sai ma loai ng dùng");
+    }else{
+   
+      Axios({
+        method: "PUT",
+        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        data: userEdit,
+        headers: {
+          Authorization: `Bearer ${userAdmin.accessToken}`
+        }
+      })
+      .then((rs)=>{
+        console.log(rs);
+      })
+      .catch((err)=>{
+         console.log(err);
+      })
+    }
+  }
+  // add
+  const handleAddUser = (user) => {
+    // console.log(user);
+    
+    const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
+    let userAdd = {...user, maNhom: "GP04"}
+    // console.log(userAdmin.accessToken);
+    
+    if (user.maLoaiNguoiDung !== "KhachHang" && user.maLoaiNguoiDung !== "QuanTri") {
+      console.log("sai ma loai ng dùng");
+    }else{
+   
+      Axios({
+        method: "POST",
+        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+        data: userAdd,
+        headers: {
+          Authorization: `Bearer ${userAdmin.accessToken}`
+        }
+      })
+      .then((rs)=>{
+        console.log(rs);
+      })
+      .catch((err)=>{
+         console.log(err);
+      })
+    }
+ 
+   }
+  let renderTable = () => {
+     if (state.data.length > 0) {
+      return <MaterialTable
+     
+      components={{
+        EditRow: props => (
+            <div >
+                <MTableEditRow {...props} />
+            </div>
+        )
+      }}
+      options={{
+        headerStyle: {
+          backgroundColor: '#212121',
+          color: '#FFF'
+        }
+      }}
+      title="Dashboard"
+      columns={state.columns}
+      data={state.data}
+      editable={{
+        onRowAdd: newData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              handleAddUser(newData)
+              resolve();
+              setState(prevState => {
+                const data = [...prevState.data];
+                data.push(newData);
+                return { ...prevState, data };
+              });
+           
+              
+            
+            }, 600);
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              handleEditUser(newData);
+              if (oldData) {
+                setState(prevState => {
+                  const data = [...prevState.data];
+                  data[data.indexOf(oldData)] = newData;
+                  return { ...prevState, data };
+                });
+              }
+            }, 600);
+          }),
+        onRowDelete: oldData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              handleDeleteUser(oldData)
+              setState(prevState => {
+                const data = [...prevState.data];
+                data.splice(data.indexOf(oldData), 1);
+                return { ...prevState, data };
+              });
+            }, 600);
+          })
+      }}
+    />
+     }
+  }
   return (
     <div>
-    <Navbar />
-    {/* <ModalSearch /> */}
-    <div className={classes.root} className="table">
-    {/* <Container fixed> */}
-      <Grid container spacing={3}>
-        <Grid item xs={1}>
-           <div className="sidebar">
-             {/* <div className="sidebar-wrapper"> */}
-               <h3>Menu</h3>
-            {/* </div> */}
-           </div>
-        </Grid>
-        <Grid item xs={11}>
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>STT</StyledTableCell>
-                  <StyledTableCell align="right">Họ Tên</StyledTableCell>
-                  <StyledTableCell align="right">Email</StyledTableCell>
-                  <StyledTableCell align="right">Tai Khoản </StyledTableCell>
-                  <StyledTableCell align="right">Mật khẩu</StyledTableCell>
-                  <StyledTableCell align="right">Số Điện thoại </StyledTableCell>
-                  <StyledTableCell align="right">Mã loại người dùng</StyledTableCell>
-                  <StyledTableCell align="right">Chức năng</StyledTableCell>
-                  <StyledTableCell align="right"><PersonAddIcon/></StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {props.listUser.map((item, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell component="th" scope="row">
-                      {index + 1}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{item.hoTen}</StyledTableCell>
-                    <StyledTableCell align="right">{item.email}</StyledTableCell>
-                    <StyledTableCell align="right">{item.taiKhoan}</StyledTableCell>
-                    <StyledTableCell align="right">{item.matKhau}</StyledTableCell>
-                    <StyledTableCell align="right">{item.soDt}</StyledTableCell>
-                    <StyledTableCell align="right">{item.maLoaiNguoiDung}</StyledTableCell>
-                    <StyledTableCell align="right">< EditIcon/></StyledTableCell>
-                    <StyledTableCell align="right"><DeleteOutlinedIcon/></StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
-      </Grid>
-    {/* </Container> */}
+      {renderTable()}
     </div>
-  </div>
   );
 }
 
-const mapDisptachToProps = dispatch => {
-  return {
-    getListUser: () => {
-      dispatch(action.actGetListUserAPI());
-    }
-  };
-};
+// const mapDisptachToProps = dispatch => {
+//   return {
+//     getListUser: () => {
+//       dispatch(action.actGetListUserAPI());
+//     }
+//   };
+// };
 const mapStateToProps = state => {
   return {
     listUser: state.userReducer.listUser
   };
 };
 
-export default connect(mapStateToProps, mapDisptachToProps)(DashBoard);
+export default connect(mapStateToProps, null)(DashBoard);

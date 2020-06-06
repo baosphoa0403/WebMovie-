@@ -8,7 +8,6 @@ import imgCineStar from "../../images/img/CineContact/ddc-dong-da.jpg";
 import imgMega from "../../images/img/CineContact/mega-gs-cao-thang.jpg";
 import Axios from "axios";
 import * as ActionType from "../../redux/constants/ActionType";
-
 class CinemaTheater extends Component {
   constructor(props) {
     super(props);
