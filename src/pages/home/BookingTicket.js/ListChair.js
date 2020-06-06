@@ -24,9 +24,9 @@ class ListChair extends Component {
 
   
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps);
+  // }
   render() {
     return (
       <div>

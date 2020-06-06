@@ -11,6 +11,7 @@ class TicketBooking extends Component {
     super(props);
     this.state = {
       listChair: [],
+
     };
   }
   timViTri = (maGhe) => {
@@ -19,49 +20,49 @@ class TicketBooking extends Component {
   handleAddCart = (product, isBooking) => {
     let index = this.timViTri(product.maGhe);
 
-    let listChair = [...this.state.listChair];
+    let listChairUpdate = [...this.state.listChair];
 
     if (!isBooking) {
       //Add
-      listChair = [...this.state.listChair, product];
+      listChairUpdate = [...this.state.listChair, product];
     } else {
       //Find index to delete
-      listChair.splice(index, 1);
+      listChairUpdate.splice(index, 1);
     }
     this.setState({
-      listChair,
+      listChair: listChairUpdate
     });
     // console.log(product);
   };
 
-  renderCheckSeat = () => {
-    if (this.props.listChair.danhSachGhe !== undefined) {
-      if (this.props.listChair.danhSachGhe.length > 0) {
-        let arr = this.props.listChair.danhSachGhe.filter((item) => {
-          return item.daDat === true;
-        });
-        console.log(arr);
-      }
-    }
-  };
-
-  renderSeatInfo = () => {
-    if (this.props.listChair.danhSachGhe !== undefined) {
-      if (this.props.listChair.danhSachGhe.length > 0) {
-        return this.props.listChair.danhSachGhe.map((item) => {
-          return (
-            <BuyTicket
-              item={item}
-              key={item.maGhe}
-              buyTicket={this.state.listChair}
-              FilmInfo={this.props.listChair.thongTinPhim} 
-            />
-          );
-        });
-      }
-    }
-  };
-
+  // renderCheckSeat = () => {
+  //   if (this.props.listChair.danhSachGhe !== undefined) {
+  //     if (this.props.listChair.danhSachGhe.length > 0) {
+  //       let arr = this.props.listChair.danhSachGhe.filter((item) => {
+  //         return item.daDat === true;
+  //       });
+  //       console.log(arr);
+  //     }
+  //   }
+  // };
+ 
+  // renderSeatInfo = () => {
+  //   if (this.state.listChairAPi.danhSachGhe) {
+  //     // if (this.props.listChair.danhSachGhe.length > 0) {
+  //       return this.props.listChair.danhSachGhe.map((item) => {
+  //         return (
+  //           <BuyTicket
+  //             // item={item}
+  //             // key={item.maGhe}
+  //             buyTicket={this.state.listChair}
+  //             FilmInfo={this.props.listChair.thongTinPhim} 
+  //           />
+  //         );
+  //       });
+  //     // }
+  //   }
+  // };
+ 
   render() {
     console.log(this.props.listChair.thongTinPhim);
     console.log(this.props.listChair);
@@ -76,8 +77,13 @@ class TicketBooking extends Component {
             <ListChair addTicket={this.handleAddCart} />
           </div>
         </div>
-        {this.renderSeatInfo()}
-        {this.renderCheckSeat()}
+        {/* {this.renderSeatInfo()}
+         */}
+        {/* {this.renderCheckSeat()} */}
+        <BuyTicket
+              buyTicket={this.state.listChair}
+              FilmInfo={this.props.listChair.thongTinPhim} 
+            />
       </div>
     );
   }
