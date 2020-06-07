@@ -69,7 +69,7 @@ export default class BlockApp extends Component {
                       </a>
                     </p>
                   </div>
-                  <div className="col-md-6 right">
+                  <div className="col-md-6 right-App">
                     <img
                       src={mobile}
                       alt=""

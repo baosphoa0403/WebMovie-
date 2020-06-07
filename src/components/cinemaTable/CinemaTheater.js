@@ -14,7 +14,8 @@ class CinemaTheater extends Component {
     this.state = {
       listCumRap: [],
       maCumRap: null,
-      img: imgCGV
+      img: imgCGV,
+      index: 0
     };
   }
   fetchDataListTheater = data => {
@@ -23,7 +24,6 @@ class CinemaTheater extends Component {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${data}&maNhom=GP09`
     })
       .then(rs => {
-        // console.log(rs.data);
         this.setState(
           {
             listCumRap: rs.data
@@ -45,7 +45,6 @@ class CinemaTheater extends Component {
       this.fetchDataListTheater(nextProps.maHeThong);
       this.renderImg()
     }
-    console.log(nextProps);
   }
   renderImg = () => {
     if (this.props.maHeThong) {
@@ -73,17 +72,20 @@ class CinemaTheater extends Component {
           break;
      
       }
-      console.log(this.props.maHeThong);
       this.setState({img: imgUpdate})
     }
   };
+  handleActive = (index) => {
+    this.setState({index: index})
+  }
   renderListRap = () => {
     if (this.state.listCumRap.length > 0 && this.props.maHeThong) {
       return this.state.listCumRap.map(item => {
-        return item.lstCumRap.map(rap => {
+        return item.lstCumRap.map((rap, index) => {
           return (
             <div
               className="tab-pane fade show active"
+              key = {index}
               id="v-pills-CGV"
               role="tabpanel"
               aria-labelledby="v-pills-CGV-tab"
@@ -91,8 +93,14 @@ class CinemaTheater extends Component {
                 this.props.handleGetIDCumRap(rap.maCumRap);
               }}
             >
-              <div className="homeMovies__scope">
-                <div className="homeMovies__cinema active">
+              <div 
+              className="homeMovies__scope"
+             
+              >
+                <div className={this.state.index === index ? ("homeMovies__cinema active") : ("homeMovies__cinema ")}
+                 onClick={()=>{
+                  this.handleActive(index)
+                }}>
                   <div className="homeMovies__picture">
                     <img src={this.state.img} alt="CGV" />
                   </div>
@@ -115,9 +123,6 @@ class CinemaTheater extends Component {
     // }
   };
   render() {
-    // console.log(this.props.listMovieFollowTheater);
-    console.log(this.props.maHeThong);
-
     return <div>{this.renderListRap()}</div>;
   }
 }

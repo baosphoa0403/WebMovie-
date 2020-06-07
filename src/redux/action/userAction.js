@@ -24,7 +24,7 @@ export const actCheckSignInAdmin = (user, history) => {
            console.log(rs);
            if (rs.data.maLoaiNguoiDung === "QuanTri") {
                localStorage.setItem("userAdmin", JSON.stringify(rs.data));
-               history.push("/admin/dashboard"); 
+               history.push("/admin/dashboardUser"); 
            }else{
                alert("bạn không có quyền đăng nhập ");
            }

@@ -1,203 +1,240 @@
 import { connect } from "react-redux";
 import * as action from "../../redux/action/userAction";
 import Axios from "axios";
-// import MaterialTable,  from 'material-table';
-// DashBoard
-// import {MTablePagination} from "@material-ui/core";
-import React, { useEffect,  } from "react";
-import MaterialTable ,{MTableEditRow} from "material-table";
-
+import Grid from "@material-ui/core/Grid";
+import React, { useEffect } from "react";
+import MaterialTable, { MTableEdxitRow } from "material-table";
+import { makeStyles } from '@material-ui/core/styles';
+import FaceIcon from '@material-ui/icons/Face';
 // import Modal from "./Modal";
+import { pink } from '@material-ui/core/colors';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  
+ leftTable:{
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
+  padding: theme.spacing(2)
 
+
+ },
+ leftUp:{
+  textAlign:'center',
+ },
+ rightTable:{
+  padding: theme.spacing(2)
+
+ },
+ hrS:{
+   color: theme.palette.common.white
+ }
+}));
 function DashBoard() {
+
+  const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
       { title: "Tên", field: "hoTen" },
       { title: "Tài Khoản", field: "taiKhoan" },
-      { title: "Mật Khẩu", field: "matKhau"},
+      { title: "Mật Khẩu", field: "matKhau" },
       { title: "Email", field: "email", type: "email" },
       {
         title: "Số Đt",
-        field: "soDt", 
-        type: "numeric"},
-      {title: "Mã loại người dùng",field: "maLoaiNguoiDung"}
+        field: "soDt",
+        type: "numeric"
+      },
+      { title: "Mã loại người dùng", field: "maLoaiNguoiDung" }
     ],
     data: [],
     query: {
       pageSizeOptions: [10, 20]
     }
   });
-console.log(state.data);
+  console.log(state.data);
 
- 
-  useEffect(()=>{
+  useEffect(() => {
     Axios({
       method: "GET",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04"
-      }).then((rs)=>{
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04"
+    })
+      .then(rs => {
         // dispatch(actGetListUser(rs.data))
-       setState(prevState => {
-        return {...prevState, data: rs.data};
+        setState(prevState => {
+          return { ...prevState, data: rs.data };
+        });
       })
-      })
-     .catch((err)=>{
-      console.log(err);
-    })
-  },[])
-  const handleDeleteUser = (user) => {
-     console.log(user);
-     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
-     Axios({
-       method: "DELETE",
-       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
-       headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`
-      }
-     })
-     .then((rs)=>{
-      console.log(rs);
-    })
-    .catch((err)=>{
-       console.log(err);
-    })
-     
-  }
-  // edit
-  const handleEditUser = (user) => {
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+  const handleDeleteUser = user => {
     console.log(user);
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
-    let userEdit = {...user, maNhom: "GP04"}
+    Axios({
+      method: "DELETE",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
+      headers: {
+        Authorization: `Bearer ${userAdmin.accessToken}`
+      }
+    })
+      .then(rs => {
+        console.log(rs);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  // edit
+  const handleEditUser = user => {
+    console.log(user);
+    const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
+    let userEdit = { ...user, maNhom: "GP04" };
     // console.log(userEdit);
-    
-    if (user.maLoaiNguoiDung !== "KhachHang" && user.maLoaiNguoiDung !== "QuanTri") {
+
+    if (
+      user.maLoaiNguoiDung !== "KhachHang" &&
+      user.maLoaiNguoiDung !== "QuanTri"
+    ) {
       console.log("sai ma loai ng dùng");
-    }else{
-   
+    } else {
       Axios({
         method: "PUT",
-        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        url:
+          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
         data: userEdit,
         headers: {
           Authorization: `Bearer ${userAdmin.accessToken}`
         }
       })
-      .then((rs)=>{
-        console.log(rs);
-      })
-      .catch((err)=>{
-         console.log(err);
-      })
+        .then(rs => {
+          console.log(rs);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
-  }
+  };
   // add
-  const handleAddUser = (user) => {
+  const handleAddUser = user => {
     // console.log(user);
-    
+
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
-    let userAdd = {...user, maNhom: "GP04"}
+    let userAdd = { ...user, maNhom: "GP04" };
     // console.log(userAdmin.accessToken);
-    
-    if (user.maLoaiNguoiDung !== "KhachHang" && user.maLoaiNguoiDung !== "QuanTri") {
+
+    if (
+      user.maLoaiNguoiDung !== "KhachHang" &&
+      user.maLoaiNguoiDung !== "QuanTri"
+    ) {
       console.log("sai ma loai ng dùng");
-    }else{
-   
+    } else {
       Axios({
         method: "POST",
-        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+        url:
+          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
         data: userAdd,
         headers: {
           Authorization: `Bearer ${userAdmin.accessToken}`
         }
       })
-      .then((rs)=>{
-        console.log(rs);
-      })
-      .catch((err)=>{
-         console.log(err);
-      })
+        .then(rs => {
+          console.log(rs);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
- 
-   }
-  let renderTable = () => {
-     if (state.data.length > 0) {
-      return <MaterialTable
-     
-      components={{
-        EditRow: props => (
-            <div >
-                <MTableEditRow {...props} />
-            </div>
-        )
-      }}
-      options={{
-        headerStyle: {
-          backgroundColor: '#212121',
-          color: '#FFF'
-        }
-      }}
-      title="Dashboard"
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              handleAddUser(newData)
-              resolve();
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-           
-              
-            
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              handleEditUser(newData);
-              if (oldData) {
-                setState(prevState => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              handleDeleteUser(oldData)
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          })
-      }}
-    />
-     }
-  }
+  };
+  let renderTableUser = () => {
+    if (state.data.length > 0) {
+      return (
+        <MaterialTable
+          // components={{
+          //   EditRow: props => (
+          //     <div>
+          //       <MTableEditRow {...props} />
+          //     </div>
+          //   )
+          // }}
+          options={{
+            headerStyle: {
+              backgroundColor: "#212121",
+              color: "#FFF"
+            }
+          }}
+          title="Dashboard"
+          columns={state.columns}
+          data={state.data}
+          editable={{
+            onRowAdd: newData =>
+              new Promise(resolve => {
+                setTimeout(() => {
+                  handleAddUser(newData);
+                  resolve();
+                  setState(prevState => {
+                    const data = [...prevState.data];
+                    data.push(newData);
+                    return { ...prevState, data };
+                  });
+                }, 600);
+              }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                  handleEditUser(newData);
+                  if (oldData) {
+                    setState(prevState => {
+                      const data = [...prevState.data];
+                      data[data.indexOf(oldData)] = newData;
+                      return { ...prevState, data };
+                    });
+                  }
+                }, 600);
+              }),
+            onRowDelete: oldData =>
+              new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                  handleDeleteUser(oldData);
+                  setState(prevState => {
+                    const data = [...prevState.data];
+                    data.splice(data.indexOf(oldData), 1);
+                    return { ...prevState, data };
+                  });
+                }, 600);
+              })
+          }}
+        />
+      );
+    }
+  };
+  // renderTableMovie = () => {};
+
   return (
     <div>
-      {renderTable()}
+      <Grid container spacing={3}>
+        <Grid  className={classes.leftTable} item xs={12} sm={2}> 
+          <div className={classes.leftUp}> 
+            <FaceIcon style={{ color: pink[500], fontSize:50  }}/>
+          </div>
+          <hr className={classes.hrS}/>
+          <div>
+            
+          </div>
+        </Grid>
+        <Grid className={classes.rightTable} item xs={12} sm={10}>
+          {renderTableUser()}
+        </Grid>
+      </Grid>
+      {/* {renderTableUser()} */}
     </div>
   );
 }
 
-// const mapDisptachToProps = dispatch => {
-//   return {
-//     getListUser: () => {
-//       dispatch(action.actGetListUserAPI());
-//     }
-//   };
-// };
 const mapStateToProps = state => {
   return {
     listUser: state.userReducer.listUser

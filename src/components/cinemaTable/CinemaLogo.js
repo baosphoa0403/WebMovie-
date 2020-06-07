@@ -1,47 +1,43 @@
 import React, { Component } from "react";
 import * as action from "../../redux/action/index";
 import { connect } from "react-redux";
-import Axios from 'axios';
 import * as ActionType from "../../redux/constants/ActionType"
 class CinemaLogo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      maHeThongRap: null,
+      index: 0
     };
   }
-  // nếu maHethong lúc đầu lấy trên store về mà ko có thì 
   componentDidMount() {
     this.props.getListTheater();
-    // if (!this.props.maHeThongRap) {
-    //   //  this.props.maHeThongRap =
-    //    console.log(this.props.maHeThongRap);
-    //    this.props.sendIdTheater("BHDStar");
-
-    // }
   }
-  // renderFirst = () => {
-  //    if (!this.props.maHeThongRap) {
-  //     //  this.props.maHeThongRap =
-  //      console.log(this.props.maHeThongRap);
-  //     //  this.props.sendIdTheater("BHDStar");
-  //    }
-
-  // }
+  componentWillReceiveProps(nextProps){
+     if (nextProps.listTheater) {
+       this.props.sendIdTheater(nextProps.listTheater[0].maHeThongRap);
+     }
+  }
+  handleActive = (index) => {
+    this.setState({index: index})
+  }
+  hanleEvent = (maHeThongRap, index) => {
+    this.handleActive(index);
+    this.props.sendIdTheater(maHeThongRap)
+  }
   renderLogo = () => {
     if (this.props.listTheater) {
       return this.props.listTheater.map((theater,index) => {
         return (
           <button
-            className="nav-link "
+            className={this.state.index === index ? ("nav-link active") : ("nav-link")}
             key = {index}
             data-toggle="pill"
             href="#v-pills-CGV"
             role="tab"
             aria-controls="v-pills-CGV"
             aria-selected="true"
-            onClick={(index === 0 ? ( this.props.sendIdTheater(theater.maHeThongRap)) : ("")) , () => {
-              this.props.sendIdTheater(theater.maHeThongRap)
+            onClick={() => {
+              this.hanleEvent(theater.maHeThongRap, index)
             }}
           >
             <img src={theater.logo} alt={theater.maHeThongRap} />
@@ -51,12 +47,8 @@ class CinemaLogo extends Component {
     }
   };
   render() {
-    // console.log(this.state.listCumRap);
-   
-    
     return <div>
     {this.renderLogo()}
-    {this.checkDefault}
     </div>;
   }
 }
@@ -73,17 +65,13 @@ const mapDispatchToProps = dispatch => {
       }
       dispatch(action);
     }
-    // getListMovieFollowTheater: maHeThongRap => {
-    //   dispatch(action.actGetListMovieFollowTheaterAPI(maHeThongRap));
-    // }
   };
 };
 const mapStateToProps = state => {
   return {
     // lấy thông tin hệ lịch chiếu xuống 
     listTheater: state.movieReducer.listTheater,
-    maHeThongRap: state.movieReducer.maHeThongRap
-    // listMovieFollowTheater: state.movieReducer.listMovieFollowTheater,
+    // maHeThongRap: state.movieReducer.maHeThongRap
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CinemaLogo);

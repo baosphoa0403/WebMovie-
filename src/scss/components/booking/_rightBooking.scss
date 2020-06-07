@@ -1,0 +1,271 @@
+.right {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: $color-white-0;
+  width: spacing(44);
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  .right__content {
+    padding: 0 spacing(4) spacing(10);
+    overflow-y: scroll;
+    height: 100%;
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    .row {
+      width: 100%;
+      margin: 0;
+      .col-12 {
+        border-bottom: 1px dashed $color-gray-7;
+        margin-bottom: spacing(1.5);
+        padding: 0 0 spacing(1.25);
+      }
+    }
+    .right__total {
+      position: relative;
+      height: spacing(8);
+      text-align: center;
+      color: $color1;
+      font-size: $fs-15;
+      font-family: "SF Medium", sans-serif;
+      .col-12 {
+        .right__cash {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: spacing(30);
+        }
+      }
+    }
+    .right__filmName {
+      .right__text {
+        padding-bottom: 43px;
+        .right__address {
+          margin-top: spacing(0.5);
+          span {
+            font-size: $fs-4;
+            color: $color-black-7;
+          }
+          img {
+            margin-left: 50px;
+            width: 21%;
+            position: absolute;
+          }
+        }
+        .right__hour {
+          font-size: $fs-4;
+          color: $color-black-7;
+        }
+      }
+    }
+    .right__chair {
+      .col-12 {
+        display: flex;
+        justify-content: space-between;
+        font-size: $fs-4;
+        font-weight: $fw-bold;
+        .right__left {
+          color: $color-black-1;
+        }
+        .right__right {
+          color: $color1;
+          font-size: $fs-0;
+          padding: 0 spacing(2);
+          font-family: "SF Medium", sans-serif;
+        }
+      }
+    }
+    .right__infoUser {
+      .col-12 {
+        label {
+          color: $color-gray-2;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          margin: 0;
+          transition: all 0.3s;
+          font-size: $fs-4;
+          font-weight: $fw-medium;
+        }
+        input {
+          padding-right: spacing(0.5);
+          padding-left: 0;
+          width: calc(100% - 16px);
+          border: 0;
+          outline: none;
+          &:focus {
+            margin-top: spacing(0.5);
+            padding-top: spacing(1.25);
+          }
+          &:focus ~ label {
+            color: $color-blue-2;
+            font-size: $fs-2;
+            font-weight: $fw-regular-1;
+            top: spacing(0.2);
+            outline: none;
+          }
+        }
+      }
+    }
+    .right__voucher {
+      .col-12 {
+        .right__left {
+          label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            font-size: $fs-2;
+            font-weight: $fw-regular-1;
+            transition: all 0.3s;
+            margin: 0;
+            color: $color-gray-2;
+          }
+          input {
+            padding-top: spacing(1.25);
+            margin-top: spacing(0.5);
+            outline: none;
+            border: none;
+            &::placeholder {
+              color: $color-black-0;
+              font-size: $fs-4;
+            }
+            &:focus ~ label {
+              color: $color-blue-2;
+            }
+          }
+        }
+        .right__right {
+          .right__apply {
+            font-size: $fs-3;
+            font-weight: $fw-regular-1;
+            color: $color-white-0;
+            border-radius: $border-radius-7;
+            cursor: pointer;
+            background-color: $color2;
+            padding: spacing(0.5) spacing(0.7);
+            position: absolute;
+            right: 0;
+            top: spacing(0.5);
+          }
+        }
+      }
+    }
+    .right__methodPay {
+      margin-bottom: 40%;
+      .col-12 {
+        border-bottom: none;
+        .right__titleMethodPay {
+          margin-bottom: spacing(0.5);
+          margin: 0;
+        }
+        .right__warning {
+          padding: spacing(0.5) 0;
+          font-size: $fs-3;
+          color: $color-blue-3;
+          font-weight: $fw-bold;
+          margin: 0;
+        }
+      }
+    }
+    .right__notice {
+      .right__errorBook {
+        padding: 0 spacing(4);
+        padding-bottom: 4%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: spacing(6);
+        text-align: center;
+        z-index: 2;
+        margin-right: spacing(0.4);
+        background-color: $color-white-0;
+        img {
+          width: spacing(1.6);
+          height: spacing(1.6);
+          margin-right: spacing(0.8);
+        }
+        .right__title {
+          font-size: $fs-4;
+          .right__item {
+            color: $color-orange-3;
+            font-weight: $fw-bold;
+          }
+        }
+      }
+    }
+  }
+  .right__button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: spacing(1.5);
+    font-size: $fs-6;
+    color: $color-gray-4;
+    background-image: linear-gradient(0.25turn, $color1, $color-orange-3);
+    width: 100%;
+    text-align: center;
+    height: spacing(6);
+  }
+}
+
+@media (max-width: 1500px) and (min-width: 1024px) {
+  .right {
+    width: 26% !important;
+    .right__content {
+      .right__notice {
+        .right__title {
+          font-size: 9px !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .right {
+    width: 28% !important;
+    .right__content {
+      .right__notice {
+        .right__title {
+          font-size: 8px !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .right {
+    width: 100% !important;
+    position: static !important;
+    box-shadow: none !important;
+    margin-top: 100px;
+    .right__content {
+      .right__notice {
+        .right__errorBook {
+          bottom: initial;
+        }
+      }
+      .right__methodPay {
+        margin-bottom: 0;
+      }
+    }
+    .right__button {
+      bottom: initial;
+    }
+  }
+}

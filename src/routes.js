@@ -4,6 +4,7 @@ import ListMovie from "./components/ListMovie";
 import DashBoard from "./pages/admin/DashBoard";
 import Form from "./components/Form";
 import DeatailMovie from "./pages/home/DeatailMovie";
+import DashboardMovie from "./pages/admin/DashboardMovie";
 
 const routesHome = [
     {
@@ -30,10 +31,16 @@ const routesHome = [
 
 const routesAdmin = [
     {
-        path: "/admin/dashBoard",
+        path: "/admin/dashboardUser",
         exact: false,
         component: DashBoard
+    },
+    {
+        path: "/admin/dashboardMovie",
+        exact: false,
+        component: DashboardMovie
     }
+
 ]
 
 export {routesAdmin, routesHome};

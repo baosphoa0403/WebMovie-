@@ -1,26 +1,10 @@
 import React, { Component } from "react";
 import Ccontact1 from "../images/img/CineContact/cgv-aeon-binh-tan.jpg";
-import Ccontact2 from "../images/img/CineContact/bhd-star-vincom.jpg";
-import Ccontact3 from "../images/img/CineContact/bhd-star-pham-hung.jpg";
-import Ccontact4 from "../images/img/CineContact/bhd-star-vincom-quang-trung.jpg";
-import Ccontact5 from "../images/img/CineContact/galaxy-linh-trung.jpg";
-import Ccontact6 from "../images/img/CineContact/galaxy-quang-trung.jpg";
-import Ccontact7 from "../images/img/CineContact/galaxy-nguyen-van-qua.jpg";
-import Ccontact8 from "../images/img/CineContact/ddc-dong-da.jpg";
-import Ccontact9 from "../images/img/CineContact//mega-gs-cao-thang.jpg";
-import Ccontact10 from "../images/img/CineContact/dcine-ben-thanh.png";
-import Ccontact11 from "../images/img/CineContact/lotte-cinema-go-vap.jpg";
-import Ccontact12 from "../images/img/CineContact/lotte-cinema-thu-duc.jpg";
-import Ccontact13 from "../images/img/CineContact/lotte-cinema-phu-tho.jpg";
-import TextField from "@material-ui/core/TextField";
 import * as action from "../redux/action/index";
 import { connect } from "react-redux";
 import CinemaLogo from "./cinemaTable/CinemaLogo";
 import CinemaTheater from "./cinemaTable/CinemaTheater";
-import Axios from 'axios';
-import { Card } from "@material-ui/core";
 import CinemaMovie from "./cinemaTable/CinemaMovie";
-// import Ccontact1 from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
 class Cinema extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +19,6 @@ class Cinema extends Component {
     this.props.getListTheater();
   }
   handleOnChange = (maHeThongRap) => {
-    // console.log(maHeThongRap);
     this.setState({ maHeThongRap });
     this.props.getListMovieFollowTheater(maHeThongRap);
   };
@@ -64,18 +47,7 @@ class Cinema extends Component {
   handleGetIDCumRap = (value) => {
     this.setState({
       maCumRap: value
-    }, () => {
-      console.log(this.state.maCumRap);
-    })
-   if (this.state.listCumRap) {
-    let rap = this.state.listCumRap.map((item) => {
-      return item.lstCumRap.find((hello) => {
-        return hello.maCumRap === this.state.maCumRap
-      })
-    })
-    console.log(rap);
-   }
-   
+    })   
   }
   renderListRapDefault = () => {
     return this.state.listCumRap.map((item) => {
@@ -144,7 +116,6 @@ class Cinema extends Component {
         });
       });
     }
-    // }
   };
   renderListPhim = () => {
     if (this.props.listMovieFollowTheater && this.state.maHeThongRap && this.state.maCumRap ) {
@@ -174,10 +145,6 @@ class Cinema extends Component {
     }
   }
   render() {
-    // console.log(this.props.listMovieFollowTheater)
-    // console.log(this.state.listCumRap);
-   let {maHeThongRap, maCumRap} = this.state;
-   let {listMovieFollowTheater} = this.props;
     return (
       <div>
         <section className="homeMovies" id="cinemaBlock">
@@ -192,7 +159,6 @@ class Cinema extends Component {
                       role="tablist"
                       aria-orientation="vertical"
                     >
-                      {/* {this.renderLogo()} */}
                       <CinemaLogo />
                     </div>
                   </div>
@@ -201,8 +167,6 @@ class Cinema extends Component {
                       className="tab-content selectScroll"
                       id="v-pills-tabContent"
                     >
-                      {/* {this.renderListRap()} */}
-                      {/* {this.state.maHeThongRap ? (this.renderListRap()) : (this.renderListRapDefault())} */}
                       <CinemaTheater />
                     </div>
                   </div>
@@ -212,8 +176,6 @@ class Cinema extends Component {
                         className="tab-content selectScroll"
                         id="v-pills-tabContent"
                       >
-                       {/* {this.renderListPhim()} */}
-                       {/* <CinemaTime maHeThongRap={maHeThongRap} maCumRap={maCumRap} listMovieFollowTheater={listMovieFollowTheater}/> */}
                        <CinemaMovie />
                       </div>
                     </div>

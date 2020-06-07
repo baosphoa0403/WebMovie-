@@ -1,0 +1,184 @@
+.seatCheckOut {
+  margin-left: 4.3%;
+  margin-top: spacing(8);
+  padding-top: spacing(3);
+  float: left;
+  width: 69.7%;
+  .seatCheckOut__content {
+    width: 100%;
+    margin: auto;
+    .seatCheckOut__header {
+      width: 90%;
+      margin: 0 auto;
+      // display: flex;
+      // justify-content: space-between;
+      .seatCheckOut__leftTitle {
+        .seatCheckOut__logo {
+          float: left;
+          width: 5.5%;
+          margin-right: spacing(1.3);
+          img {
+            width: 100%;
+          }
+        }
+        .seatCheckOut__contentCinema {
+          float: left;
+          p {
+            margin: 0;
+          }
+          .seatCheckOut__address {
+            span {
+              color: $color-gray-5;
+            }
+          }
+          .seatCheckOut__hour {
+            color: $color-gray-5;
+            font-size: $fs-4;
+          }
+        }
+      }
+      .seatCheckOut__rightTitle {
+        float: right;
+        margin-top: spacing(1);
+        width: spacing(7.5);
+        p {
+          margin: 0 0 spacing(1);
+        }
+        .seatCheckOut__info1 {
+          font-size: 10px;
+          color: $color-gray-5;
+          text-align: center;
+          line-height: 0;
+        }
+        .seatCheckOut__info2 {
+          text-align: center;
+          color: $color-orange-3;
+          font-size: 29px;
+          line-height: 1;
+          font-weight: $fw-medium;
+          font-family: "SF Medium", sans-serif;
+        }
+      }
+    }
+    .seatCheckOut__seatMap {
+      margin-top: spacing(1);
+      .seatCheckOut__screen {
+        text-align: center;
+        img {
+          width: 90%;
+        }
+      }
+
+      .seatCheckOut__listSeat {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        text-align: center;
+        margin: 0 auto;
+        .seatCheckOut__item {
+          border-radius: 6px;
+          font-size: 20px;
+          margin: 6px;
+          color: $color-black-1;
+          background-color: $color-black-1;
+          border: none;
+        }
+        .seatCheckOut__item_True {
+          border-radius: 6px;
+          font-size: 20px;
+          margin: 6px;
+          color: $color-black-1;
+          border: none;
+          background-color: $color-gray-2;
+        }
+        .seatCheckOut__item_Active {
+          border-radius: 6px;
+          font-size: 20px;
+          margin: 6px;
+          color: $color-black-1;
+          background-color: $color1;
+          border: none;
+        }
+        .numberofchair {
+          font-size: 17.9px;
+          margin-top: 5px;
+        }
+      }
+
+      .seatCheckOut__noteSeat {
+        text-align: center;
+        margin-top: spacing(5);
+        .seatCheckOut__typeSeats {
+          .seatCheckOut__typeSeat {
+            margin-right: spacing(2.1);
+            display: inline-block;
+            .color {
+              position: absolute;
+              width: spacing(3);
+              height: spacing(1.8);
+              border: 1px solid $color-gray-0;
+            }
+            .nameSeat {
+              padding-left: spacing(3.5);
+              color: $color-gray-2;
+              font-size: $fs-4;
+            }
+          }
+          .seatCheckOut__colorChoosing {
+            .color {
+              background-color: $color1;
+            }
+          }
+          .seatCheckOut__colorChosen {
+            .color {
+              background-color: $color-gray-2;
+            }
+          }
+          .seatCheckOut__colorNotChosen {
+            .color {
+              background-color: $color-black-1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 868px) {
+  .seatCheckOut {
+    .seatCheckOut__content {
+      .seatCheckOut__seatMap {
+        .seatCheckOut__listSeat {
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 868px) and (min-width: 768px) {
+  .seatCheckOut {
+    .seatCheckOut__content {
+      .seatCheckOut__seatMap {
+        .seatCheckOut__listSeat {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .seatCheckOut {
+    margin-left: 0;
+    width: 100% !important;
+    .seatCheckOut__content {
+      .seatCheckOut__seatMap {
+        .seatCheckOut__listSeat {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
