@@ -22,8 +22,6 @@ class ListChair extends Component {
     }
   };
 
-  
-
   // componentWillReceiveProps(nextProps) {
   //   console.log(nextProps);
   // }
@@ -75,15 +73,5 @@ const mapStateToProps = (state) => {
     listChair: state.movieReducer.listChair,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     sendIdChair: (IdChair) => {
-//       let action = {
-//         type: ActionType.SEND_ID_CHAIR,
-//         data: IdChair,
-//       };
-//       dispatch(action);
-//     },
-//   };
-// };
+
 export default connect(mapStateToProps, null)(ListChair);

@@ -333,7 +333,7 @@ class SearchBar extends Component {
           {this.renderRap()}
           {this.renderNgayXem()}
           {this.renderGioXem()}
-          <Button variant="contained" color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
+          <Button className="buyTicket" variant="contained" color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
       </div>
     );
   }
