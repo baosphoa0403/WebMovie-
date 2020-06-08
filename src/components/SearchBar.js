@@ -9,6 +9,7 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       values: {
+        maPhim: null,
         tenPhim: null,
         tenHeThongRap: null, 
         tenRap: null,
@@ -28,14 +29,22 @@ class SearchBar extends Component {
        values: {...this.state.values, tenPhim: value},
     }, ()=>{
       console.log(this.state.values);
-      
     })
     let movie = listMovie.find(movie => {
       return movie.tenPhim === value;
     });
+    // this.setState({
+    //   maPhim: movie.maPhim
+    // }, ()=>{
+    //   console.log(this.state.values);
+    // })
+    console.log(movie.maPhim);
+    
     // trả về 1 object để r lấy object đó movie.maPhim để gửi lên sever
     //  console.log(movie.maPhim);
-    this.props.actGetInformationShowTimes(movie.maPhim);
+  //  if (movie.maPhim) {
+    // this.props.actGetInformationShowTimes(movie.maPhim);
+  //  }
   };
   // handleBlur  = (event, values) => {
   //     console.log(event.target, values);

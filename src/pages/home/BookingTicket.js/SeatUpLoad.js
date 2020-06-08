@@ -12,6 +12,8 @@ export default class SeatUpLoad extends Component {
     });
   };
   render() {
+    // console.log(this.props.buyTicket);
+    
     return <div>{this.renderSeat()}</div>;
   }
 }
