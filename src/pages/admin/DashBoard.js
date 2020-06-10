@@ -3,7 +3,7 @@ import * as action from "../../redux/action/userAction";
 import Axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect } from "react";
-import MaterialTable, { MTableEdxitRow } from "material-table";
+import MaterialTable from 'material-table'
 import { makeStyles } from '@material-ui/core/styles';
 import FaceIcon from '@material-ui/icons/Face';
 // import Modal from "./Modal";
