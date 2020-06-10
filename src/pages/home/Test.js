@@ -6,18 +6,18 @@ import Button from "@material-ui/core/Button";
 import * as action from "../redux/action";
 const options1 = ["Option 1", "Option 2"];
 const options2 = ["Option 3", "Option 4"];
-class LogoTable extends Component {
+class Test extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: {
-        maPhim: "",
-        tenPhim: "",
-        tenHeThongRap: "",
-        tenRap: "",
-        ngayXem: "",
-        gioXem: "",
-      },
+      // values: {
+      //   maPhim: "",
+      //   tenPhim: "",
+      //   tenHeThongRap: "",
+      //   tenRap: "",
+      //   ngayXem: "",
+      //   gioXem: "",
+      // },
       inputValueFilm: "",
       inputValueCluster: "",
       valuesFilm: "",
@@ -34,15 +34,10 @@ class LogoTable extends Component {
           onChange={(event, newValue) => {
             this.setState({
               valuesFilm: newValue,
-            });
-          }}
-          inputValue={this.state.inputValue}
-          onInputChange={(event, newInputValue) => {
-            this.setState({
-              inputValueFilm: newInputValue,
               valuesCluster: "",
             });
           }}
+         
           id="controllable-states-demo"
           options={options1}
           style={{ width: 300 }}
@@ -65,12 +60,12 @@ class LogoTable extends Component {
               valuesCluster: newValue,
             });
           }}
-          inputValue={this.state.inputValue}
-          onInputChange={(event, newInputValue) => {
-            this.setState({
-              inputValueCluster: newInputValue,
-            });
-          }}
+          // inputValue={this.state.inputValue}
+          // onInputChange={(event, newInputValue) => {
+          //   this.setState({
+          //     inputValueCluster: newInputValue,
+          //   });
+          // }}
           id="controllable-states-demo"
           options={options2}
           style={{ width: 300 }}
@@ -106,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(LogoTable);
+export default connect(mapStateToProps, mapDispatchToProps)(Test);

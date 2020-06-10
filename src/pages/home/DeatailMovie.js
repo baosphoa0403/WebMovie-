@@ -128,6 +128,8 @@ renderImg = () => {
   }
   renderTheater = () => {    
     if (this.state.theater.thongTinRap) {
+      console.log(this.state.theater);
+      
       return (
        <div className="info__items">
        <p>
@@ -220,7 +222,7 @@ renderImg = () => {
           <div className="collapse" id="VincomGV">
            <div className="info__time">
              <p className="info__2D">2D Digital</p>
-             <a type="button" href="./checkout.html">
+             <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
                <span className="info__timeBegin">
                 {time}
                </span>
@@ -228,7 +230,7 @@ renderImg = () => {
                  {" "}
                  ~ 17:09
                </span>
-             </a>
+             </Link>
            </div>
          </div>
         );
