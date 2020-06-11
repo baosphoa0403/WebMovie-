@@ -5,14 +5,13 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import * as action from "../redux/action";
-const options1 = ["Option 1", "Option 2"];
-const options2 = ["Option 3", "Option 4"];
+import { withRouter } from "react-router";
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      maPhim: "",
       tenPhim: "",
+      maPhim: "",
       tenHeThongRap: "",
       tenRap: "",
       ngayXem: "",
@@ -28,8 +27,6 @@ class SearchBar extends Component {
       let arr = listMovie.map((item) => {
         return item.tenPhim
       })
-      // console.log(arr);
-
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
@@ -42,11 +39,12 @@ class SearchBar extends Component {
                 ngayXem: "",
                 gioXem: "",
               }, () => {
-                console.log(this.state);
                 let movie = listMovie.find((movie) => {
                   return movie.tenPhim === this.state.tenPhim
                 })
-                // console.log(movie);
+                this.setState({
+                   maPhim: movie.maPhim
+                })
                 this.props.actGetInformationShowTimes(movie.maPhim);
               });
 
@@ -70,11 +68,8 @@ class SearchBar extends Component {
 
   };
   renderHeThongRap = () => {
-    // console.log(this.props.listShowTimes); 
-    // console.log(this.state.values.tenPhim);
     let { heThongRapChieu } = this.props.listShowTimes;
     if (heThongRapChieu) {
-      // console.log(this.props.listShowTimes);
       let arr = heThongRapChieu.map((heThongCumRap) => {
         return heThongCumRap.tenHeThongRap;
       })
@@ -82,10 +77,6 @@ class SearchBar extends Component {
         <div style={{ width: 200 }} className="input">
           <Autocomplete
             value={this.state.tenHeThongRap}
-            // options={heThongRapChieu.map(rap => {
-            //   return rap.tenHeThongRap;
-            // })}
-            // getOptionLabel={(option)=>option.tenHeThongRap}
             options={arr}
             onChange={(event, newValue) => {
               this.setState({
@@ -94,9 +85,6 @@ class SearchBar extends Component {
                 tenRap: "",
                 ngayXem: "",
                 gioXem: "",
-              }, () => {
-                console.log(this.state);
-
               })
             }}
             renderInput={params => {
@@ -134,18 +122,12 @@ class SearchBar extends Component {
     }
   };
   renderRap = () => {
-    // console.log(this.state.tenHeThongRap);
-
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenHeThongRap } = this.state;
     if (heThongRapChieu && tenHeThongRap) {
-      //   // lọc maHeThong
-      // console.log(this.props.listShowTimes.heThongRapChieu);
       let heThongRap = heThongRapChieu.find(heThongRap => {
         return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      console.log(heThongRap);
-
       let arr = heThongRap.cumRapChieu.map((rap) => {
         return rap.tenCumRap;
       })
@@ -160,8 +142,6 @@ class SearchBar extends Component {
                 tenRap: newValue,
                 ngayXem: "",
                 gioXem: "",
-              }, () => {
-                console.log(this.state);
               })
             }}
             renderInput={params => {
@@ -187,7 +167,7 @@ class SearchBar extends Component {
               return (
                 <TextField
                   {...params}
-                  label="rạp"
+                  label="Rạp"
                   margin="normal"
                   variant="outlined"
                 />
@@ -198,28 +178,6 @@ class SearchBar extends Component {
       );
     }
   };
-  // handleOnChangeDate = (event, value) => {
-  //   let { heThongRapChieu } = this.props.listShowTimes;
-  //   let { tenPhim, tenHeThongRap, tenRap } = this.state;
-  //   if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap) {
-  //     let heThongRap = heThongRapChieu.find(heThongRap => {
-  //       return heThongRap.tenHeThongRap === tenHeThongRap;
-  //     });
-  //     console.log(heThongRap);
-
-  //     let rap = heThongRap.cumRapChieu.find((rap) => {
-  //       return rap.tenCumRap === tenRap
-  //     })
-  //     const lichChieu = rap.lichChieuPhim.find((lichChieu)=>{
-  //       return(new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString()) === value
-  //     })
-  //     console.log(lichChieu.maLichChieu);
-  //     this.props.history(`/booking/${lichChieu.maLichChieu}`)
-     
-  //   }
-     
-     
-  // }
   renderNgayXem = () => {
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap } = this.state;
@@ -227,12 +185,9 @@ class SearchBar extends Component {
       let heThongRap = heThongRapChieu.find(heThongRap => {
         return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      console.log(heThongRap);
-
       let rap = heThongRap.cumRapChieu.find((rap) => {
         return rap.tenCumRap === tenRap
       })
-      // // convert to day and filter day duplicate
       const listDay = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString())
       }));
@@ -247,11 +202,8 @@ class SearchBar extends Component {
                 ...this.state,
                 ngayXem: newValue,
                 gioXem: ""
-              }, () => {
-                console.log(this.state);
               })
             }}
-           
             renderInput={params => {
               return (
                 <TextField
@@ -287,13 +239,38 @@ class SearchBar extends Component {
     }
   }
   checkBtn = () => {
-    if (this.state.tenPhim && this.state.tenHeThongRap && this.state.tenRap && this.state.ngayXem && this.state.gioXem) {
+    let {tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
+    if (tenPhim && tenHeThongRap && tenRap && ngayXem && gioXem) {
       this.setState({
         btnValid: true
       })
     }
   }
-  
+  getIDSee = () => {
+    let { heThongRapChieu } = this.props.listShowTimes;
+    let { tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
+    if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && gioXem && ngayXem) {
+      let heThongRap = heThongRapChieu.find(heThongRap => {
+        return heThongRap.tenHeThongRap === tenHeThongRap;
+      });
+      let rap = heThongRap.cumRapChieu.find((rap) => {
+        return rap.tenCumRap === tenRap
+      })
+      const lichChieu = rap.lichChieuPhim.find((lichChieu)=>{
+        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString()) === gioXem) 
+      })
+      this.setState({
+        maLichChieu: lichChieu.maLichChieu
+      })
+    
+     
+    }
+  }
+  changePage = () => {
+   if (this.state.maLichChieu) {
+    this.props.history.push(`/booking/${this.state.maLichChieu}`)
+   }
+  }
   renderGioXem = () => {
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap,  ngayXem} = this.state;
@@ -301,12 +278,9 @@ class SearchBar extends Component {
       let heThongRap = heThongRapChieu.find(heThongRap => {
         return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      // console.log(heThongRap);
-
       let rap = heThongRap.cumRapChieu.find((rap) => {
         return rap.tenCumRap === tenRap
       })
-      // // convert to day and filter day duplicate
       const listTime = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
       }));
@@ -322,12 +296,11 @@ class SearchBar extends Component {
                 ...this.state,
                 gioXem: newValue
               }, () => {
-                console.log(this.state);
                 this.checkBtn()
-                // this.handleOnChangeDate()
+                this.getIDSee()
               })
             }}
-            // onInputChange={this.handleOnChangeDate}
+           
             renderInput={params => {
               return (
                 <TextField
@@ -363,12 +336,6 @@ class SearchBar extends Component {
     }
   }
   render() {
-    //  này là cái mảng lấy từ server về nè
-    //  h mún lấy cái time á
-    console.log(this.state.maLichChieu);
-      
-    console.log(this.props.listMovie);
-
     return (
       <div className="search_bar">
         {this.renderTenPhim()}
@@ -376,13 +343,14 @@ class SearchBar extends Component {
         {this.renderRap()}
         {this.renderNgayXem()}
         {this.renderGioXem()}
-
-        <Button   className="buyTicket" variant="contained" color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
+        <Button  onClick={this.changePage} className="buyTicket" variant="contained" 
+         color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
 
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     listMovie: state.movieReducer.listMovie,
@@ -396,4 +364,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps) (withRouter(SearchBar));

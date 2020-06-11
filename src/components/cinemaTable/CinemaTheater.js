@@ -25,8 +25,7 @@ class CinemaTheater extends Component {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${data}&maNhom=GP09`
     })
       .then(rs => {
-        // console.log(rs.data);
-        
+        console.log(rs.data);
         this.setState(
           {
             listCumRap: rs.data
@@ -128,6 +127,8 @@ class CinemaTheater extends Component {
     // }
   };
   render() {
+    // console.log(this.props.listCumRap);
+    
     return <div>{this.renderListRap()}</div>;
   }
 }
