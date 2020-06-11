@@ -239,11 +239,18 @@
   .right {
     width: 28% !important;
     .right__content {
+      margin-top: 855px;
+      position: absolute;
+      padding-right: 350px;
       .right__notice {
         .right__title {
           font-size: 8px !important;
         }
       }
+    }
+    .right__button {
+      margin-top: 790px;
+      position: absolute;
     }
   }
 }

@@ -3,89 +3,90 @@ import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
 import * as action from "../redux/action";
+import { withRouter } from "react-router";
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: {
-        tenPhim: null,
-        tenHeThongRap: null, 
-        tenRap: null,
-        ngayXem: null,
-        gioXem: null,
-      },
-        btnValid: false
-      };
+      tenPhim: "",
+      maPhim: "",
+      tenHeThongRap: "",
+      tenRap: "",
+      ngayXem: "",
+      gioXem: "",
+      maLichChieu: null,
+      btnValid: false,
+    };
   }
   arrayEmpty = ["Vui lòng chọn phim"];
-  handleOnChangeTenPhim = (event, value) => {
-    let {listMovie} = this.props;
-    //   lấy dc phim
-    // console.log(value);
-    // b1 setState lưu TenPhim
-    this.setState({
-       values: {...this.state.values, tenPhim: value},
-    }, ()=>{
-      console.log(this.state.values);
-      
-    })
-    let movie = listMovie.find(movie => {
-      return movie.tenPhim === value;
-    });
-    // trả về 1 object để r lấy object đó movie.maPhim để gửi lên sever
-    //  console.log(movie.maPhim);
-    this.props.actGetInformationShowTimes(movie.maPhim);
-  };
-  // handleBlur  = (event, values) => {
-  //     console.log(event.target, values);
-      
-  // }
   renderTenPhim = () => {
-    let {listMovie} = this.props;
-    return (
-      <div style={{ width: 200 }} className="input">
-        <Autocomplete
-          options={listMovie.map(movie => {
-            return movie.tenPhim;
-          })}
-          onChange={this.handleOnChangeTenPhim}
-          renderInput={params => {
-            return (
-              <TextField
-                {...params}
-                id="tenPhim"
-                label="Phim"
-                margin="normal"
-                variant="outlined"
-              />
-            );
-          }}
-        />
-      </div>
-    );
-  };
-  handleHeThongRap = (event, value) => {
-    console.log(value);
-    this.setState({
-      values: {...this.state.values, tenHeThongRap: value},
-    }, ()=>{
-      console.log(this.state.values);
-    });
+    let { listMovie } = this.props;
+    if (listMovie) {
+      let arr = listMovie.map((item) => {
+        return item.tenPhim
+      })
+      return (
+        <div style={{ width: 200 }} className="input">
+          <Autocomplete
+            options={arr}
+            onChange={(event, newValue) => {
+              this.setState({
+                tenPhim: newValue,
+                tenHeThongRap: "",
+                tenRap: "",
+                ngayXem: "",
+                gioXem: "",
+              }, () => {
+                let movie = listMovie.find((movie) => {
+                  return movie.tenPhim === this.state.tenPhim
+                })
+                this.setState({
+                   maPhim: movie.maPhim
+                })
+                this.props.actGetInformationShowTimes(movie.maPhim);
+              });
+
+            }}
+            value={this.state.tenPhim}
+            renderInput={params => {
+              return (
+                <TextField
+                  {...params}
+                  id="tenPhim"
+                  label="Phim"
+                  margin="normal"
+                  variant="outlined"
+                />
+              );
+            }}
+          />
+        </div>
+      );
+    }
+
   };
   renderHeThongRap = () => {
-    // console.log(this.props.listShowTimes.heThongRapChieu);
-    // console.log(this.state.values.tenPhim);
-    let {heThongRapChieu} = this.props.listShowTimes;
-    let {tenPhim} = this.state.values;
-    if (heThongRapChieu && tenPhim) {
+    let { heThongRapChieu } = this.props.listShowTimes;
+    if (heThongRapChieu) {
+      let arr = heThongRapChieu.map((heThongCumRap) => {
+        return heThongCumRap.tenHeThongRap;
+      })
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-            options={heThongRapChieu.map(rap => {
-              return rap.tenHeThongRap;
-            })}
-            onChange={this.handleHeThongRap}
+            value={this.state.tenHeThongRap}
+            options={arr}
+            onChange={(event, newValue) => {
+              this.setState({
+                ...this.state,
+                tenHeThongRap: newValue,
+                tenRap: "",
+                ngayXem: "",
+                gioXem: "",
+              })
+            }}
             renderInput={params => {
               return (
                 <TextField
@@ -99,11 +100,12 @@ class SearchBar extends Component {
           />
         </div>
       );
-    } else {
+    }else{
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-           options={this.arrayEmpty}
+            value={this.state.tenHeThongRap}
+            options={['Vui lòng chọn phim']}
             renderInput={params => {
               return (
                 <TextField
@@ -119,31 +121,29 @@ class SearchBar extends Component {
       );
     }
   };
-  handleOnChangeRap = (event, value) => {
-    console.log(value);
-    this.setState({
-      values: {...this.state.values, tenRap: value},
-    }, ()=>{
-      console.log(this.state.values);
-      
-    })
-  }
   renderRap = () => {
-    // console.log(this.state.tenHeThongRap);
-    // console.log(this.props.listShowTimes.heThongRapChieu);
-    let {heThongRapChieu} = this.props.listShowTimes;
-    if (heThongRapChieu && this.state.values.tenPhim && this.state.values.tenHeThongRap ) {
-      let index = heThongRapChieu.findIndex(rap => {
-        return rap.tenHeThongRap === this.state.values.tenHeThongRap;
+    let { heThongRapChieu } = this.props.listShowTimes;
+    let { tenHeThongRap } = this.state;
+    if (heThongRapChieu && tenHeThongRap) {
+      let heThongRap = heThongRapChieu.find(heThongRap => {
+        return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
+      let arr = heThongRap.cumRapChieu.map((rap) => {
+        return rap.tenCumRap;
+      })
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-            options={heThongRapChieu[index].cumRapChieu.map(cumRap => {
-              return cumRap.tenCumRap;
-            })}
-            onChange={this.handleOnChangeRap}
+            value={this.state.tenRap}
+            options={arr}
+            onChange={(event, newValue) => {
+              this.setState({
+                ...this.state,
+                tenRap: newValue,
+                ngayXem: "",
+                gioXem: "",
+              })
+            }}
             renderInput={params => {
               return (
                 <TextField
@@ -157,11 +157,12 @@ class SearchBar extends Component {
           />
         </div>
       );
-    } else {
+    }else{
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-            options={this.arrayEmpty}
+            value={this.state.tenRap}
+            options={['Vui lòng chọn phim và thống rạp']}
             renderInput={params => {
               return (
                 <TextField
@@ -177,40 +178,32 @@ class SearchBar extends Component {
       );
     }
   };
-  handleOnchangeNgayXem = (event, value) => {
-     this.setState({
-      values: {...this.state.values, ngayXem: value}
-      }, ()=>{
-        console.log(this.state.values);
-        
-      })
-  }
   renderNgayXem = () => {
-      let {heThongRapChieu} = this.props.listShowTimes;
-      if (heThongRapChieu && this.state.values.tenPhim && this.state.values.tenHeThongRap && this.state.values.tenRap) {
-        let index = heThongRapChieu.findIndex(rap => {
-          return rap.tenHeThongRap === this.state.values.tenHeThongRap;
+    let { heThongRapChieu } = this.props.listShowTimes;
+    let { tenPhim, tenHeThongRap, tenRap } = this.state;
+    if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap) {
+      let heThongRap = heThongRapChieu.find(heThongRap => {
+        return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
-      // console.log(this.state.values.tenRap);
-      let indexTenRap = heThongRapChieu[index].cumRapChieu.findIndex((tenRapChiTiet)=>{
-        return tenRapChiTiet.tenCumRap === this.state.values.tenRap;
+      let rap = heThongRap.cumRapChieu.find((rap) => {
+        return rap.tenCumRap === tenRap
       })
-      // console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
-      // convert to day and filter day duplicate
-      const listDay = new Set(heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim.map((lichChieu)=>{
+      const listDay = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString())
       }));
-      console.log(listDay);
-      
       const listDayUpdate = [...listDay];
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-           onChange = {this.handleOnchangeNgayXem}
-            options={listDayUpdate.map((time)=>{
-                  return time
-            })}
+            value={this.state.ngayXem}
+            options={listDayUpdate}
+            onChange={(event, newValue) => {
+              this.setState({
+                ...this.state,
+                ngayXem: newValue,
+                gioXem: ""
+              })
+            }}
             renderInput={params => {
               return (
                 <TextField
@@ -225,67 +218,89 @@ class SearchBar extends Component {
         </div>
       );
     }else{
-    return (
-      <div style={{ width: 200 }} className="input">
-        <Autocomplete
-          options={this.arrayEmpty}
-          renderInput={params => {
-            return (
-              <TextField
-                {...params}
-                label="Ngày Chiếu"
-                margin="normal"
-                variant="outlined"
-              />
-            );
-          }}
-        />
-      </div>
-    );
-  }
+      return (
+        <div style={{ width: 200 }} className="input">
+          <Autocomplete
+            value={this.state.ngayXem}
+            options={['Vui lòng chọn phim và thống rạp và rạp']}
+            renderInput={params => {
+              return (
+                <TextField
+                  {...params}
+                  label="Ngày Chiếu"
+                  margin="normal"
+                  variant="outlined"
+                />
+              );
+            }}
+          />
+        </div>
+      );
+    }
   }
   checkBtn = () => {
-    if (this.state.values.tenPhim && this.state.values.tenHeThongRap && this.state.values.tenRap && this.state.values.ngayXem && this.state.values.gioXem) {
+    let {tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
+    if (tenPhim && tenHeThongRap && tenRap && ngayXem && gioXem) {
       this.setState({
         btnValid: true
       })
     }
   }
-  handleOnChangeGioXem = (event, value) => {
-    this.setState({
-      values: {...this.state.values, gioXem: value},
-    },
-    ()=>{
-      console.log(this.state.values);
-      this.checkBtn()
+  getIDSee = () => {
+    let { heThongRapChieu } = this.props.listShowTimes;
+    let { tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
+    if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && gioXem && ngayXem) {
+      let heThongRap = heThongRapChieu.find(heThongRap => {
+        return heThongRap.tenHeThongRap === tenHeThongRap;
+      });
+      let rap = heThongRap.cumRapChieu.find((rap) => {
+        return rap.tenCumRap === tenRap
+      })
+      const lichChieu = rap.lichChieuPhim.find((lichChieu)=>{
+        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString()) === gioXem) 
+      })
+      this.setState({
+        maLichChieu: lichChieu.maLichChieu
+      })
+    
+     
     }
-    )
+  }
+  changePage = () => {
+   if (this.state.maLichChieu) {
+    this.props.history.push(`/booking/${this.state.maLichChieu}`)
+   }
   }
   renderGioXem = () => {
-    let {heThongRapChieu} = this.props.listShowTimes;
-      if (heThongRapChieu && this.state.values.tenPhim  && this.state.values.tenHeThongRap  && this.state.values.tenRap && this.state.values.ngayXem) {
-        let index = heThongRapChieu.findIndex(rap => {
-          return rap.tenHeThongRap === this.state.values.tenHeThongRap;
+    let { heThongRapChieu } = this.props.listShowTimes;
+    let { tenPhim, tenHeThongRap, tenRap,  ngayXem} = this.state;
+    if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && ngayXem) {
+      let heThongRap = heThongRapChieu.find(heThongRap => {
+        return heThongRap.tenHeThongRap === tenHeThongRap;
       });
-      console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu);
-      console.log(this.state.values.tenRap);
-      let indexTenRap = heThongRapChieu[index].cumRapChieu.findIndex((tenRapChiTiet)=>{
-        return tenRapChiTiet.tenCumRap === this.state.values.tenRap;
+      let rap = heThongRap.cumRapChieu.find((rap) => {
+        return rap.tenCumRap === tenRap
       })
-      console.log(this.props.listShowTimes.heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim);
-      const listDay = new Set(heThongRapChieu[index].cumRapChieu[indexTenRap].lichChieuPhim.map((lichChieu)=>{
+      const listTime = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
       }));
-      console.log(listDay);
       
-      const listDayUpdate = [...listDay];
+      const listTimeUpdate = [...listTime];
       return (
         <div style={{ width: 200 }} className="input">
           <Autocomplete
-            onChange={this.handleOnChangeGioXem}
-            options={listDayUpdate.map((time)=>{
-                  return time
-            })}
+            value={this.state.gioXem}
+            options={listTimeUpdate}
+            onChange={(event, newValue) => {
+              this.setState({
+                ...this.state,
+                gioXem: newValue
+              }, () => {
+                this.checkBtn()
+                this.getIDSee()
+              })
+            }}
+           
             renderInput={params => {
               return (
                 <TextField
@@ -299,45 +314,43 @@ class SearchBar extends Component {
           />
         </div>
       );
-    } else{
-    return (
-      <div style={{ width: 200 }} className="input">
-        <Autocomplete
-          options={this.arrayEmpty}
-          renderInput={params => {
-            return (
-              <TextField
-                {...params}
-                label="Giờ Chiếu"
-                margin="normal"
-                variant="outlined"
-              />
-            );
-          }}
-        />
-      </div>
-    );
+    }else{
+      return (
+        <div style={{ width: 200 }} className="input">
+          <Autocomplete
+            value={this.state.gioXem}
+            options={['Vui lòng chọn phim và thống rạp và rạp và ngày ']}
+            renderInput={params => {
+              return (
+                <TextField
+                  {...params}
+                  label="Giờ Chiếu"
+                  margin="normal"
+                  variant="outlined"
+                />
+              );
+            }}
+          />
+        </div>
+      );
+    }
   }
-  }
-  
   render() {
-    //  này là cái mảng lấy từ server về nè
-    //  h mún lấy cái time á
-
-    // console.log(this.props.listMovie);
-
     return (
       <div className="search_bar">
-          {this.renderTenPhim()}
-          {this.renderHeThongRap()}
-          {this.renderRap()}
-          {this.renderNgayXem()}
-          {this.renderGioXem()}
-          <Button variant="contained" color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
+        {this.renderTenPhim()}
+        {this.renderHeThongRap()}
+        {this.renderRap()}
+        {this.renderNgayXem()}
+        {this.renderGioXem()}
+        <Button  onClick={this.changePage} className="buyTicket" variant="contained" 
+         color="secondary" disabled={!this.state.btnValid}>Mua Vé</Button>
+
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     listMovie: state.movieReducer.listMovie,
@@ -351,4 +364,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps) (withRouter(SearchBar));

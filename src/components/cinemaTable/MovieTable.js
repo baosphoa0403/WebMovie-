@@ -7,6 +7,8 @@ class MovieTable extends Component {
   renderTime = () => {
     if (this.props.listTime) {
       let listTimeOfMovie = this.props.listTime.map((movie)=>{
+        // console.log();
+        
        return movie.map((phim)=>{
          return (new Date(phim.ngayChieuGioChieu).toLocaleDateString())
        })
@@ -14,10 +16,10 @@ class MovieTable extends Component {
       let listTimeOfMovieUpdate = listTimeOfMovie.map((time)=>{
         return (new Set(time))
       })
-      console.log(listTimeOfMovieUpdate);
+      // console.log(listTimeOfMovieUpdate);
       
       let listTimeOfMovieUpdate1 = [...listTimeOfMovieUpdate]
-      console.log(listTimeOfMovieUpdate1);
+      // console.log(listTimeOfMovieUpdate1);
       
       return listTimeOfMovieUpdate1.map((time, i)=>{
         // const obj = Object.fromEntries(time);

@@ -7,7 +7,7 @@ import banner5 from "../images/img/loan-nhip.jpg";
 import PlayVideo from "../images/img/play-video.png";
 import SearchBar from "./SearchBar";
 export default class Caurosel extends React.Component {
-  render() {
+  render() {    
     return (
       <div>
         <section className="carousel">
@@ -144,7 +144,7 @@ export default class Caurosel extends React.Component {
               </a>
             </div>
           </div>
-          <SearchBar/>
+          <SearchBar />
         </section>
       </div>
     );
