@@ -38,6 +38,7 @@ class SearchBar extends Component {
                 tenRap: "",
                 ngayXem: "",
                 gioXem: "",
+                btnValid: false
               }, () => {
                 let movie = listMovie.find((movie) => {
                   return movie.tenPhim === this.state.tenPhim
@@ -85,6 +86,7 @@ class SearchBar extends Component {
                 tenRap: "",
                 ngayXem: "",
                 gioXem: "",
+                btnValid: false
               })
             }}
             renderInput={params => {
@@ -142,6 +144,7 @@ class SearchBar extends Component {
                 tenRap: newValue,
                 ngayXem: "",
                 gioXem: "",
+                btnValid: false
               })
             }}
             renderInput={params => {
@@ -201,7 +204,8 @@ class SearchBar extends Component {
               this.setState({
                 ...this.state,
                 ngayXem: newValue,
-                gioXem: ""
+                gioXem: "",
+                btnValid: false
               })
             }}
             renderInput={params => {
@@ -294,7 +298,8 @@ class SearchBar extends Component {
             onChange={(event, newValue) => {
               this.setState({
                 ...this.state,
-                gioXem: newValue
+                gioXem: newValue,
+                btnValid: false
               }, () => {
                 this.checkBtn()
                 this.getIDSee()
