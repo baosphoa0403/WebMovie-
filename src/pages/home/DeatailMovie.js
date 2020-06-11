@@ -50,7 +50,7 @@ class DeatailMovie extends Component {
   handleOnChangeId = (idTheater) => {
   console.log(idTheater);
   if (this.props.detailMovie) {
-     let 
+    //  let 
   }
   
   }
