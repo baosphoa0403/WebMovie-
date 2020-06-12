@@ -221,7 +221,7 @@ renderImg = () => {
           // </tr>
           <div className="collapse" id="VincomGV">
            <div className="info__time">
-             <p className="info__2D">2D Digital</p>
+             <p className="info__2D">Ngày chiếu : 01/06/2021</p>
              <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
                <span className="info__timeBegin">
                 {time}
