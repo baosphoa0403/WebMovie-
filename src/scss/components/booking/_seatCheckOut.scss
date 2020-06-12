@@ -145,12 +145,13 @@
   }
 }
 
-@media (max-width: 1024px) and (min-width: 868px) {
+@media (max-width: 1920px) and (min-width: 1080px) {
   .seatCheckOut {
     .seatCheckOut__content {
       .seatCheckOut__seatMap {
         .seatCheckOut__listSeat {
-          width: 60%;
+          position: absolute;
+          margin-top: 90px;
         }
       }
     }
@@ -162,7 +163,7 @@
     .seatCheckOut__content {
       .seatCheckOut__seatMap {
         .seatCheckOut__listSeat {
-          width: 70%;
+          width: 40%;
         }
       }
     }
@@ -176,7 +177,7 @@
     .seatCheckOut__content {
       .seatCheckOut__seatMap {
         .seatCheckOut__listSeat {
-          width: 80%;
+          width: 50%;
         }
       }
     }

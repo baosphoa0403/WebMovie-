@@ -11,7 +11,6 @@ class TicketBooking extends Component {
     super(props);
     this.state = {
       listChair: [],
-
     };
   }
   timViTri = (maGhe) => {
@@ -30,39 +29,11 @@ class TicketBooking extends Component {
       listChairUpdate.splice(index, 1);
     }
     this.setState({
-      listChair: listChairUpdate
+      listChair: listChairUpdate,
     });
     // console.log(product);
   };
 
-  // renderCheckSeat = () => {
-  //   if (this.props.listChair.danhSachGhe !== undefined) {
-  //     if (this.props.listChair.danhSachGhe.length > 0) {
-  //       let arr = this.props.listChair.danhSachGhe.filter((item) => {
-  //         return item.daDat === true;
-  //       });
-  //       console.log(arr);
-  //     }
-  //   }
-  // };
- 
-  // renderSeatInfo = () => {
-  //   if (this.state.listChairAPi.danhSachGhe) {
-  //     // if (this.props.listChair.danhSachGhe.length > 0) {
-  //       return this.props.listChair.danhSachGhe.map((item) => {
-  //         return (
-  //           <BuyTicket
-  //             // item={item}
-  //             // key={item.maGhe}
-  //             buyTicket={this.state.listChair}
-  //             FilmInfo={this.props.listChair.thongTinPhim} 
-  //           />
-  //         );
-  //       });
-  //     // }
-  //   }
-  // };
- 
   render() {
     console.log(this.props.listChair.thongTinPhim);
     console.log(this.props.listChair);
@@ -77,13 +48,10 @@ class TicketBooking extends Component {
             <ListChair addTicket={this.handleAddCart} />
           </div>
         </div>
-        {/* {this.renderSeatInfo()}
-         */}
-        {/* {this.renderCheckSeat()} */}
         <BuyTicket
-              buyTicket={this.state.listChair}
-              FilmInfo={this.props.listChair.thongTinPhim} 
-            />
+          buyTicket={this.state.listChair}
+          FilmInfo={this.props.listChair.thongTinPhim}
+        />
       </div>
     );
   }

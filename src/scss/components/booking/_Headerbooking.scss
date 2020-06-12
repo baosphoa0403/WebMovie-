@@ -61,7 +61,7 @@
     }
 }
 
-@media screen and (max-width: getBreakpoint("large")){
+@media screen and (max-width: getBreakpoint("17inch")){
     .header{
         .header__content{
             .header__hideOnMobile{
@@ -110,7 +110,7 @@
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 315px){
     .header{
         .header__content{
             .header__mobile{

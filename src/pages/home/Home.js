@@ -7,10 +7,13 @@ import Cinema from "../../components/Cinema";
 import BackToTop from "../../components/BackToTop";
 
 class Home extends Component {
+ 
+  
   render() {
+    // console.log(this.props);
     return (
       <div>
-        <Carousel />
+        <Carousel/>
         <ListMovie />
         <Cinema/>
         <BlockApp/>

@@ -221,40 +221,51 @@
     height: spacing(6);
   }
 }
+//Screen 17inch 1920x1080
+// @media (max-width: 1920px) and (min-width: 1080px) {
+//   .right {
+//     width: 24% !important;
+//     .right__content {
+//       .right__notice {
+//         .right__title {
+//           font-size: 9px !important;
+//         }
+//       }
+//     }
+//   }
+// }
+//Screen 13inch
+// @media (max-width: 1024px) and (min-width: 768px) {
+//   .right {
+//     width: 28% !important;
+//     .right__content {
+//       margin-top: 855px;
+//       position: absolute;
+//       padding-right: 350px;
+//       .right__notice {
+//         .right__title {
+//           font-size: 8px !important;
+//         }
+//       }
+//     }
+//     .right__button {
+//       margin-top: 790px;
+//       position: absolute;
+//     }
+//   }
+// }
 
-@media (max-width: 1500px) and (min-width: 1024px) {
-  .right {
-    width: 26% !important;
-    .right__content {
-      .right__notice {
-        .right__title {
-          font-size: 9px !important;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1024px) and (min-width: 768px) {
-  .right {
-    width: 28% !important;
-    .right__content {
-      .right__notice {
-        .right__title {
-          font-size: 8px !important;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
+//Ip X 375x812
+@media screen and (max-width: 375px) {
   .right {
     width: 100% !important;
-    position: static !important;
+    // position: static !important;
     box-shadow: none !important;
-    margin-top: 100px;
+    position: absolute !important;
+    margin-top: 600px;
     .right__content {
+      margin-top: 100px;
+      margin-bottom: none;
       .right__notice {
         .right__errorBook {
           bottom: initial;
@@ -265,6 +276,7 @@
       }
     }
     .right__button {
+      margin-top: 0;
       bottom: initial;
     }
   }
