@@ -54,7 +54,10 @@ class CinemaMovie extends Component {
     }
   };
   render() {
+    console.log(this.props.listCumRap);
     return (
+      
+      
       // <div className="FilmTable">
       //   {/* <div className="row"> */}
       //   {this.renderListMovie()}

@@ -33,7 +33,7 @@ class MovieTable extends Component {
 
   render() {
     console.log(this.props.listTime);
-
+    console.log(this.props.showMovie);
     let { showMovie } = this.props;
     return (
       // <div
