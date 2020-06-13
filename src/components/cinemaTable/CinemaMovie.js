@@ -55,7 +55,7 @@ class CinemaMovie extends Component {
     }
   };
   render() {
-    console.log(this.props.listCumRap);
+    // console.log(this.props.listCumRap);
     return (
       
       

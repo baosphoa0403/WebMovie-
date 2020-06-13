@@ -191,6 +191,8 @@ class SearchBar extends Component {
       let rap = heThongRap.cumRapChieu.find((rap) => {
         return rap.tenCumRap === tenRap
       })
+      console.log(rap);
+      
       const listDay = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString())
       }));
