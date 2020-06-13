@@ -98,17 +98,6 @@ class MovieTable extends Component {
       // </div>
 
       <div className="info__items_Home">
-        <p>
-          <a
-            data-toggle="collapse"
-            href="#VincomGV"
-            role="button"
-            aria-expanded="false"
-            aria-controls="VincomGV"
-            role="tabpanel"
-            aria-labelledby="v-pills-CGV-tab"
-          ></a>
-        </p>
         <div
           className="info__cinema_Home active"
           onClick={() => {
