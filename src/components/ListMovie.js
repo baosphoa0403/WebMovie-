@@ -14,14 +14,24 @@ class ListMovie extends Component {
 
   render() {
     var settings = {
-      // dots: true,
+      dots: true,
       infinite: true,
       slidesToShow: 4,
       slidesToScroll: 4,
       slidesPerRow: 2,
       centerPadding: "60px",
       autoplay: true,
-      autoplaySpeed: 2500,
+      autoplaySpeed: 2900,
+    };
+    var settings1 = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 4,
+      slidesPerRow: 2,
+      centerPadding: "60px",
+      autoplay: true,
+      autoplaySpeed: 2900,
     };
     return (
       <div className="container ">
@@ -56,7 +66,7 @@ class ListMovie extends Component {
                   </a>
                 </li>
               </ul>
-              <div className="tab-content" id="pills-tabContent">
+              <div className=" tab-content" id="pills-tabContent">
                 <div
                   className="tab-pane fade show active owl-carousel"
                   id="pills-home"

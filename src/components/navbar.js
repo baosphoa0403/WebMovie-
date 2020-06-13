@@ -24,7 +24,6 @@ export default class Navbar extends Component {
     localStorage.removeItem("user");
     this.setState({
       detailUser: null,
-      
     });
   };
 
@@ -49,7 +48,7 @@ export default class Navbar extends Component {
                 <div className="col-3">
                   <div className="logo">
                     <a href>
-                      <img src={logo} alt=""  />
+                      <img src={logo} alt="" />
                     </a>
                   </div>
                 </div>
@@ -86,29 +85,13 @@ export default class Navbar extends Component {
                           <Link to="/form">Đăng Nhập</Link>
                         </li>
                       ) : (
-                        <div className="dropdown">
-                          <button
-                            className="btn btn-warning dropdown-toggle"
-                            type="button"
-                            id="dropdownMenu2"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <p>HELLO , {this.state.detailUser.hoTen}</p>
-                          </button>
-                          <div
-                            className="dropdown-menu"
-                            aria-labelledby="dropdownMenu2"
-                          >
-                            <button
-                              className="dropdown-item"
-                              type="button"
-                              onClick={this.handleLoginOut}
-                            >
-                              Log out
-                            </button>
-                          </div>
+                       
+                        <div className="navbarLogin" >
+                          <p style={{display: 'flex'}}>
+                            <h4 className="nav_NameUser">{this.state.detailUser.hoTen} </h4>
+                            <h4 className="nav_Middle"> |</h4>
+                            <h4 className="nav_UserOut" onClick={this.handleLoginOut}>THOÁT</h4>
+                          </p>
                         </div>
                       )}
                     </ul>
@@ -122,5 +105,3 @@ export default class Navbar extends Component {
     );
   }
 }
-
-

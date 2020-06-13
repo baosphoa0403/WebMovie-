@@ -7,7 +7,7 @@ import banner5 from "../images/img/loan-nhip.jpg";
 import PlayVideo from "../images/img/play-video.png";
 import SearchBar from "./SearchBar";
 export default class Caurosel extends React.Component {
-  render() {    
+  render() {
     return (
       <div>
         <section className="carousel">
@@ -36,7 +36,7 @@ export default class Caurosel extends React.Component {
                       className="d-block w-100"
                       alt="BLOODSHOT"
                     />
-                    <div className="carousel__bg" ></div>
+                    <div className="carousel__bg"></div>
                   </a>
                   <button type="button" className="carousel__button">
                     <a href="#" className="carousel__changeDetail"></a>
@@ -55,7 +55,7 @@ export default class Caurosel extends React.Component {
                     className="d-block w-100"
                     alt="sieu-ve-si-so-vo"
                   />
-                  <div className="carousel__bg" ></div>
+                  <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
                     <a
                       className="venobox"
@@ -72,7 +72,7 @@ export default class Caurosel extends React.Component {
                     className="d-block w-100"
                     alt="vi-anh-van-tin"
                   />
-                  <div className="carousel__bg" ></div>
+                  <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
                     <a
                       className="venobox"
@@ -89,7 +89,7 @@ export default class Caurosel extends React.Component {
                     className="d-block w-100"
                     alt="dau-an-vo-cuc"
                   />
-                  <div className="carousel__bg" ></div>
+                  <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
                     <a
                       className="venobox"
@@ -106,7 +106,7 @@ export default class Caurosel extends React.Component {
                     className="d-block w-100"
                     alt="loan-nhip"
                   />
-                  <div className="carousel__bg" ></div>
+                  <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
                     <a
                       className="venobox"

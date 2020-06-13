@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as action from "../../../redux/action";
 import screen1 from "../../../images/img/screen.png";
 import Chair from "./Chair";
-// import * as ActionType from "../../../redux/constants/ActionType";
+
 
 class ListChair extends Component {
   renderListChair = () => {
@@ -49,7 +49,7 @@ class ListChair extends Component {
           </div>
           <div class="seatCheckOut__noteSeat">
             <div class="seatCheckOut__typeSeats">
-              <span class="seatCheckOut__colorNotChosen seatCheckOut__typeSeat">
+              <span class="seatCheckOut__colorNotChosen seatCheckOut__typeSeat Seat1">
                 <span class="color"></span>
                 <span class="nameSeat">Ghế có thể chọn</span>
               </span>
@@ -57,7 +57,7 @@ class ListChair extends Component {
                 <span class="color"></span>
                 <span class="nameSeat">Ghế đang chọn</span>
               </span>
-              <span class="seatCheckOut__colorChosen seatCheckOut__typeSeat">
+              <span class="seatCheckOut__colorChosen seatCheckOut__typeSeat Seat2">
                 <span class="color"></span>
                 <span class="nameSeat">Ghế đã có người chọn</span>
               </span>

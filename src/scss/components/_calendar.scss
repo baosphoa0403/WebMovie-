@@ -42,7 +42,7 @@
   }
 }
 
-@media screen and (max-width: getBreakpoint("small")) {
+@media screen and (max-width: 375px) {
   .calendar {
     .calendar__bg {
       .calendar__content {
@@ -58,6 +58,13 @@
           }
         }
       }
+      
+    }
+    .slick-prev:before {
+      display: none;
+    }
+    .slick-next:before {
+      display: none;
     }
   }
 }
