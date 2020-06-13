@@ -81,7 +81,6 @@
           margin: 0;
           padding: 0 8px;
           img {
-            
             display: inline-block;
             max-width: spacing(0.8);
             width: 100%;
@@ -95,7 +94,7 @@
     border-radius: 7px;
     position: relative;
     .calendar__nameFilm {
-      text-align:  center;
+      text-align: center;
       font-family: "SF Medium", sans-serif;
       font-size: $fs-0;
       font-weight: $fw-bold;
@@ -111,12 +110,6 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    // .calendar__time {
-    //   font-size: $fs-3;
-    //   font-weight: $fw-medium;
-    //   margin: spacing(0.6) 0 spacing(1.5);
-    //   color: $color-gray-0;
-    // }
   }
   .calender_hover {
     font-family: "SF Medium", sans-serif;
@@ -142,3 +135,5 @@
     transition: 0.2s;
   }
 }
+
+
