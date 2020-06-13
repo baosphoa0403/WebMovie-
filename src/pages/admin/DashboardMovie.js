@@ -17,7 +17,9 @@ import Axios from "axios"
                 onChange={e => props.onChange(e.target.files[0])}
               />
             ),
-            field: "hinhAnh", render: hinhAnh => <img src={hinhAnh.hinhAnh} style={{width: 100, height: 100}}/>
+            field: "hinhAnh", render: hinhAnh => <img src={hinhAnh.hinhAnh} style={{width: 100, height: 100}}/>,
+            type: "image"
+
           },
           { title: "mo Tả", field: "moTa" },
           { title: "ngày khởi chiếu", field: "ngayKhoiChieu" },
@@ -59,6 +61,7 @@ for (const key in filmAdd) {
     method: "POST",
     url:
       "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh",
+      // "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
     data: form_data,
     headers: {
       Authorization: `Bearer ${userAdmin.accessToken}`
@@ -87,7 +90,7 @@ let handleEditMovie = (film) => {
     method: "POST",
     url:
       "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload",
-    data: filmEdit,
+    data: form_data,
     headers: {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
