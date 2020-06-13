@@ -8,11 +8,12 @@
     .name__background {
       background-repeat: no-repeat;
       .name__picture {
-        max-width: 100%;
+        // max-width: 100%;
         overflow: hidden;
         position: absolute;
         width: 100%;
         height: 1000px;
+        // height: 100%;
         img {
           height: auto;
           -webkit-filter: blur(15px);
@@ -37,13 +38,17 @@
 
       .col-3 {
         position: relative;
+        .image {
+          margin-left: 150px;
+        }
         .play {
           position: absolute;
-          left: 30%;
+          left: 60%;
           top: 35%;
         }
       }
       .col-5 {
+        margin-top: 50px;
         .c18 {
           background-color: orange;
           font-size: $fs-4;
@@ -62,7 +67,8 @@
           color: white;
           margin: 0px 10px;
         }
-        .buy-ticket {
+        .buy-ticket_De {
+          margin-top: 60px;
           .btn_buy_ticket {
             font-size: 16px;
             border-radius: 4px;
@@ -140,7 +146,7 @@
   }
   .info__content {
     width: spacing(87);
-    margin: -150px 300px;
+    margin: -150px 516px;
     z-index: 99;
     position: absolute;
     color: white;
@@ -443,6 +449,90 @@
           }
         }
       }
+    }
+  }
+}
+
+//Macpro
+@media screen and (max-width: 1149px) {
+  .background-detail {
+    .name__content {
+      .name__background {
+        .name__picture {
+          width: 103.2%;
+          overflow: hidden;
+          position: absolute;
+          img {
+            height: auto;
+            -webkit-filter: blur(15px);
+            filter: blur(spacing(1.5));
+            margin: -11px 0 -5px -10px;
+            width: calc(100% + 15px);
+          }
+        }
+        .name__overlay {
+          width: 103.2%;
+        }
+      }
+      .view {
+        .col-3 {
+          .image {
+            margin-left: 45px;
+          }
+        }
+        .col-5 {
+          margin-left: 80px;
+        }
+      }
+    }
+    .info__content {
+      margin: -150px 200px;
+    }
+  }
+}
+
+//Ipad Pro
+@media screen and (max-width: 1024px) {
+  .background-detail {
+    .name__content {
+      .name__background {
+        .name__picture {
+          width: 115.7%;
+          overflow: hidden;
+          position: absolute;
+          img {
+            height: auto;
+            -webkit-filter: blur(15px);
+            filter: blur(spacing(1.5));
+            margin: -11px 0 -5px -10px;
+            width: calc(100% + 15px);
+          }
+        }
+        .name__overlay {
+          width: 115.7%;
+        }
+      }
+      .view {
+        .col-3 {
+          .image {
+            margin-left: 20px;
+          }
+        }
+        .col-5 {
+          margin-left: 90px;
+        }
+        .col-2 {
+          margin-left: 19px;
+        }
+        .start {
+          display: inline-flex;
+          margin-left: 15px;
+          margin-top: 4px;
+        }
+      }
+    }
+    .info__content {
+      margin: -150px 200px;
     }
   }
 }

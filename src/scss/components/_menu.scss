@@ -20,17 +20,18 @@
       margin: 15px 0px;
 
       ul {
-        p {
-          margin-bottom: 3px;
-          padding-left: 20px;
-        }
-        .dropdown-toggle {
-          margin-left: 60px;
-          display: flex;
-          .btn-secondary {
-            color: none !important;
-            background-color: none !important;
-            border-color: #6c757d;
+        .navbarLogin {
+          .nav_NameUser {
+            margin-top: 3px;
+
+            color: $color1;
+          }
+          .nav_Middle {
+            margin-left: 5px;
+            margin-right: 5px;
+          }
+          .nav_UserOut {
+            margin-top: 3px;
           }
         }
         li {
@@ -58,39 +59,37 @@
       }
     }
   }
-  .dropdown-toggle::after {
-    margin-left: 23px;
-    margin-top: 11px;
-  }
-  .dropdown-menu.show{
-    margin-left: 59px;
-    background-color: #949494;
-    border: 1px solid black;
-    border-radius: 30px;
-  }
-  .dropdown-item {
-    text-transform: uppercase;
-    display: block;
-    width: 100%;
-    padding: .25rem 1.5rem; 
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    white-space: nowrap;
-    background-color: transparent;
-    border: none;
-    border-radius: 16px;
-    .button {
-      padding-left: 12px;
-    }
-  }
 
   @include menu();
   .nav-item {
-    font-size: 13px;
+    font-size: 14px;
     .nav-link {
-      margin: 0px 17px;
+      margin: 0px 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .menu {
+    .navbar {
+      .col-3 {
+        padding-left: 0;
+        .sign-language {
+          .navbarLogin {
+            margin-left: 60px;
+          }
+        }
+      }
+      .col-6 {
+        .navbar-nav {
+          .nav-item {
+            margin: 0 14px;
+            .nav-link {
+              text-align: center;
+            }
+          }
+        }
+      }
     }
   }
 }

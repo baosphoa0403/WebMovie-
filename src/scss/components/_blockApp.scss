@@ -1,5 +1,7 @@
 .ng-scope {
-  #homeApp {
+  .col-xs-12 {
+    width: 100%;
+
     padding: 120px 0 80px 0;
     background: url(../../images/img/blockApp/backapp.jpg);
     background-size: contain;
@@ -68,27 +70,29 @@
       }
     }
   }
-  .col-xs-12 {
-    width: 100%;
-  }
 }
 
-@media screen and (max-width: getBreakpoint("medium")) {
+@media (max-width: 1024px) {
   .ng-scope {
     .row {
       .col-xs-12 {
         .mainMaxWidth {
           .row {
-            // .left .text-left {
-            //   text-align: center;
-            //   .textLeft {
-            //     font-size: 25.2px;
-            //   }
-            //   .textSmallLeft,
-            //   .textAppUnder {
-            //     font-size: 14px;
-            //   }
-            // }
+            padding-bottom: 50px;
+            .right-App {
+              margin-left: 250px;
+              .img-responsive {
+                height: 555px;
+                padding: 38px 27.6%;
+                padding-bottom: 50px;
+              }
+              .sliderScreen {
+                img {
+                  border-radius: 20px;
+                  margin-top: 45px;
+                }
+              }
+            }
           }
         }
       }
