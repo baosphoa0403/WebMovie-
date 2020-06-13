@@ -33,6 +33,7 @@ class CinemaMovie extends Component {
     }
   };
   handleGetIDMovie = (maPhim) => {
+    // console.log(maPhim);
     let rap = this.props.listCumRap.map((item) => {
       return item.lstCumRap.find((theater) => {
         return theater.maCumRap === this.props.maCumRap;

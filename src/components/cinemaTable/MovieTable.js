@@ -1,41 +1,51 @@
 import React, { Component } from "react";
+import Time from "./Time";
 
 class MovieTable extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      arrTime: []
+    }
   }
   renderTime = () => {
-    if (this.props.listTime) {
-      let listTimeOfMovie = this.props.listTime.map((movie) => {
-        // console.log();
-
-        return movie.map((phim) => {
-          return new Date(phim.ngayChieuGioChieu).toLocaleDateString();
-        });
+    if (this.props.listTime[0]) {
+      console.log(this.props.listTime);
+      
+      let listTimeOfMovie = this.props.listTime[0].map((movie) => {
+       return new Date(movie.ngayChieuGioChieu).toLocaleDateString()
       });
-      let listTimeOfMovieUpdate = listTimeOfMovie.map((time) => {
-        return new Set(time);
-      });
-      // console.log(listTimeOfMovieUpdate);
-
-      let listTimeOfMovieUpdate1 = [...listTimeOfMovieUpdate];
-      // console.log(listTimeOfMovieUpdate1);
-
-      return listTimeOfMovieUpdate1.map((time, i) => {
-        // const obj = Object.fromEntries(time);
-        // console.log(obj);
-        console.log(time);
-
-        return <div>{time}</div>;
-      });
+      console.log(listTimeOfMovie);
+     
+        let arr = listTimeOfMovie.filter((time, index)=>{
+              return listTimeOfMovie.indexOf(time) === index
+          })
+    
+      
+      console.log(arr.slice(0,2));
+      
+      return arr.slice(0,2).map((time)=>{
+        return (
+         
+            <div className="collapse Home_coll" id="VincomGV">
+          <div className="info__time_Home">
+            <p className="info__2D_Home">Ngày chiếu : {time}</p>
+            <a>
+              <span className="info__timeBegin_Home">15:20</span>
+              <span className="info__timeEnd_Home"> ~ 17:09</span>
+            </a>
+          </div>
+        </div>
+        )
+      })
     }
   };
-
   render() {
-    console.log(this.props.listTime);
-    console.log(this.props.showMovie);
+    // console.log(this.props.listTime);
+    // console.log(this.props.showMovie);
     let { showMovie } = this.props;
     return (
+    
       // <div
       //   className="col-4"
       //   onClick={() => {
@@ -53,6 +63,7 @@ class MovieTable extends Component {
       // </div>
 
       <div className="info__items_Home">
+        
         <p>
           <a
             data-toggle="collapse"
@@ -93,16 +104,11 @@ class MovieTable extends Component {
               <p className="info__infoMovieCinema_Home">TIX 6.1 - IMDb 0</p>
             </a>
           </div>
-
-          <div className="collapse Home_coll" id="VincomGV">
-            <div className="info__time_Home">
-              <p className="info__2D_Home">Ngày chiếu : 01/06/2021</p>
-              <a>
-                <span className="info__timeBegin_Home">15:20</span>
-                <span className="info__timeEnd_Home"> ~ 17:09</span>
-              </a>
-            </div>
+          <div className="time" style={{display: "flex"}}>
+          {this.renderTime()}
           </div>
+          
+           {/* <Time arrTime = {this.state.arrTime} /> */}
         </div>
         <p />
       </div>

@@ -80,7 +80,6 @@ let handleEditMovie = (film) => {
   let filmEdit= {...film, maNhom : "GP09", maPhim: maPhim, danhGia: danhGia}; 
   for (const key in filmEdit) {
     console.log(key, filmEdit[key]);
-    
     form_data.append(key,filmEdit[key]);
   }
   Axios({
