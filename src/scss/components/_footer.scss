@@ -1,77 +1,103 @@
-.footer{
+.footer {
   background-color: #101010;
 
   h6 {
-      padding-top: 10px;
-      font-size: 18px;
-      margin: 0;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: $color1;
-      border: none;
+    padding-top: 10px;
+    font-size: 18px;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color1;
+    border: none;
   }
-  
+
   li {
-      list-style: none;
+    list-style: none;
   }
-  dl, ol, ul {
-     
-      margin: 20px -40px;
+  dl,
+  ol,
+  ul {
+    margin: 20px -40px;
   }
-  
+
   a {
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-      display: block;
-      padding: 3px 0;
-      letter-spacing: 1.5px;
-      color: #fff;
-  
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+    padding: 3px 0;
+    letter-spacing: 1.5px;
+    color: #fff;
   }
   a:hover {
-      color: #fbbd61;
-      text-decoration: none;
+    color: #fbbd61;
+    text-decoration: none;
   }
   .icon1 img {
-      margin-top: 10px;
+    margin-top: 10px;
   }
-  .icon1 p{
-      margin-top: 13px;
-      margin-right: 12px;
-      color: white;
+  .icon1 p {
+    margin-top: 13px;
+    margin-right: 12px;
+    color: white;
   }
   /*====================================*/
-  .icon2, .icon,.icon3{
-      margin-top: 50px;
+  .icon2,
+  .icon,
+  .icon3 {
+    margin-top: 50px;
   }
-  .icon2{
-      margin-left: 58px;
+  .icon2 {
+    margin-left: 58px;
   }
-  .icon2 ul{
-      margin-left: -40px;
+  .icon2 ul {
+    margin-left: -40px;
   }
-  .icon3 ul{
-      margin-left: -38px;
+  .icon3 ul {
+    margin-left: -38px;
   }
   /*---------------------------------*/
-  .icon img{
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-      margin-right: 15px;
+  .icon img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin-right: 15px;
   }
-  .icon ul li{
-      display: inline-block;
+  .icon ul li {
+    display: inline-block;
   }
-  .icon ul{
-      margin-left: -40px;
+  .icon ul {
+    margin-left: -40px;
   }
   .icon img:hover {
-      border: 1px solid #fbbd61;
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-      background-color: #fbbd61;
+    border: 1px solid #fbbd61;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #fbbd61;
   }
 }
+
+// @media screen and (max-width: 375px) {
+//   .footer {
+//     .container {
+//       .row {
+//         .col-3 {
+//           .icon1 {
+//             margin-left: 69px;
+//             display: inline-block;
+//           }
+//           .icon2 {
+//             display: none;
+//           }
+//           .icon {
+//             display: none;
+//           }
+//           .icon3 {
+//             display: none;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

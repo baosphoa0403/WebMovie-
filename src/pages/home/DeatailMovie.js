@@ -291,7 +291,7 @@ renderImg = () => {
             <div className="view">
               <div className="row">
                 <div className="col-3">
-                  <img src={detailMovie.hinhAnh} alt="" />
+                  <img className="image" src={detailMovie.hinhAnh} alt="" />
                   <img className="play" src={PlayVideo} alt="play-video" />
                 </div>
                 <div className="col-5">
@@ -300,7 +300,7 @@ renderImg = () => {
                   </p>
                   <span className="c18">C18</span>
                   <span className="name_movie">{detailMovie.tenPhim}</span>
-                  <div className="buy-ticket">
+                  <div className="buy-ticket_De">
                     <Link
                       to={`/booking/${this.state.maLichChieu}`}
                       className="btn_buy_ticket"

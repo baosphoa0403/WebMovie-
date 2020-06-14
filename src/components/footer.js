@@ -23,7 +23,7 @@ export default class Footer extends Component {
         >
           <div className="container">
             <div className="row">
-              <div className="col-3">
+              <div className="col-3 footer_left">
                 <div className="footer_item icon1">
                   <img src={logo2} style={{ width: 232 }}  alt="" />
                   <p>
@@ -34,7 +34,7 @@ export default class Footer extends Component {
                   </p>
                 </div>
               </div>
-              <div className="col-3 ">
+              <div className="col-3 footer_left">
                 <div className="footer_item icon2">
                   <h6>ABOUT US</h6>
                   <ul>
