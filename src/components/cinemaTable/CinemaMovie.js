@@ -5,7 +5,7 @@ class CinemaMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listTime: [],
+      listDay: [],
     };
   }
   renderListMovie = () => {
@@ -24,7 +24,7 @@ class CinemaMovie extends Component {
               return (
                 <MovieTable
                   handleGetIDMovie={this.handleGetIDMovie}
-                  listTime={this.state.listTime}
+                  listDay={this.state.listDay}
                   showMovie={showMovie}
                 />
               );
@@ -50,11 +50,11 @@ class CinemaMovie extends Component {
         }
       });
 
-      let listTime = movie.map((movie) => {
+      let listDay = movie.map((movie) => {
         return movie.lstLichChieuTheoPhim;
       });
-      this.setState({ listTime }, ()=>{
-        console.log(this.state.listTime);
+      this.setState({ listDay }, ()=>{
+        console.log(this.state.listDay);
         
       });
     }

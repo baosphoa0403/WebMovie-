@@ -22,43 +22,7 @@ class MovieTable extends Component {
   //     });
   //   }
   // };
-  // renderDay = () => {
-  //   if (this.props.listTime[0]) {
-  //     // console.log(this.props.listTime);
-
-  //     let listTimeOfMovie = this.props.listTime[0].map(movie => {
-  //       return new Date(movie.ngayChieuGioChieu).toLocaleDateString();
-  //     });
-  //     // console.log(listTimeOfMovie);
-
-  //     let arr = listTimeOfMovie.filter((time, index) => {
-  //       return listTimeOfMovie.indexOf(time) === index;
-  //     });
-  //     // console.log(arr);
-      
-  //     // console.log(arr.slice(0, 2));
-      
-  //     return arr.slice(0, 2).map(day => {
-  //       return (
-  //         <div className="collapse Home_coll" id="VincomGV">
-  //           <div className="info__time_Home">
-  //             <p
-  //               className="info__2D_Home"
-  //               onClick={() => {
-  //                 this.getDayUser(day);
-  //               }}
-  //             >
-  //               Ngày chiếu : {day}
-  //             </p>
-  //             <div className="row">
-  //               {this.renderTime()}
-  //             </div>
-  //           </div>
-  //         </div>
-  //       );
-  //     });
-  //   }
-  // };
+  
   // renderTime = () => {
   //   var moment = require('moment');
   //   if (this.state.listTime) {
@@ -78,8 +42,8 @@ class MovieTable extends Component {
   // };
   render() {
     // có nguyên object phim , có danh sách phim của từng phim
-    console.log(this.props.listTime);
-    console.log(this.props.showMovie);
+    // console.log(this.props.listTime);
+    // console.log(this.props.showMovie);
     let { showMovie } = this.props;
     return (
       <div className="info__items_Home">
@@ -104,7 +68,7 @@ class MovieTable extends Component {
               <p className="info__nameMovieCinema_Home">{showMovie.tenPhim}</p>
               <p className="info__infoMovieCinema_Home">TIX 6.1 - IMDb 0</p>
           </div>
-          <Day listTime={this.props.listTime} showMovie={this.props.showMovie}/>
+          <Day listDay={this.props.listDay} maPhim={this.props.showMovie.maPhim}/>
         </div>
         <p />
       </div>
