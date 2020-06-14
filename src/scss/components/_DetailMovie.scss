@@ -454,12 +454,12 @@
 }
 
 //Macpro
-@media screen and (max-width: 1149px) {
+@media screen and (max-width: 1440px) {
   .background-detail {
     .name__content {
       .name__background {
         .name__picture {
-          width: 103.2%;
+          width: 100%;
           overflow: hidden;
           position: absolute;
           img {
@@ -471,13 +471,16 @@
           }
         }
         .name__overlay {
-          width: 103.2%;
+          width: 100%;
         }
       }
       .view {
         .col-3 {
           .image {
-            margin-left: 45px;
+            margin-left: 35px;
+          }
+          .play{
+            left: 38%;
           }
         }
         .col-5 {
@@ -486,7 +489,7 @@
       }
     }
     .info__content {
-      margin: -150px 200px;
+      margin: -150px 285px;
     }
   }
 }

@@ -223,7 +223,7 @@
 }
 
 // Screen 13inch
-@media (max-width: 1229px) and (min-width: 1024px) {
+@media (max-width: 1440px) and (min-width: 1024px) {
   .right {
     width: 26% !important;
     .right__content {
@@ -231,7 +231,7 @@
         .right__text {
           .right__address {
             img {
-              display: none;
+              // display: none;
             }
           }
         }
