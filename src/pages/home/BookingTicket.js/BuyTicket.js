@@ -41,7 +41,7 @@ export default class BuyTicket extends Component {
           <div class="right__content">
             <div class="row right__total">
               <div class="col-12">
-                <p class="right__cash">{this.renderSum()} VNĐ</p>
+                <p class="right__cash">{this.renderSum().toLocaleString()} VNĐ</p>
               </div>
             </div>
             {this.renderInforFilm()}

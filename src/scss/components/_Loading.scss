@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
-loading {
+.hihi {
+  height: 100vh;
+  width: 100%;
   background-color: #f1c40f;
   overflow: hidden;
 }
@@ -16,7 +18,7 @@ h1 {
   margin-left: -20px;
 }
 
-.loading {
+.body123 {
   position: absolute;
   top: 50%;
   margin-left: -50px;
@@ -92,10 +94,10 @@ h1 {
   }
 }
 
-.body > span > span:nth-child(1),
-.body > span > span:nth-child(2),
-.body > span > span:nth-child(3),
-.body > span > span:nth-child(4) {
+.body123 > span > span:nth-child(1),
+.body123 > span > span:nth-child(2),
+.body123 > span > span:nth-child(3),
+.body123 > span > span:nth-child(4) {
   width: 30px;
   height: 1px;
   background: #000;
@@ -103,18 +105,18 @@ h1 {
   animation: fazer1 .2s linear infinite;
 }
 
-.body > span > span:nth-child(2) {
+.body123 > span > span:nth-child(2) {
   top: 3px;
   animation: fazer2 .4s linear infinite;
 }
 
-.body > span > span:nth-child(3) {
+.body123 > span > span:nth-child(3) {
   top: 1px;
   animation: fazer3 .4s linear infinite;
   animation-delay: -1s;
 }
 
-.body > span > span:nth-child(4) {
+.body123 > span > span:nth-child(4) {
   top: 4px;
   animation: fazer4 1s linear infinite;
   animation-delay: -1s;

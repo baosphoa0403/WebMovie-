@@ -3,8 +3,8 @@ import React, { Component } from "react";
 export default class Loading extends Component {
   render() {
     return (
-      <div>
-        <div class="loading">
+      <div className="hihi">
+        <div class="body123">
           <span>
             <span></span>
             <span></span>

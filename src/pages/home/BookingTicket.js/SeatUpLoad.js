@@ -6,7 +6,7 @@ export default class SeatUpLoad extends Component {
       return (
         <div class="col-12">
           <div class="right__left">Ghế : {item.tenGhe}</div>
-          <div class="right__right">{item.giaVe} VNĐ</div>
+          <div class="right__right">{item.giaVe.toLocaleString()} VNĐ</div>
         </div>
       );
     });
