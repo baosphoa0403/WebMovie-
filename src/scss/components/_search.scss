@@ -40,11 +40,10 @@
 }
 
 //13inch
-@media screen and (max-width: 1149px) {
+@media screen and (max-width: 1440px) {
   .search_bar {
-    margin-left: -70px;
+    margin-left: 40px;
     height: 80px;
-    width: 1129px;
     .buyTicket {
       padding: 6px 10px;
       font-size: 11px;

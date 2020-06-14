@@ -18,6 +18,8 @@ class CinemaMovie extends Component {
       if (rap) {
         return rap.map((movie) => {
           if (movie) {
+            // console.log(movie.danhSachPhim);
+            
             return movie.danhSachPhim.map((showMovie) => {
               return (
                 <MovieTable
@@ -51,19 +53,15 @@ class CinemaMovie extends Component {
       let listTime = movie.map((movie) => {
         return movie.lstLichChieuTheoPhim;
       });
-      this.setState({ listTime });
+      this.setState({ listTime }, ()=>{
+        console.log(this.state.listTime);
+        
+      });
     }
   };
   render() {
-    // console.log(this.props.listCumRap);
+    console.log(this.props.listCumRap);
     return (
-      
-      
-      // <div className="FilmTable">
-      //   {/* <div className="row"> */}
-      //   {this.renderListMovie()}
-      //   {/* </div> */}
-      // </div>
       <div
         className="tab-pane fade show active"
         id="pills-monday"
