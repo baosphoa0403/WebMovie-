@@ -62,16 +62,19 @@
         .info__2D_Home {
           color: black;
           margin-bottom: 18px;
+          .time_render{
+            display: flex;
+          }
         }
 
          
           .info__timeBegin_Home {
                margin-top: 5px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 0px 10px;
-    color: rgba(253, 178, 18, 0.984);
-    margin: 0px -20px;
+              border: 1px solid gray;
+               border-radius: 10px;
+               padding: 0px 10px;
+              color: rgba(253, 178, 18, 0.984);
+              margin: 0px 3px;
           }
           .info__timeEnd_Home {
             color: #9c9c9c;

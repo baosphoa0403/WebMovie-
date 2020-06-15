@@ -2,75 +2,65 @@ import React, { Component } from "react";
 import Day from "./Day";
 
 class MovieTable extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
-      arrDay: [],
-      listTime: [],
-      maPhim: null
-    };
+      isOpen: false
+    }
   }
-  // getDayUser = day => {
-  //   if (this.props.listTime[0]) {
-  //     let listTimeSee = this.props.listTime[0].filter(movie => {
-  //       return new Date(movie.ngayChieuGioChieu).toLocaleDateString() === day;
-  //     });
-  //     // console.log(listTimeSee);
-  //     this.setState({
-  //       listTime: listTimeSee
-  //     });
-  //   }
-  // };
-  
-  // renderTime = () => {
-  //   var moment = require('moment');
-  //   if (this.state.listTime) {
-  //     // console.log(this.state.listTime);
 
-  //     return this.state.listTime.map(time => {
-  //       return (
-  //         <div className="col-4">
-          
-  //             <span className="info__timeBegin_Home">
-  //               {moment(time.ngayChieuGioChieu).format("HH:mm")}
-  //             </span>
-  //         </div>
-  //       );
-  //     });
-  //   }
-  // };
+  openDay = () => {
+   if (this.state.isOpen === false) {
+    this.setState({
+      isOpen: true
+    },()=>{
+      console.log(this.state.isOpen);
+      
+    })
+   }else{
+    this.setState({
+      isOpen: false
+    }, ()=>{
+      console.log(this.state.isOpen);  
+    })
+   }
+  }
+  removeDuplicateDay = () => {
+     if (this.props.listDay[0]) {
+      let listDayOfMovie = this.props.listDay[0].map(movie => {
+        return new Date(movie.ngayChieuGioChieu).toLocaleDateString();
+      });
+      let arr = listDayOfMovie.filter((time, index) => {
+        return listDayOfMovie.indexOf(time) === index;
+      });
+      return arr.map((item)=>{
+        return  (<Day item={item} listDay={this.props.listDay[0]}/>)
+      })
+      
+    }
+  }
   render() {
     // có nguyên object phim , có danh sách phim của từng phim
-    // console.log(this.props.listTime);
-    // console.log(this.props.showMovie);
+    console.log(this.props.listDay);
+    console.log(this.props.showMovie);
     let { showMovie } = this.props;
     return (
-      <div className="info__items_Home">
+      <div className="info__items_Home" >
         <div
           className="info__cinema_Home active"
           onClick={() => {
             this.props.handleGetIDMovie(showMovie.maPhim);
           }}
         >
-          <a
-            data-toggle="collapse"
-            href={showMovie.maPhim}
-            role="button"
-            aria-expanded="false"
-            aria-controls="VincomGV"
-          >
-            <div className="info__picture_Home">
+          <div className="info__picture_Home" onClick={this.openDay}>
               <img src={showMovie.hinhAnh} alt="" />
-            </div>
-          </a>
+          </div>
           <div className="info__text_Home">
               <p className="info__nameMovieCinema_Home">{showMovie.tenPhim}</p>
               <p className="info__infoMovieCinema_Home">TIX 6.1 - IMDb 0</p>
           </div>
-          <Day listDay={this.props.listDay} maPhim={this.props.showMovie.maPhim}/>
+           {!this.state.isOpen ? ("") : (<div>{this.removeDuplicateDay()}</div>)}
         </div>
-        <p />
       </div>
     );
   }
