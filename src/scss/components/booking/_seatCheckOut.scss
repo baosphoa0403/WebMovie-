@@ -147,6 +147,11 @@
               background-color: $color-black-1;
             }
           }
+          .seatCheckOut__colorNotChosenVip {
+            .color {
+              background-color: #00bcd4;
+            }
+          }
         }
       }
     }
@@ -216,7 +221,7 @@
           padding-left: 0;
           margin-left: 0;
           width: 60%;
-          .numberofchair{
+          .numberofchair {
             display: none;
           }
         }
@@ -224,4 +229,3 @@
     }
   }
 }
-

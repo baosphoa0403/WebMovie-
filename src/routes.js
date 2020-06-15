@@ -1,9 +1,9 @@
 // import Home from "./pages/home/Home";
 import React, { Suspense, lazy } from "react";
-
+import DashBoard from "./pages/admin/DashBoard";
 // import ListMovie from "./components/ListMovie";
 // import Admin from "./pages/admin/Admin";
-import DashBoard from "./pages/admin/DashBoard";
+
 // import Form from "./components/Form";
 // import DeatailMovie from "./pages/home/DeatailMovie";
 
@@ -12,6 +12,8 @@ const Home = React.lazy(() => {
     setTimeout(() => resolve(import("./pages/home/Home")), 3000);
   });
 });
+
+
 const ListMovie = React.lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(import("./components/ListMovie")), 3000);
@@ -24,7 +26,7 @@ const Form = React.lazy(() => {
 });
 const DeatailMovie = React.lazy(() => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(import("./pages/home/DeatailMovie")), 2000);
+    setTimeout(() => resolve(import("./pages/home/DeatailMovie")), 3000);
   });
 });
 
