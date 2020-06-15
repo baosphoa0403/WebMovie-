@@ -24,8 +24,10 @@ class Movie extends React.Component {
                   <button type="button" className="playTrailer1">
                     <a
                       className="venobox"
+                      data-gall="gall-video"
+                      data-autoplay="true"
                       data-vbtype="video"
-                      href={movie.trailer + "?autoplay=1"}
+                      href={movie.trailer}
                     >
                       <img src={PlayVideo} alt="play-video" />
                     </a>

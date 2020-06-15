@@ -69,6 +69,16 @@
   }
 }
 
+@media screen and (max-width: 1440px) {
+  .menu {
+    .navbar {
+     .nav-item{
+      margin: 0px 40px;
+     }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .menu {
     .navbar {

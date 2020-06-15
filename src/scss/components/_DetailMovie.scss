@@ -1,19 +1,15 @@
 .background-detail {
   background-color: #0a2029;
-  // margin-top: 60px;
   padding: 10px 0px;
   width: 100%;
   .name__content {
-    // position: relative;
     .name__background {
       background-repeat: no-repeat;
       .name__picture {
-        // max-width: 100%;
         overflow: hidden;
         position: absolute;
         width: 100%;
         height: 1000px;
-        // height: 100%;
         img {
           height: auto;
           -webkit-filter: blur(15px);
@@ -24,9 +20,8 @@
       }
       .name__overlay {
         position: absolute;
-        // background-color: #0a2029;
         background: linear-gradient(to top, rgb(10, 32, 41), transparent 100%);
-        height: 1100px;
+        height: 1055px;
         width: 100%;
         top: 0;
         left: 0;
@@ -40,11 +35,25 @@
         position: relative;
         .image {
           margin-left: 150px;
+          width: 60%;
         }
         .play {
           position: absolute;
-          left: 60%;
-          top: 35%;
+          left: 67%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+          z-index: 3;
+          border: none;
+          background: 0 0;
+          transition: all 0.2s;
+          opacity: 0;
+          &:hover {
+            opacity: 0.7 !important;
+          }
+        }
+        &:hover .play {
+          opacity: 1;
         }
       }
       .col-5 {
@@ -156,7 +165,7 @@
       .nav-item {
         .nav-link.active {
           background: none;
-          color: $color-red-2;
+          color: $color1;
           font-size: spacing(2);
           font-weight: $fw-bold;
         }
@@ -283,7 +292,6 @@
                   transform: translate(-50%);
                   width: calc(100% - 40px);
                   border-bottom: 1px solid rgba(238, 238, 238, 0.88);
-                  // border-color: rgba(238,238,238,0.88);
                 }
                 img {
                   width: spacing(5);
@@ -319,8 +327,6 @@
                     display: block;
                     position: relative;
                     padding: spacing(2) spacing(3.5) spacing(1.5) spacing(4);
-                    // opacity: 0.5;
-                    // cursor: pointer;
                     &::after {
                       content: " ";
                       position: absolute;
@@ -454,12 +460,12 @@
 }
 
 //Macpro
-@media screen and (max-width: 1149px) {
+@media screen and (max-width: 1440px) {
   .background-detail {
     .name__content {
       .name__background {
         .name__picture {
-          width: 103.2%;
+          width: 100%;
           overflow: hidden;
           position: absolute;
           img {
@@ -471,13 +477,17 @@
           }
         }
         .name__overlay {
-          width: 103.2%;
+          width: 100%;
         }
       }
       .view {
         .col-3 {
           .image {
-            margin-left: 45px;
+            width: 100%;
+            margin-left: 35px;
+          }
+          .play {
+            left: 58%;
           }
         }
         .col-5 {
@@ -486,7 +496,7 @@
       }
     }
     .info__content {
-      margin: -150px 200px;
+      margin: -150px 285px;
     }
   }
 }
@@ -519,10 +529,11 @@
           }
         }
         .col-5 {
-          margin-left: 90px;
+          margin-left: 60px;
+          margin-top: 0px;
         }
         .col-2 {
-          margin-left: 19px;
+          margin-left: 25px;
         }
         .start {
           display: inline-flex;
