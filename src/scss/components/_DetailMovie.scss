@@ -403,6 +403,28 @@
                     a {
                       text-decoration: none;
                     }
+                    .info_day {
+                      .day_set {
+                        font-size: 20px;
+                        margin: 10px 0;
+                        .info_day_setup {
+                          display: flex;
+                          .Time_handle {
+                            font-size: 17px;
+                            padding: 9px;
+                            margin: 10px 12px;
+                            border: 1px solid white;
+                            border-radius: 23px;
+                            a {
+                              color: $color1;
+                            }
+                            &:hover a {
+                              color: #00ff00;
+                            }
+                          }
+                        }
+                      }
+                    }
                     .collapse {
                       margin-top: spacing(1);
                       .info__time {
@@ -418,10 +440,10 @@
                           .info__timeBegin {
                             color: #00ff00;
                           }
-                          .info__timeEnd {
-                            color: #9c9c9c;
-                            font-size: 13px;
-                          }
+                          // .info__timeEnd {
+                          //   color: #9c9c9c;
+                          //   font-size: 13px;
+                          // }
                         }
                       }
                     }

@@ -1,28 +1,36 @@
 import React, { Component } from "react";
-
-export default class Time extends Component {
+import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
+class Time extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      maLichChieu: null
+    };
+  }
   renderTime = () => {
-    if (this.props.arrTime) {
-        return this.props.arrTime.map((time) => {
-            return (
-              <div className="collapse Home_coll" id="VincomGV">
-                <div className="info__time_Home">
-                  <p className="info__2D_Home">Ngày chiếu : {time}</p>
-                  <a>
-                    <span className="info__timeBegin_Home">15:20</span>
-                    <span className="info__timeEnd_Home"> ~ 17:09</span>
-                  </a>
-                </div>
-              </div>
-            );
-          });
+    var moment = require("moment");
+    if (this.props.item) {
+      return (
+        <div className="time">
+          <a>
+            <Link
+              className="info__timeBegin_Home"
+              to={`/booking/${this.props.item.maLichChieu}`}
+            >
+              {moment(this.props.item.ngayChieuGioChieu).format("HH:mm:A")}
+            </Link>
+          </a>
+        </div>
+      );
     }
   };
+
   render() {
-      console.log(this.props.arrTime);
-      
-    return <div>
-        {this.renderTime()}
-    </div>;
+    console.log(this.props.item.maLichChieu);
+   
+    
+    return <div className="time_render">{this.renderTime()}</div>;
   }
 }
+export default Time;

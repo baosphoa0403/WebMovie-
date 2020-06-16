@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class Movie extends React.Component {
   render() {
     let { movie } = this.props;
-    console.log(this.props.movie.trailer);
+    // console.log(this.props.movie.trailer);
 
     return (
       <div>

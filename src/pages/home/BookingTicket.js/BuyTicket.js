@@ -10,7 +10,9 @@ export default class BuyTicket extends Component {
 
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
+      
     if (FilmInfo) {
+      console.log(this.props.FilmInfo);
       return (
         <div class="row right__filmName">
           <div class="col-12 right__text">
@@ -32,7 +34,7 @@ export default class BuyTicket extends Component {
     console.log(nextProps);
   }
   render() {
-    console.log(this.props.BuyTicket);
+
     let { buyTicket } = this.props;
 
     return (
