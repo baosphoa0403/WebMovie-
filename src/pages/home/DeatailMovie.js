@@ -12,6 +12,7 @@ import imgCineStar from "../../images/img/CineContact/ddc-dong-da.jpg";
 import imgMega from "../../images/img/CineContact/mega-gs-cao-thang.jpg";
 import Axios from "axios";
 import DetailDay from "./DetailDay";
+import Dialog1 from "../../components/Dialog";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -294,7 +295,8 @@ renderImg = () => {
               <div className="row">
                 <div className="col-3">
                   <img className="image" src={detailMovie.hinhAnh} alt="" />
-                  <img className="play" src={PlayVideo} alt="play-video" />
+                  {/* <img className="play" src={PlayVideo} alt="play-video" /> */}
+                  <Dialog1 trailer={detailMovie.trailer}/>
                 </div>
                 <div className="col-5">
                   <p className="day">

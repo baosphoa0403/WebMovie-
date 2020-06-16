@@ -253,6 +253,7 @@ class SearchBar extends Component {
     }
   }
   getIDSee = () => {
+    var moment = require("moment");
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
     if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && gioXem && ngayXem) {
@@ -263,7 +264,7 @@ class SearchBar extends Component {
         return rap.tenCumRap === tenRap
       })
       const lichChieu = rap.lichChieuPhim.find((lichChieu)=>{
-        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString()) === gioXem) 
+        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (moment(lichChieu.ngayChieuGioChieu).format("HH:mm:A")) === gioXem) 
       })
       this.setState({
         maLichChieu: lichChieu.maLichChieu
@@ -278,6 +279,7 @@ class SearchBar extends Component {
    }
   }
   renderGioXem = () => {
+    var moment = require("moment");
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap,  ngayXem} = this.state;
     if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && ngayXem) {
@@ -288,7 +290,8 @@ class SearchBar extends Component {
         return rap.tenCumRap === tenRap
       })
       const listTime = new Set(rap.lichChieuPhim.map((lichChieu) => {
-        return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
+        // return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
+        return (moment(lichChieu.ngayChieuGioChieu).format("HH:mm:A"))
       }));
       
       const listTimeUpdate = [...listTime];
