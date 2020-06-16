@@ -4,19 +4,6 @@ import * as action from "../../redux/action";
 import { Link } from "react-router-dom";
 import PlayVideo from "../../images/img/play-video.png";
 import avarta from "../../images/img/avatar.png";
-import star from "../../images/img/s1.png";
-import logoBHD from "../../images/img/Contact/bhd.png";
-import logoCGV from "../../images/img/Contact/cgv.png";
-import logoGalaxy from "../../images/img/Contact/galaxycine.png";
-import cinemaCGV1 from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
-import cinemaCGV2 from "../../images/img/CineContact/cgv-dau-do.jpg";
-import cinemaxBHD1 from "../../images/img/CineContact/bhd-star-pham-hung.jpg";
-import cinemaxBHD2 from "../../images/img/CineContact/bhd-star-vincom-le-van-viet.jpg";
-import cinemaxBHD3 from "../../images/img/CineContact/bhd-star-vincom-quang-trung.jpg";
-import cinemaxBHD4 from "../../images/img/CineContact/bhd-star-vincom.jpg";
-import cinemaxGalaxy1 from "../../images/img/CineContact/galaxy-huynh-tan-phat.jpg";
-import cinemaxGalaxy2 from "../../images/img/CineContact/galaxy-linh-trung.jpg";
-import cinemaxGalaxy3 from "../../images/img/CineContact/galaxy-nguyen-van-qua.jpg";
 import imgCGV from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
 import imgBHD from "../../images/img/CineContact/bhd-star-vincom-quang-trung.jpg";
 import imgGalaxy from "../../images/img/CineContact/galaxy-huynh-tan-phat.jpg";
@@ -24,6 +11,7 @@ import imgLotteCinima from "../../images/img/CineContact/lotte-cinema-go-vap.jpg
 import imgCineStar from "../../images/img/CineContact/ddc-dong-da.jpg";
 import imgMega from "../../images/img/CineContact/mega-gs-cao-thang.jpg";
 import Axios from "axios";
+import DetailDay from "./DetailDay";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -35,12 +23,24 @@ class DeatailMovie extends Component {
       idTheater: null,
       theater: {},
       img: imgCGV,
-      maLichChieu: null
+      maLichChieu: null,
+      isOpen: false
     };
+  }
+  openDay = () => {
+    if (this.state.isOpen === false) {
+      this.setState({
+        isOpen: true
+      })
+     }else{
+      this.setState({
+        isOpen: false
+      })
+     }
   }
   componentDidMount() {
     let id = this.props.match.params.id;
-    console.log(id);
+    // console.log(id);
     this.props.getDetailMovie(id);
     Axios({
       method: "GET",
@@ -56,6 +56,7 @@ class DeatailMovie extends Component {
         console.log(err);
       });
   }
+  // lấy mã hệ thống  để render hình ảnh 
   handleOnChangeId = (idTheater) => {
    console.log(idTheater);
    if (this.props.detailMovie) {
@@ -149,7 +150,7 @@ renderImg = () => {
            aria-expanded="false"
            aria-controls="VincomGV"
          >
-           <div className="info__picture">
+           <div className="info__picture" onClick={this.openDay}>
              <img
                src={this.state.img}
                alt="CGV"
@@ -186,57 +187,58 @@ renderImg = () => {
              <a href="#">[chi tiết]</a>
            </p>
          </div>
-         {this.renderTime()}
+         {!this.state.isOpen ? ("") : (<div>{this.renderDay()}</div>)}
+         {/* {this.renderTime()} */}
        </div>
        <p />
      </div>
       )
     }
   }
-  renderTime = () => {
+  renderDay = () => {
     let { detailMovie } = this.props;
     if (detailMovie.lichChieu) {
-      let arr = detailMovie.lichChieu.map((item)=>{
-           return (new Date(item.ngayChieuGioChieu).toLocaleTimeString())
-      })
-      // console.log(arr);
-      let arrFilter = arr.filter((item, index) => arr.indexOf(item) === index);
-      console.log(arrFilter);
-      
-      return arrFilter.map((time) => {
-        return (
-          // <tr key={movie.maLichChieu}>
-          //   <td>{movie.thongTinRap.tenCumRap}</td>
-          //   <td>{movie.thongTinRap.tenRap}</td>
-          //   <td>{new Date(movie.ngayChieuGioChieu).toLocaleDateString()}</td>
-          //   <td>{new Date(movie.ngayChieuGioChieu).toLocaleTimeString()}</td>
-          //   <td>
-          //     <Link
-          //       className="btn btn-danger"
-          //       to={`/booking/${movie.maLichChieu}`}
-          //     >
-          //       Chọn ghế
-          //     </Link>
-          //   </td>
-          // </tr>
-          <div className="collapse" id="VincomGV">
-           <div className="info__time">
-             <p className="info__2D">Ngày chiếu : 01/06/2021</p>
-             <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
-               <span className="info__timeBegin">
-                {time}
-               </span>
-               <span className="info__timeEnd">
-                 {" "}
-                 ~ 17:09
-               </span>
-             </Link>
-           </div>
-         </div>
-        );
-      });
+      let listDay = detailMovie.lichChieu.map((item)=>{
+        return (new Date(item.ngayChieuGioChieu).toLocaleDateString())
+    })
+   // console.log(arr);
+    let arrDayFilter = listDay.filter((item, index) => listDay.indexOf(item) === index);
+    console.log(arrDayFilter);
+    return arrDayFilter.map((day)=>{
+        return (<DetailDay day={day} lichChieu={this.props.detailMovie.lichChieu}/>)
+    })
     }
-  };
+  }
+  // renderTime = () => {
+  //   let { detailMovie } = this.props;
+  //   if (detailMovie.lichChieu) {
+  //     let arr = detailMovie.lichChieu.map((item)=>{
+  //          return (new Date(item.ngayChieuGioChieu).toLocaleTimeString())
+  //     })
+  //     // console.log(arr);
+  //     let arrFilter = arr.filter((item, index) => arr.indexOf(item) === index);
+  //     console.log(arrFilter);
+      
+  //     return arrFilter.map((time) => {
+  //       return (
+  //         <div className="collapse" id="VincomGV">
+  //          <div className="info__time">
+  //            <p className="info__2D">Ngày chiếu : 01/06/2021</p>
+  //            <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
+  //              <span className="info__timeBegin">
+  //               {time}
+  //              </span>
+  //              <span className="info__timeEnd">
+  //                {" "}
+  //                ~ 17:09
+  //              </span>
+  //            </Link>
+  //          </div>
+  //        </div>
+  //       );
+  //     });
+  //   }
+  // };
   componentWillReceiveProps(nextProps) {
     // console.log(this.state.listTheater);
     
