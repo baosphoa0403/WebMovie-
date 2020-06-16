@@ -7,7 +7,7 @@ export default class DetailTime extends Component {
         console.log(this.props.time);
         
         return (
-            <div>
+            <div className="Time_handle">
                 <Link   to={`/booking/${this.props.time.maLichChieu}`}>{moment(time.ngayChieuGioChieu).format("HH:mm:A")}</Link>
             </div>
         )
