@@ -5,7 +5,7 @@ class CinemaMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listTime: [],
+      listDay: [],
     };
   }
   renderListMovie = () => {
@@ -18,11 +18,13 @@ class CinemaMovie extends Component {
       if (rap) {
         return rap.map((movie) => {
           if (movie) {
+            // console.log(movie.danhSachPhim);
+            
             return movie.danhSachPhim.map((showMovie) => {
               return (
                 <MovieTable
                   handleGetIDMovie={this.handleGetIDMovie}
-                  listTime={this.state.listTime}
+                  listDay={this.state.listDay}
                   showMovie={showMovie}
                 />
               );
@@ -33,6 +35,7 @@ class CinemaMovie extends Component {
     }
   };
   handleGetIDMovie = (maPhim) => {
+    // console.log(maPhim);
     let rap = this.props.listCumRap.map((item) => {
       return item.lstCumRap.find((theater) => {
         return theater.maCumRap === this.props.maCumRap;
@@ -47,19 +50,18 @@ class CinemaMovie extends Component {
         }
       });
 
-      let listTime = movie.map((movie) => {
+      let listDay = movie.map((movie) => {
         return movie.lstLichChieuTheoPhim;
       });
-      this.setState({ listTime });
+      this.setState({ listDay }, ()=>{
+        console.log(this.state.listDay);
+        
+      });
     }
   };
   render() {
+    console.log(this.props.listCumRap);
     return (
-      // <div className="FilmTable">
-      //   {/* <div className="row"> */}
-      //   {this.renderListMovie()}
-      //   {/* </div> */}
-      // </div>
       <div
         className="tab-pane fade show active"
         id="pills-monday"
