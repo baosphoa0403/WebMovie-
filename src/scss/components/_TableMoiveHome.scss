@@ -54,7 +54,22 @@
       }
     }
     .Home_coll {
-  
+      .time_setup {
+        display: flex;
+        .time_render {
+          .time {
+            .info__timeBegin_Home {
+              margin-right: 12px;
+              border: 1px solid #e4e4e4;
+              padding: 13px;
+              text-align: center;
+              border-radius: 12px;
+              color: $color1;
+              background-color: rgba(246,246,246,.5);
+            }
+          }
+        }
+      }
       .info__time_Home {
         margin-right: 25px;
         margin-top: 50px;
@@ -62,25 +77,20 @@
         .info__2D_Home {
           color: black;
           margin-bottom: 18px;
-          .time_render{
-            display: flex;
-          }
         }
 
-         
-          .info__timeBegin_Home {
-               margin-top: 5px;
-              border: 1px solid gray;
-               border-radius: 10px;
-               padding: 0px 10px;
-              color: rgba(253, 178, 18, 0.984);
-              margin: 0px 3px;
-          }
-          .info__timeEnd_Home {
-            color: #9c9c9c;
-            font-size: 13px;
-          }
-
+        .info__timeBegin_Home {
+          margin-top: 5px;
+          border: 1px solid gray;
+          border-radius: 10px;
+          padding: 0px 10px;
+          color: rgba(253, 178, 18, 0.984);
+          margin: 0px 3px;
+        }
+        .info__timeEnd_Home {
+          color: #9c9c9c;
+          font-size: 13px;
+        }
       }
     }
   }
