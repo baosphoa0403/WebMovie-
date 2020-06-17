@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import icon123 from "../../../images/img/exclamation.png";
 import SeatUpLoad from "./SeatUpLoad";
+import Swal from "sweetalert2";
 export default class BuyTicket extends Component {
+  handleSuccess = () => {
+    Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
+  };
   renderSum = () => {
     return this.props.buyTicket.reduce((sum, item) => {
       return (sum += item.giaVe);
@@ -10,7 +14,7 @@ export default class BuyTicket extends Component {
 
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
-      
+
     if (FilmInfo) {
       console.log(this.props.FilmInfo);
       return (
@@ -34,9 +38,7 @@ export default class BuyTicket extends Component {
     console.log(nextProps);
   }
   render() {
-
     let { buyTicket } = this.props;
-
     return (
       <div>
         <div class="right">
@@ -101,9 +103,15 @@ export default class BuyTicket extends Component {
               </div>
             </div>
           </div>
-          <div class="right__button">Đặt Vé</div>
+          <div class="right__button" onClick={this.handleSuccess}>
+            Đặt Vé
+          </div>
         </div>
       </div>
     );
   }
 }
+// malichChieu num
+// danh sách vé 
+// tentaiKhoan
+// token

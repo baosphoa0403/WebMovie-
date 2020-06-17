@@ -3,33 +3,59 @@ import { connect } from "react-redux";
 import * as action from "../redux/action/userAction";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Swal from "sweetalert2";
+import Axios from "axios";
 
 const signUpUserSchema = yup.object().shape({
-   taiKhoan: yup.string().required("* Field is required"),
-   matKhau: yup.string().required("* Field is required"),
-   hoTen: yup.string().required("* Field is required"),
-   email: yup.string().required("* Field is required").email("* Email is invalid"),
-   soDT: yup.string().required("* Field is required")
-   .matches(/^[0-9]+$/).required("Phone is invalid")
-   .min(8)
-   .max(10)
-
-})
+  taiKhoan: yup.string().required("* Field is required"),
+  matKhau: yup.string().required("* Field is required"),
+  hoTen: yup.string().required("* Field is required"),
+  email: yup
+    .string()
+    .required("* Field is required")
+    .email("* Email is invalid"),
+  soDT: yup
+    .string()
+    .required("* Field is required")
+    .matches(/^[0-9]+$/)
+    .required("Phone is invalid")
+    .min(8)
+    .max(10),
+});
 const signInUserSchema = yup.object().shape({
   taiKhoan: yup.string().required("* Field is required"),
   matKhau: yup.string().required("* Field is required"),
-})
+});
 class FormSignIn extends Component {
   handleOnlogin = (values) => {
     this.props.checkLoginUser(values, this.props.history);
-    // console.log(values);
-    
   };
   handleSubmit = (values) => {
-  console.log(values);
-  //   callAPI
-    
-  }
+    console.log(values);
+    //   callAPI
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+      data: values,
+    })
+      .then((rs) => {
+        Swal.fire("Đăng kí thành công !", "Nhấn OK để thoát!", "success").then(
+          () => {
+            this.props.history.push("/");
+          }
+        );
+      })
+      .catch((error) => {
+        console.log({ ...error.response.data });
+        Swal.fire("Đăng kí không thành công", error.response.data, "error");
+      });
+  };
+  // signinSuccess = () => {
+  //   Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+  // };
+  // signupSuccess = () => {
+  //   Swal.fire("Đăng kí thành công !", "Nhấn OK để thoát!", "success");
+  // };
   render() {
     return (
       <div className="login-admin">
@@ -53,7 +79,7 @@ class FormSignIn extends Component {
               <Formik
                 initialValues={{
                   taiKhoan: "",
-                  matKhau: ""
+                  matKhau: "",
                 }}
                 validationSchema={signInUserSchema}
                 onSubmit={this.handleOnlogin}
@@ -70,8 +96,8 @@ class FormSignIn extends Component {
                           className="input"
                           onChange={formilProps.handleChange}
                         />
-                        <ErrorMessage  name="taiKhoan">
-                        {(msg)=><div className="text-danger">{msg}</div>}
+                        <ErrorMessage name="taiKhoan">
+                          {(msg) => <div className="text-danger">{msg}</div>}
                         </ErrorMessage>
                       </div>
                       <div className="group">
@@ -85,9 +111,9 @@ class FormSignIn extends Component {
                           data-type="password"
                           onChange={formilProps.handleChange}
                         />
-                         <ErrorMessage  name="matKhau">
-                         {(msg)=><div className="text-danger">{msg}</div>}
-                         </ErrorMessage>
+                        <ErrorMessage name="matKhau">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
                         <input
@@ -106,7 +132,13 @@ class FormSignIn extends Component {
                           className="button"
                           defaultValue="Sign In"
                         /> */}
-                        <button className="btn btn-primary" style={{width: 400, height: 40}}>Submit</button>
+                        <button
+                          className="btn btn-primary"
+                          style={{ width: 400, height: 40 }}
+                          // onClick={this.signinSuccess}
+                        >
+                          Submit
+                        </button>
                       </div>
                       <div className="hr" />
                       <div className="foot-lnk">
@@ -116,7 +148,7 @@ class FormSignIn extends Component {
                   </Form>
                 )}
               />
-{/* sign up */}
+              {/* sign up */}
               <Formik
                 initialValues={{
                   taiKhoan: "",
@@ -124,11 +156,11 @@ class FormSignIn extends Component {
                   hoTen: "",
                   email: "",
                   soDT: "",
-                  maNhom: "GP01"
+                  maNhom: "GP01",
                 }}
                 validationSchema={signUpUserSchema}
                 onSubmit={this.handleSubmit}
-                render={formilProps => (
+                render={(formilProps) => (
                   <Form>
                     <div className="sign-up-htm">
                       <div className="group">
@@ -142,9 +174,9 @@ class FormSignIn extends Component {
                           name="taiKhoan"
                           onChange={formilProps.handleChange}
                         />
-                          <ErrorMessage name="taiKhoan" >
-                            {(msg)=><div className="text-danger">{msg}</div>}
-                          </ErrorMessage>
+                        <ErrorMessage name="taiKhoan">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
                         <label htmlFor="pass" className="label">
@@ -158,9 +190,9 @@ class FormSignIn extends Component {
                           name="matKhau"
                           onChange={formilProps.handleChange}
                         />
-                          <ErrorMessage name="matKhau" >
-                          {(msg)=><div className="text-danger">{msg}</div>}
-                          </ErrorMessage>
+                        <ErrorMessage name="matKhau">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
                         <label htmlFor="pass" className="label">
@@ -173,9 +205,9 @@ class FormSignIn extends Component {
                           name="hoTen"
                           onChange={formilProps.handleChange}
                         />
-                          <ErrorMessage name="hoTen" >
-                          {(msg)=><div className="text-danger">{msg}</div>}
-                          </ErrorMessage>
+                        <ErrorMessage name="hoTen">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
                         <label htmlFor="pass" className="label">
@@ -188,9 +220,9 @@ class FormSignIn extends Component {
                           name="email"
                           onChange={formilProps.handleChange}
                         />
-                          <ErrorMessage name="email" >
-                          {(msg)=><div className="text-danger">{msg}</div>}
-                          </ErrorMessage>
+                        <ErrorMessage name="email">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
                         <label htmlFor="pass" className="label">
@@ -203,12 +235,17 @@ class FormSignIn extends Component {
                           name="soDT"
                           onChange={formilProps.handleChange}
                         />
-                          <ErrorMessage name="soDT" >
-                          {(msg)=><div className="text-danger">{msg}</div>}
-                          </ErrorMessage>
+                        <ErrorMessage name="soDT">
+                          {(msg) => <div className="text-danger">{msg}</div>}
+                        </ErrorMessage>
                       </div>
                       <div className="group">
-                      <button className="btn btn-primary" style={{width: 385, height: 40}}>Submit</button>
+                        <button
+                          className="btn btn-primary"
+                          style={{ width: 385, height: 40 }}
+                        >
+                          Submit
+                        </button>
                       </div>
                     </div>
                   </Form>
@@ -222,11 +259,11 @@ class FormSignIn extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     checkLoginUser: (user, history) => {
       dispatch(action.actCheckSignInUser(user, history));
-    }
+    },
   };
 };
 
