@@ -4,7 +4,6 @@ import * as action from "../../../redux/action";
 import screen1 from "../../../images/img/screen.png";
 import Chair from "./Chair";
 
-
 class ListChair extends Component {
   renderListChair = () => {
     if (this.props.listChair.danhSachGhe !== undefined) {
@@ -21,10 +20,6 @@ class ListChair extends Component {
       }
     }
   };
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps);
-  // }
   render() {
     return (
       <div>
@@ -52,6 +47,10 @@ class ListChair extends Component {
               <span class="seatCheckOut__colorNotChosen seatCheckOut__typeSeat Seat1">
                 <span class="color"></span>
                 <span class="nameSeat">Ghế có thể chọn</span>
+              </span>
+              <span class="seatCheckOut__colorNotChosenVip seatCheckOut__typeSeat Seat3">
+                <span class="color"></span>
+                <span class="nameSeat">Ghế Vip</span>
               </span>
               <span class="seatCheckOut__colorChoosing seatCheckOut__typeSeat">
                 <span class="color"></span>

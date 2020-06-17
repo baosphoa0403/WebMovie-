@@ -20,7 +20,9 @@ class SearchBar extends Component {
       btnValid: false,
     };
   }
-  arrayEmpty = ["Vui lòng chọn phim"];
+  // sẽ check nếu chưa có local thì chuyển trang zo trang đăng nhập => đăng nhập thành công trả về trang home 
+  // h mình muốn là đăng nhập thành công bắn qa bên tickbooking lun 
+  // thứ nhất cần có maLichChieu từ 
   renderTenPhim = () => {
     let { listMovie } = this.props;
     if (listMovie) {
@@ -268,15 +270,22 @@ class SearchBar extends Component {
       })
       this.setState({
         maLichChieu: lichChieu.maLichChieu
+      }, ()=>{
+        localStorage.setItem("maLichChieu", JSON.stringify(this.state.maLichChieu));
       })
-    
+   
      
     }
   }
   changePage = () => {
-   if (this.state.maLichChieu) {
-    this.props.history.push(`/booking/${this.state.maLichChieu}`)
-   }
+    if (JSON.parse(localStorage.getItem("user")) === null) {
+      this.props.history.push("/form");
+    }
+    else{
+      if (this.state.maLichChieu) {
+        this.props.history.push(`/booking/${this.state.maLichChieu}`)
+       }
+    }
   }
   renderGioXem = () => {
     var moment = require("moment");

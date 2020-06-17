@@ -42,6 +42,7 @@ export const actCheckSignInAdmin = (user, history) => {
 };
 
 export const actCheckSignInUser = (user, history) => {
+
   return (dispatch) => {
     Axios({
       method: "POST",
@@ -50,10 +51,20 @@ export const actCheckSignInUser = (user, history) => {
     })
       .then((rs) => {
         console.log(rs);
-        localStorage.setItem("user", JSON.stringify(rs.data));
-        history.push("/");
-        dispatch(actPostUser(rs.data));
-        Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+        if (JSON.parse(localStorage.getItem("maLichChieu")) !== null) {
+          Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+          history.push(
+            `/booking/${JSON.parse(localStorage.getItem("maLichChieu"))}`
+          );
+          localStorage.setItem("user", JSON.stringify(rs.data));
+          dispatch(actPostUser(rs.data));
+        } else {
+          Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+          localStorage.setItem("user", JSON.stringify(rs.data));
+          history.push("/");
+          dispatch(actPostUser(rs.data));
+        }
+
       })
       .catch((error) => {
         Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
