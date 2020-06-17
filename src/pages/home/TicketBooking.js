@@ -5,6 +5,7 @@ import BookingInfo from "./BookingTicket.js/BookingInfo";
 import HeaderBooking from "./BookingTicket.js/HeaderBooking";
 import ListChair from "./BookingTicket.js/ListChair";
 import BuyTicket from "./BookingTicket.js/BuyTicket";
+import Loading from "../../components/Loading";
 
 class TicketBooking extends Component {
   constructor(props) {
@@ -37,23 +38,27 @@ class TicketBooking extends Component {
   render() {
     console.log(this.props.listChair.thongTinPhim);
     console.log(this.props.listChair);
-
-    return (
-      <div>
-        <HeaderBooking />
-        <div class="seatCheckOut">
-          <div class="seatCheckOut__content">
-            <BookingInfo FilmInfo={this.props.listChair.thongTinPhim} />
-            <div class="clear"></div>
-            <ListChair addTicket={this.handleAddCart} />
+    if (this.props.loading) {
+      return <Loading />
+    }else {
+      return (
+        <div>
+          <HeaderBooking />
+          <div class="seatCheckOut">
+            <div class="seatCheckOut__content">
+              <BookingInfo FilmInfo={this.props.listChair.thongTinPhim} />
+              <div class="clear"></div>
+              <ListChair addTicket={this.handleAddCart} />
+            </div>
           </div>
+          <BuyTicket
+            buyTicket={this.state.listChair}
+            FilmInfo={this.props.listChair.thongTinPhim}
+          />
         </div>
-        <BuyTicket
-          buyTicket={this.state.listChair}
-          FilmInfo={this.props.listChair.thongTinPhim}
-        />
-      </div>
-    );
+      );
+    }
+    
   }
   componentDidMount() {
     let idMaLichChieu = this.props.match.params.idLichChieu;
@@ -62,6 +67,7 @@ class TicketBooking extends Component {
     this.props.getListChairBooking(idMaLichChieu);
   }
   componentWillUnmount() {
+    localStorage.removeItem("maLichChieu")
     this.props.resetListChairBooking();
   }
 }
@@ -80,6 +86,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     listChair: state.movieReducer.listChair,
+    loading: state.movieReducer.loading
   };
 };
 

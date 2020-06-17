@@ -15,10 +15,7 @@ export default class BookingInfo extends Component {
                 </p>
               </div>
             </div>
-            <div class="seatCheckOut__rightTitle">
-              <p class="seatCheckOut__info1">Thời gian giữ</p>
-              <p class="seatCheckOut__info2">5:00</p>
-            </div>
+           
           </div>
         </div>
       );
