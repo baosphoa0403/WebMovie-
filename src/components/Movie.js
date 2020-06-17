@@ -1,7 +1,8 @@
 import React from "react";
 import star from "../images/img/s1.png";
-import PlayVideo from "../images/img/play-video.png";
+
 import { Link } from "react-router-dom";
+import Dialog1 from "./Dialog";
 class Movie extends React.Component {
   render() {
     let { movie } = this.props;
@@ -21,17 +22,7 @@ class Movie extends React.Component {
                 }}
               >
                 <div className="calendar__overlay">
-                  <button type="button" className="playTrailer1">
-                    <a
-                      className="venobox"
-                      data-gall="gall-video"
-                      data-autoplay="true"
-                      data-vbtype="video"
-                      href={movie.trailer}
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
-                  </button>
+                  <Dialog1 trailer={movie.trailer}/>
                 </div>
                 <span className="calendar__ageType">C18</span>
                 <div className="calendar__avgPoint">

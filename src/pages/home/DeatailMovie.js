@@ -14,6 +14,7 @@ import Axios from "axios";
 import DetailDay from "./DetailDay";
 import { withRouter } from "react-router";
 import Loading from "../../components/Loading";
+import Dialog1 from "../../components/Dialog";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -279,7 +280,8 @@ class DeatailMovie extends Component {
               <div className="row">
                 <div className="col-3">
                   <img className="image" src={detailMovie.hinhAnh} alt="" />
-                  <img className="play" src={PlayVideo} alt="play-video" />
+                  {/* <img className="play" src={PlayVideo} alt="play-video" /> */}
+                  <Dialog1 trailer={detailMovie.trailer}/>
                 </div>
                 <div className="col-5">
                   <p className="day">
