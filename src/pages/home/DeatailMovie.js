@@ -12,6 +12,8 @@ import imgCineStar from "../../images/img/CineContact/ddc-dong-da.jpg";
 import imgMega from "../../images/img/CineContact/mega-gs-cao-thang.jpg";
 import Axios from "axios";
 import DetailDay from "./DetailDay";
+import { withRouter } from "react-router";
+import Loading from "../../components/Loading";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class DeatailMovie extends Component {
       img: imgCGV,
       maLichChieu: null,
       isOpen: false,
+      detailMovie: {}
     };
   }
   openDay = () => {
@@ -218,82 +221,54 @@ class DeatailMovie extends Component {
       });
     }
   };
-  // renderTime = () => {
-  //   let { detailMovie } = this.props;
-  //   if (detailMovie.lichChieu) {
-  //     let arr = detailMovie.lichChieu.map((item)=>{
-  //          return (new Date(item.ngayChieuGioChieu).toLocaleTimeString())
-  //     })
-  //     // console.log(arr);
-  //     let arrFilter = arr.filter((item, index) => arr.indexOf(item) === index);
-  //     console.log(arrFilter);
-
-  //     return arrFilter.map((time) => {
-  //       return (
-  //         <div className="collapse" id="VincomGV">
-  //          <div className="info__time">
-  //            <p className="info__2D">Ngày chiếu : 01/06/2021</p>
-  //            <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
-  //              <span className="info__timeBegin">
-  //               {time}
-  //              </span>
-  //              <span className="info__timeEnd">
-  //                {" "}
-  //                ~ 17:09
-  //              </span>
-  //            </Link>
-  //          </div>
-  //        </div>
-  //       );
-  //     });
-  //   }
-  // };
   componentWillReceiveProps(nextProps) {
-    // console.log(this.state.listTheater);
-
+    console.log(this.nextProps);
     if (nextProps.detailMovie) {
-      let idListTheater = nextProps.detailMovie.lichChieu.map((theater) => {
-        return theater.thongTinRap.maHeThongRap;
-      });
-      let arr = [];
-      let arrFilter = idListTheater.filter(
-        (item, index) => idListTheater.indexOf(item) === index
-      );
-
-      for (const id of arrFilter) {
-        let theater = this.state.listTheater.find((theater) => {
-          return theater.maHeThongRap === id;
+      if (nextProps.detailMovie.lichChieu) {
+        let idListTheater = nextProps.detailMovie.lichChieu.map((theater) => {
+          return theater.thongTinRap.maHeThongRap;
         });
-        arr.push(theater);
+        let arr = [];
+        let arrFilter = idListTheater.filter(
+          (item, index) => idListTheater.indexOf(item) === index
+        );
+  
+        for (const id of arrFilter) {
+          let theater = this.state.listTheater.find((theater) => {
+            return theater.maHeThongRap === id;
+          });
+          arr.push(theater);
+        }
+        let arr1 = nextProps.detailMovie.lichChieu.map((rap) => {
+          return rap.maLichChieu;
+        });
+        console.log(arr1);
+  
+        // console.log(arr);
+        this.setState({
+          listTheaterRender: arr,
+          maLichChieu: arr1[0],
+        });
+     
       }
-      let arr1 = nextProps.detailMovie.lichChieu.map((rap) => {
-        return rap.maLichChieu;
-      });
-      console.log(arr1);
-
-      // console.log(arr);
-      this.setState({
-        listTheaterRender: arr,
-        maLichChieu: arr1[0],
-      });
     }
   }
-
-  render() {
-    // console.log(this.state.idListTheaterMovie);
-    // console.log(this.state.ObjectTheater);
-    //vong2 lap vo cuk
-    // console.log(this.props.detailMovie);
+  changePage = () => {
+    if (JSON.parse(localStorage.getItem("user")) === null) {
+      this.props.history.push("/form");
+    }else{
+      if (this.state.maLichChieu) {
+        this.props.history.push(`/booking/${this.state.maLichChieu}`)
+       }
+    }
+  
+  }
+  renderAll = () => {
     let { detailMovie } = this.props;
     let moment = require("moment");
-    console.log(this.props.detailMovie);
-    // {this.renderIdTime()}
-    // if (detailMovie) {
-    return (
-      // <div>
-      // {/* {this.renderTable()} */}
-      // {/* </div> */}
-      <div className="background-detail">
+    if (detailMovie) {
+       return (
+        <div className="background-detail">
         <div className="name__content">
           <div className="name__background">
             <div className="name__picture">
@@ -313,12 +288,12 @@ class DeatailMovie extends Component {
                   <span className="c18">C18</span>
                   <span className="name_movie">{detailMovie.tenPhim}</span>
                   <div className="buy-ticket_De">
-                    <Link
-                      to={`/booking/${this.state.maLichChieu}`}
+                    <button
+                    onClick={this.changePage}
                       className="btn_buy_ticket"
                     >
                       Mua vé
-                    </Link>
+                    </button>
                   </div>
                 </div>
                 <div className="col-2">
@@ -635,7 +610,27 @@ class DeatailMovie extends Component {
           </div>
         </div>
       </div>
+       )
+    }
+  }
+  render() {
+    // console.log(this.state.idListTheaterMovie);
+    // console.log(this.state.ObjectTheater);
+    //vong2 lap vo cuk
+    // console.log(this.props.detailMovie);
+   
+    console.log(this.props.detailMovie);
+    // {this.renderIdTime()}
+    if (this.props.loading){
+      return <Loading />
+    }else {
+    return (
+      <div>
+       {this.renderAll()}
+      </div>
+      
     );
+  }
   }
 }
 // }
@@ -654,6 +649,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     detailMovie: state.movieReducer.detailMovie,
+    loading: state.movieReducer.loading
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(DeatailMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DeatailMovie));

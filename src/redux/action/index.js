@@ -18,23 +18,11 @@ export const actGetListMovieAPI = () => {
   };
 };
 // get detail Movie
-export const actGetDetailMovieAPI = (id) => {
-  return (dispatch) => {
-    Axios({
-      method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
-    })
-      .then((rs) => {
-        dispatch(actGetDetailMovie(rs.data));
-      })
-      .catch((err) => {
-        console.log({ ...err });
-      });
-  };
-};
 
+// hihi
 export const actGetListChairBookingAPI = (id) => {
   return (dispatch) => {
+    dispatch(actGetDetailMovieStartedBooking());
     Axios({
       method: "GET",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
@@ -44,10 +32,30 @@ export const actGetListChairBookingAPI = (id) => {
         console.log(rs.data);
       })
       .catch((err) => {
-        console.log(err);
+       dispatch(actGetDetailMovieEndBooking(err.response.data))
       });
   };
 };
+export const actGetListChairBooking = (listChair) => {
+  return {
+    type: ActionType.GET_LIST_CHAIR_BOOKING,
+    data: listChair,
+  };
+};
+export const actGetDetailMovieStartedBooking = () => {
+  return{
+    type: "STARBOOKING",
+    
+  }
+}
+export const actGetDetailMovieEndBooking = (messenger) => {
+  return{
+    type: "ENDBOOKING",
+    data: messenger
+  }
+}
+
+
 
 // lấy danh sách cụm rạp
 export const actGetInformationShowTimesAPI = (idMovie) => {
@@ -94,12 +102,7 @@ export const actGetInformationShowTimes = (listShowTimes) => {
   };
 };
 
-export const actGetListChairBooking = (listChair) => {
-  return {
-    type: ActionType.GET_LIST_CHAIR_BOOKING,
-    data: listChair,
-  };
-};
+
 
 export const actGetListMovie = (listMovie) => {
   return {
@@ -108,9 +111,40 @@ export const actGetListMovie = (listMovie) => {
   };
 };
 
+export const actGetDetailMovieAPI = (id) => {
+  return (dispatch) => {
+    dispatch(actGetDetailMovieStarted());
+    Axios({
+      method: "GET",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+    })
+      .then((rs) => {
+        dispatch(actGetDetailMovie(rs.data));
+      })
+      .catch((err) => {
+        console.log(actGetDetailMovieEnd(err.response.data));
+      });
+  };
+};
+
+
 export const actGetDetailMovie = (detailMovie) => {
   return {
     type: ActionType.GET_DETAIL_MOVIE,
     data: detailMovie,
   };
 };
+export const actGetDetailMovieStarted = () => {
+  return{
+    type: "STAR",
+    
+  }
+}
+export const actGetDetailMovieEnd = (messenger) => {
+  return{
+    type: "END",
+    data: messenger
+  }
+}
+
+
