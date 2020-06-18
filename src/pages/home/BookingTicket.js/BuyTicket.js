@@ -4,53 +4,58 @@ import SeatUpLoad from "./SeatUpLoad";
 import Swal from "sweetalert2";
 import Axios from "axios";
 export default class BuyTicket extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      maLichChieu: null, 
+      maLichChieu: null,
       maGhe: null,
       giaVe: null,
-    }
+      hiddenBooking: false,
+      buyTicketBooking: [],
+    };
   }
-  handleSuccess = () => {
-    Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
-  };
+
   renderSum = () => {
     return this.props.buyTicket.reduce((sum, item) => {
       return (sum += item.giaVe);
     }, 0);
   };
   booking = () => {
-    let user  = JSON.parse(localStorage.getItem("user"));
-   if (this.props.buyTicket) {
-     console.log(this.props.buyTicket.maGhe);
-     console.log(this.props.buyTicket.giaVe);
-    let arrBooking = [];
-    arrBooking = this.props.buyTicket.map((item)=>{
-      return {"maGhe": item.maGhe, "giaVe": item.giaVe}
-    }) 
-     
-    Axios({
-      method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-      data: {
-        "maLichChieu": this.state.maLichChieu,
-        "danhSachVe": arrBooking,
-        "taiKhoanNguoiDung": user.taiKhoan
-      },
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`
-      }
-    })
-    .then((rs)=>{
-      Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
-    })
-    .catch((error)=>{
-      Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");      
-    })
-   }
-  }
-  
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (this.props.buyTicket) {
+      console.log(this.props.buyTicket.maGhe);
+      console.log(this.props.buyTicket.giaVe);
+      let arrBooking = [];
+      arrBooking = this.props.buyTicket.map((item) => {
+        return { maGhe: item.maGhe, giaVe: item.giaVe };
+      });
+
+      Axios({
+        method: "POST",
+        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+        data: {
+          maLichChieu: this.state.maLichChieu,
+          danhSachVe: arrBooking,
+          taiKhoanNguoiDung: user.taiKhoan,
+        },
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+        .then((rs) => {
+          if (this.props.buyTicket.length > 0) {
+            Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
+          }else{
+            Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");
+          }
+         
+        })
+        .catch((error) => {
+          Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");
+        });
+    }
+  };
+
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
 
@@ -77,17 +82,20 @@ export default class BuyTicket extends Component {
     console.log(nextProps);
     this.setState({
       maLichChieu: nextProps.FilmInfo.maLichChieu,
+      buyTicketBooking: nextProps.buyTicket,
+      hiddenBooking: true,
+
       // maGhe: nextProps.buyTicket.maGhe,
-      // giaVe: 
-    })
+      // giaVe:
+    });
   }
   render() {
-    let user =  JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem("user"));
     console.log(this.props.buyTicket);
     // console.log(this.props.FilmInfo.maLichChieu);
-    
+
     // console.log(JSON.parse(localStorage.getItem("user").taiKhoan));
-    
+
     let { buyTicket } = this.props;
     return (
       <div>
@@ -95,7 +103,9 @@ export default class BuyTicket extends Component {
           <div class="right__content">
             <div class="row right__total">
               <div class="col-12">
-                <p class="right__cash">{this.renderSum().toLocaleString()} VNĐ</p>
+                <p class="right__cash">
+                  {this.renderSum().toLocaleString()} VNĐ
+                </p>
               </div>
             </div>
             {this.renderInforFilm()}
@@ -109,7 +119,7 @@ export default class BuyTicket extends Component {
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-              <p>Phone: {user.phone}</p>
+                <p>Phone: {user.phone}</p>
               </div>
             </div>
             <div class="row right__voucher">
@@ -131,9 +141,14 @@ export default class BuyTicket extends Component {
             <div class="row right__methodPay">
               <div class="col-12">
                 <p class="right__titleMethodPay">Hình thức thanh toán</p>
-                {this.props.buyTicket.length === 0 ? (<p class="right__warning">
-                  Vui lòng chọn ghế để hiển thị phương thức thanh toán phù hợp.
-                </p>) : ("")}
+                {this.props.buyTicket.length === 0 ? (
+                  <p class="right__warning">
+                    Vui lòng chọn ghế để hiển thị phương thức thanh toán phù
+                    hợp.
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div class="row right__notice">
@@ -160,6 +175,6 @@ export default class BuyTicket extends Component {
   }
 }
 // malichChieu num
-// danh sách vé 
+// danh sách vé
 // tentaiKhoan
 // token
