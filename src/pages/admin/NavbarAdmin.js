@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import FaceIcon from "@material-ui/icons/Face";
 import { pink } from "@material-ui/core/colors";
-import { orange } from "@material-ui/core/colors";
+import { black } from "@material-ui/core/colors";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
   left: {
     textAlign: "center",
   },
+  icon: {
+    color: "#212121",
+    fontSize: 200
+  },
+  span: {
+     color: "#212121",
+     width: 100,
+     height: 2
+
+  }
 }));
 export default function NavbarAdmin() {
   const classes = useStyles();
@@ -65,8 +75,9 @@ export default function NavbarAdmin() {
     <Grid className={classes.leftTable} item xs={12} sm={2}>
       <div className={classes.left}>
         <div className={classes.leftUp}>
-          <FaceIcon style={{ color: orange[500], fontSize: 50 }} />
+          <FaceIcon className={classes.icon} />
         </div>
+        <span className={classes.span}></span>
         <div className={classes.leftUp1}>
           <NavLink
             style={{ textDecoration: "none" }}
