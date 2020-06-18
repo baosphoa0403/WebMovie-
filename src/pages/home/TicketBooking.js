@@ -54,6 +54,7 @@ class TicketBooking extends Component {
           <BuyTicket
             buyTicket={this.state.listChair}
             FilmInfo={this.props.listChair.thongTinPhim}
+            listChair={this.state.listChair}
           />
         </div>
       );
