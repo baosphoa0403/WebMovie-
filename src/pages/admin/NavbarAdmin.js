@@ -1,27 +1,91 @@
-import React from "react";
-import {NavLink} from "react-router-dom"
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import FaceIcon from "@material-ui/icons/Face";
+import { pink } from "@material-ui/core/colors";
+import { orange } from "@material-ui/core/colors";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+
+  leftTable: {
+    // backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.black,
+    // padding: theme.spacing(2),
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    padding: "0 30px",
+  },
+  leftUp: {
+    marginBottom: "30px",
+    marginTop: "10px",
+    textDecoration: "none",
+  },
+  leftUp1: {
+    marginLeft: "-9px",
+    marginBottom: "30px",
+    marginTop: "10px",
+    textDecoration: "none",
+  },
+  left: {
+    textAlign: "center",
+  },
+}));
 export default function NavbarAdmin() {
+  const classes = useStyles();
+
   return (
-    <div>
-      <nav className="navbar navbar-expand-sm bg-primary navbar-light">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" >
-              hello admin
-            </a>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link"  to="/admin/dashboardUser" exact>
-              dashboard USER
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/admin/dashboardMovie" exact>
-              dashboard MOVIE
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    // <div>
+    //   <nav className="navbar navbar-expand-sm bg-primary navbar-light">
+    //     <ul className="navbar-nav">
+    //       <li className="nav-item active">
+    //         <a className="nav-link" >
+    //           hello admin
+    //         </a>
+    //       </li>
+    //       <li className="nav-item">
+    //         <NavLink className="nav-link"  to="/admin/dashboardUser" exact>
+    //           dashboard USER
+    //         </NavLink>
+    //       </li>
+    //       <li className="nav-item">
+    //         <NavLink className="nav-link" to="/admin/dashboardMovie" exact>
+    //           dashboard MOVIE
+    //         </NavLink>
+    //       </li>
+    //     </ul>
+    //   </nav>
+    // </div>
+    <Grid className={classes.leftTable} item xs={12} sm={2}>
+      <div className={classes.left}>
+        <div className={classes.leftUp}>
+          <FaceIcon style={{ color: orange[500], fontSize: 50 }} />
+        </div>
+        <div className={classes.leftUp1}>
+          <NavLink
+            style={{ textDecoration: "none" }}
+            to="/admin/dashboardUser"
+            exact
+          >
+            DashBoard USER
+          </NavLink>
+        </div>
+        <div className={classes.leftUp2}>
+          <NavLink
+            style={{ textDecoration: "none" }}
+            to="/admin/dashboardMovie"
+            exact
+          >
+            DashBoard MOVIE
+          </NavLink>
+        </div>
+      </div>
+    </Grid>
   );
 }
