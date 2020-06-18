@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import icon123 from "../../../images/img/exclamation.png";
 import SeatUpLoad from "./SeatUpLoad";
 import Swal from "sweetalert2";
+import Axios from "axios";
 export default class BuyTicket extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      maLichChieu: null, 
+      maGhe: null,
+      giaVe: null,
+    }
+  }
   handleSuccess = () => {
     Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
   };
@@ -11,12 +20,42 @@ export default class BuyTicket extends Component {
       return (sum += item.giaVe);
     }, 0);
   };
-
+  booking = () => {
+    let user  = JSON.parse(localStorage.getItem("user"));
+   if (this.props.buyTicket) {
+     console.log(this.props.buyTicket.maGhe);
+     console.log(this.props.buyTicket.giaVe);
+    let arrBooking = [];
+    arrBooking = this.props.buyTicket.map((item)=>{
+      return {"maGhe": item.maGhe, "giaVe": item.giaVe}
+    }) 
+     
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+      data: {
+        "maLichChieu": this.state.maLichChieu,
+        "danhSachVe": arrBooking,
+        "taiKhoanNguoiDung": user.taiKhoan
+      },
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`
+      }
+    })
+    .then((rs)=>{
+      Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
+    })
+    .catch((error)=>{
+      Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");      
+    })
+   }
+  }
+  
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
 
     if (FilmInfo) {
-      console.log(this.props.FilmInfo);
+      console.log(this.props.FilmInfo.maLichChieu);
       return (
         <div class="row right__filmName">
           <div class="col-12 right__text">
@@ -34,10 +73,20 @@ export default class BuyTicket extends Component {
     }
   };
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.BuyTicket);
+    // console.log(this.props.BuyTicket);
     console.log(nextProps);
+    this.setState({
+      maLichChieu: nextProps.FilmInfo.maLichChieu,
+      // maGhe: nextProps.buyTicket.maGhe,
+      // giaVe: 
+    })
   }
   render() {
+    console.log(this.props.buyTicket);
+    // console.log(this.props.FilmInfo.maLichChieu);
+    
+    // console.log(JSON.parse(localStorage.getItem("user").taiKhoan));
+    
     let { buyTicket } = this.props;
     return (
       <div>
@@ -103,7 +152,7 @@ export default class BuyTicket extends Component {
               </div>
             </div>
           </div>
-          <div class="right__button" onClick={this.handleSuccess}>
+          <div class="right__button" onClick={this.booking}>
             Đặt Vé
           </div>
         </div>
