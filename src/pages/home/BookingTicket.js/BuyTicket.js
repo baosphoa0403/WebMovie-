@@ -14,12 +14,6 @@ export default class BuyTicket extends Component {
       buyTicketBooking: [],
     };
   }
-
-  renderSum = () => {
-    return this.props.buyTicket.reduce((sum, item) => {
-      return (sum += item.giaVe);
-    }, 0);
-  };
   booking = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (this.props.buyTicket) {
@@ -29,7 +23,6 @@ export default class BuyTicket extends Component {
       arrBooking = this.props.buyTicket.map((item) => {
         return { maGhe: item.maGhe, giaVe: item.giaVe };
       });
-
       Axios({
         method: "POST",
         url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
@@ -45,10 +38,13 @@ export default class BuyTicket extends Component {
         .then((rs) => {
           if (this.props.buyTicket.length > 0) {
             Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
-          }else{
-            Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");
+          } else {
+            Swal.fire(
+              "Đặt không vé thành công !",
+              "Vui lòng chọn ghế",
+              "error"
+            );
           }
-         
         })
         .catch((error) => {
           Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");
@@ -56,11 +52,17 @@ export default class BuyTicket extends Component {
     }
   };
 
+  renderSum = () => {
+    return this.props.buyTicket.reduce((sum, item) => {
+      return (sum += item.giaVe);
+    }, 0);
+  };
+
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
 
     if (FilmInfo) {
-      console.log(this.props.FilmInfo.maLichChieu);
+      console.log(this.props.FilmInfo);
       return (
         <div class="row right__filmName">
           <div class="col-12 right__text">
@@ -77,6 +79,11 @@ export default class BuyTicket extends Component {
       );
     }
   };
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(this.props.BuyTicket);
+  //   console.log(nextProps);
+  // }
+
   componentWillReceiveProps(nextProps) {
     // console.log(this.props.BuyTicket);
     console.log(nextProps);
@@ -84,19 +91,13 @@ export default class BuyTicket extends Component {
       maLichChieu: nextProps.FilmInfo.maLichChieu,
       buyTicketBooking: nextProps.buyTicket,
       hiddenBooking: true,
-
       // maGhe: nextProps.buyTicket.maGhe,
       // giaVe:
     });
   }
   render() {
-    let user = JSON.parse(localStorage.getItem("user"));
-    console.log(this.props.buyTicket);
-    // console.log(this.props.FilmInfo.maLichChieu);
-
-    // console.log(JSON.parse(localStorage.getItem("user").taiKhoan));
-
     let { buyTicket } = this.props;
+
     return (
       <div>
         <div class="right">
@@ -114,12 +115,14 @@ export default class BuyTicket extends Component {
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                <p>E-Mail: {user.email}</p>
+                <input type="text" name="" id="" class="content" />
+                <label for="emailCheckout">E-Mail</label>
               </div>
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                <p>Phone: {user.phone}</p>
+                <input type="text" name="" id="" class="content" />
+                <label for="phoneCheckout">Phone</label>
               </div>
             </div>
             <div class="row right__voucher">
@@ -141,14 +144,9 @@ export default class BuyTicket extends Component {
             <div class="row right__methodPay">
               <div class="col-12">
                 <p class="right__titleMethodPay">Hình thức thanh toán</p>
-                {this.props.buyTicket.length === 0 ? (
-                  <p class="right__warning">
-                    Vui lòng chọn ghế để hiển thị phương thức thanh toán phù
-                    hợp.
-                  </p>
-                ) : (
-                  ""
-                )}
+                <p class="right__warning">
+                  Vui lòng chọn ghế để hiển thị phương thức thanh toán phù hợp.
+                </p>
               </div>
             </div>
             <div class="row right__notice">
@@ -174,7 +172,3 @@ export default class BuyTicket extends Component {
     );
   }
 }
-// malichChieu num
-// danh sách vé
-// tentaiKhoan
-// token
