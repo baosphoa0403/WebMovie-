@@ -3,7 +3,9 @@ import avatar1 from "../../../images/img/avatar.png";
 import avatar2 from "../../../images/img/align-left.png";
 
 export default class HeaderBooking extends Component {
+ 
   render() {
+    let user =  JSON.parse(localStorage.getItem("user"));
     return (
       <div>
         <div class="header">
@@ -22,7 +24,7 @@ export default class HeaderBooking extends Component {
               <div class="header__colRight">
                 <div class="header__user">
                   <img src={avatar1} alt="avatar" />
-                  <span>User</span>
+                  <span>{user.taiKhoan}</span>
                 </div>
               </div>
             </div>
