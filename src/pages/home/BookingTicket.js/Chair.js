@@ -9,6 +9,8 @@ export default class Chair extends Component {
   }
   render() {
     let { item } = this.props;
+    console.log( this.state.isBooking);
+    
     return (
       <div>
         {item.daDat === true ? (
@@ -20,7 +22,26 @@ export default class Chair extends Component {
             {item.tenGhe}
           </div>
         ) : (
-          <div
+          // <div
+          //   key={item.maGhe}
+          //   className={
+          //     !this.state.isBooking
+          //       ? "seatCheckOut__item"
+          //       : "seatCheckOut__item_Active"
+          //   }
+          //   onClick={() => {
+          //     this.props.addTicket(item, this.state.isBooking);
+          //     {
+          //       !this.state.isBooking
+          //         ? this.setState({ isBooking: true })
+          //         : this.setState({ isBooking: false });
+          //     }
+          //   }}
+          // >
+          //   {item.tenGhe}
+          // </div>
+          item.loaiGhe==="Thuong" ? (
+            <div
             key={item.maGhe}
             className={
               !this.state.isBooking
@@ -38,6 +59,26 @@ export default class Chair extends Component {
           >
             {item.tenGhe}
           </div>
+          ) : (
+            <div 
+            key={item.maGhe}
+            className={
+              !this.state.isBooking
+                ? "seatCheckOut__item Vip"
+                : "seatCheckOut__item_Active Vip"
+            }
+            onClick={() => {
+              this.props.addTicket(item, this.state.isBooking);
+              {
+                !this.state.isBooking
+                  ? this.setState({ isBooking: true })
+                  : this.setState({ isBooking: false });
+              }
+            }}
+          >
+            {item.tenGhe}
+          </div>
+          ) 
         )}
       </div>
     );

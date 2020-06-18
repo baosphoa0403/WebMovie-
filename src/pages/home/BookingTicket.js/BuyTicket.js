@@ -10,7 +10,9 @@ export default class BuyTicket extends Component {
 
   renderInforFilm = () => {
     let { FilmInfo } = this.props;
+      
     if (FilmInfo) {
+      console.log(this.props.FilmInfo);
       return (
         <div class="row right__filmName">
           <div class="col-12 right__text">
@@ -32,7 +34,7 @@ export default class BuyTicket extends Component {
     console.log(nextProps);
   }
   render() {
-    console.log(this.props.BuyTicket);
+
     let { buyTicket } = this.props;
 
     return (
@@ -41,7 +43,7 @@ export default class BuyTicket extends Component {
           <div class="right__content">
             <div class="row right__total">
               <div class="col-12">
-                <p class="right__cash">{this.renderSum()} VNĐ</p>
+                <p class="right__cash">{this.renderSum().toLocaleString()} VNĐ</p>
               </div>
             </div>
             {this.renderInforFilm()}

@@ -38,48 +38,23 @@
     width: 200px;
   }
 }
-// @media screen and (max-width: getBreakpoint("large")) {
-//   .search_bar {
-//     max-width: 840px;
-//     height: 70px;
-//     .buyTicket {
-//       padding: 8px 12px;
-//       font-size: 12px;
-//     }
-//   }
-// }
 
-@media screen and (max-width: 315px) {
+//13inch
+@media screen and (max-width: 1440px) {
+  .search_bar {
+    margin-left: 40px;
+    height: 80px;
+    .buyTicket {
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+  }
+}
+//IP X
+@media screen and (max-width: 1024px) {
   .carousel {
     .search_bar {
-      max-width: 0px;
       display: none;
     }
   }
-  // .search_bar {
-  //   max-width: 700px;
-  //   height: 60px;
-  //   .buyTicket {
-  //     padding: 7px 12px;
-  //     font-size: 10px;
-  //   }
-  //   .MuiInputBase-root {
-  //     font-size: 0px;
-  //   }
-  //   .input{
-  //     width: 10px;
-  //   }
-  // }
 }
-
-// @media screen and (max-width: getBreakpoint("small")) {
-//   .search_bar {
-//     max-width: 500px;
-//     height: 50px;
-
-//     .buyTicket {
-//       padding: 5px 10px;
-//       font-size: 8px;
-//     }
-//   }
-// }

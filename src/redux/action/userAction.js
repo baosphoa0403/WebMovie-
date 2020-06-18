@@ -46,9 +46,15 @@ export const actCheckSignInUser = (user, history) => {
         }).then((rs)=>{
            console.log(rs);
            if (rs.data.maLoaiNguoiDung === "KhachHang") {
-               localStorage.setItem("user", JSON.stringify(rs.data));
-               history.push("/"); 
-               dispatch(actPostUser(rs.data));
+               if (JSON.parse(localStorage.getItem("maLichChieu")) !== null) {
+                history.push(`/booking/${JSON.parse(localStorage.getItem("maLichChieu"))}`)
+                localStorage.setItem("user", JSON.stringify(rs.data));
+                dispatch(actPostUser(rs.data));
+               }else{
+                localStorage.setItem("user", JSON.stringify(rs.data));
+                history.push("/"); 
+                dispatch(actPostUser(rs.data));
+               }
            }else {
                alert("tài khoản bị sai");
            }

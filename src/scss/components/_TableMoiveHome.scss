@@ -1,0 +1,97 @@
+.info__items_Home {
+  p {
+    margin: 0;
+  }
+  .info__cinema_Home {
+    display: block;
+    position: relative;
+    padding: spacing(2) spacing(3.5) spacing(1.5) spacing(4);
+    padding-bottom: 45px;
+    &::after {
+      content: " ";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%);
+      width: calc(100% - 80px);
+      border-bottom: 1px solid rgba(238, 238, 238, 0.88);
+    }
+    &:hover {
+      opacity: 1;
+    }
+    &.active {
+      opacity: 1;
+    }
+    .info__picture_Home {
+      float: left;
+      width: spacing(5);
+      img {
+        width: 100%;
+      }
+    }
+    .info__text_Home {
+      padding-left: spacing(7);
+      cursor: pointer;
+      p {
+        line-height: 1.4;
+        margin: 0;
+      }
+      .info__nameMovieCinema_Home {
+        margin-top: 17px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 500;
+        color: black;
+      }
+      .info__infoMovieCinema_Home {
+        text-align: left;
+        font-size: 12px;
+        color: #949494;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .Home_coll {
+      .time_setup {
+        display: flex;
+        .time_render {
+          .time {
+            .info__timeBegin_Home {
+              margin-right: 12px;
+              border: 1px solid #e4e4e4;
+              padding: 13px;
+              text-align: center;
+              border-radius: 12px;
+              color: $color1;
+              background-color: rgba(246,246,246,.5);
+            }
+          }
+        }
+      }
+      .info__time_Home {
+        margin-right: 25px;
+        margin-top: 50px;
+        text-align: left;
+        .info__2D_Home {
+          color: black;
+          margin-bottom: 18px;
+        }
+
+        .info__timeBegin_Home {
+          margin-top: 5px;
+          border: 1px solid gray;
+          border-radius: 10px;
+          padding: 0px 10px;
+          color: rgba(253, 178, 18, 0.984);
+          margin: 0px 3px;
+        }
+        .info__timeEnd_Home {
+          color: #9c9c9c;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

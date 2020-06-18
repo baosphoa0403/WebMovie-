@@ -4,19 +4,6 @@ import * as action from "../../redux/action";
 import { Link } from "react-router-dom";
 import PlayVideo from "../../images/img/play-video.png";
 import avarta from "../../images/img/avatar.png";
-import star from "../../images/img/s1.png";
-import logoBHD from "../../images/img/Contact/bhd.png";
-import logoCGV from "../../images/img/Contact/cgv.png";
-import logoGalaxy from "../../images/img/Contact/galaxycine.png";
-import cinemaCGV1 from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
-import cinemaCGV2 from "../../images/img/CineContact/cgv-dau-do.jpg";
-import cinemaxBHD1 from "../../images/img/CineContact/bhd-star-pham-hung.jpg";
-import cinemaxBHD2 from "../../images/img/CineContact/bhd-star-vincom-le-van-viet.jpg";
-import cinemaxBHD3 from "../../images/img/CineContact/bhd-star-vincom-quang-trung.jpg";
-import cinemaxBHD4 from "../../images/img/CineContact/bhd-star-vincom.jpg";
-import cinemaxGalaxy1 from "../../images/img/CineContact/galaxy-huynh-tan-phat.jpg";
-import cinemaxGalaxy2 from "../../images/img/CineContact/galaxy-linh-trung.jpg";
-import cinemaxGalaxy3 from "../../images/img/CineContact/galaxy-nguyen-van-qua.jpg";
 import imgCGV from "../../images/img/CineContact/cgv-aeon-binh-tan.jpg";
 import imgBHD from "../../images/img/CineContact/bhd-star-vincom-quang-trung.jpg";
 import imgGalaxy from "../../images/img/CineContact/galaxy-huynh-tan-phat.jpg";
@@ -24,6 +11,10 @@ import imgLotteCinima from "../../images/img/CineContact/lotte-cinema-go-vap.jpg
 import imgCineStar from "../../images/img/CineContact/ddc-dong-da.jpg";
 import imgMega from "../../images/img/CineContact/mega-gs-cao-thang.jpg";
 import Axios from "axios";
+import DetailDay from "./DetailDay";
+import { withRouter } from "react-router";
+import Loading from "../../components/Loading";
+import Dialog1 from "../../components/Dialog";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -35,80 +26,98 @@ class DeatailMovie extends Component {
       idTheater: null,
       theater: {},
       img: imgCGV,
-      maLichChieu: null
+      maLichChieu: null,
+      isOpen: false,
+      detailMovie: {}
     };
   }
+  openDay = () => {
+    if (this.state.isOpen === false) {
+      this.setState({
+        isOpen: true,
+      });
+    } else {
+      this.setState({
+        isOpen: false,
+      });
+    }
+  };
   componentDidMount() {
     let id = this.props.match.params.id;
-    console.log(id);
+    // console.log(id);
     this.props.getDetailMovie(id);
     Axios({
       method: "GET",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
     })
       .then((rs) => {
         // console.log(rs.data);
         this.setState({
-          listTheater: rs.data
-        })
+          listTheater: rs.data,
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }
+  // lấy mã hệ thống  để render hình ảnh
   handleOnChangeId = (idTheater) => {
-   console.log(idTheater);
-   if (this.props.detailMovie) {
-     let arrayTheater = this.props.detailMovie.lichChieu.filter((theater)=>{
-          return theater.thongTinRap.maHeThongRap === idTheater
-     })
-    //  console.log(arrayTheater[0].thongTinRap);
-     this.setState({
-       theater: arrayTheater[0],
-       idTheater: idTheater
-     }, ()=>{
-       console.log(this.state.theater, this.state.idTheater);
-       this.renderImg();
-     })
-     
-  }
-}
-renderImg = () => {
-  if (this.state.idTheater) {
-    let imgUpdate = null;
-    switch (this.state.idTheater) {
-      case "BHDStar":
-        imgUpdate = imgBHD;
-        break;
-      case "CGV":
-        imgUpdate = imgCGV;
-        break;
-      case "CineStar":
-        imgUpdate = imgCineStar;
-        break;
-      case "Galaxy":
-        imgUpdate = imgGalaxy;
-        break;
-      case "LotteCinima":
-        imgUpdate = imgLotteCinima;
-        break;
-      case "MegaGS":
-        imgUpdate = imgMega;
-        break;
-      default:
-        break;
-   
+    console.log(idTheater);
+    if (this.props.detailMovie) {
+      let arrayTheater = this.props.detailMovie.lichChieu.filter((theater) => {
+        return theater.thongTinRap.maHeThongRap === idTheater;
+      });
+      //  console.log(arrayTheater[0].thongTinRap);
+      this.setState(
+        {
+          theater: arrayTheater[0],
+          idTheater: idTheater,
+        },
+        () => {
+          console.log(this.state.theater, this.state.idTheater);
+          this.renderImg();
+        }
+      );
     }
-    this.setState({img: imgUpdate})
-  }
-};
+  };
+  renderImg = () => {
+    if (this.state.idTheater) {
+      let imgUpdate = null;
+      switch (this.state.idTheater) {
+        case "BHDStar":
+          imgUpdate = imgBHD;
+          break;
+        case "CGV":
+          imgUpdate = imgCGV;
+          break;
+        case "CineStar":
+          imgUpdate = imgCineStar;
+          break;
+        case "Galaxy":
+          imgUpdate = imgGalaxy;
+          break;
+        case "LotteCinima":
+          imgUpdate = imgLotteCinima;
+          break;
+        case "MegaGS":
+          imgUpdate = imgMega;
+          break;
+        default:
+          break;
+      }
+      this.setState({ img: imgUpdate });
+    }
+  };
   renderLogo = () => {
     if (this.state.listTheaterRender) {
       return this.state.listTheaterRender.map((theater, index) => {
         return (
           <a
-           onClick = {()=>{this.handleOnChangeId(theater.maHeThongRap)}}
-            key = {index}
+            onClick={() => {
+              this.handleOnChangeId(theater.maHeThongRap);
+            }}
+            key={index}
             className="nav-link active"
             id="v-pills-CGV-tab"
             data-toggle="pill"
@@ -126,162 +135,141 @@ renderImg = () => {
   componentWillUnmount() {
     this.props.resetDetailMovie();
   }
-  renderTheater = () => {    
+  renderTheater = () => {
     if (this.state.theater.thongTinRap) {
       console.log(this.state.theater);
-      
+
       return (
-       <div className="info__items">
-       <p>
-         <a
-           data-toggle="collapse"
-           href="#VincomGV"
-           role="button"
-           aria-expanded="false"
-           aria-controls="VincomGV"
-         ></a>
-       </p>
-       <div className="info__cinema active">
-         <a
-           data-toggle="collapse"
-           href="#VincomGV"
-           role="button"
-           aria-expanded="false"
-           aria-controls="VincomGV"
-         >
-           <div className="info__picture">
-             <img
-               src={this.state.img}
-               alt="CGV"
-             />
-           </div>
-         </a>
-         <div className="info__text">
-           <a
-             data-toggle="collapse"
-             href="#VincomGV"
-             role="button"
-             aria-expanded="false"
-             aria-controls="VincomGV"
-           >
-             <p className="info__nameMovieCinema">
-               <span className="info__colorCinema">
-                {this.state.theater.thongTinRap.maHeThongRap}
-               </span>{" "}
-               - {this.state.theater.thongTinRap.tenCumRap}
-             </p>
-             <p className="info__infoMovieCinema">
-               Tầng 5 TTTM Vincom Plaza Gò Vấp, 12
-               Phan Văn Trị, Phường 7, Quận Gò Vấp
-             </p>
-           </a>
-           <p className="info__showingDetailCinema">
-             <a
-               data-toggle="collapse"
-               href="#VincomGV"
-               role="button"
-               aria-expanded="false"
-               aria-controls="VincomGV"
-             />
-             <a href="#">[chi tiết]</a>
-           </p>
-         </div>
-         {this.renderTime()}
-       </div>
-       <p />
-     </div>
-      )
+        <div className="info__items">
+          <p>
+            <a
+              data-toggle="collapse"
+              href="#VincomGV"
+              role="button"
+              aria-expanded="false"
+              aria-controls="VincomGV"
+            ></a>
+          </p>
+          <div className="info__cinema active">
+            <a
+              data-toggle="collapse"
+              href="#VincomGV"
+              role="button"
+              aria-expanded="false"
+              aria-controls="VincomGV"
+            >
+              <div className="info__picture" onClick={this.openDay}>
+                <img src={this.state.img} alt="CGV" />
+              </div>
+            </a>
+            <div className="info__text">
+              <a
+                data-toggle="collapse"
+                href="#VincomGV"
+                role="button"
+                aria-expanded="false"
+                aria-controls="VincomGV"
+              >
+                <p className="info__nameMovieCinema">
+                  <span className="info__colorCinema">
+                    {this.state.theater.thongTinRap.maHeThongRap}
+                  </span>{" "}
+                  - {this.state.theater.thongTinRap.tenCumRap}
+                </p>
+                <p className="info__infoMovieCinema">
+                  Tầng 5 TTTM Vincom Plaza Gò Vấp, 12 Phan Văn Trị, Phường 7,
+                  Quận Gò Vấp
+                </p>
+              </a>
+              <p className="info__showingDetailCinema">
+                <a
+                  data-toggle="collapse"
+                  href="#VincomGV"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="VincomGV"
+                />
+                <a href="#">[chi tiết]</a>
+              </p>
+            </div>
+            {!this.state.isOpen ? (
+              ""
+            ) : (
+              <div className="info_day">{this.renderDay()}</div>
+            )}
+            {/* {this.renderTime()} */}
+          </div>
+          <p />
+        </div>
+      );
     }
-  }
-  renderTime = () => {
+  };
+  renderDay = () => {
     let { detailMovie } = this.props;
     if (detailMovie.lichChieu) {
-      let arr = detailMovie.lichChieu.map((item)=>{
-           return (new Date(item.ngayChieuGioChieu).toLocaleTimeString())
-      })
+      let listDay = detailMovie.lichChieu.map((item) => {
+        return new Date(item.ngayChieuGioChieu).toLocaleDateString();
+      });
       // console.log(arr);
-      let arrFilter = arr.filter((item, index) => arr.indexOf(item) === index);
-      console.log(arrFilter);
-      
-      return arrFilter.map((time) => {
+      let arrDayFilter = listDay.filter(
+        (item, index) => listDay.indexOf(item) === index
+      );
+      console.log(arrDayFilter);
+      return arrDayFilter.map((day) => {
         return (
-          // <tr key={movie.maLichChieu}>
-          //   <td>{movie.thongTinRap.tenCumRap}</td>
-          //   <td>{movie.thongTinRap.tenRap}</td>
-          //   <td>{new Date(movie.ngayChieuGioChieu).toLocaleDateString()}</td>
-          //   <td>{new Date(movie.ngayChieuGioChieu).toLocaleTimeString()}</td>
-          //   <td>
-          //     <Link
-          //       className="btn btn-danger"
-          //       to={`/booking/${movie.maLichChieu}`}
-          //     >
-          //       Chọn ghế
-          //     </Link>
-          //   </td>
-          // </tr>
-          <div className="collapse" id="VincomGV">
-           <div className="info__time">
-             <p className="info__2D">2D Digital</p>
-             <Link type="button" to={`/booking/${this.state.maLichChieu}`}>
-               <span className="info__timeBegin">
-                {time}
-               </span>
-               <span className="info__timeEnd">
-                 {" "}
-                 ~ 17:09
-               </span>
-             </Link>
-           </div>
-         </div>
+          <DetailDay day={day} lichChieu={this.props.detailMovie.lichChieu} />
         );
       });
     }
   };
   componentWillReceiveProps(nextProps) {
-    // console.log(this.state.listTheater);
-    
+    console.log(this.nextProps);
     if (nextProps.detailMovie) {
-      let idListTheater = nextProps.detailMovie.lichChieu.map((theater) => {
-        return theater.thongTinRap.maHeThongRap;
-      });
-      let arr = [];
-      let arrFilter = idListTheater.filter((item, index) => idListTheater.indexOf(item) === index
-      );
-
-      for (const id of arrFilter) {
-        let theater = this.state.listTheater.find((theater)=>{
-            return theater.maHeThongRap === id
-        })
-        arr.push(theater);
+      if (nextProps.detailMovie.lichChieu) {
+        let idListTheater = nextProps.detailMovie.lichChieu.map((theater) => {
+          return theater.thongTinRap.maHeThongRap;
+        });
+        let arr = [];
+        let arrFilter = idListTheater.filter(
+          (item, index) => idListTheater.indexOf(item) === index
+        );
+  
+        for (const id of arrFilter) {
+          let theater = this.state.listTheater.find((theater) => {
+            return theater.maHeThongRap === id;
+          });
+          arr.push(theater);
+        }
+        let arr1 = nextProps.detailMovie.lichChieu.map((rap) => {
+          return rap.maLichChieu;
+        });
+        console.log(arr1);
+  
+        // console.log(arr);
+        this.setState({
+          listTheaterRender: arr,
+          maLichChieu: arr1[0],
+        });
+     
       }
-      let arr1 = nextProps.detailMovie.lichChieu.map((rap)=>{
-        return  rap.maLichChieu
-       })
-       console.log(arr1);
-       
-      // console.log(arr);
-      this.setState({
-        listTheaterRender: arr,
-        maLichChieu: arr1[0]
-      })
-
     }
   }
-
-  render() {
-    // console.log(this.state.idListTheaterMovie);
-    // console.log(this.state.ObjectTheater);
-    //vong2 lap vo cuk
-    // console.log(this.props.detailMovie);
+  changePage = () => {
+    if (JSON.parse(localStorage.getItem("user")) === null) {
+      this.props.history.push("/form");
+    }else{
+      if (this.state.maLichChieu) {
+        this.props.history.push(`/booking/${this.state.maLichChieu}`)
+       }
+    }
+  
+  }
+  renderAll = () => {
     let { detailMovie } = this.props;
-    console.log(this.props.detailMovie);
-    // {this.renderIdTime()}
-    // if (detailMovie) {
-    return (
-      // <div>
-      // {/* {this.renderTable()} */}
-      // {/* </div> */}
-      <div className="background-detail">
+    let moment = require("moment");
+    if (detailMovie) {
+       return (
+        <div className="background-detail">
         <div className="name__content">
           <div className="name__background">
             <div className="name__picture">
@@ -291,8 +279,9 @@ renderImg = () => {
             <div className="view">
               <div className="row">
                 <div className="col-3">
-                  <img src={detailMovie.hinhAnh} alt="" />
-                  <img className="play" src={PlayVideo} alt="play-video" />
+                  <img className="image" src={detailMovie.hinhAnh} alt="" />
+                  {/* <img className="play" src={PlayVideo} alt="play-video" /> */}
+                  <Dialog1 trailer={detailMovie.trailer}/>
                 </div>
                 <div className="col-5">
                   <p className="day">
@@ -300,13 +289,13 @@ renderImg = () => {
                   </p>
                   <span className="c18">C18</span>
                   <span className="name_movie">{detailMovie.tenPhim}</span>
-                  <div className="buy-ticket">
-                    <Link
-                      to={`/booking/${this.state.maLichChieu}`}
+                  <div className="buy-ticket_De">
+                    <button
+                    onClick={this.changePage}
                       className="btn_buy_ticket"
                     >
                       Mua vé
-                    </Link>
+                    </button>
                   </div>
                 </div>
                 <div className="col-2">
@@ -346,19 +335,6 @@ renderImg = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                id="pills-profile-tab"
-                data-toggle="pill"
-                href="#pills-profile"
-                role="tab"
-                aria-controls="pills-profile"
-                aria-selected="false"
-              >
-                Đánh Gía
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
                 id="pills-calendar-tab"
                 data-toggle="pill"
                 href="#pills-calendar"
@@ -382,7 +358,9 @@ renderImg = () => {
                 <div className="col-md-6 col-sm-12 hello">
                   <div className="info">
                     <p className="info__contentTitle">Ngày phát hành</p>
-                    <p className="info__contentInfo">13.03.2020</p>
+                    <p className="info__contentInfo">
+                      {moment(detailMovie.ngayKhoiChieu).format("DD/MM/YYYY")}
+                    </p>
                   </div>
                   <div className="info">
                     <p className="info__contentTitle">Đạo diễn</p>
@@ -409,16 +387,7 @@ renderImg = () => {
                 </div>
                 <div className="col-md-6 col-sm-12 info__colRight">
                   <p className="info__contentTitle">Nội dung</p>
-                  <p className="info__contentInfo">
-                    Dựa trên bộ truyên tranh bán chạy nhất, nam diễn viên Vin
-                    Diesel đảm nhận vai Ray Garrison, một người lính không may
-                    bị giết trong lúc ra trận và trở lại với vai trò là siêu anh
-                    hùng Bloodshot của tập đoàn RST. Với một đội quân công nghiệ
-                    nano trong huyết quản, anh ta là một lực lượng không thể
-                    ngăn cản, mạnh mẽ hơn bao giờ hết và có thể chữa lành ngay
-                    lập tực. Nhưng trong việc kiểm soát cơ thể của mình, công ty
-                    cũng đã thay đổi cả tâm trí và ký ức của anh ấy.
-                  </p>
+                  <p className="info__contentInfo">{detailMovie.moTa}</p>
                 </div>
               </div>
             </div>
@@ -431,21 +400,16 @@ renderImg = () => {
               <div className="infoShowReview">
                 <div className="row">
                   <div className="col-12">
-                    <span className="infoImgReviewer">
+                    {/* <span className="infoImgReviewer">
                       <img src={avarta} alt="avatar" />
-                    </span>
-                    <input
-                      type="text"
-                      name
-                      id
-                      className="info__inputReview"
-                      placeholder="Bạn nghĩ gì về phim này?"
-                    />
-                    {/* <span className="info__imgReviewerStar">
-                      <img src={star} alt="listStar" />
                     </span> */}
-
-                    {/* 372->2388 */}
+                    <input
+                      // type="text"
+                      // name
+                      // id
+                      className="info__inputReview"
+                      // placeholder="Bạn nghĩ gì về phim này?"
+                    />
                   </div>
                 </div>
               </div>
@@ -461,15 +425,13 @@ renderImg = () => {
                 <div className="row">
                   <div className="col-12">
                     <div className="parentListPCinemas">
-                      
-                     
                       <div
                         className="nav flex-column nav-pills"
                         id="v-pills-tab"
                         role="tablist"
                         aria-orientation="vertical"
                       >
-                         {this.renderLogo()}
+                        {this.renderLogo()}
                       </div>
                     </div>
                     <div className="listCinemas">
@@ -604,7 +566,7 @@ renderImg = () => {
                                 role="tabpanel"
                                 aria-labelledby="pills-wednesday-tab"
                               >
-                                 {this.renderTheater()}
+                                {this.renderTheater()}
                               </div>
                               <div
                                 className="tab-pane fade"
@@ -628,7 +590,7 @@ renderImg = () => {
                                 role="tabpanel"
                                 aria-labelledby="pills-saturday-tab"
                               >
-                                  {this.renderTheater()}
+                                {this.renderTheater()}
                               </div>
                               <div
                                 className="tab-pane fade"
@@ -650,7 +612,27 @@ renderImg = () => {
           </div>
         </div>
       </div>
+       )
+    }
+  }
+  render() {
+    // console.log(this.state.idListTheaterMovie);
+    // console.log(this.state.ObjectTheater);
+    //vong2 lap vo cuk
+    // console.log(this.props.detailMovie);
+   
+    console.log(this.props.detailMovie);
+    // {this.renderIdTime()}
+    if (this.props.loading){
+      return <Loading />
+    }else {
+    return (
+      <div>
+       {this.renderAll()}
+      </div>
+      
     );
+  }
   }
 }
 // }
@@ -669,6 +651,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     detailMovie: state.movieReducer.detailMovie,
+    loading: state.movieReducer.loading
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(DeatailMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DeatailMovie));

@@ -20,7 +20,9 @@ class SearchBar extends Component {
       btnValid: false,
     };
   }
-  arrayEmpty = ["Vui lòng chọn phim"];
+  // sẽ check nếu chưa có local thì chuyển trang zo trang đăng nhập => đăng nhập thành công trả về trang home 
+  // h mình muốn là đăng nhập thành công bắn qa bên tickbooking lun 
+  // thứ nhất cần có maLichChieu từ 
   renderTenPhim = () => {
     let { listMovie } = this.props;
     if (listMovie) {
@@ -191,6 +193,8 @@ class SearchBar extends Component {
       let rap = heThongRap.cumRapChieu.find((rap) => {
         return rap.tenCumRap === tenRap
       })
+      console.log(rap);
+      
       const listDay = new Set(rap.lichChieuPhim.map((lichChieu) => {
         return (new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString())
       }));
@@ -251,6 +255,7 @@ class SearchBar extends Component {
     }
   }
   getIDSee = () => {
+    var moment = require("moment");
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap, ngayXem, gioXem} = this.state;
     if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && gioXem && ngayXem) {
@@ -261,21 +266,29 @@ class SearchBar extends Component {
         return rap.tenCumRap === tenRap
       })
       const lichChieu = rap.lichChieuPhim.find((lichChieu)=>{
-        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString()) === gioXem) 
+        return ((new Date(lichChieu.ngayChieuGioChieu).toLocaleDateString()) === ngayXem && (moment(lichChieu.ngayChieuGioChieu).format("HH:mm:A")) === gioXem) 
       })
       this.setState({
         maLichChieu: lichChieu.maLichChieu
+      }, ()=>{
+        localStorage.setItem("maLichChieu", JSON.stringify(this.state.maLichChieu));
       })
-    
+   
      
     }
   }
   changePage = () => {
-   if (this.state.maLichChieu) {
-    this.props.history.push(`/booking/${this.state.maLichChieu}`)
-   }
+    if (JSON.parse(localStorage.getItem("user")) === null) {
+      this.props.history.push("/form");
+    }
+    else{
+      if (this.state.maLichChieu) {
+        this.props.history.push(`/booking/${this.state.maLichChieu}`)
+       }
+    }
   }
   renderGioXem = () => {
+    var moment = require("moment");
     let { heThongRapChieu } = this.props.listShowTimes;
     let { tenPhim, tenHeThongRap, tenRap,  ngayXem} = this.state;
     if (heThongRapChieu && tenHeThongRap && tenPhim && tenRap && ngayXem) {
@@ -286,7 +299,8 @@ class SearchBar extends Component {
         return rap.tenCumRap === tenRap
       })
       const listTime = new Set(rap.lichChieuPhim.map((lichChieu) => {
-        return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
+        // return (new Date(lichChieu.ngayChieuGioChieu).toLocaleTimeString())
+        return (moment(lichChieu.ngayChieuGioChieu).format("HH:mm:A"))
       }));
       
       const listTimeUpdate = [...listTime];

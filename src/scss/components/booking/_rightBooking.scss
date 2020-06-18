@@ -58,7 +58,7 @@
             color: $color-black-7;
           }
           img {
-            margin-left: 50px;
+            margin-left: 100px;
             width: 21%;
             position: absolute;
           }
@@ -221,54 +221,45 @@
     height: spacing(6);
   }
 }
-//Screen 17inch 1920x1080
-// @media (max-width: 1920px) and (min-width: 1080px) {
-//   .right {
-//     width: 24% !important;
-//     .right__content {
-//       .right__notice {
-//         .right__title {
-//           font-size: 9px !important;
-//         }
-//       }
-//     }
-//   }
-// }
-//Screen 13inch
-// @media (max-width: 1024px) and (min-width: 768px) {
-//   .right {
-//     width: 28% !important;
-//     .right__content {
-//       margin-top: 855px;
-//       position: absolute;
-//       padding-right: 350px;
-//       .right__notice {
-//         .right__title {
-//           font-size: 8px !important;
-//         }
-//       }
-//     }
-//     .right__button {
-//       margin-top: 790px;
-//       position: absolute;
-//     }
-//   }
-// }
 
-//Ip X 375x812
-@media screen and (max-width: 375px) {
+// Screen 13inch
+@media (max-width: 1440px) and (min-width: 1024px) {
   .right {
-    width: 100% !important;
-    // position: static !important;
-    box-shadow: none !important;
-    position: absolute !important;
-    margin-top: 600px;
+    width: 26% !important;
     .right__content {
-      margin-top: 100px;
-      margin-bottom: none;
+      .right__filmName {
+        .right__text {
+          .right__address {
+            img {
+              display: none;
+            }
+          }
+        }
+      }
       .right__notice {
-        .right__errorBook {
-          bottom: initial;
+        .right__title {
+          font-size: 9px !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .right {
+    width: 25% !important;
+    .right__content {
+      overflow-y: scroll;
+      height: 62.6%;
+      .right__notice {
+        display: none;
+      }
+      .right__filmName {
+        .right__text {
+          .right__address {
+            img {
+              display: none;
+            }
+          }
         }
       }
       .right__methodPay {
@@ -276,8 +267,8 @@
       }
     }
     .right__button {
-      margin-top: 0;
       bottom: initial;
+      margin-top: -17px;
     }
   }
 }

@@ -1,56 +1,55 @@
 import React from "react";
 import star from "../images/img/s1.png";
-import PlayVideo from "../images/img/play-video.png";
-import {Link} from "react-router-dom"
+
+import { Link } from "react-router-dom";
+import Dialog1 from "./Dialog";
 class Movie extends React.Component {
   render() {
     let { movie } = this.props;
+    // console.log(this.props.movie.trailer);
+
     return (
-      <section>
-        <div className="calendar__film">
-          <a class="calendar__picture" href="#">
-            <div
-              className="calendar__filmThumbnail"
-              style={{
-                position: "relative",
-                backgroundImage: `url(${movie.hinhAnh})`,
-                backgroundSize: "100% 100%",
-              }}
-            >
-              <div className="calendar__overlay">
-                <button type="button" className="playTrailer1">
-                  <a
-                    className="venobox"
-                    data-vbtype="video"
-                    href={movie.trailer}
-                  >
-                    <img src={PlayVideo} alt="play-video" />
-                  </a>
-                </button>
+      <div>
+        <section>
+          <div className="calendar__film ">
+            <a class="calendar__picture" href="#">
+              <div
+                className="calendar__filmThumbnail"
+                style={{
+                  position: "relative",
+                  backgroundImage: `url(${movie.hinhAnh})`,
+                  backgroundSize: "100% 100%",
+                }}
+              >
+                <div className="calendar__overlay">
+                  <Dialog1 trailer={movie.trailer}/>
+                </div>
+                <span className="calendar__ageType">C18</span>
+                <div className="calendar__avgPoint">
+                  <p className="calendar__point">{movie.danhGia}</p>
+                  <p className="calendar__star">
+                    <img src={star} alt="star1" />
+                    <img src={star} alt="star1" />
+                    <img src={star} alt="star1" />
+                    <img src={star} alt="star1" />
+                  </p>
+                </div>
               </div>
-              <span className="calendar__ageType">C18</span>
-              <div className="calendar__avgPoint">
-                <p className="calendar__point">{movie.danhGia}</p>
-                <p className="calendar__star">
-                  <img src={star} alt="star1" />
-                  <img src={star} alt="star1" />
-                  <img src={star} alt="star1" />
-                  <img src={star} alt="star1" />
-                </p>
+            </a>
+            <div className="calendar__text">
+              <div class="calender_hover">
+                <Link href="" to={`/detailMovie/${movie.maPhim}`}>
+                  Mua Vé
+                </Link>
               </div>
-            </div>
-          </a>
-          <div className="calendar__text">
-            <div class="calender_hover">
-              <Link href="" to={`/detailMovie/${movie.maPhim}`}>Mua Vé</Link>
-            </div>
-            <div className="calendar_itemtext">
-              <p className="calendar__nameFilm">{movie.tenPhim}</p>
-              {/* <p className="calendar__time">{movie.ngayKhoiChieu}</p> */}
+              <div className="calendar_itemtext">
+                <p className="calendar__nameFilm">{movie.tenPhim}</p>
+                {/* <p className="calendar__time">{movie.ngayKhoiChieu}</p> */}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }
