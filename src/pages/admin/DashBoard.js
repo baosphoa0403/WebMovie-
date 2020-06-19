@@ -136,6 +136,7 @@ function DashBoard() {
     if (state.data.length > 0) {
       return (
         <MaterialTable
+         
           // components={{
           //   EditRow: props => (
           //     <div>
@@ -143,7 +144,10 @@ function DashBoard() {
           //     </div>
           //   )
           // }}
+         
           options={{
+            pageSize: 10,
+            pageSizeOptions: [10,15,20,25],
             headerStyle: {
               backgroundColor: "#212121",
               color: "#FFF",
