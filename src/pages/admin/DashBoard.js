@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
+import Swal from "sweetalert2";
 // import Modal from "./Modal";
 import NavbarAdmin from "./NavbarAdmin";
 const useStyles = makeStyles((theme) => ({
@@ -65,10 +66,10 @@ function DashBoard() {
       },
     })
       .then((rs) => {
-        console.log(rs);
+        Swal.fire("Xoá tài khoản thành công!", "Nhấn OK để thoát!", "success");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        Swal.fire("Xoá tài khoản không thành công !", error.response.data, "error");
       });
   };
   // edit
@@ -94,10 +95,10 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          console.log(rs);
+          Swal.fire("Sửa tài khoản thành công!", "Nhấn OK để thoát!", "success");
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire("Sửa tài khoản không thành công !", error.response.data, "error");
         });
     }
   };
@@ -125,10 +126,10 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          console.log(rs);
+          Swal.fire("Tạo tài khoản thành công!", "Nhấn OK để thoát!", "success");
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire("Tạo tài khoản không thành công !", error.response.data, "error");
         });
     }
   };
