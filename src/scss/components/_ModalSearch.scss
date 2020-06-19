@@ -1,0 +1,32 @@
+
+.modal-dialog{
+    max-width: 1000px;
+    margin: 20px auto;
+    .modal-content{
+        box-shadow: 0 15px 35px rgba(50, 50, 93, 0.2), 0 5px 15px rgba(0, 0, 0, 0.17);
+        background-color: #ffffff;
+        border-radius: 0.2857rem;
+        width: 100%;
+        .modal-header {
+            border-bottom: none;
+            input{
+                font-size: 17px;
+            }
+            .form-control{
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: 0.5rem 0.7rem;
+            font-size: 0.875rem;
+            line-height: 1.42857;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: transparent;
+            background-clip: padding-box;
+            border: 1px solid #cad1d7;
+            border-radius: 0.25rem;
+            box-shadow: none;
+            border: transparent;
+            }
+        }
+    }
+}

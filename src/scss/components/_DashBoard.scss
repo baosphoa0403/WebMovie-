@@ -1,0 +1,16 @@
+.table{
+    background-color: black;
+    .sidebar{
+        background: linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
+        width: 100%;
+        min-height: 100%;
+        max-height: calc(100vh - 705px);
+        z-index: 4;
+        position: relative;
+        overflow: auto;
+        border-radius: 2px;
+        h3{
+            text-align: center
+        }
+    }
+}

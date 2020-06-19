@@ -1,5 +1,6 @@
 import React from 'react'
 import {Route, Redirect} from "react-router-dom";
+import NavbarAdmin from '../pages/admin/NavbarAdmin';
 const AdminLayout = (props) => {
    return (
        <div>
@@ -16,6 +17,7 @@ export default function AdminTemplate({Component , ...props}) {
            if (localStorage.getItem("userAdmin")) {
             return (
                 <AdminLayout>
+                    <NavbarAdmin />
                     <Component {...propsComponent}/>
                 </AdminLayout>
             )

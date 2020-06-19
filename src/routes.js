@@ -1,6 +1,9 @@
 // import Home from "./pages/home/Home";
 import React, { Suspense, lazy } from "react";
 import DashBoard from "./pages/admin/DashBoard";
+// import Form from "./components/Form";
+// import DeatailMovie from "./pages/home/DeatailMovie";
+import DashboardMovie from "./pages/admin/DashboardMovie";
 // import ListMovie from "./components/ListMovie";
 // import Admin from "./pages/admin/Admin";
 
@@ -54,11 +57,16 @@ const routesHome = [
 ];
 
 const routesAdmin = [
-  {
-    path: "/admin/dashBoard",
-    exact: false,
-    component: DashBoard,
-  },
-];
+    {
+        path: "/admin/dashboardUser",
+        exact: false,
+        component: DashBoard
+    },
+    {
+        path: "/admin/dashboardMovie",
+        exact: false,
+        component: DashboardMovie
+    }
+]
 
 export { routesAdmin, routesHome };

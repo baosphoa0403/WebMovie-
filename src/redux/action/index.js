@@ -32,7 +32,7 @@ export const actGetListChairBookingAPI = (id) => {
         console.log(rs.data);
       })
       .catch((err) => {
-       dispatch(actGetDetailMovieEndBooking(err.response.data))
+        dispatch(actGetDetailMovieEndBooking(err.response.data));
       });
   };
 };
@@ -43,19 +43,16 @@ export const actGetListChairBooking = (listChair) => {
   };
 };
 export const actGetDetailMovieStartedBooking = () => {
-  return{
+  return {
     type: "STARBOOKING",
-    
-  }
-}
+  };
+};
 export const actGetDetailMovieEndBooking = (messenger) => {
-  return{
+  return {
     type: "ENDBOOKING",
-    data: messenger
-  }
-}
-
-
+    data: messenger,
+  };
+};
 
 // lấy danh sách cụm rạp
 export const actGetInformationShowTimesAPI = (idMovie) => {
@@ -102,8 +99,6 @@ export const actGetInformationShowTimes = (listShowTimes) => {
   };
 };
 
-
-
 export const actGetListMovie = (listMovie) => {
   return {
     type: ActionType.GET_LIST_MOVIE,
@@ -127,7 +122,6 @@ export const actGetDetailMovieAPI = (id) => {
   };
 };
 
-
 export const actGetDetailMovie = (detailMovie) => {
   return {
     type: ActionType.GET_DETAIL_MOVIE,
@@ -135,16 +129,23 @@ export const actGetDetailMovie = (detailMovie) => {
   };
 };
 export const actGetDetailMovieStarted = () => {
-  return{
+  return {
     type: "STAR",
-    
-  }
-}
+  };
+};
 export const actGetDetailMovieEnd = (messenger) => {
-  return{
+  return {
     type: "END",
-    data: messenger
-  }
-}
+    data: messenger,
+  };
+};
+
+export const postBreakTicket = (breaks) => {
+  return {
+    type: "POST_BREAKS",
+    data: breaks,
+  };
+};
+
 
 

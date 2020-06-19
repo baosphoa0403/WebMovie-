@@ -52,9 +52,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+          {showMenuAdmin(routesAdmin)}
         <Suspense fallback={<Loading />}>
           {showMenuHome(routesHome)}
-          {showMenuAdmin(routesAdmin)}
           <Route path="/admin" component={Admin} />
           <Route exact path="/detail/:id" component={DetailMovie} />
           <Route exact path="/booking/:idLichChieu" component={TicketBooking} />

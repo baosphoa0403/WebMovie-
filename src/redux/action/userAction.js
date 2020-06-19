@@ -18,28 +18,27 @@ export const actGetListUserAPI = () => {
   };
 };
 export const actCheckSignInAdmin = (user, history) => {
-  return (dispatch) => {
-    Axios({
-      method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-      data: user,
-    })
-      .then((rs) => {
-        console.log(rs);
-        if (rs.data.maLoaiNguoiDung === "QuanTri") {
-          localStorage.setItem("userAdmin", JSON.stringify(rs.data));
-          history.push("/admin/dashboard");
-        } else {
-          alert("bạn không có quyền đăng nhập ");
-        }
-      })
-      .catch((err) => {
-        if (err) {
-          alert("bạn đã nhập mật khẩu sai");
-        }
-      });
-  };
-};
+    return dispatch => {
+        Axios({
+            method: "POST",
+            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+            data: user
+        }).then((rs)=>{
+           console.log(rs);
+           if (rs.data.maLoaiNguoiDung === "QuanTri") {
+               localStorage.setItem("userAdmin", JSON.stringify(rs.data));
+               history.push("/admin/dashboardUser"); 
+           }else{
+               alert("bạn không có quyền đăng nhập ");
+           }
+        })
+        .catch((err)=>{
+           if (err) {
+               alert("bạn đã nhập mật khẩu sai");
+           }
+        })
+    }
+}
 
 export const actCheckSignInUser = (user, history) => {
     return dispatch => {    
