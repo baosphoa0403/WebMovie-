@@ -97,7 +97,7 @@ export default class BuyTicket extends Component {
   }
   render() {
     let { buyTicket } = this.props;
-
+    let user = JSON.parse(localStorage.getItem("user"));
     return (
       <div>
         <div class="right">
@@ -115,14 +115,16 @@ export default class BuyTicket extends Component {
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                <input type="text" name="" id="" class="content" />
-                <label for="emailCheckout">E-Mail</label>
+                {/* <input type="text" name="" id="" class="content" />
+                <label for="emailCheckout">E-Mail</label> */}
+                <p>E-mail: {user.email}</p>
               </div>
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                <input type="text" name="" id="" class="content" />
-                <label for="phoneCheckout">Phone</label>
+                {/* <input type="text" name="" id="" class="content" />
+                <label for="phoneCheckout">Phone</label> */}
+                  <p>Phone: {user.soDT}</p>
               </div>
             </div>
             <div class="row right__voucher">
@@ -144,9 +146,9 @@ export default class BuyTicket extends Component {
             <div class="row right__methodPay">
               <div class="col-12">
                 <p class="right__titleMethodPay">Hình thức thanh toán</p>
-                <p class="right__warning">
+               {this.props.buyTicket.length === 0 ? ( <p class="right__warning">
                   Vui lòng chọn ghế để hiển thị phương thức thanh toán phù hợp.
-                </p>
+                </p>) : ("")}
               </div>
             </div>
             <div class="row right__notice">
