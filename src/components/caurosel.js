@@ -6,6 +6,7 @@ import banner4 from "../images/img/dau-an-vo-cuc.jpg";
 import banner5 from "../images/img/loan-nhip.jpg";
 import PlayVideo from "../images/img/play-video.png";
 import SearchBar from "./SearchBar";
+import Dialog1 from "./Dialog";
 export default class Caurosel extends React.Component {
   render() {
     return (
@@ -40,13 +41,10 @@ export default class Caurosel extends React.Component {
                   </a>
                   <button type="button" className="carousel__button">
                     <a href="#" className="carousel__changeDetail"></a>
-                    <a
-                      className="venobox"
-                      data-vbtype="video"
-                      href="https://www.youtube.com/embed/MG-BJBSeV64?autoplay=1"
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
+
+                    <Dialog1
+                      trailer={"https://www.youtube.com/embed/MG-BJBSeV64"}
+                    />
                   </button>
                 </div>
                 <div className="carousel-item">
@@ -57,13 +55,9 @@ export default class Caurosel extends React.Component {
                   />
                   <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
-                    <a
-                      className="venobox"
-                      data-vbtype="video"
-                      href="https://www.youtube.com/embed/-uOpDY8DAsM?autoplay=1"
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
+                    <Dialog1
+                      trailer={"https://www.youtube.com/embed/-uOpDY8DAsM"}
+                    />
                   </button>
                 </div>
                 <div className="carousel-item">
@@ -74,13 +68,9 @@ export default class Caurosel extends React.Component {
                   />
                   <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
-                    <a
-                      className="venobox"
-                      data-vbtype="video"
-                      href="https://www.youtube.com/embed/OGfm7CNM5BY?autoplay=1"
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
+                    <Dialog1
+                      trailer={"https://www.youtube.com/embed/OGfm7CNM5BY"}
+                    />
                   </button>
                 </div>
                 <div className="carousel-item">
@@ -91,13 +81,9 @@ export default class Caurosel extends React.Component {
                   />
                   <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
-                    <a
-                      className="venobox"
-                      data-vbtype="video"
-                      href="https://www.youtube.com/embed/sdkUce1q-n4?autoplay=1"
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
+                    <Dialog1
+                      trailer={"https://www.youtube.com/embed/sdkUce1q-n4"}
+                    />
                   </button>
                 </div>
                 <div className="carousel-item">
@@ -108,13 +94,9 @@ export default class Caurosel extends React.Component {
                   />
                   <div className="carousel__bg"></div>
                   <button type="button" className="carousel__button">
-                    <a
-                      className="venobox"
-                      data-vbtype="video"
-                      href="https://www.youtube.com/embed/b5u8UTV0OWs?autoplay=1"
-                    >
-                      <img src={PlayVideo} alt="play-video" />
-                    </a>
+                    <Dialog1
+                      trailer={"https://www.youtube.com/embed/b5u8UTV0OWs"}
+                    />
                   </button>
                 </div>
               </div>
