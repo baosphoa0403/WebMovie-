@@ -144,11 +144,13 @@ function DashBoard() {
           //     </div>
           //   )
           // }}
+
           options={{
             headerStyle: {
               backgroundColor: "#212121",
               color: "#FFF",
             },
+            emptyRowsWhenPaging: false
           }}
           title="Dashboard"
           columns={state.columns}
