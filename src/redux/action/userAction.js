@@ -65,6 +65,8 @@ export const actCheckSignInUser = (user, history) => {
                }
         })
         .catch((error) => {
+            console.log({...error});
+            
                  Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
         });    
     }

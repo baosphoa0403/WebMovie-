@@ -30,7 +30,9 @@ function DashBoard() {
         field: "soDt",
         type: "numeric",
       },
-      { title: "Mã loại người dùng", field: "maLoaiNguoiDung" },
+      { title: "Mã loại người dùng", field: "maLoaiNguoiDung", 
+       lookup: { "KhachHang": 'KhachHang', "QuanTri": 'QuanTri' }
+     },
     ],
     data: [],
     query: {
@@ -46,6 +48,8 @@ function DashBoard() {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
     })
       .then((rs) => {
+        console.log(rs.data);
+        
         // dispatch(actGetListUser(rs.data))
         setState((prevState) => {
           return { ...prevState, data: rs.data };
