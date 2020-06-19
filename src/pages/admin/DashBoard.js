@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
+import Swal from "sweetalert2";
 // import Modal from "./Modal";
 import NavbarAdmin from "./NavbarAdmin";
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,9 @@ function DashBoard() {
         field: "soDt",
         type: "numeric",
       },
-      { title: "Mã loại người dùng", field: "maLoaiNguoiDung" },
+      { title: "Mã loại người dùng", field: "maLoaiNguoiDung", 
+       lookup: { "KhachHang": 'KhachHang', "QuanTri": 'QuanTri' }
+     },
     ],
     data: [],
     query: {
@@ -45,6 +48,8 @@ function DashBoard() {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
     })
       .then((rs) => {
+        console.log(rs.data);
+        
         // dispatch(actGetListUser(rs.data))
         setState((prevState) => {
           return { ...prevState, data: rs.data };
@@ -65,10 +70,10 @@ function DashBoard() {
       },
     })
       .then((rs) => {
-        console.log(rs);
+        Swal.fire("Xoá tài khoản thành công!", "Nhấn OK để thoát!", "success");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        Swal.fire("Xoá tài khoản không thành công !", error.response.data, "error");
       });
   };
   // edit
@@ -94,10 +99,10 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          console.log(rs);
+          Swal.fire("Sửa tài khoản thành công!", "Nhấn OK để thoát!", "success");
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire("Sửa tài khoản không thành công !", error.response.data, "error");
         });
     }
   };
@@ -125,10 +130,10 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          console.log(rs);
+          Swal.fire("Tạo tài khoản thành công!", "Nhấn OK để thoát!", "success");
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire("Tạo tài khoản không thành công !", error.response.data, "error");
         });
     }
   };
@@ -144,7 +149,6 @@ function DashBoard() {
           //     </div>
           //   )
           // }}
-         
           options={{
             pageSize: 10,
             pageSizeOptions: [10,15,20,25],
@@ -152,6 +156,7 @@ function DashBoard() {
               backgroundColor: "#212121",
               color: "#FFF",
             },
+            emptyRowsWhenPaging: false
           }}
           title="Dashboard"
           columns={state.columns}

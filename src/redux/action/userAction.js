@@ -27,15 +27,16 @@ export const actCheckSignInAdmin = (user, history) => {
            console.log(rs);
            if (rs.data.maLoaiNguoiDung === "QuanTri") {
                localStorage.setItem("userAdmin", JSON.stringify(rs.data));
-               history.push("/admin/dashboardUser"); 
+               Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+               setTimeout(()=>{
+                history.push("/admin/dashboardUser"); 
+              }, 2000)
            }else{
-               alert("bạn không có quyền đăng nhập ");
+              Swal.fire("Bạn có quyền đăng nhập !", "Nhấn OK để thoát!", "error");
            }
         })
-        .catch((err)=>{
-           if (err) {
-               alert("bạn đã nhập mật khẩu sai");
-           }
+        .catch((error)=>{
+            Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
         })
     }
 }
@@ -64,6 +65,8 @@ export const actCheckSignInUser = (user, history) => {
                }
         })
         .catch((error) => {
+            console.log({...error});
+            
                  Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
         });    
     }
