@@ -5,47 +5,38 @@ class MovieTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
-    }
+      isOpen: false,
+    };
   }
 
   openDay = () => {
-   if (this.state.isOpen === false) {
-    this.setState({
-      isOpen: true
-    },()=>{
-      console.log(this.state.isOpen);
-      
-    })
-   }else{
-    this.setState({
-      isOpen: false
-    }, ()=>{
-      console.log(this.state.isOpen);  
-    })
-   }
-  }
+    if (this.state.isOpen === false) {
+      this.setState({
+        isOpen: true,
+      });
+    } else {
+      this.setState({
+        isOpen: false,
+      });
+    }
+  };
   removeDuplicateDay = () => {
-     if (this.props.listDay[0]) {
-      let listDayOfMovie = this.props.listDay[0].map(movie => {
+    if (this.props.listDay[0]) {
+      let listDayOfMovie = this.props.listDay[0].map((movie) => {
         return new Date(movie.ngayChieuGioChieu).toLocaleDateString();
       });
       let arr = listDayOfMovie.filter((time, index) => {
         return listDayOfMovie.indexOf(time) === index;
       });
-      return arr.map((item)=>{
-        return  (<Day item={item} listDay={this.props.listDay[0]}/>)
-      })
-      
+      return arr.map((item) => {
+        return <Day item={item} listDay={this.props.listDay[0]} />;
+      });
     }
-  }
+  };
   render() {
-    // có nguyên object phim , có danh sách phim của từng phim
-    console.log(this.props.listDay);
-    console.log(this.props.showMovie);
     let { showMovie } = this.props;
     return (
-      <div className="info__items_Home" >
+      <div className="info__items_Home">
         <div
           className="info__cinema_Home active"
           onClick={() => {
@@ -53,13 +44,13 @@ class MovieTable extends Component {
           }}
         >
           <div className="info__picture_Home" onClick={this.openDay}>
-              <img src={showMovie.hinhAnh} alt="" />
+            <img src={showMovie.hinhAnh} alt="" />
           </div>
           <div className="info__text_Home">
-              <p className="info__nameMovieCinema_Home">{showMovie.tenPhim}</p>
-              <p className="info__infoMovieCinema_Home">TIX 6.1 - IMDb 0</p>
+            <p className="info__nameMovieCinema_Home">{showMovie.tenPhim}</p>
+            <p className="info__infoMovieCinema_Home">TIX 6.1 - IMDb 0</p>
           </div>
-           {!this.state.isOpen ? ("") : (<div>{this.removeDuplicateDay()}</div>)}
+          {!this.state.isOpen ? "" : <div>{this.removeDuplicateDay()}</div>}
         </div>
       </div>
     );

@@ -2,15 +2,25 @@ import React,{ useEffect } from "react";
 import MaterialTable from 'material-table';
 import {connect } from "react-redux";
 import Axios from "axios"
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  rightTable: {
+    padding: theme.spacing(2),
+  },
+}));
  function DashboardMovie() {
+  const classes = useStyles();
  const [state, setState] = React.useState({
         columns: [
-          { title: "mã phim", field: "maPhim", type: "numeric" },
-          { title: "tên phim", field: "tenPhim" },
-          { title: "trailer", field: "trailer"},
-          { title: "bí danh", field: "biDanh"},
+          { title: "Mã phim", field: "maPhim", type: "numeric" },
+          { title: "Tên phim", field: "tenPhim" },
+          { title: "Trailer", field: "trailer"},
+          { title: "Bí danh", field: "biDanh"},
           {
-            title: "hinh Ảnh",
+            title: "Hình Ảnh",
             editComponent: props => (
               <input
                 type="file"
@@ -21,9 +31,9 @@ import Axios from "axios"
             type: "image"
 
           },
-          { title: "mo Tả", field: "moTa" },
-          { title: "ngày khởi chiếu", field: "ngayKhoiChieu" },
-          { title: "đánh giá", field: "danhGia", type: "numeric" }
+          { title: "Mô Tả", field: "moTa" },
+          { title: "Ngày khởi chiếu", field: "ngayKhoiChieu" },
+          { title: "Đánh giá", field: "danhGia", type: "numeric" }
 
         ],
         data: [],
@@ -35,18 +45,15 @@ useEffect(() => {
         url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
     })
     .then((rs)=>{
-        // console.log(rs.data);
         setState(prevState => {
             return { ...prevState, data: rs.data};
         });
     })
-    .catch((err)=>{
-        console.log(err);
-    })
+    .catch()
    
 }, [])
 let handleAddMovie = (film) => {
-console.log(film);
+
 
 var form_data = new FormData();
 const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
@@ -67,13 +74,8 @@ for (const key in filmAdd) {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
 let handleEditMovie = (film) => {
   var form_data = new FormData();
@@ -94,16 +96,10 @@ let handleEditMovie = (film) => {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
 let handleDeleteMovie = (film) => {
-   console.log(film);
    const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
   //  http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=1233
   Axios({
@@ -115,13 +111,8 @@ let handleDeleteMovie = (film) => {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
   
   return (
@@ -142,6 +133,13 @@ let handleDeleteMovie = (film) => {
         title="Editable Example"
         columns={state.columns}
         data={state.data}
+        options={{
+          headerStyle: {
+            backgroundColor: "#212121",
+            color: "#FFF",
+          },
+          emptyRowsWhenPaging: false
+        }}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {

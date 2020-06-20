@@ -35,8 +35,18 @@
           }
         }
         li {
-          list-style: none;
           a {
+            color: inherit;
+            text-decoration: none !important;
+            &:hover{
+              text-decoration: none !important;
+              color:  $color-yellow;
+            }
+          }
+          
+
+          list-style: none;
+          .nav-link {
             text-decoration: none;
             color: $color-white;
             &:hover {
@@ -72,9 +82,9 @@
 @media screen and (max-width: 1440px) {
   .menu {
     .navbar {
-     .nav-item{
-      margin: 0px 35px;
-     }
+      .nav-item {
+        margin: 0px 35px;
+      }
     }
   }
 }

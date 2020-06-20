@@ -50,12 +50,6 @@ class FormSignIn extends Component {
         Swal.fire("Đăng kí không thành công", error.response.data, "error");
       });
   };
-  // signinSuccess = () => {
-  //   Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
-  // };
-  // signupSuccess = () => {
-  //   Swal.fire("Đăng kí thành công !", "Nhấn OK để thoát!", "success");
-  // };
   render() {
     return (
       <div className="login-admin">
@@ -127,15 +121,9 @@ class FormSignIn extends Component {
                         </label>
                       </div>
                       <div className="group">
-                        {/* <input
-                          type="submit"
-                          className="button"
-                          defaultValue="Sign In"
-                        /> */}
                         <button
                           className="btn btn-primary"
                           style={{ width: 400, height: 40 }}
-                          // onClick={this.signinSuccess}
                         >
                           Submit
                         </button>

@@ -34,7 +34,7 @@ class ListMovie extends Component {
       autoplaySpeed: 2900,
     };
     return (
-      <div className="container ">
+      <div className="container " name="test2">
         <section className="calendar" id="filmBlock">
           <div className="calendar__bg" id="homeMovies">
             <div className="calendar__content">

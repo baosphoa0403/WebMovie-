@@ -52,7 +52,6 @@ export default class BlockApp extends Component {
                       CINEMAX có hai phiên bản
                       <a
                         className="tagA"
-                        // target="_blank"
                         style={{ width: 25 }}
                         href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8"
                       >
@@ -61,7 +60,6 @@ export default class BlockApp extends Component {
                       &amp;
                       <a
                         className="tagA"
-                        // target="_blank"
                         style={{ width: 56 }}
                         href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123"
                       >

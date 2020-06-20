@@ -1,38 +1,20 @@
 import { connect } from "react-redux";
-import * as action from "../../redux/action/userAction";
 import Axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect } from "react";
-import MaterialTable from 'material-table'
-import { makeStyles } from '@material-ui/core/styles';
-import FaceIcon from '@material-ui/icons/Face';
-// import Modal from "./Modal";
-import { pink } from '@material-ui/core/colors';
+import MaterialTable from "material-table";
+import { makeStyles } from "@material-ui/core/styles";
+import Swal from "sweetalert2";
+import NavbarAdmin from "./NavbarAdmin";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  
- leftTable:{
-  backgroundColor: theme.palette.common.black,
-  color: theme.palette.common.white,
-  padding: theme.spacing(2)
-
-
- },
- leftUp:{
-  textAlign:'center',
- },
- rightTable:{
-  padding: theme.spacing(2)
-
- },
- hrS:{
-   color: theme.palette.common.white
- }
+  rightTable: {
+    padding: theme.spacing(2),
+  },
 }));
 function DashBoard() {
-
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
@@ -43,14 +25,18 @@ function DashBoard() {
       {
         title: "Số Đt",
         field: "soDt",
-        type: "numeric"
+        type: "numeric",
       },
-      { title: "Mã loại người dùng", field: "maLoaiNguoiDung" }
+      {
+        title: "Mã loại người dùng",
+        field: "maLoaiNguoiDung",
+        lookup: { KhachHang: "KhachHang", QuanTri: "QuanTri" },
+      },
     ],
     data: [],
     query: {
-      pageSizeOptions: [10, 20]
-    }
+      pageSizeOptions: [10, 20],
+    },
   });
   console.log(state.data);
 
@@ -58,37 +44,43 @@ function DashBoard() {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04"
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
     })
-      .then(rs => {
+      .then((rs) => {
+        console.log(rs.data);
+
         // dispatch(actGetListUser(rs.data))
-        setState(prevState => {
+        setState((prevState) => {
           return { ...prevState, data: rs.data };
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
-  const handleDeleteUser = user => {
+  const handleDeleteUser = (user) => {
     console.log(user);
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
     Axios({
       method: "DELETE",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
       headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`
-      }
+        Authorization: `Bearer ${userAdmin.accessToken}`,
+      },
     })
-      .then(rs => {
-        console.log(rs);
+      .then((rs) => {
+        Swal.fire("Xoá tài khoản thành công!", "Nhấn OK để thoát!", "success");
       })
-      .catch(err => {
-        console.log(err);
+      .catch((error) => {
+        Swal.fire(
+          "Xoá tài khoản không thành công !",
+          error.response.data,
+          "error"
+        );
       });
   };
   // edit
-  const handleEditUser = user => {
+  const handleEditUser = (user) => {
     console.log(user);
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
     let userEdit = { ...user, maNhom: "GP04" };
@@ -106,19 +98,27 @@ function DashBoard() {
           "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
         data: userEdit,
         headers: {
-          Authorization: `Bearer ${userAdmin.accessToken}`
-        }
+          Authorization: `Bearer ${userAdmin.accessToken}`,
+        },
       })
-        .then(rs => {
-          console.log(rs);
+        .then((rs) => {
+          Swal.fire(
+            "Sửa tài khoản thành công!",
+            "Nhấn OK để thoát!",
+            "success"
+          );
         })
-        .catch(err => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire(
+            "Sửa tài khoản không thành công !",
+            error.response.data,
+            "error"
+          );
         });
     }
   };
   // add
-  const handleAddUser = user => {
+  const handleAddUser = (user) => {
     // console.log(user);
 
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
@@ -137,14 +137,22 @@ function DashBoard() {
           "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
         data: userAdd,
         headers: {
-          Authorization: `Bearer ${userAdmin.accessToken}`
-        }
+          Authorization: `Bearer ${userAdmin.accessToken}`,
+        },
       })
-        .then(rs => {
-          console.log(rs);
+        .then((rs) => {
+          Swal.fire(
+            "Tạo tài khoản thành công!",
+            "Nhấn OK để thoát!",
+            "success"
+          );
         })
-        .catch(err => {
-          console.log(err);
+        .catch((error) => {
+          Swal.fire(
+            "Tạo tài khoản không thành công !",
+            error.response.data,
+            "error"
+          );
         });
     }
   };
@@ -152,29 +160,25 @@ function DashBoard() {
     if (state.data.length > 0) {
       return (
         <MaterialTable
-          // components={{
-          //   EditRow: props => (
-          //     <div>
-          //       <MTableEditRow {...props} />
-          //     </div>
-          //   )
-          // }}
           options={{
+            pageSize: 10,
+            pageSizeOptions: [10, 15, 20, 25],
             headerStyle: {
               backgroundColor: "#212121",
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
+            emptyRowsWhenPaging: false,
           }}
           title="Dashboard"
           columns={state.columns}
           data={state.data}
           editable={{
-            onRowAdd: newData =>
-              new Promise(resolve => {
+            onRowAdd: (newData) =>
+              new Promise((resolve) => {
                 setTimeout(() => {
                   handleAddUser(newData);
                   resolve();
-                  setState(prevState => {
+                  setState((prevState) => {
                     const data = [...prevState.data];
                     data.push(newData);
                     return { ...prevState, data };
@@ -182,12 +186,12 @@ function DashBoard() {
                 }, 600);
               }),
             onRowUpdate: (newData, oldData) =>
-              new Promise(resolve => {
+              new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
                   handleEditUser(newData);
                   if (oldData) {
-                    setState(prevState => {
+                    setState((prevState) => {
                       const data = [...prevState.data];
                       data[data.indexOf(oldData)] = newData;
                       return { ...prevState, data };
@@ -195,49 +199,38 @@ function DashBoard() {
                   }
                 }, 600);
               }),
-            onRowDelete: oldData =>
-              new Promise(resolve => {
+            onRowDelete: (oldData) =>
+              new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
                   handleDeleteUser(oldData);
-                  setState(prevState => {
+                  setState((prevState) => {
                     const data = [...prevState.data];
                     data.splice(data.indexOf(oldData), 1);
                     return { ...prevState, data };
                   });
                 }, 600);
-              })
+              }),
           }}
         />
       );
     }
   };
-  // renderTableMovie = () => {};
-
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid  className={classes.leftTable} item xs={12} sm={2}> 
-          <div className={classes.leftUp}> 
-            <FaceIcon style={{ color: pink[500], fontSize:50  }}/>
-          </div>
-          <hr className={classes.hrS}/>
-          <div>
-            
-          </div>
-        </Grid>
+        <NavbarAdmin />
         <Grid className={classes.rightTable} item xs={12} sm={10}>
           {renderTableUser()}
         </Grid>
       </Grid>
-      {/* {renderTableUser()} */}
     </div>
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    listUser: state.userReducer.listUser
+    listUser: state.userReducer.listUser,
   };
 };
 

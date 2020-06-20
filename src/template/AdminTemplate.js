@@ -17,7 +17,7 @@ export default function AdminTemplate({Component , ...props}) {
            if (localStorage.getItem("userAdmin")) {
             return (
                 <AdminLayout>
-                    <NavbarAdmin />
+                    {/* <NavbarAdmin /> */}
                     <Component {...propsComponent}/>
                 </AdminLayout>
             )

@@ -23,21 +23,16 @@ class TicketBooking extends Component {
     let listChairUpdate = [...this.state.listChair];
 
     if (!isBooking) {
-      //Add
       listChairUpdate = [...this.state.listChair, product];
     } else {
-      //Find index to delete
       listChairUpdate.splice(index, 1);
     }
     this.setState({
       listChair: listChairUpdate,
     });
-    // console.log(product);
   };
 
   render() {
-    console.log(this.props.listChair.thongTinPhim);
-    console.log(this.props.listChair);
     if (this.props.loading) {
       return <Loading />
     }else {
@@ -63,8 +58,6 @@ class TicketBooking extends Component {
   }
   componentDidMount() {
     let idMaLichChieu = this.props.match.params.idLichChieu;
-    console.log(idMaLichChieu);
-
     this.props.getListChairBooking(idMaLichChieu);
   }
   componentWillUnmount() {
