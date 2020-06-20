@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function DashBoard() {
   const classes = useStyles();
+  
   const [state, setState] = React.useState({
     columns: [
       { title: "Tên", field: "hoTen" },
@@ -38,6 +39,7 @@ function DashBoard() {
       pageSizeOptions: [10, 20],
     },
   });
+ 
   console.log(state.data);
 
   useEffect(() => {
@@ -141,11 +143,8 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          Swal.fire(
-            "Tạo tài khoản thành công!",
-            "Nhấn OK để thoát!",
-            "success"
-          );
+          Swal.fire("Tạo tài khoản thành công!", "Nhấn OK để thoát!", "success");
+         
         })
         .catch((error) => {
           Swal.fire(
@@ -223,6 +222,7 @@ function DashBoard() {
         <Grid className={classes.rightTable} item xs={12} sm={10}>
           {renderTableUser()}
         </Grid>
+        
       </Grid>
     </div>
   );
