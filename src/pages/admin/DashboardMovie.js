@@ -45,18 +45,15 @@ useEffect(() => {
         url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
     })
     .then((rs)=>{
-        // console.log(rs.data);
         setState(prevState => {
             return { ...prevState, data: rs.data};
         });
     })
-    .catch((err)=>{
-        console.log(err);
-    })
+    .catch()
    
 }, [])
 let handleAddMovie = (film) => {
-console.log(film);
+
 
 var form_data = new FormData();
 const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
@@ -77,13 +74,8 @@ for (const key in filmAdd) {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
 let handleEditMovie = (film) => {
   var form_data = new FormData();
@@ -104,16 +96,10 @@ let handleEditMovie = (film) => {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
 let handleDeleteMovie = (film) => {
-   console.log(film);
    const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
   //  http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=1233
   Axios({
@@ -125,13 +111,8 @@ let handleDeleteMovie = (film) => {
       Authorization: `Bearer ${userAdmin.accessToken}`
     }
   })
-    .then(rs => {
-      console.log(rs);
-    })
-    .catch(error => {
-      console.log({...error});
-      
-    });
+    .then()
+    .catch();
 }
   
   return (

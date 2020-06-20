@@ -10,8 +10,6 @@
     .seatCheckOut__header {
       width: 90%;
       margin: 0 auto;
-      // display: flex;
-      // justify-content: space-between;
       .seatCheckOut__leftTitle {
         .seatCheckOut__logo {
           float: left;
@@ -150,49 +148,6 @@
   }
 }
 
-// @media (max-width: 375px) {
-//   .seatCheckOut {
-//     .seatCheckOut__content {
-//       .seatCheckOut__seatMap {
-//         .seatCheckOut__listSeat {
-//           // .seatCheckOut__item {
-//           //   width: 50%;
-//           //   height: 50%;
-//           // }
-//           // .seatCheckOut__item_True {
-//           //   width: 50%;
-//           //   height: 50%;
-
-//           // }
-//           // .seatCheckOut__item_Active{
-//           //   width: 50%;
-//           //   height: 50%;
-
-//           // }
-//           // width: 19%;
-//           // width: 50%;
-//           // position: absolute;
-//           margin-left: 0;
-//           // display: none;
-//           .numberofchair{
-//             margin-left: 0px;
-//           }
-//         }
-//         .seatCheckOut__noteSeat {
-//           .seatCheckOut__typeSeats {
-//             float: left;
-//             .Seat1 {
-//               margin-left: 7px;
-//             }
-//             .Seat2 {
-//               margin-left: 43px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 @media (max-width: 1229px) and (min-width: 1025px) {
   .seatCheckOut {
     .seatCheckOut__content {

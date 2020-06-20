@@ -12,9 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   leftTable: {
-    // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.black,
-    // padding: theme.spacing(2),
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
     border: 0,
     borderRadius: 3,
@@ -51,27 +49,6 @@ export default function NavbarAdmin() {
   const classes = useStyles();
 
   return (
-    // <div>
-    //   <nav className="navbar navbar-expand-sm bg-primary navbar-light">
-    //     <ul className="navbar-nav">
-    //       <li className="nav-item active">
-    //         <a className="nav-link" >
-    //           hello admin
-    //         </a>
-    //       </li>
-    //       <li className="nav-item">
-    //         <NavLink className="nav-link"  to="/admin/dashboardUser" exact>
-    //           dashboard USER
-    //         </NavLink>
-    //       </li>
-    //       <li className="nav-item">
-    //         <NavLink className="nav-link" to="/admin/dashboardMovie" exact>
-    //           dashboard MOVIE
-    //         </NavLink>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // </div>
     <Grid className={classes.leftTable} item xs={12} sm={2}>
       <div className={classes.left}>
         <div className={classes.leftUp}>

@@ -54,7 +54,6 @@ class CinemaLogo extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    // lấy thông tin hệ thống lịch chiếu
     getListTheater: () => {
       dispatch(action.actGetListSystemTheaterAPI());
     },
@@ -69,9 +68,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 const mapStateToProps = (state) => {
   return {
-    // lấy thông tin hệ lịch chiếu xuống
     listTheater: state.movieReducer.listTheater,
-    // maHeThongRap: state.movieReducer.maHeThongRap
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CinemaLogo);

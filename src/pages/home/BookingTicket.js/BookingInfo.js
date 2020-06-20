@@ -6,7 +6,7 @@ export default function BookingInfo(props) {
   const [seconds, setSeconds] = useState(60000);
   let history = useHistory();
   useEffect(() => {
-    console.log(props);
+
 
     if (seconds > 0) {
       let interval = setInterval(() => {

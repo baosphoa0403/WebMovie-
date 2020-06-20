@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 class Time extends Component {
   constructor(props) {
@@ -40,9 +39,7 @@ class Time extends Component {
   };
 
   render() {
-    console.log(this.props.item.maLichChieu);
-   
-    
+
     return <div className="time_render">{this.renderTime()}</div>;
   }
 }

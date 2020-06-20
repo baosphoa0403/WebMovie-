@@ -4,13 +4,12 @@ import banner2 from "../images/img/sieu-ve-si-so-vo.jpg";
 import banner3 from "../images/img/vi-anh-van-tin.jpg";
 import banner4 from "../images/img/dau-an-vo-cuc.jpg";
 import banner5 from "../images/img/loan-nhip.jpg";
-import PlayVideo from "../images/img/play-video.png";
 import SearchBar from "./SearchBar";
 import Dialog1 from "./Dialog";
 export default class Caurosel extends React.Component {
   render() {
     return (
-      <div>
+      <div name="test1">
         <section className="carousel">
           <div className="carousel__content">
             <div

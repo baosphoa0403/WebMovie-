@@ -1,13 +1,10 @@
 import { connect } from "react-redux";
-import * as action from "../../redux/action/userAction";
 import Axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
-import FaceIcon from "@material-ui/icons/Face";
 import Swal from "sweetalert2";
-// import Modal from "./Modal";
 import NavbarAdmin from "./NavbarAdmin";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,9 +27,11 @@ function DashBoard() {
         field: "soDt",
         type: "numeric",
       },
-      { title: "Mã loại người dùng", field: "maLoaiNguoiDung", 
-       lookup: { "KhachHang": 'KhachHang', "QuanTri": 'QuanTri' }
-     },
+      {
+        title: "Mã loại người dùng",
+        field: "maLoaiNguoiDung",
+        lookup: { KhachHang: "KhachHang", QuanTri: "QuanTri" },
+      },
     ],
     data: [],
     query: {
@@ -49,7 +48,7 @@ function DashBoard() {
     })
       .then((rs) => {
         console.log(rs.data);
-        
+
         // dispatch(actGetListUser(rs.data))
         setState((prevState) => {
           return { ...prevState, data: rs.data };
@@ -73,7 +72,11 @@ function DashBoard() {
         Swal.fire("Xoá tài khoản thành công!", "Nhấn OK để thoát!", "success");
       })
       .catch((error) => {
-        Swal.fire("Xoá tài khoản không thành công !", error.response.data, "error");
+        Swal.fire(
+          "Xoá tài khoản không thành công !",
+          error.response.data,
+          "error"
+        );
       });
   };
   // edit
@@ -99,10 +102,18 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          Swal.fire("Sửa tài khoản thành công!", "Nhấn OK để thoát!", "success");
+          Swal.fire(
+            "Sửa tài khoản thành công!",
+            "Nhấn OK để thoát!",
+            "success"
+          );
         })
         .catch((error) => {
-          Swal.fire("Sửa tài khoản không thành công !", error.response.data, "error");
+          Swal.fire(
+            "Sửa tài khoản không thành công !",
+            error.response.data,
+            "error"
+          );
         });
     }
   };
@@ -130,10 +141,18 @@ function DashBoard() {
         },
       })
         .then((rs) => {
-          Swal.fire("Tạo tài khoản thành công!", "Nhấn OK để thoát!", "success");
+          Swal.fire(
+            "Tạo tài khoản thành công!",
+            "Nhấn OK để thoát!",
+            "success"
+          );
         })
         .catch((error) => {
-          Swal.fire("Tạo tài khoản không thành công !", error.response.data, "error");
+          Swal.fire(
+            "Tạo tài khoản không thành công !",
+            error.response.data,
+            "error"
+          );
         });
     }
   };
@@ -141,22 +160,14 @@ function DashBoard() {
     if (state.data.length > 0) {
       return (
         <MaterialTable
-         
-          // components={{
-          //   EditRow: props => (
-          //     <div>
-          //       <MTableEditRow {...props} />
-          //     </div>
-          //   )
-          // }}
           options={{
             pageSize: 10,
-            pageSizeOptions: [10,15,20,25],
+            pageSizeOptions: [10, 15, 20, 25],
             headerStyle: {
               backgroundColor: "#212121",
               color: "#FFF",
             },
-            emptyRowsWhenPaging: false
+            emptyRowsWhenPaging: false,
           }}
           title="Dashboard"
           columns={state.columns}
@@ -205,26 +216,14 @@ function DashBoard() {
       );
     }
   };
-  // renderTableMovie = () => {};
-
   return (
     <div>
       <Grid container spacing={3}>
-        {/* <Grid  className={classes.leftTable} item xs={12} sm={2}> 
-          <div className={classes.leftUp}> 
-            <FaceIcon style={{ color: pink[500], fontSize:50  }}/>
-          </div>
-          <hr className={classes.hrS}/>
-          <div>
-            
-          </div>
-        </Grid> */}
         <NavbarAdmin />
         <Grid className={classes.rightTable} item xs={12} sm={10}>
           {renderTableUser()}
         </Grid>
       </Grid>
-      {/* {renderTableUser()} */}
     </div>
   );
 }
