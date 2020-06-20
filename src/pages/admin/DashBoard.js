@@ -7,6 +7,7 @@ import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
 import Swal from "sweetalert2";
+
 // import Modal from "./Modal";
 import NavbarAdmin from "./NavbarAdmin";
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function DashBoard() {
   const classes = useStyles();
+  
   const [state, setState] = React.useState({
     columns: [
       { title: "Tên", field: "hoTen" },
@@ -39,6 +41,7 @@ function DashBoard() {
       pageSizeOptions: [10, 20],
     },
   });
+ 
   console.log(state.data);
 
   useEffect(() => {
@@ -131,6 +134,7 @@ function DashBoard() {
       })
         .then((rs) => {
           Swal.fire("Tạo tài khoản thành công!", "Nhấn OK để thoát!", "success");
+         
         })
         .catch((error) => {
           Swal.fire("Tạo tài khoản không thành công !", error.response.data, "error");
@@ -223,6 +227,7 @@ function DashBoard() {
         <Grid className={classes.rightTable} item xs={12} sm={10}>
           {renderTableUser()}
         </Grid>
+        
       </Grid>
       {/* {renderTableUser()} */}
     </div>

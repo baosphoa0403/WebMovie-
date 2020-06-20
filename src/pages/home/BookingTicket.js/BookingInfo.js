@@ -20,6 +20,7 @@ export default function BookingInfo(props) {
       }, 3000)
     }
   });
+console.log(1);
 
   let millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);

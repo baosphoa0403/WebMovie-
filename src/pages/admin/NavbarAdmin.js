@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
+import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import FaceIcon from "@material-ui/icons/Face";
-import { pink } from "@material-ui/core/colors";
-import { black } from "@material-ui/core/colors";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-
+  button: {
+    background:"#212121",
+    marginTop: "100px",
+    color: "#fafafa",
+    hover: {
+      "&:hover": {
+        backgroundColor: 'rgb(7, 177, 77, 0.42)'
+      }
+    }
+  },
   leftTable: {
     // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.black,
@@ -47,31 +55,15 @@ const useStyles = makeStyles((theme) => ({
 
   }
 }));
-export default function NavbarAdmin() {
+function NavbarAdmin() {
   const classes = useStyles();
-
+  let history = useHistory();
+  let changePageHome = () => {
+    setTimeout(()=>{
+      history.replace("/")
+    }, 1000)
+  }
   return (
-    // <div>
-    //   <nav className="navbar navbar-expand-sm bg-primary navbar-light">
-    //     <ul className="navbar-nav">
-    //       <li className="nav-item active">
-    //         <a className="nav-link" >
-    //           hello admin
-    //         </a>
-    //       </li>
-    //       <li className="nav-item">
-    //         <NavLink className="nav-link"  to="/admin/dashboardUser" exact>
-    //           dashboard USER
-    //         </NavLink>
-    //       </li>
-    //       <li className="nav-item">
-    //         <NavLink className="nav-link" to="/admin/dashboardMovie" exact>
-    //           dashboard MOVIE
-    //         </NavLink>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // </div>
     <Grid className={classes.leftTable} item xs={12} sm={2}>
       <div className={classes.left}>
         <div className={classes.leftUp}>
@@ -96,7 +88,11 @@ export default function NavbarAdmin() {
             DashBoard MOVIE
           </NavLink>
         </div>
+        <Button className={classes.button} onClick={changePageHome} color="primary" variant="contained" >
+          Log out
+        </Button>
       </div>
     </Grid>
   );
 }
+export default NavbarAdmin

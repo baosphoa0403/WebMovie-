@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import DateFnsUtils from "@date-io/date-fns";
 import { makeStyles } from "@material-ui/core/styles";
+import Swal from "sweetalert2";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
@@ -14,6 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 function DashboardMovie() {
+  const [change, setChange] = React.useState(false)
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
@@ -64,6 +66,22 @@ function DashboardMovie() {
     ],
     data: []
   });
+  useEffect(()=>{
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
+    })
+      .then(rs => {
+        // console.log(rs.data);
+        setState(prevState => {
+          return { ...prevState, data: rs.data };
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [change])
   useEffect(() => {
     Axios({
       method: "GET",
@@ -103,12 +121,14 @@ function DashboardMovie() {
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`
       }
+      
     })
       .then(rs => {
-        console.log(rs);
+        setChange(!change)
+        Swal.fire("Thêm phim thành công !", "Nhấn OK để thoát!", "success");
       })
       .catch(error => {
-        console.log({ ...error });
+        Swal.fire("Thêm phim thành công !",  error.response.data, "error");
       });
   };
   let handleEditMovie = film => {
@@ -135,10 +155,11 @@ function DashboardMovie() {
       }
     })
       .then(rs => {
-        console.log(rs);
+       setChange(!change)
+       Swal.fire("Sửa phim thành công !", "Nhấn OK để thoát!", "success");
       })
       .catch(error => {
-        console.log({ ...error });
+        Swal.fire("Sửa không phim thành công !",  "Nhấn OK để thoát", "error");
       });
   };
   let handleDeleteMovie = film => {
@@ -154,10 +175,10 @@ function DashboardMovie() {
       }
     })
       .then(rs => {
-        console.log(rs);
+        Swal.fire("Xoá phim thành công !", "Nhấn OK để thoát!", "success");
       })
       .catch(error => {
-        console.log({ ...error });
+        Swal.fire("Xoá không phim thành công !",  error.response.data, "error");
       });
   };
 
