@@ -24,7 +24,6 @@ export default function Modal() {
       ...values,
       [name]: value
     })    
-    console.log(values);
   };
   return (
     <div>

@@ -3,23 +3,16 @@ import "./App.css";
 import PageNotFound from "../src/pages/PageNotFound";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DetailMovie from "./pages/home/DeatailMovie";
-// import TicketBooking from "./pages/home/TicketBooking";
 import { routesAdmin, routesHome } from "./routes";
 import HomeTemplate from "./template/HomeTemplate";
 import AdminTemplate from "./template/AdminTemplate";
 import Admin from "./pages/admin/Admin";
 import Loading from "./components/Loading";
-// const DetailMovie = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => resolve(import("./pages/home/DeatailMovie")), 3000);
-//   });
-// });
 const TicketBooking = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(import("./pages/home/TicketBooking")), 2000);
   });
 });
-// const PageNotFound = lazy(() => import("../src/pages/PageNotFound"));
 function App() {
   const showMenuHome = (routes) => {
     if (routes && routes.length > 0) {

@@ -17,8 +17,6 @@ export default class BuyTicket extends Component {
   booking = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (this.props.buyTicket) {
-      console.log(this.props.buyTicket.maGhe);
-      console.log(this.props.buyTicket.giaVe);
       let arrBooking = [];
       arrBooking = this.props.buyTicket.map((item) => {
         return { maGhe: item.maGhe, giaVe: item.giaVe };
@@ -79,20 +77,12 @@ export default class BuyTicket extends Component {
       );
     }
   };
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(this.props.BuyTicket);
-  //   console.log(nextProps);
-  // }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(this.props.BuyTicket);
-    console.log(nextProps);
     this.setState({
       maLichChieu: nextProps.FilmInfo.maLichChieu,
       buyTicketBooking: nextProps.buyTicket,
       hiddenBooking: true,
-      // maGhe: nextProps.buyTicket.maGhe,
-      // giaVe:
     });
   }
   render() {
@@ -115,16 +105,12 @@ export default class BuyTicket extends Component {
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                {/* <input type="text" name="" id="" class="content" />
-                <label for="emailCheckout">E-Mail</label> */}
                 <p>E-mail: {user.email}</p>
               </div>
             </div>
             <div class="row right__infoUser">
               <div class="col-12">
-                {/* <input type="text" name="" id="" class="content" />
-                <label for="phoneCheckout">Phone</label> */}
-                  <p>Phone: {user.soDT}</p>
+                <p>Phone: {user.soDT}</p>
               </div>
             </div>
             <div class="row right__voucher">
@@ -146,9 +132,14 @@ export default class BuyTicket extends Component {
             <div class="row right__methodPay">
               <div class="col-12">
                 <p class="right__titleMethodPay">Hình thức thanh toán</p>
-               {this.props.buyTicket.length === 0 ? ( <p class="right__warning">
-                  Vui lòng chọn ghế để hiển thị phương thức thanh toán phù hợp.
-                </p>) : ("")}
+                {this.props.buyTicket.length === 0 ? (
+                  <p class="right__warning">
+                    Vui lòng chọn ghế để hiển thị phương thức thanh toán phù
+                    hợp.
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div class="row right__notice">

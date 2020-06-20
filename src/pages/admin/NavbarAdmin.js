@@ -20,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   leftTable: {
-    // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.black,
-    // padding: theme.spacing(2),
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
     border: 0,
     borderRadius: 3,

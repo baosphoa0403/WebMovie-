@@ -1,6 +1,4 @@
 .carousel {
-  //   margin-top: spacing(6.0);
-
   .carousel__content {
     position: relative;
     width: 100%;
@@ -66,38 +64,3 @@
   }
 }
 
-
-
-
-// @media screen and (max-width: getBreakpoint("small")) {
-//   .carousel {
-//     .carousel__content {
-//       .tixCarousel {
-//         .carousel-indicators {
-//           li {
-//             margin-right: 1px;
-//             width: 5px;
-//             height: 5px;
-//           }
-//         }
-//         .carousel-inner {
-//           .carousel-item {
-//             .carousel__button {
-//               img {
-//                 width: spacing(3);
-//               }
-//             }
-//           }
-//         }
-//         .carousel-control-prev,
-//         .carousel-control-next {
-//           width: 30px;
-//           .button {
-//             width: 18px;
-//             height: 18px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }

@@ -72,8 +72,7 @@ function DashboardMovie() {
       url:
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
     })
-      .then(rs => {
-        // console.log(rs.data);
+    .then((rs)=>{
         setState(prevState => {
           return { ...prevState, data: rs.data };
         });

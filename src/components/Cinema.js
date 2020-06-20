@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import Ccontact1 from "../images/img/CineContact/cgv-aeon-binh-tan.jpg";
+import React, { Component } from "react"
 import * as action from "../redux/action/index";
 import { connect } from "react-redux";
 import CinemaLogo from "./cinemaTable/CinemaLogo";
@@ -44,10 +43,8 @@ class Cinema extends Component {
     }
   };
   render() {
-    // console.log(this.props.listTheater);
-    
     return (
-      <div>
+      <div name="test4">
         <section className="homeMovies" id="cinemaBlock">
           <div className="homeMovies__content">
             <div className="homeMovies__bg">

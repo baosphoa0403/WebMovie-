@@ -28,7 +28,7 @@ class DeatailMovie extends Component {
       img: imgCGV,
       maLichChieu: null,
       isOpen: false,
-      detailMovie: {}
+      detailMovie: {},
     };
   }
   openDay = () => {
@@ -44,7 +44,6 @@ class DeatailMovie extends Component {
   };
   componentDidMount() {
     let id = this.props.match.params.id;
-    // console.log(id);
     this.props.getDetailMovie(id);
     Axios({
       method: "GET",
@@ -52,14 +51,11 @@ class DeatailMovie extends Component {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
     })
       .then((rs) => {
-        // console.log(rs.data);
         this.setState({
           listTheater: rs.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch();
   }
   // lấy mã hệ thống  để render hình ảnh
   handleOnChangeId = (idTheater) => {
@@ -68,14 +64,12 @@ class DeatailMovie extends Component {
       let arrayTheater = this.props.detailMovie.lichChieu.filter((theater) => {
         return theater.thongTinRap.maHeThongRap === idTheater;
       });
-      //  console.log(arrayTheater[0].thongTinRap);
       this.setState(
         {
           theater: arrayTheater[0],
           idTheater: idTheater,
         },
         () => {
-          console.log(this.state.theater, this.state.idTheater);
           this.renderImg();
         }
       );
@@ -137,8 +131,6 @@ class DeatailMovie extends Component {
   }
   renderTheater = () => {
     if (this.state.theater.thongTinRap) {
-      console.log(this.state.theater);
-
       return (
         <div className="info__items">
           <p>
@@ -197,7 +189,6 @@ class DeatailMovie extends Component {
             ) : (
               <div className="info_day">{this.renderDay()}</div>
             )}
-            {/* {this.renderTime()} */}
           </div>
           <p />
         </div>
@@ -210,11 +201,9 @@ class DeatailMovie extends Component {
       let listDay = detailMovie.lichChieu.map((item) => {
         return new Date(item.ngayChieuGioChieu).toLocaleDateString();
       });
-      // console.log(arr);
       let arrDayFilter = listDay.filter(
         (item, index) => listDay.indexOf(item) === index
       );
-      console.log(arrDayFilter);
       return arrDayFilter.map((day) => {
         return (
           <DetailDay day={day} lichChieu={this.props.detailMovie.lichChieu} />
@@ -223,7 +212,6 @@ class DeatailMovie extends Component {
     }
   };
   componentWillReceiveProps(nextProps) {
-    console.log(this.nextProps);
     if (nextProps.detailMovie) {
       if (nextProps.detailMovie.lichChieu) {
         let idListTheater = nextProps.detailMovie.lichChieu.map((theater) => {
@@ -233,7 +221,7 @@ class DeatailMovie extends Component {
         let arrFilter = idListTheater.filter(
           (item, index) => idListTheater.indexOf(item) === index
         );
-  
+
         for (const id of arrFilter) {
           let theater = this.state.listTheater.find((theater) => {
             return theater.maHeThongRap === id;
@@ -243,362 +231,346 @@ class DeatailMovie extends Component {
         let arr1 = nextProps.detailMovie.lichChieu.map((rap) => {
           return rap.maLichChieu;
         });
-        console.log(arr1);
-  
-        // console.log(arr);
         this.setState({
           listTheaterRender: arr,
           maLichChieu: arr1[0],
         });
-     
       }
     }
   }
   changePage = () => {
     if (JSON.parse(localStorage.getItem("user")) === null) {
       this.props.history.push("/form");
-    }else{
+    } else {
       if (this.state.maLichChieu) {
-        this.props.history.push(`/booking/${this.state.maLichChieu}`)
-       }
+        this.props.history.push(`/booking/${this.state.maLichChieu}`);
+      }
     }
-  
-  }
+  };
   renderAll = () => {
     let { detailMovie } = this.props;
     let moment = require("moment");
     if (detailMovie) {
-       return (
+      return (
         <div className="background-detail">
-        <div className="name__content">
-          <div className="name__background">
-            <div className="name__picture">
-              <img src={detailMovie.hinhAnh} />
-            </div>
-            <div className="name__overlay"></div>
-            <div className="view">
-              <div className="row">
-                <div className="col-3">
-                  <img className="image" src={detailMovie.hinhAnh} alt="" />
-                  {/* <img className="play" src={PlayVideo} alt="play-video" /> */}
-                  <Dialog1 trailer={detailMovie.trailer}/>
-                </div>
-                <div className="col-5">
-                  <p className="day">
-                    {new Date(detailMovie.ngayKhoiChieu).toLocaleTimeString()}
-                  </p>
-                  <span className="c18">C18</span>
-                  <span className="name_movie">{detailMovie.tenPhim}</span>
-                  <div className="buy-ticket_De">
-                    <button
-                    onClick={this.changePage}
-                      className="btn_buy_ticket"
-                    >
-                      Mua vé
-                    </button>
+          <div className="name__content">
+            <div className="name__background">
+              <div className="name__picture">
+                <img src={detailMovie.hinhAnh} />
+              </div>
+              <div className="name__overlay"></div>
+              <div className="view">
+                <div className="row">
+                  <div className="col-3">
+                    <img className="image" src={detailMovie.hinhAnh} alt="" />
+                    <Dialog1 trailer={detailMovie.trailer} />
                   </div>
-                </div>
-                <div className="col-2">
-                  <div className="name__circlePercent c100 p65">
-                    <div className="name__circleBorder"></div>
-                    <span className="name__number">6.5</span>
-                    <div className="slice">
-                      <div className="bar haftCircle"></div>
-                      <div className="fill haftCircle"></div>
+                  <div className="col-5">
+                    <p className="day">
+                      {new Date(detailMovie.ngayKhoiChieu).toLocaleTimeString()}
+                    </p>
+                    <span className="c18">C18</span>
+                    <span className="name_movie">{detailMovie.tenPhim}</span>
+                    <div className="buy-ticket_De">
+                      <button
+                        onClick={this.changePage}
+                        className="btn_buy_ticket"
+                      >
+                        Mua vé
+                      </button>
                     </div>
                   </div>
-                  <div className="start">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                  <div className="col-2">
+                    <div className="name__circlePercent c100 p65">
+                      <div className="name__circleBorder"></div>
+                      <span className="name__number">6.5</span>
+                      <div className="slice">
+                        <div className="bar haftCircle"></div>
+                        <div className="fill haftCircle"></div>
+                      </div>
+                    </div>
+                    <div className="start">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="info__content">
-          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                id="pills-home-tab"
-                data-toggle="pill"
-                href="#pills-home"
-                role="tab"
-                aria-controls="pills-home"
-                aria-selected="true"
+          <div className="info__content">
+            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li className="nav-item">
+                <a
+                  className="nav-link active"
+                  id="pills-home-tab"
+                  data-toggle="pill"
+                  href="#pills-home"
+                  role="tab"
+                  aria-controls="pills-home"
+                  aria-selected="true"
+                >
+                  Thông Tin{" "}
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="pills-calendar-tab"
+                  data-toggle="pill"
+                  href="#pills-calendar"
+                  role="tab"
+                  aria-controls="pills-calendar"
+                  aria-selected="false"
+                >
+                  Lịch Chiếu
+                </a>
+              </li>
+            </ul>
+            <div className="tab_content" id="pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="pills-home"
+                role="tabpanel"
+                aria-labelledby="pills-home-tab"
               >
-                Thông Tin{" "}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                id="pills-calendar-tab"
-                data-toggle="pill"
-                href="#pills-calendar"
-                role="tab"
-                aria-controls="pills-calendar"
-                aria-selected="false"
-              >
-                Lịch Chiếu
-              </a>
-            </li>
-          </ul>
-          {/* cây navbar */}
-          <div className="tab_content" id="pills-tabContent">
-            <div
-              class="tab-pane fade show active"
-              id="pills-home"
-              role="tabpanel"
-              aria-labelledby="pills-home-tab"
-            >
-              <div className="row info__row1">
-                <div className="col-md-6 col-sm-12 hello">
-                  <div className="info">
-                    <p className="info__contentTitle">Ngày phát hành</p>
-                    <p className="info__contentInfo">
-                      {moment(detailMovie.ngayKhoiChieu).format("DD/MM/YYYY")}
-                    </p>
-                  </div>
-                  <div className="info">
-                    <p className="info__contentTitle">Đạo diễn</p>
-                    <p className="info__contentInfo">Dave Wilson</p>
-                  </div>
-                  <div className="info">
-                    <p className="info__contentTitle">Diễn viên</p>
-                    <p className="info__contentInfo">
-                      Toby Kebbell, Eiza González, Vin Diesel
-                    </p>
-                  </div>
-                  <div className="info">
-                    <p className="info__contentTitle">Thể loại</p>
-                    <p className="info__contentInfo">hành động</p>
-                  </div>
-                  <div className="info">
-                    <p className="info__contentTitle">Định dạng</p>
-                    <p className="info__contentInfo">2D/Digital</p>
-                  </div>
-                  <div className="info">
-                    <p className="info__contentTitle">Quốc Giá SX</p>
-                    <p className="info__contentInfo">Mỹ</p>
-                  </div>
-                </div>
-                <div className="col-md-6 col-sm-12 info__colRight">
-                  <p className="info__contentTitle">Nội dung</p>
-                  <p className="info__contentInfo">{detailMovie.moTa}</p>
-                </div>
-              </div>
-            </div>
-            <div
-              className="tab-pane fade"
-              id="pills-profile"
-              role="tabpanel"
-              aria-labelledby="pills-profile-tab"
-            >
-              <div className="infoShowReview">
-                <div className="row">
-                  <div className="col-12">
-                    {/* <span className="infoImgReviewer">
-                      <img src={avarta} alt="avatar" />
-                    </span> */}
-                    <input
-                      // type="text"
-                      // name
-                      // id
-                      className="info__inputReview"
-                      // placeholder="Bạn nghĩ gì về phim này?"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* đánh giá  */}
-            <div
-              className="tab-pane fade"
-              id="pills-calendar"
-              role="tabpanel"
-              aria-labelledby="pills-calendar-tab"
-            >
-              <div className="info__calendar">
-                <div className="row">
-                  <div className="col-12">
-                    <div className="parentListPCinemas">
-                      <div
-                        className="nav flex-column nav-pills"
-                        id="v-pills-tab"
-                        role="tablist"
-                        aria-orientation="vertical"
-                      >
-                        {this.renderLogo()}
-                      </div>
+                <div className="row info__row1">
+                  <div className="col-md-6 col-sm-12 hello">
+                    <div className="info">
+                      <p className="info__contentTitle">Ngày phát hành</p>
+                      <p className="info__contentInfo">
+                        {moment(detailMovie.ngayKhoiChieu).format("DD/MM/YYYY")}
+                      </p>
                     </div>
-                    <div className="listCinemas">
-                      <div className="tab-content" id="v-pills-tabContent">
+                    <div className="info">
+                      <p className="info__contentTitle">Đạo diễn</p>
+                      <p className="info__contentInfo">Dave Wilson</p>
+                    </div>
+                    <div className="info">
+                      <p className="info__contentTitle">Diễn viên</p>
+                      <p className="info__contentInfo">
+                        Toby Kebbell, Eiza González, Vin Diesel
+                      </p>
+                    </div>
+                    <div className="info">
+                      <p className="info__contentTitle">Thể loại</p>
+                      <p className="info__contentInfo">hành động</p>
+                    </div>
+                    <div className="info">
+                      <p className="info__contentTitle">Định dạng</p>
+                      <p className="info__contentInfo">2D/Digital</p>
+                    </div>
+                    <div className="info">
+                      <p className="info__contentTitle">Quốc Giá SX</p>
+                      <p className="info__contentInfo">Mỹ</p>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-sm-12 info__colRight">
+                    <p className="info__contentTitle">Nội dung</p>
+                    <p className="info__contentInfo">{detailMovie.moTa}</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="tab-pane fade"
+                id="pills-profile"
+                role="tabpanel"
+                aria-labelledby="pills-profile-tab"
+              >
+                <div className="infoShowReview">
+                  <div className="row">
+                    <div className="col-12">
+                      <input className="info__inputReview" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="tab-pane fade"
+                id="pills-calendar"
+                role="tabpanel"
+                aria-labelledby="pills-calendar-tab"
+              >
+                <div className="info__calendar">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="parentListPCinemas">
                         <div
-                          className="tab-pane fade show active"
-                          id="v-pills-CGV"
-                          role="tabpanel"
-                          aria-labelledby="v-pills-CGV-tab"
+                          className="nav flex-column nav-pills"
+                          id="v-pills-tab"
+                          role="tablist"
+                          aria-orientation="vertical"
                         >
-                          <div className="info__scope">
-                            <ul
-                              className="nav nav-pills mb-3"
-                              id="pills-tab"
-                              role="tablist"
-                            >
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link active"
-                                  id="pills-monday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-monday"
-                                  role="tab"
-                                  aria-controls="pills-monday"
-                                  aria-selected="true"
-                                >
-                                  Thứ 2
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-tuesday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-tuesday"
-                                  role="tab"
-                                  aria-controls="pills-tuesday"
-                                  aria-selected="false"
-                                >
-                                  Thứ 3
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-wednesday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-wednesday"
-                                  role="tab"
-                                  aria-controls="pills-wednesday"
-                                  aria-selected="false"
-                                >
-                                  Thứ 4
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-thursday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-thursday"
-                                  role="tab"
-                                  aria-controls="pills-thursday"
-                                  aria-selected="false"
-                                >
-                                  Thứ 5
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-friday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-friday"
-                                  role="tab"
-                                  aria-controls="pills-friday"
-                                  aria-selected="false"
-                                >
-                                  Thứ 6
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-saturday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-saturday"
-                                  role="tab"
-                                  aria-controls="pills-saturday"
-                                  aria-selected="false"
-                                >
-                                  Thứ 7
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-sunday-tab"
-                                  data-toggle="pill"
-                                  href="#pills-sunday"
-                                  role="tab"
-                                  aria-controls="pills-sunday"
-                                  aria-selected="false"
-                                >
-                                  Chủ nhật
-                                </a>
-                              </li>
-                            </ul>
-                            <div
-                              className="tab-content selectScroll"
-                              id="pills-tabContent"
-                            >
-                              <div
-                                className="tab-pane fade show active"
-                                id="pills-monday"
-                                role="tabpanel"
-                                aria-labelledby="pills-monday-tab"
+                          {this.renderLogo()}
+                        </div>
+                      </div>
+                      <div className="listCinemas">
+                        <div className="tab-content" id="v-pills-tabContent">
+                          <div
+                            className="tab-pane fade show active"
+                            id="v-pills-CGV"
+                            role="tabpanel"
+                            aria-labelledby="v-pills-CGV-tab"
+                          >
+                            <div className="info__scope">
+                              <ul
+                                className="nav nav-pills mb-3"
+                                id="pills-tab"
+                                role="tablist"
                               >
-                                {this.renderTheater()}
-                              </div>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link active"
+                                    id="pills-monday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-monday"
+                                    role="tab"
+                                    aria-controls="pills-monday"
+                                    aria-selected="true"
+                                  >
+                                    Thứ 2
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-tuesday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-tuesday"
+                                    role="tab"
+                                    aria-controls="pills-tuesday"
+                                    aria-selected="false"
+                                  >
+                                    Thứ 3
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-wednesday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-wednesday"
+                                    role="tab"
+                                    aria-controls="pills-wednesday"
+                                    aria-selected="false"
+                                  >
+                                    Thứ 4
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-thursday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-thursday"
+                                    role="tab"
+                                    aria-controls="pills-thursday"
+                                    aria-selected="false"
+                                  >
+                                    Thứ 5
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-friday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-friday"
+                                    role="tab"
+                                    aria-controls="pills-friday"
+                                    aria-selected="false"
+                                  >
+                                    Thứ 6
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-saturday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-saturday"
+                                    role="tab"
+                                    aria-controls="pills-saturday"
+                                    aria-selected="false"
+                                  >
+                                    Thứ 7
+                                  </a>
+                                </li>
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-sunday-tab"
+                                    data-toggle="pill"
+                                    href="#pills-sunday"
+                                    role="tab"
+                                    aria-controls="pills-sunday"
+                                    aria-selected="false"
+                                  >
+                                    Chủ nhật
+                                  </a>
+                                </li>
+                              </ul>
                               <div
-                                className="tab-pane fade"
-                                id="pills-tuesday"
-                                role="tabpanel"
-                                aria-labelledby="pills-tuesday-tab"
+                                className="tab-content selectScroll"
+                                id="pills-tabContent"
                               >
-                                {this.renderTheater()}
-                              </div>
-                              <div
-                                className="tab-pane fade"
-                                id="pills-wednesday"
-                                role="tabpanel"
-                                aria-labelledby="pills-wednesday-tab"
-                              >
-                                {this.renderTheater()}
-                              </div>
-                              <div
-                                className="tab-pane fade"
-                                id="pills-thursday"
-                                role="tabpanel"
-                                aria-labelledby="pills-thursday-tab"
-                              >
-                                {this.renderTheater()}
-                              </div>
-                              <div
-                                className="tab-pane fade"
-                                id="pills-friday"
-                                role="tabpanel"
-                                aria-labelledby="pills-friday-tab"
-                              >
-                                {this.renderTheater()}
-                              </div>
-                              <div
-                                className="tab-pane fade"
-                                id="pills-saturday"
-                                role="tabpanel"
-                                aria-labelledby="pills-saturday-tab"
-                              >
-                                {this.renderTheater()}
-                              </div>
-                              <div
-                                className="tab-pane fade"
-                                id="pills-sunday"
-                                role="tabpanel"
-                                aria-labelledby="pills-sunday-tab"
-                              >
-                                {this.renderTheater()}
+                                <div
+                                  className="tab-pane fade show active"
+                                  id="pills-monday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-monday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-tuesday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-tuesday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-wednesday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-wednesday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-thursday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-thursday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-friday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-friday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-saturday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-saturday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
+                                <div
+                                  className="tab-pane fade"
+                                  id="pills-sunday"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-sunday-tab"
+                                >
+                                  {this.renderTheater()}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -611,31 +583,17 @@ class DeatailMovie extends Component {
             </div>
           </div>
         </div>
-      </div>
-       )
+      );
+    }
+  };
+  render() {
+    if (this.props.loading) {
+      return <Loading />;
+    } else {
+      return <div>{this.renderAll()}</div>;
     }
   }
-  render() {
-    // console.log(this.state.idListTheaterMovie);
-    // console.log(this.state.ObjectTheater);
-    //vong2 lap vo cuk
-    // console.log(this.props.detailMovie);
-   
-    console.log(this.props.detailMovie);
-    // {this.renderIdTime()}
-    if (this.props.loading){
-      return <Loading />
-    }else {
-    return (
-      <div>
-       {this.renderAll()}
-      </div>
-      
-    );
-  }
-  }
 }
-// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -651,7 +609,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     detailMovie: state.movieReducer.detailMovie,
-    loading: state.movieReducer.loading
+    loading: state.movieReducer.loading,
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DeatailMovie));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(DeatailMovie));
