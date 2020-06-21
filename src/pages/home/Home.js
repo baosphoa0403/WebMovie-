@@ -7,8 +7,6 @@ import Cinema from "../../components/Cinema";
 import BackToTop from "../../components/BackToTop";
 
 class Home extends Component {
- 
-  
   render() {
     return (
       <div>

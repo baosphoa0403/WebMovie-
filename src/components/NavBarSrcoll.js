@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-// import { Link, Events } from "react-scroll";
-import { Link } from "react-router-dom";
+import { Link, Events } from "react-scroll";
 export default class NavBarSrcoll extends Component {
-    // componentDidMount() {
-    //     Events.scrollEvent.register("begin", function () {});
+    componentDidMount() {
+        Events.scrollEvent.register("begin", function () {});
     
-    //     Events.scrollEvent.register("end", function () {});
+        Events.scrollEvent.register("end", function () {});
         
-    //   }
-    // componentWillUnmount() {
-    //     Events.scrollEvent.remove("begin");
-    //     Events.scrollEvent.remove("end");
-    //   }
+      }
+    componentWillUnmount() {
+        Events.scrollEvent.remove("begin");
+        Events.scrollEvent.remove("end");
+      }
     render() {
         return (
             <div className="col-6">
@@ -20,7 +19,10 @@ export default class NavBarSrcoll extends Component {
                 <Link
                   activeClass="active"
                   className="test1 nav-link"
-                  to="/"        
+                  to="test1"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
                 >
                   Trang Chủ
                 </Link>
@@ -29,7 +31,10 @@ export default class NavBarSrcoll extends Component {
                 <Link
                   activeClass="active"
                   className="test2 nav-link"
-                  to="/"
+                  to="test2"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
                 >
                   Phim
                 </Link>
@@ -38,8 +43,10 @@ export default class NavBarSrcoll extends Component {
                 <Link
                   activeClass="active"
                   className="test3 nav-link"
-                  to="/"
-                
+                  to="test3"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
                 >
                   Lịch Chiếu
                 </Link>
@@ -48,8 +55,10 @@ export default class NavBarSrcoll extends Component {
                 <Link
                   activeClass="active"
                   className="test4 nav-link"
-                  to="/"
-                
+                  to="test4"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
                 >
                   Cụm rạp
                 </Link>
