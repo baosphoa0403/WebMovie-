@@ -9,12 +9,9 @@ export const actGetListMovieAPI = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09",
     })
       .then((rs) => {
-        // console.log(rs.data);
         dispatch(actGetListMovie(rs.data));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 };
 // get detail Movie
@@ -29,7 +26,6 @@ export const actGetListChairBookingAPI = (id) => {
     })
       .then((rs) => {
         dispatch(actGetListChairBooking(rs.data));
-        console.log(rs.data);
       })
       .catch((err) => {
         dispatch(actGetDetailMovieEndBooking(err.response.data));
@@ -64,9 +60,7 @@ export const actGetInformationShowTimesAPI = (idMovie) => {
       .then((rs) => {
         dispatch(actGetInformationShowTimes(rs.data));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch();
   };
 };
 //  lấy hệ thống cụm rạp
@@ -80,9 +74,7 @@ export const actGetListSystemTheaterAPI = () => {
       .then((rs) => {
         dispatch(actGetListSystemTheater(rs.data));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch();
   };
 };
 // gửi thông tin lịch chiếu lên store
@@ -116,9 +108,7 @@ export const actGetDetailMovieAPI = (id) => {
       .then((rs) => {
         dispatch(actGetDetailMovie(rs.data));
       })
-      .catch((err) => {
-        console.log(actGetDetailMovieEnd(err.response.data));
-      });
+      .catch();
   };
 };
 
@@ -146,6 +136,3 @@ export const postBreakTicket = (breaks) => {
     data: breaks,
   };
 };
-
-
-

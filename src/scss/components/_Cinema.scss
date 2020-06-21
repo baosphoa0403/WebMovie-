@@ -6,7 +6,6 @@
     padding-top: spacing(12);
     background: url(../../images/img/back-news.png);
     background-repeat: no-repeat;
-    // background-position: center;
     background-size: 100%;
     .homeMovies__bg {
       background-color: $color-white-0;
@@ -45,7 +44,6 @@
                   transform: translate(-50%);
                   width: calc(100% - 40px);
                   border-bottom: 1px solid rgba(238, 238, 238, 0.88);
-                  // border-color: rgba(238,238,238,0.88);
                 }
                 img {
                   width: spacing(5);

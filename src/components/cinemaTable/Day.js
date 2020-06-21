@@ -22,7 +22,6 @@ export default class Day extends Component {
     }
   };
   getDay = () => {
-    console.log();
     if (this.props.listDay) {
       let arr = this.props.listDay.filter((item) => {
         return (
@@ -30,7 +29,7 @@ export default class Day extends Component {
           this.state.day
         );
       });
-      console.log(arr);
+
       return arr.map((item) => {
         return <Time item={item} />;
       });
@@ -64,6 +63,6 @@ export default class Day extends Component {
   };
 
   render() {
-    return <div >{this.renderDay()}</div>;
+    return <div>{this.renderDay()}</div>;
   }
 }

@@ -25,7 +25,6 @@ export default class DetailDay extends Component {
         let arr = this.props.lichChieu.filter((item)=>{
              return new Date(item.ngayChieuGioChieu).toLocaleDateString() === this.state.day
         })
-        console.log(arr);
         return arr.map((time)=>{
             return <DetailTime time={time}/>
         })

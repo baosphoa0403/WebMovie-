@@ -1,31 +1,39 @@
 import React from "react";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > svg": {
-      margin: theme.spacing(2),
-    },
-  },
-}));
-function HomeIcon(props) {
-  return (
-    <ArrowUpwardIcon {...props}>
-      {/* <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /> */}
-    </ArrowUpwardIcon>
-  );
-}
-export default function BackToTop() {
-  const classes = useStyles();
-  return (
-    <div>
-      <div className="back_to_top">
-        <a href="#" className="back_to_top_link cd-top text-replace js-cd-top">
-          <div className={classes.root}>
-            <HomeIcon />
-          </div>
-        </a>
+import {
+  Events,
+  animateScroll as scroll,
+} from "react-scroll";
+
+export default class BackToTop extends React.Component {
+  constructor(props) {
+    super(props);
+    this.scrollToTop = this.scrollToTop.bind(this);
+  }
+
+  componentDidMount() {
+    Events.scrollEvent.register("begin", function () {
+    });
+
+    Events.scrollEvent.register("end", function () {
+    });
+  }
+  scrollToTop() {
+    scroll.scrollToTop();
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove("begin");
+    Events.scrollEvent.remove("end");
+  }
+  render() {
+    return (
+      <div>
+        <div className="back_to_top">
+          <a onClick={this.scrollToTop}>
+            <i className="fa fa-arrow-up" style={{fontSize:"30px", color: "orange"}}></i>
+          </a>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
