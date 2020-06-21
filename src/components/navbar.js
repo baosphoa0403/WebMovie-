@@ -27,7 +27,6 @@ export default class Navbar extends React.Component {
       detailUser: null,
     });
   };
-
   render() {
     return (
       <div>
@@ -66,6 +65,7 @@ export default class Navbar extends React.Component {
                           </li>
                         ) : (
                           <div className="navbarLogin">
+                           
                             <p style={{ display: "flex" }}>
                               <h4 className="nav_NameUser">
                                 {this.state.detailUser.hoTen}{" "}
