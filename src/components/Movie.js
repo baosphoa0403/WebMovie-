@@ -12,7 +12,7 @@ class Movie extends React.Component {
       <div>
         <section>
           <div className="calendar__film ">
-            <a class="calendar__picture" href="#">
+            <a class="calendar__picture" href="#filmBlock">
               <div
                 className="calendar__filmThumbnail"
                 style={{
