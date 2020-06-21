@@ -15,6 +15,7 @@ import DetailDay from "./DetailDay";
 import { withRouter } from "react-router";
 import Loading from "../../components/Loading";
 import Dialog1 from "../../components/Dialog";
+import NavbarDetail from "../home/NavbarDetail/NavbarDetail";
 
 class DeatailMovie extends Component {
   constructor(props) {
@@ -299,7 +300,7 @@ class DeatailMovie extends Component {
               </div>
             </div>
           </div>
-          <div className="info__content">
+          <div className="info__content" name="test5">
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
               <li className="nav-item">
                 <a
@@ -328,7 +329,7 @@ class DeatailMovie extends Component {
                 </a>
               </li>
             </ul>
-            <div className="tab_content" id="pills-tabContent">
+            <div className="tab_content" id="pills-tabContent" >
               <div
                 class="tab-pane fade show active"
                 id="pills-home"
@@ -590,7 +591,9 @@ class DeatailMovie extends Component {
     if (this.props.loading) {
       return <Loading />;
     } else {
-      return <div>{this.renderAll()}</div>;
+      return <div>
+        <NavbarDetail/>
+        {this.renderAll()}</div>;
     }
   }
 }

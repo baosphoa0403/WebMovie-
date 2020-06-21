@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Events } from "react-scroll";
-export default class NavBarSrcoll extends Component {
+import NavbarReturnHome from "./NavbarReturnHome";
+export default class NavBarSrcollDetail extends Component {
   componentDidMount() {
     Events.scrollEvent.register("begin", function () {});
 
@@ -15,7 +16,7 @@ export default class NavBarSrcoll extends Component {
       <div className="col-6">
         <ul className="navbar-nav">
           <li className="nav-item ">
-            <Link
+            {/* <Link
               activeClass="active"
               className="test1 nav-link"
               to="test1"
@@ -24,42 +25,33 @@ export default class NavBarSrcoll extends Component {
               duration={500}
             >
               Trang Chủ
-            </Link>
+            </Link> */}
+            {/* <div className="nav-link"> */}
+              <NavbarReturnHome />
+            {/* </div> */}
           </li>
           <li className="nav-item">
             <Link
               activeClass="active"
-              className="test2 nav-link"
-              to="test2"
+              className="test5 nav-link"
+              to="test5"
               spy={true}
               smooth={true}
               duration={500}
             >
-              Phim
+              Thông tin phim
             </Link>
           </li>
           <li className="nav-item">
             <Link
               activeClass="active"
-              className="test3 nav-link"
-              to="test3"
+              className="test5 nav-link"
+              to="test5"
               spy={true}
               smooth={true}
               duration={500}
             >
               Lịch Chiếu
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              activeClass="active"
-              className="test4 nav-link"
-              to="test4"
-              spy={true}
-              smooth={true}
-              duration={500}
-            >
-              Cụm rạp
             </Link>
           </li>
         </ul>
