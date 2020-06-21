@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import logo from "../images/img/logo2.png";
 import NavBarSrcoll from "./NavBarSrcoll";
-import ModalUser from "./ModalUser";
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +67,6 @@ export default class Navbar extends React.Component {
                           <div className="navbarLogin">
                            
                             <p style={{ display: "flex" }}>
-                              <ModalUser />
                               <h4 className="nav_NameUser">
                                 {this.state.detailUser.hoTen}{" "}
                               </h4>
