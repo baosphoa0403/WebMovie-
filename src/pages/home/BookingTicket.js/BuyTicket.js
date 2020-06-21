@@ -3,7 +3,8 @@ import icon123 from "../../../images/img/exclamation.png";
 import SeatUpLoad from "./SeatUpLoad";
 import Swal from "sweetalert2";
 import Axios from "axios";
-export default class BuyTicket extends Component {
+import { withRouter } from "react-router";
+class BuyTicket extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +37,9 @@ export default class BuyTicket extends Component {
         .then((rs) => {
           if (this.props.buyTicket.length > 0) {
             Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
+            setTimeout(()=>{
+              this.props.history.replace("/")
+            }, 2000)
           } else {
             Swal.fire(
               "Đặt không vé thành công !",
@@ -165,3 +169,4 @@ export default class BuyTicket extends Component {
     );
   }
 }
+export default (withRouter(BuyTicket))
