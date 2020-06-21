@@ -5,19 +5,19 @@ import BlockApp from "../../components/BlockApp";
 import Footer from "../../components/footer";
 import Cinema from "../../components/Cinema";
 import BackToTop from "../../components/BackToTop";
+import Navbar from "../../components/navbar";
 
 class Home extends Component {
- 
-  
   render() {
     return (
       <div>
-        <Carousel/>
+        <Navbar/>
+        <Carousel />
         <ListMovie />
-        <Cinema/>
-        <BlockApp/>
+        <Cinema />
+        <BlockApp />
         <Footer />
-        <BackToTop/>
+        <BackToTop />
       </div>
     );
   }
