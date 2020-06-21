@@ -5,7 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Swal from "sweetalert2";
 import Axios from "axios";
-
+import { Link } from "react-router-dom";
+import { colors } from "@material-ui/core";
 const signUpUserSchema = yup.object().shape({
   taiKhoan: yup.string().required("* Field is required"),
   matKhau: yup.string().required("* Field is required"),
@@ -128,6 +129,20 @@ class FormSignIn extends Component {
                           Submit
                         </button>
                       </div>
+                      <Link
+                        style={{ textDecoration: "none", color: "white" }}
+                        to="/"
+                      >
+                        <div className="group">
+                          <button
+                            className="btn btn-primary"
+                            style={{ width: 400, height: 40 }}
+                          >
+                            Back To Home
+                          </button>
+                        </div>
+                      </Link>
+
                       <div className="hr" />
                       <div className="foot-lnk">
                         <a href="#forgot">Forgot Password?</a>
@@ -235,6 +250,19 @@ class FormSignIn extends Component {
                           Submit
                         </button>
                       </div>
+                      <Link
+                        style={{ textDecoration: "none", color: "white" }}
+                        to="/"
+                      >
+                        <div className="group">
+                          <button
+                            className="btn btn-primary"
+                            style={{ width: 385, height: 40 }}
+                          >
+                            Back To Home
+                          </button>
+                        </div>
+                      </Link>
                     </div>
                   </Form>
                 )}
