@@ -47,12 +47,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: "10px",
     textDecoration: "none"
   },
-  leftUp1: {
-    marginLeft: "-9px",
-    marginBottom: "30px",
-    marginTop: "10px",
-    textDecoration: "none"
-  },
   left: {
     textAlign: "center"
   },
@@ -67,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     position: 'absolute',
-    width: 600,
+    width: '100%',
     height: 400,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
@@ -235,8 +229,8 @@ export default function ModalUserBook(props) {
      props.history.replace("/")
   }
   return (
-    <div className="userInformation">
-      <Grid container spacing={3}>
+    <div className="userInformation" style={{width:"100%"}}>
+      <Grid container >
         <Grid className={classes.leftTable} item xs={12} sm={2}>
           <div className={classes.left}>
             <div className={classes.leftUp}>
