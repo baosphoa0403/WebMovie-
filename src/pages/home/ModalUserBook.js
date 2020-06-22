@@ -255,13 +255,6 @@ export default function ModalUserBook(props) {
             >
              Back To Home
             </Button>
-            <Button
-              className={classes.button}
-              color="primary"
-              variant="contained"
-            >
-            Edit User
-            </Button>
           </div>
         </Grid>
         <Grid className={classes.rightTable} item xs={12} sm={10}>
