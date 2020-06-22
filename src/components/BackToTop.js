@@ -27,13 +27,13 @@ export default class BackToTop extends React.Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="back_to_top">
           <a onClick={this.scrollToTop}>
             <i className="fa fa-arrow-up" style={{fontSize:"30px", color: "orange"}}></i>
           </a>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

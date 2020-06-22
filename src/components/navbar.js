@@ -30,8 +30,8 @@ export default class Navbar extends React.Component {
   };
   render() {
     return (
-      <div>
-        <div>
+      <React.Fragment>
+      
           <section className="menu">
             <nav className="navbar navbar-expand-md bg-dark navbar-dark">
               <button
@@ -94,8 +94,8 @@ export default class Navbar extends React.Component {
               </div>
             </nav>
           </section>
-        </div>
-      </div>
+
+      </React.Fragment>
     );
   }
 }

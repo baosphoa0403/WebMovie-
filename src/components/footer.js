@@ -15,7 +15,7 @@ import zalopay_icon from "../images/img/Contact/zalopay_icon.png"
 export default class Footer extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <section
           id="the-end"
           className="footer "
@@ -156,7 +156,7 @@ export default class Footer extends Component {
             </div>
           </div>
         </section>
-      </div>
+      </React.Fragment>
     );
   }
 }

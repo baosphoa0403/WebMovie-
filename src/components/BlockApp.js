@@ -27,7 +27,7 @@ export default class BlockApp extends Component {
     };
 
     return (
-      <div>
+      <React.Fragment>
         <section className="ng-scope">
           <div className="row" style={{ marginRight: 0 }}>
             <div className="col-xs-12" id="homeApp">
@@ -122,7 +122,7 @@ export default class BlockApp extends Component {
             </div>
           </div>
         </section>
-      </div>
+      </React.Fragment>
     );
   }
 }
