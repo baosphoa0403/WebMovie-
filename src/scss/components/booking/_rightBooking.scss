@@ -221,7 +221,27 @@
     height: spacing(6);
   }
 }
-
+@media (max-width: 1690px) and (min-width: 1441px) {
+  .right {
+    width: 26% !important;
+    .right__content {
+      .right__filmName {
+        .right__text {
+          .right__address {
+            img {
+              display: none;
+            }
+          }
+        }
+      }
+      .right__notice {
+        .right__title {
+          font-size: 9px !important;
+        }
+      }
+    }
+  }
+}
 // Screen 13inch
 @media (max-width: 1440px) and (min-width: 1024px) {
   .right {

@@ -104,3 +104,34 @@
     }
   }
 }
+
+@media (min-width: 1441px) and (max-width: 1700px) {
+  .header {
+    width: 68%;
+    .header__content {
+      .header__sideMenu {
+        position: absolute;
+        top: 80px;
+        left: 50px;
+        padding: 10px;
+        background-color: $color-white-0;
+        border: 1px solid $color-gray-2;
+        border-radius: 4px;
+        .navbar-nav {
+          li {
+            font-family: "SF Medium", sans-serif;
+            font-size: $fs-4;
+            font-weight: $fw-bold;
+            padding: 10px;
+            span {
+              font-size: $fs-14;
+            }
+            &.active {
+              color: $color-red-2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -37,6 +37,16 @@
   }
 }
 
+@media (min-width: 1441px) and (max-width: 1690px) {
+  .search_bar {
+    margin-left: 40px;
+    height: 80px;
+    .buyTicket {
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+  }
+}
 //13inch
 @media screen and (max-width: 1440px) {
   .search_bar {

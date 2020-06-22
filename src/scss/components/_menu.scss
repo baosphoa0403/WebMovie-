@@ -78,6 +78,20 @@
     }
   }
 }
+@media  (min-width: 1441px) and (max-width: 1690px) {
+  .menu {
+    .navbar {
+      .nav-item {
+        margin: 0px 35px;
+      }
+      .col-3 {
+        padding-left: 70px;
+      }
+    }
+
+  }
+}
+
 
 @media screen and (max-width: 1440px) {
   .menu {
@@ -95,6 +109,9 @@
       .col-3 {
         padding-left: 0;
         .sign-language {
+          ul{
+            padding-left: 0;
+          }
           .navbarLogin {
             margin-left: 60px;
           }

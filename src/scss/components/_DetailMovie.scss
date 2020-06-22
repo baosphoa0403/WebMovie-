@@ -484,6 +484,47 @@
   }
 }
 
+
+@media (min-width: 1441px) and (max-width: 1700px) {
+  .background-detail {
+    .name__content {
+      .name__background {
+        .name__picture {
+          width: 100%;
+          overflow: hidden;
+          position: absolute;
+          img {
+            height: auto;
+            -webkit-filter: blur(15px);
+            filter: blur(spacing(1.5));
+            margin: -11px 0 -5px -10px;
+            width: calc(100% + 15px);
+          }
+        }
+        .name__overlay {
+          width: 100%;
+        }
+      }
+      .view {
+        .col-3 {
+          .image {
+            width: 100%;
+            margin-left: 35px;
+          }
+          .play {
+            left: 58%;
+          }
+        }
+        .col-5 {
+          margin-left: 80px;
+        }
+      }
+    }
+    .info__content {
+      margin: -150px 285px;
+    }
+  }
+}
 //Macpro
 @media screen and (max-width: 1440px) {
   .background-detail {
