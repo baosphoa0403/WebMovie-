@@ -6,7 +6,6 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import { colors } from "@material-ui/core";
 const signUpUserSchema = yup.object().shape({
   taiKhoan: yup.string().required("* Field is required"),
   matKhau: yup.string().required("* Field is required"),
