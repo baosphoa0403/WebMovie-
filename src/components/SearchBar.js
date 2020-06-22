@@ -30,25 +30,29 @@ class SearchBar extends Component {
           <Autocomplete
             options={arr}
             onChange={(event, newValue) => {
-              this.setState(
-                {
-                  tenPhim: newValue,
-                  tenHeThongRap: "",
-                  tenRap: "",
-                  ngayXem: "",
-                  gioXem: "",
-                  btnValid: false,
-                },
-                () => {
-                  let movie = listMovie.find((movie) => {
-                    return movie.tenPhim === this.state.tenPhim;
-                  });
-                  this.setState({
-                    maPhim: movie.maPhim,
-                  });
-                  this.props.actGetInformationShowTimes(movie.maPhim);
-                }
-              );
+              console.log(newValue);
+              if (newValue !== null ) {
+                this.setState(
+                  {
+                    tenPhim: newValue,
+                    tenHeThongRap: "",
+                    tenRap: "",
+                    ngayXem: "",
+                    gioXem: "",
+                    btnValid: false,
+                  },
+                  () => {
+                    let movie = listMovie.find((movie) => {
+                      return movie.tenPhim === this.state.tenPhim;
+                    });
+                    this.setState({
+                      maPhim: movie.maPhim,
+                    });
+                    this.props.actGetInformationShowTimes(movie.maPhim);
+                  }
+                );
+              }
+             
             }}
             value={this.state.tenPhim}
             renderInput={(params) => {
