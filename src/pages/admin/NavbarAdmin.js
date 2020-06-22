@@ -54,11 +54,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 function NavbarAdmin() {
+  const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
   const classes = useStyles();
   let history = useHistory();
   let changePageHome = () => {
     setTimeout(()=>{
       history.replace("/")
+      localStorage.removeItem("userAdmin");
     }, 1000)
   }
   return (
@@ -68,6 +70,8 @@ function NavbarAdmin() {
           <FaceIcon className={classes.icon} />
         </div>
         <span className={classes.span}></span>
+        <p>Hi, admin {userAdmin.hoTen}</p>
+        <hr/>
         <div className={classes.leftUp1}>
           <NavLink
             style={{ textDecoration: "none" }}
@@ -77,6 +81,7 @@ function NavbarAdmin() {
             DashBoard USER
           </NavLink>
         </div>
+       
         <div className={classes.leftUp2}>
           <NavLink
             style={{ textDecoration: "none" }}
@@ -86,6 +91,7 @@ function NavbarAdmin() {
             DashBoard MOVIE
           </NavLink>
         </div>
+        <hr/>
         <Button className={classes.button} onClick={changePageHome} color="primary" variant="contained" >
           Log out
         </Button>
