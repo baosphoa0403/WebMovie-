@@ -40,9 +40,11 @@ class CinemaTheater extends Component {
     if (nextProps && nextProps.maHeThong) {
       this.setState({
         maCumRap: nextProps
+      }, ()=>{
+        this.fetchDataListTheater(nextProps.maHeThong);
+        this.renderImg()
       });
-      this.fetchDataListTheater(nextProps.maHeThong);
-      this.renderImg()
+     
     }
   }
   renderImg = () => {
