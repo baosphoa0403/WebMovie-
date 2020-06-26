@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import logo from "../../../images/img/logo2.png";
 import NavBarSrcollDetail from "./NavbarSrcollDetail";
-// import NavBarSrcoll from "./NavBarSrcoll";
 export default class NavbarDetail extends React.Component {
   constructor(props) {
     super(props);

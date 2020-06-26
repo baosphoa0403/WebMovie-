@@ -28,7 +28,7 @@ export default class BlockApp extends Component {
 
     return (
       <React.Fragment>
-        <section className="ng-scope">
+        <section className="ng-scope" name="test10">
           <div className="row" style={{ marginRight: 0 }}>
             <div className="col-xs-12" id="homeApp">
               <div className="mainMaxWidth">
