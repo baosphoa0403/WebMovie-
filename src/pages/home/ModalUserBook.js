@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     position: 'absolute',
-    width: '100%',
+    width: '500px',
     height: 400,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',

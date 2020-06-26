@@ -108,9 +108,6 @@ class CinemaTheater extends Component {
                       {rap.tenCumRap}
                     </p>
                     <p className="homeMovies__infoMovieCinema">{rap.diaChi}</p>
-                    <p className="homeMovies__showingDetailCinema">
-                      <a href="#">[chi tiết]</a>
-                    </p>
                   </div>
                 </div>
               </div>
