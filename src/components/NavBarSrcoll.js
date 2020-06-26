@@ -38,18 +38,7 @@ export default class NavBarSrcoll extends Component {
               Phim
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              activeClass="active"
-              className="test3 nav-link"
-              to="test3"
-              spy={true}
-              smooth={true}
-              duration={500}
-            >
-              Lịch Chiếu
-            </Link>
-          </li>
+
           <li className="nav-item">
             <Link
               activeClass="active"
@@ -60,6 +49,18 @@ export default class NavBarSrcoll extends Component {
               duration={500}
             >
               Cụm rạp
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              activeClass="active"
+              className="test5 nav-link"
+              to="test10"
+              spy={true}
+              smooth={true}
+              duration={500}
+            >
+              Ứng dụng
             </Link>
           </li>
         </ul>
