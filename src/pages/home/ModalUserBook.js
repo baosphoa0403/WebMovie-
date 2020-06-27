@@ -95,9 +95,6 @@ export default function ModalUserBook(props) {
   const [maVe, setMaVe] = React.useState(null);
   const [rap, setRap] = React.useState({});
   let moment = require("moment");
-  
-  console.log(maVe);
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -166,10 +163,12 @@ export default function ModalUserBook(props) {
             {item.tenPhim}
           </StyledTableCell>
           <StyledTableCell style={{textAlign: "center"}}>
-           <EventSeatIcon onClick={()=>{
-             handleOpen()
-             setMaVe(item.maVe)
-           }} />
+           <EventSeatIcon /> <span
+           onClick={()=>{
+            handleOpen()
+            setMaVe(item.maVe)
+          }}
+           > Chi Tiết </span>
           </StyledTableCell>
           <StyledTableCell align="right">  {moment(item.ngayDat).format("DD/MM/YYYY")} { moment(item.ngayDat).format("HH:mm A")}</StyledTableCell>
           <StyledTableCell align="right">{item.giaVe.toLocaleString()} VNĐ</StyledTableCell>

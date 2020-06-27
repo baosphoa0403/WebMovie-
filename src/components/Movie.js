@@ -7,12 +7,11 @@ class Movie extends React.Component {
   render() {
     let { movie } = this.props;
     // console.log(this.props.movie.trailer);
-
     return (
       <div>
         <section>
           <div className="calendar__film ">
-            <a class="calendar__picture" href="#filmBlock">
+            <a class="calendar__picture">
               <div
                 className="calendar__filmThumbnail"
                 style={{
