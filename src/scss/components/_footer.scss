@@ -77,4 +77,26 @@
     background-color: #fbbd61;
   }
 }
+@media  screen and (max-width: 375px){
+  .footer{
+     .icon{
+       display: none;
+     }
+     .icon2{
+       display: none;
+     }
+     .icon1{
+       .icon1_info{
+         display: none;
+       }
+       img{
+        width: 330px !important;
+       }
+     }
+     .icon3_show{
+      display: none;
+       
+     }
+  }
+}
 

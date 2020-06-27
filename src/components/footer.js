@@ -26,7 +26,7 @@ export default class Footer extends Component {
               <div className="col-3 footer_left">
                 <div className="footer_item icon1">
                   <img src={logo2} style={{ width: 232 }}  alt="" />
-                  <p>
+                  <p className="icon1_info">
                     Cinemax giúp bạn mua vé trực tuyến và cập nhật thường xuyên
                     các trailer, tin tức, thông tin rạp, suất chiếu, các đánh
                     giá phim, chương trình khuyến mãi từ các rạp và của riêng
@@ -56,7 +56,7 @@ export default class Footer extends Component {
                   </ul>
                 </div>
               </div>
-              <div className="col-3 ">
+              <div className="col-3 icon3_show">
                 <div className="footer_item icon3">
                   <h6>HỖ TRỢ KHÁCH HÀNG</h6>
                   <ul>
