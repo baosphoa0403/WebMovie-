@@ -5,43 +5,6 @@ import CinemaLogo from "./cinemaTable/CinemaLogo";
 import CinemaTheater from "./cinemaTable/CinemaTheater";
 import CinemaMovie from "./cinemaTable/CinemaMovie";
 class Cinema extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      maHeThongRap: null,
-      maCumRap: null,
-      listCumRap: [],
-      tenCumRap: null
-    };
-  }
-  componentDidMount() {
-    this.props.getListTheater();
-  }
-  handleOnChange = (maHeThongRap) => {
-    this.setState({ maHeThongRap });
-  };
-  renderLogo = () => {
-    if (this.props.listTheater) {
-      return this.props.listTheater.map((theater) => {
-        return (
-          <button
-            className="nav-link active"
-            id={theater.maHeThongRap}
-            data-toggle="pill"
-            href="#v-pills-CGV"
-            role="tab"
-            aria-controls="v-pills-CGV"
-            aria-selected="true"
-            onClick={() => {
-              this.handleOnChange(theater.maHeThongRap);
-            }}
-          >
-            <img src={theater.logo} alt={theater.maHeThongRap} />
-          </button>
-        );
-      });
-    }
-  };
   render() {
     return (
       <div name="test4">

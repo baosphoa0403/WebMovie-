@@ -30,6 +30,7 @@ class CinemaTheater extends Component {
           },
           () => {
             this.props.sendListCumRap(this.state.listCumRap);
+            this.renderImg()
           }
         );
       })
@@ -38,11 +39,13 @@ class CinemaTheater extends Component {
   };
   componentWillReceiveProps(nextProps) {  
     if (nextProps && nextProps.maHeThong) {
+      console.log(nextProps.maHeThong);
+      
       this.setState({
         maCumRap: nextProps
       }, ()=>{
         this.fetchDataListTheater(nextProps.maHeThong);
-        this.renderImg()
+       
       });
      
     }

@@ -14,6 +14,8 @@ class CinemaLogo extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.listTheater) {
+      console.log(nextProps);
+      
       this.props.sendIdTheater(nextProps.listTheater[0].maHeThongRap);
     }
   }
@@ -51,7 +53,11 @@ class CinemaLogo extends Component {
   render() {
     return <div>{this.renderLogo()}</div>;
   }
+  componentWillUnmount(){
+     this.props.resetIdTheater()
+  }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     getListTheater: () => {
@@ -64,6 +70,13 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
+    resetIdTheater: () => {
+      let action = {
+        type: ActionType.SEND_ID_THEATER,
+        data: null,
+      };
+      dispatch(action)
+    }
   };
 };
 const mapStateToProps = (state) => {
