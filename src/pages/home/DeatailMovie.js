@@ -129,6 +129,9 @@ class DeatailMovie extends Component {
   };
   componentWillUnmount() {
     this.props.resetDetailMovie();
+    this.setState({
+      listTheaterRender: []
+    })
   }
   renderTheater = () => {
     if (this.state.theater.thongTinRap) {

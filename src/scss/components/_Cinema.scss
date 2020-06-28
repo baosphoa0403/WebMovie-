@@ -204,16 +204,6 @@
 }
 @media screen and (max-width: 375px) {
   .homeMovies {
-    .homeMovies__content {
-      .homeMovies__bg {
-        .col-sm-12 {
-          width: 100% !important;
-          border: none !important;
-        }
-        .parentListPCinemas {
-          width: 100%;
-        }
-      }
-    }
+    display: none;
   }
 }

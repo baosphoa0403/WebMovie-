@@ -158,7 +158,7 @@ class FormSignIn extends Component {
                   hoTen: "",
                   email: "",
                   soDT: "",
-                  maNhom: "GP01",
+                  maNhom: "GP04",
                 }}
                 validationSchema={signUpUserSchema}
                 onSubmit={this.handleSubmit}
