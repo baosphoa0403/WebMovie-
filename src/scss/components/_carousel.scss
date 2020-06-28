@@ -64,4 +64,15 @@
     }
   }
 }
+@media screen and (max-width: 375px){
+  .carousel{
+    .carousel__content{
+      .tixCarousel{
+        .carousel-item{
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
 

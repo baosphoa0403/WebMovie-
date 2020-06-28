@@ -122,7 +122,7 @@ class FormSignIn extends Component {
                       </div>
                       <div className="group">
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-primary button0"
                           style={{ width: 400, height: 40 }}
                         >
                           Submit
@@ -134,7 +134,7 @@ class FormSignIn extends Component {
                       >
                         <div className="group">
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-primary button1"
                             style={{ width: 400, height: 40 }}
                           >
                             Back To Home
@@ -243,7 +243,7 @@ class FormSignIn extends Component {
                       </div>
                       <div className="group">
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-primary button_signup"
                           style={{ width: 385, height: 40 }}
                         >
                           Submit
@@ -255,7 +255,7 @@ class FormSignIn extends Component {
                       >
                         <div className="group">
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-primary button_signup_home"
                             style={{ width: 385, height: 40 }}
                           >
                             Back To Home

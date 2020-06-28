@@ -38,7 +38,7 @@ class Admin extends Component {
             </label>
             <input id="tab-2" type="radio" name="tab" className="sign-up" />
             <label htmlFor="tab-2" className="tab">
-              Sign Up
+              {/* Sign Up */}
             </label>
             <div className="login-form">
               <form onSubmit={this.handleOnlogin}>

@@ -176,3 +176,24 @@
     }
   }
 }
+
+@media (max-width: 375px){
+  .seatCheckOut{
+      margin-left: 0;
+      width: 100%!important;
+      .seatCheckOut__content{
+          .seatCheckOut__seatMap{
+              .seatCheckOut__listSeat{
+                .numberofchair{
+                  display: none;
+                }
+                  width: 100% !important;
+                  grid-template-columns: repeat(8, 1fr) !important;
+              }
+              .col-8-chair{
+                max-width: 100% !important;
+              }
+          }
+      }
+  }
+}

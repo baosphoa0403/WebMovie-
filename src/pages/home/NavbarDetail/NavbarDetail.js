@@ -33,7 +33,7 @@ export default class NavbarDetail extends React.Component {
       <div>
         <div>
           <section className="menu">
-            <nav className="navbar navbar-expand-md bg-dark navbar-dark">
+            <nav className="navbar navbar-expand-md bg-dark navbar-dark navbar_detail">
               <button
                 className="navbar-toggler"
                 type="button"

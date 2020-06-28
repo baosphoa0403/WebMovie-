@@ -13,22 +13,10 @@ export default class NavBarSrcollDetail extends Component {
   }
   render() {
     return (
-      <div className="col-6">
+      <div className="col-6 col_6_detail">
         <ul className="navbar-nav">
           <li className="nav-item ">
-            {/* <Link
-              activeClass="active"
-              className="test1 nav-link"
-              to="test1"
-              spy={true}
-              smooth={true}
-              duration={500}
-            >
-              Trang Chủ
-            </Link> */}
-            {/* <div className="nav-link"> */}
-              <NavbarReturnHome />
-            {/* </div> */}
+            <NavbarReturnHome />
           </li>
           <li className="nav-item">
             <Link

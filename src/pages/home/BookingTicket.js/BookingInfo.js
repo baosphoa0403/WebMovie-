@@ -6,8 +6,6 @@ export default function BookingInfo(props) {
   const [seconds, setSeconds] = useState(60000);
   let history = useHistory();
   useEffect(() => {
-
-
     if (seconds > 0) {
       let interval = setInterval(() => {
         setSeconds(seconds - 1000);
@@ -15,12 +13,12 @@ export default function BookingInfo(props) {
       return () => clearInterval(interval);
     } else {
       Swal.fire("Hết thời gian mua vé!", "Nhấn OK để thoát", "error");
-      setTimeout(()=>{
-        history.replace("/")
-      }, 3000)
+      setTimeout(() => {
+        history.replace("/");
+      }, 3000);
     }
   });
-console.log(1);
+  console.log(1);
 
   let millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);

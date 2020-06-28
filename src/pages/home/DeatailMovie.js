@@ -121,7 +121,7 @@ class DeatailMovie extends Component {
             aria-controls="v-pills-CGV"
             aria-selected="true"
           >
-            <img src={theater.logo} alt="logoCGV" />
+            <img src={theater.logo} alt="" />
           </a>
         );
       });
@@ -416,7 +416,7 @@ class DeatailMovie extends Component {
                           >
                             <div className="info__scope">
                               <ul
-                                className="nav nav-pills mb-3"
+                                className="nav nav-pills mb-3 navLeft"
                                 id="pills-tab"
                                 role="tablist"
                               >
