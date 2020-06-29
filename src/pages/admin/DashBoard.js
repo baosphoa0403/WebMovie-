@@ -19,8 +19,8 @@ function DashBoard() {
   
   const [state, setState] = React.useState({
     columns: [
-      { title: "Tên", field: "hoTen" },
-      { title: "Tài Khoản", field: "taiKhoan" },
+      { title: "Tên", field: "hoTen", },
+      { title: "Tài Khoản", field: "taiKhoan", disabled: true },
       { title: "Mật Khẩu", field: "matKhau" },
       { title: "Email", field: "email", type: "email" },
       {
@@ -86,10 +86,9 @@ function DashBoard() {
   // },[])
   // edit
   const handleEditUser = (user) => {
-    console.log(user);
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
     let userEdit = { ...user, maNhom: "GP04" };
-    // console.log(userEdit);
+    console.log(userEdit);
 
     if (
       user.maLoaiNguoiDung !== "KhachHang" &&
@@ -114,6 +113,8 @@ function DashBoard() {
           );
         })
         .catch((error) => {
+          console.log({...error});
+          
           Swal.fire(
             "Sửa tài khoản không thành công !",
             error.response.data,
