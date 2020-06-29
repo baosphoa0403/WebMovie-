@@ -105,7 +105,7 @@ class DeatailMovie extends Component {
     }
   };
   renderLogo = () => {
-    if (this.state.listTheaterRender) {
+    if (this.state.listTheaterRender.length > 0) {
       return this.state.listTheaterRender.map((theater, index) => {
         return (
           <a
@@ -129,9 +129,6 @@ class DeatailMovie extends Component {
   };
   componentWillUnmount() {
     this.props.resetDetailMovie();
-    this.setState({
-      listTheaterRender: []
-    })
   }
   renderTheater = () => {
     if (this.state.theater.thongTinRap) {
