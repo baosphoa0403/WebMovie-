@@ -22,8 +22,8 @@ class ListMovieForMobile extends Component {
       };
     render() {
         return (
-            <div className="container listMovieForMobile" name="test2">
-            <section className="calendar" id="filmBlock">
+            <div className="container listMovieForMobile" >
+            <section className="calendar" id="filmBlock"name="test2" >
               <div className="calendar__bg" id="homeMovies">
                 <div className="calendar__content">
                   <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">

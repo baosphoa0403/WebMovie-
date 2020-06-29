@@ -405,8 +405,9 @@
                     }
                     .info_day {
                       .day_set {
-                        font-size: 20px;
+                        font-size: 15px;
                         margin: 10px 0;
+                        color: black;
                         .info_day_setup {
                           display: flex;
                           .Time_handle {
@@ -415,6 +416,7 @@
                             margin: 10px 12px;
                             border: 1px solid white;
                             border-radius: 23px;
+                            cursor: pointer;
                             span {
                               color: #e5a813;
                             }
@@ -648,7 +650,14 @@
     .info__content {
       width: 94%;
       margin: 0px 6px;
-     
+      .tab_content{
+        .tab-pane{
+          .info__calendar{
+            margin: -400px 0px !important;
+            overflow: hidden;
+          }
+        }
+      }
     }
   }
 }

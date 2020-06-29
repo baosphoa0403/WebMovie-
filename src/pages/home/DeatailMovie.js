@@ -271,7 +271,7 @@ class DeatailMovie extends Component {
                   </div>
                   <div className="col-5">
                     <p className="day">
-                      {new Date(detailMovie.ngayKhoiChieu).toLocaleTimeString()}
+                      {moment(detailMovie.ngayKhoiChieu).format("hh:mm:A")}
                     </p>
                     <span className="c18">C18</span>
                     <span className="name_movie">{detailMovie.tenPhim}</span>
