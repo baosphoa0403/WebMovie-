@@ -27,10 +27,9 @@ class Movie extends React.Component {
                 <div className="calendar__avgPoint">
                   <p className="calendar__point">{movie.danhGia}</p>
                   <p className="calendar__star">
-                    <img src={star} alt="star1" />
-                    <img src={star} alt="star1" />
-                    <img src={star} alt="star1" />
-                    <img src={star} alt="star1" />
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
                   </p>
                 </div>
               </div>

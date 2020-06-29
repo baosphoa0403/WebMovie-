@@ -121,7 +121,7 @@ class DeatailMovie extends Component {
             aria-controls="v-pills-CGV"
             aria-selected="true"
           >
-            <img src={theater.logo} alt="logoCGV" />
+            <img src={theater.logo} alt="" />
           </a>
         );
       });
@@ -129,6 +129,9 @@ class DeatailMovie extends Component {
   };
   componentWillUnmount() {
     this.props.resetDetailMovie();
+    this.setState({
+      listTheaterRender: []
+    })
   }
   renderTheater = () => {
     if (this.state.theater.thongTinRap) {
@@ -268,7 +271,7 @@ class DeatailMovie extends Component {
                   </div>
                   <div className="col-5">
                     <p className="day">
-                      {new Date(detailMovie.ngayKhoiChieu).toLocaleTimeString()}
+                      {moment(detailMovie.ngayKhoiChieu).format("hh:mm:A")}
                     </p>
                     <span className="c18">C18</span>
                     <span className="name_movie">{detailMovie.tenPhim}</span>
@@ -416,7 +419,7 @@ class DeatailMovie extends Component {
                           >
                             <div className="info__scope">
                               <ul
-                                className="nav nav-pills mb-3"
+                                className="nav nav-pills mb-3 navLeft"
                                 id="pills-tab"
                                 role="tablist"
                               >

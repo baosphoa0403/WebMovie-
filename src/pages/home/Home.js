@@ -6,6 +6,7 @@ import Footer from "../../components/footer";
 import Cinema from "../../components/Cinema";
 import BackToTop from "../../components/BackToTop";
 import Navbar from "../../components/navbar";
+import ListMovieForMobile from "../../components/ListMovieForMobile";
 
 class Home extends Component {
   render() {
@@ -14,6 +15,7 @@ class Home extends Component {
         <Navbar/>
         <Carousel />
         <ListMovie />
+        <ListMovieForMobile/>
         <Cinema />
         <BlockApp />
         <Footer />

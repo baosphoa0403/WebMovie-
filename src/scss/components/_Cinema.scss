@@ -202,3 +202,8 @@
     margin: 5px 0;
   }
 }
+@media screen and (max-width: 375px) {
+  .homeMovies {
+    display: none;
+  }
+}

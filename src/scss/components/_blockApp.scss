@@ -21,7 +21,7 @@
       font-size: medium;
     }
     .buttonLeft {
-      background-color: #fb4226;
+      background-color: rgba(253, 178, 18, 0.55);
       padding: 10px 20px;
       color: #fff;
       font-size: medium;
@@ -72,7 +72,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .ng-scope {
     .row {
       .col-xs-12 {
@@ -93,6 +93,36 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  .ng-scope {
+    .row {
+      .col-xs-12 {
+        .mainMaxWidth {
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+             margin-right: 0;
+            margin-left: -212px;
+            // .right-App {
+            //   margin-left: 250px;
+            //   .img-responsive {
+            //     height: 555px;
+            //     padding: 38px 27.6%;
+            //     padding-bottom: 50px;
+            //   }
+            //   .sliderScreen {
+            //     img {
+            //       border-radius: 20px;
+            //       margin-top: 45px;
+            //     }
+            //   }
+            // }
           }
         }
       }

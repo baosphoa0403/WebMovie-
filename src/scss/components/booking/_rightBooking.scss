@@ -292,3 +292,27 @@
     }
   }
 }
+
+@media (max-width: 375px) {
+  .right {
+    width: 100% !important;
+    position: static !important;
+    box-shadow: none !important;
+    height: 100% !important;
+    .right__content {
+      padding: 77px 40px 100px;
+      .right__notice {
+        .right__errorBook {
+          bottom: initial;
+        }
+      }
+      .right__methodPay {
+        margin-bottom: 0;
+      }
+    }
+    .right__button {
+      bottom: initial;
+      margin-bottom: 145px;
+    }
+  }
+}

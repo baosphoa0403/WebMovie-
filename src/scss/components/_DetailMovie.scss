@@ -405,8 +405,9 @@
                     }
                     .info_day {
                       .day_set {
-                        font-size: 20px;
+                        font-size: 15px;
                         margin: 10px 0;
+                        color: black;
                         .info_day_setup {
                           display: flex;
                           .Time_handle {
@@ -415,7 +416,8 @@
                             margin: 10px 12px;
                             border: 1px solid white;
                             border-radius: 23px;
-                            span{
+                            cursor: pointer;
+                            span {
                               color: #e5a813;
                             }
                             a {
@@ -483,7 +485,6 @@
     }
   }
 }
-
 
 @media (min-width: 1441px) and (max-width: 1700px) {
   .background-detail {
@@ -610,6 +611,53 @@
     }
     .info__content {
       margin: -150px 200px;
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  .background-detail {
+    .name__content {
+      .name__background {
+        .name__picture {
+          width: 100%;
+          overflow: hidden;
+          position: absolute;
+          img {
+            filter: blur(spacing(0.3));
+          }
+        }
+        .name__overlay {
+          width: 100%;
+        }
+      }
+      .view {
+        .col-3 {
+          .play {
+            img {
+              margin-right: 70px;
+            }
+          }
+        }
+        .col-2,
+        .col-5 {
+          display: none !important;
+        }
+        .start {
+          display: none;
+        }
+      }
+    }
+    .info__content {
+      width: 94%;
+      margin: 0px 6px;
+      .tab_content{
+        .tab-pane{
+          .info__calendar{
+            margin: -400px 0px !important;
+            overflow: hidden;
+          }
+        }
+      }
     }
   }
 }

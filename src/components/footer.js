@@ -26,7 +26,7 @@ export default class Footer extends Component {
               <div className="col-3 footer_left">
                 <div className="footer_item icon1">
                   <img src={logo2} style={{ width: 232 }}  alt="" />
-                  <p>
+                  <p className="icon1_info">
                     Cinemax giúp bạn mua vé trực tuyến và cập nhật thường xuyên
                     các trailer, tin tức, thông tin rạp, suất chiếu, các đánh
                     giá phim, chương trình khuyến mãi từ các rạp và của riêng
@@ -39,24 +39,24 @@ export default class Footer extends Component {
                   <h6>ABOUT US</h6>
                   <ul>
                     <li>
-                      <a href>Giới thiệu</a>
+                      <a href>Giới Thiệu</a>
                     </li>
                     <li>
-                      <a href>Lịch chiếu </a>
+                      <a href>Lịch Chiếu </a>
                     </li>
                     <li>
-                      <a href>Cụm rạp</a>
+                      <a href>Cụm Rạp</a>
                     </li>
                     <li>
-                      <a href>Tin tức</a>
+                      <a href>Tin Tức</a>
                     </li>
                     <li>
-                      <a href>Đăng nhập</a>
+                      <a href>Đăng Nhập</a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="col-3 ">
+              <div className="col-3 icon3_show">
                 <div className="footer_item icon3">
                   <h6>HỖ TRỢ KHÁCH HÀNG</h6>
                   <ul>
@@ -65,22 +65,22 @@ export default class Footer extends Component {
                     </li>
                     <li>
                       <a href="https://tix.vn/thoa-thuan-su-dung">
-                        Thỏa thuận sử dụng
+                        Thỏa Thuận Sử Dụng
                       </a>
                     </li>
                     <li>
                       <a href="https://tix.vn/quy-che-hoat-dong">
-                        Quy chế hoạt động
+                        Quy Chế Hoạt Động
                       </a>
                     </li>
                     <li>
                       <a href="https://tix.vn/chinh-sach-bao-mat">
-                        Chính sách bảo mật
+                        Chính Sách Bảo Mật
                       </a>
                     </li>
                     <li>
                       <a href="https://tix.vn/quyen-loi-thanh-vien">
-                        Quyền lợi thành viên
+                        Quyền Lợi Thành Viên
                       </a>
                     </li>
                   </ul>

@@ -1,0 +1,11 @@
+.listMovieForMobile{
+    display: none;
+}
+@media screen and (max-width: 375px){
+    .listMovieForMobile{
+        display: block;
+    }
+    .listMovie{
+        display: none;
+    }
+}

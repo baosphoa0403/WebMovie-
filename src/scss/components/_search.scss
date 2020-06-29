@@ -58,8 +58,16 @@
     }
   }
 }
-//IP X
+//Ipad pro
 @media screen and (max-width: 1024px) {
+  .carousel {
+    .search_bar {
+      display: none;
+    }
+  }
+}
+//Ip X
+@media screen and (max-width: 375px) {
   .carousel {
     .search_bar {
       display: none;

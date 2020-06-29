@@ -27,7 +27,7 @@ class ListChair extends Component {
           <div class="seatCheckOut__screen">
             <img src={screen1} alt="" />
           </div>
-          <div className="col-8 seatCheckOut__listSeat ">
+          <div className="col-8 seatCheckOut__listSeat col-8-chair">
             <div className="numberofchair" style={{ position: "absolute" }}>
               <p className="lala">A</p>
               <p className="lala">B</p>

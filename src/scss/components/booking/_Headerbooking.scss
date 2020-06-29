@@ -61,7 +61,30 @@
     }
   }
 }
-
+//Ip X
+@media (max-width: 375px) {
+  .header {
+    width: 40% !important;
+    .header__content {
+      width: 130%;
+      .row {
+        .header__colRight {
+          .header__user {
+            margin: 0 0px;
+          }
+        }
+      }
+      .header__hideOnMobile {
+        .header__colLeft {
+          display: none;
+        }
+      }
+      .header__mobile {
+        display: none;
+      }
+    }
+  }
+}
 
 //Ipad Pro
 @media (max-width: 1024px) {
@@ -70,7 +93,6 @@
       .header__mobile {
         display: none;
       }
-      
     }
   }
 }

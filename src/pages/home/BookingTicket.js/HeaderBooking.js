@@ -14,10 +14,7 @@ export default class HeaderBooking extends Component {
               <div class="header__colLeft">
                 <ul>
                   <li class="active">
-                    <span>01 </span> CHỌN GHẾ & THANH TOÁN
-                  </li>
-                  <li>
-                    <span>02 </span> KẾT QUẢ ĐẶT VÉ
+                    CHỌN GHẾ & THANH TOÁN
                   </li>
                 </ul>
               </div>

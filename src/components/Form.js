@@ -7,24 +7,24 @@ import Swal from "sweetalert2";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 const signUpUserSchema = yup.object().shape({
-  taiKhoan: yup.string().required("* Field is required"),
-  matKhau: yup.string().required("* Field is required"),
-  hoTen: yup.string().required("* Field is required"),
+  taiKhoan: yup.string().required("* Account is required"),
+  matKhau: yup.string().required("* Password is required"),
+  hoTen: yup.string().required("* Username is required"),
   email: yup
     .string()
-    .required("* Field is required")
+    .required("* Email is required")
     .email("* Email is invalid"),
   soDT: yup
     .string()
-    .required("* Field is required")
+    .required("* Phone is required")
     .matches(/^[0-9]+$/)
     .required("Phone is invalid")
     .min(8)
     .max(10),
 });
 const signInUserSchema = yup.object().shape({
-  taiKhoan: yup.string().required("* Field is required"),
-  matKhau: yup.string().required("* Field is required"),
+  taiKhoan: yup.string().required("* Account is required"),
+  matKhau: yup.string().required("* Password is required"),
 });
 class FormSignIn extends Component {
   handleOnlogin = (values) => {
@@ -122,7 +122,7 @@ class FormSignIn extends Component {
                       </div>
                       <div className="group">
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-primary button0"
                           style={{ width: 400, height: 40 }}
                         >
                           Submit
@@ -134,7 +134,7 @@ class FormSignIn extends Component {
                       >
                         <div className="group">
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-primary button1"
                             style={{ width: 400, height: 40 }}
                           >
                             Back To Home
@@ -143,9 +143,6 @@ class FormSignIn extends Component {
                       </Link>
 
                       <div className="hr" />
-                      <div className="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
-                      </div>
                     </div>
                   </Form>
                 )}
@@ -158,7 +155,7 @@ class FormSignIn extends Component {
                   hoTen: "",
                   email: "",
                   soDT: "",
-                  maNhom: "GP01",
+                  maNhom: "GP04",
                 }}
                 validationSchema={signUpUserSchema}
                 onSubmit={this.handleSubmit}
@@ -243,7 +240,7 @@ class FormSignIn extends Component {
                       </div>
                       <div className="group">
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-primary button_signup"
                           style={{ width: 385, height: 40 }}
                         >
                           Submit
@@ -255,7 +252,7 @@ class FormSignIn extends Component {
                       >
                         <div className="group">
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-primary button_signup_home"
                             style={{ width: 385, height: 40 }}
                           >
                             Back To Home

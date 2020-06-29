@@ -23,13 +23,15 @@
   }
 }
 
-
-
-//Ipad Pro
-@media (max-width: 1024px){
-  .left{
-      display: none;
+//Ip X
+@media (min-width: 375px) and (max-width: 812px) {
+  .left {
+    display: none;
   }
 }
-
-
+//Ipad Pro
+@media (max-width: 1024px) {
+  .left {
+    display: none;
+  }
+}
