@@ -17,7 +17,6 @@ class Home extends Component {
         <ListMovie />
         <ListMovieForMobile/>
         <Cinema />
-        
         <BlockApp />
         <Footer />
         <BackToTop />
