@@ -85,15 +85,8 @@
           margin: 0;
         }
         .calendar__star {
-          display: inline;
-          text-align: center;
-          margin: 0;
-          padding: 0 8px;
-          img {
-            display: inline-block;
-            max-width: spacing(0.8);
-            width: 100%;
-          }
+          display: flex;
+          color: $color1
         }
       }
     }
@@ -143,6 +136,17 @@
     opacity: 1;
     transition: 0.2s;
   }
+}
+@media screen and (max-width: 375px){
+  .calendar__film .calendar__picture {
+    .calendar__filmThumbnail {
+      .calendar__avgPoint {
+        margin-left: 280px
+      }
+    }
+  }
+  
+
 }
 
 
