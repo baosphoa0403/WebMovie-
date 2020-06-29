@@ -298,7 +298,7 @@
     width: 100% !important;
     position: static !important;
     box-shadow: none !important;
-    // margin-top: 100px;
+    height: 100% !important;
     .right__content {
       padding: 77px 40px 100px;
       .right__notice {
@@ -312,6 +312,7 @@
     }
     .right__button {
       bottom: initial;
+      margin-bottom: 90px;
     }
   }
 }
