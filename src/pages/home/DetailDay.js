@@ -35,7 +35,7 @@ export default class DetailDay extends Component {
     let { day } = this.props;
     return (
       <div className="day_set">
-        <span onClick={()=>{
+        <span  onClick={()=>{
             this.openTime();
             this.setState({day: this.props.day})
         }}>Ngày : {day}</span>

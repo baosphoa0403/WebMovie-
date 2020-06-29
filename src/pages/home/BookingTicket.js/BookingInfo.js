@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function BookingInfo(props) {
-  const [seconds, setSeconds] = useState(120000);
+  const [seconds, setSeconds] = useState(10000);
   let history = useHistory();
   useEffect(() => {
     if (seconds > 0) {

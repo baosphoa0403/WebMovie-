@@ -164,7 +164,6 @@ function DashboardMovie() {
   let handleDeleteMovie = film => {
     console.log(film);
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
-    //  http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=1233
     Axios({
       method: "DELETE",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`,
