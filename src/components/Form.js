@@ -7,24 +7,24 @@ import Swal from "sweetalert2";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 const signUpUserSchema = yup.object().shape({
-  taiKhoan: yup.string().required("* Field is required"),
-  matKhau: yup.string().required("* Field is required"),
-  hoTen: yup.string().required("* Field is required"),
+  taiKhoan: yup.string().required("* Account is required"),
+  matKhau: yup.string().required("* Password is required"),
+  hoTen: yup.string().required("* Username is required"),
   email: yup
     .string()
-    .required("* Field is required")
+    .required("* Email is required")
     .email("* Email is invalid"),
   soDT: yup
     .string()
-    .required("* Field is required")
+    .required("* Phone is required")
     .matches(/^[0-9]+$/)
     .required("Phone is invalid")
     .min(8)
     .max(10),
 });
 const signInUserSchema = yup.object().shape({
-  taiKhoan: yup.string().required("* Field is required"),
-  matKhau: yup.string().required("* Field is required"),
+  taiKhoan: yup.string().required("* Account is required"),
+  matKhau: yup.string().required("* Password is required"),
 });
 class FormSignIn extends Component {
   handleOnlogin = (values) => {
@@ -143,9 +143,6 @@ class FormSignIn extends Component {
                       </Link>
 
                       <div className="hr" />
-                      <div className="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
-                      </div>
                     </div>
                   </Form>
                 )}
