@@ -49,7 +49,7 @@ class DeatailMovie extends Component {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
     })
       .then((rs) => {
         this.setState({

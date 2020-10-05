@@ -6,7 +6,7 @@ export const actGetListMovieAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09",
     })
       .then((rs) => {
         dispatch(actGetListMovie(rs.data));
@@ -22,7 +22,7 @@ export const actGetListChairBookingAPI = (id) => {
     dispatch(actGetDetailMovieStartedBooking());
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
     })
       .then((rs) => {
         dispatch(actGetListChairBooking(rs.data));
@@ -55,7 +55,7 @@ export const actGetInformationShowTimesAPI = (idMovie) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`,
     })
       .then((rs) => {
         dispatch(actGetInformationShowTimes(rs.data));
@@ -69,7 +69,7 @@ export const actGetListSystemTheaterAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
     })
       .then((rs) => {
         dispatch(actGetListSystemTheater(rs.data));
@@ -103,7 +103,7 @@ export const actGetDetailMovieAPI = (id) => {
     dispatch(actGetDetailMovieStarted());
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
     })
       .then((rs) => {
         dispatch(actGetDetailMovie(rs.data));

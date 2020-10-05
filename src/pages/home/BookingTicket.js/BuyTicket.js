@@ -24,7 +24,7 @@ class BuyTicket extends Component {
       });
       Axios({
         method: "POST",
-        url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+        url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
         data: {
           maLichChieu: this.state.maLichChieu,
           danhSachVe: arrBooking,

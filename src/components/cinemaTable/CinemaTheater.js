@@ -21,7 +21,7 @@ class CinemaTheater extends Component {
   fetchDataListTheater = data => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${data}&maNhom=GP09`
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${data}&maNhom=GP09`
     })
       .then(rs => {
         this.setState(

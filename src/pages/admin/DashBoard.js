@@ -46,7 +46,7 @@ function DashBoard() {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
     })
       .then((rs) => {
         console.log(rs.data);
@@ -65,7 +65,7 @@ function DashBoard() {
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
     Axios({
       method: "DELETE",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`,
       },
@@ -99,7 +99,7 @@ function DashBoard() {
       Axios({
         method: "PUT",
         url:
-          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+          "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
         data: userEdit,
         headers: {
           Authorization: `Bearer ${userAdmin.accessToken}`,
@@ -140,7 +140,7 @@ function DashBoard() {
       Axios({
         method: "POST",
         url:
-          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+          "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
         data: userAdd,
         headers: {
           Authorization: `Bearer ${userAdmin.accessToken}`,

@@ -7,7 +7,7 @@ export const actGetListUserAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04",
     })
       .then((rs) => {
         dispatch(actGetListUser(rs.data));
@@ -19,7 +19,7 @@ export const actCheckSignInAdmin = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data: user,
     })
       .then((rs) => {
@@ -43,7 +43,7 @@ export const actCheckSignInUser = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data: user,
     })
       .then((rs) => {
