@@ -212,7 +212,7 @@ export default function ModalUserBook(props) {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: userSend
     })
       .then(rs => {

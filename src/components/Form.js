@@ -35,7 +35,7 @@ class FormSignIn extends Component {
     //   callAPI
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
       data: values,
     })
       .then((rs) => {
