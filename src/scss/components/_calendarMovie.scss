@@ -64,8 +64,8 @@
         }
       }
       .calendar__avgPoint {
-        margin-top: 5px;
-        margin-left: 163px;
+        margin-top: 0px;
+        margin-left: 170px;
         font-family: "SF Medium", sans-serif;
         font-weight: $fw-bold;
         background-color: rgba(12, 27, 54, 0.8);
@@ -141,7 +141,8 @@
   .calendar__film .calendar__picture {
     .calendar__filmThumbnail {
       .calendar__avgPoint {
-        margin-left: 280px
+        margin-left: 224px;
+        margin-top: 0px;
       }
     }
   }
