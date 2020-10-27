@@ -70,7 +70,7 @@ function DashboardMovie() {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
     })
     .then((rs)=>{
         setState(prevState => {
@@ -85,7 +85,7 @@ function DashboardMovie() {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
     })
       .then(rs => {
         // console.log(rs.data);
@@ -114,8 +114,8 @@ function DashboardMovie() {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh",
-      // "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh",
+      // "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
       data: form_data,
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`
@@ -147,7 +147,7 @@ function DashboardMovie() {
     }
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload",
       data: form_data,
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`
@@ -166,7 +166,7 @@ function DashboardMovie() {
     const userAdmin = JSON.parse(localStorage.getItem("userAdmin"));
     Axios({
       method: "DELETE",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`,
       data: film.maPhim,
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`
