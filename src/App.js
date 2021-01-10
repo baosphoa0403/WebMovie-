@@ -9,6 +9,8 @@ import HomeTemplate from "./template/HomeTemplate";
 import AdminTemplate from "./template/AdminTemplate";
 import Admin from "./pages/admin/Admin";
 import Loading from "./components/Loading";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // const DetailMovie = lazy(() => {
 //   return new Promise((resolve) => {
 //     setTimeout(() => resolve(import("./pages/home/DeatailMovie")), 3000);
@@ -51,6 +53,7 @@ function App() {
   };
   return (
     <BrowserRouter>
+     <ToastContainer />
       <Switch>
         <Suspense fallback={<Loading />}>
           {showMenuHome(routesHome)}

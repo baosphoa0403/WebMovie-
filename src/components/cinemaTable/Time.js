@@ -20,6 +20,7 @@ class Time extends Component {
   renderTime = () => {
     var moment = require("moment");
     if (this.props.item) {
+      console.log(this.props.item);
       return (
         <div className="time">
           <a>

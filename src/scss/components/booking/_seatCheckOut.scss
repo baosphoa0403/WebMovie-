@@ -72,6 +72,7 @@
           color: $color-black-1;
           background-color: $color-black-1;
           border: none;
+          cursor: pointer; 
         }
         .seatCheckOut__item_True {
           border-radius: 6px;
@@ -80,6 +81,7 @@
           color: $color-black-1;
           border: none;
           background-color: $color-gray-2;
+          cursor: not-allowed; 
         }
         .Vip {
           border-radius: 6px;
@@ -96,6 +98,7 @@
           color: $color-black-1;
           background-color: $color1;
           border: none;
+          cursor: pointer; 
         }
         .numberofchair {
           font-size: 17.9px;

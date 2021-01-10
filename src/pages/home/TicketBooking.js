@@ -6,6 +6,7 @@ import HeaderBooking from "./BookingTicket.js/HeaderBooking";
 import ListChair from "./BookingTicket.js/ListChair";
 import BuyTicket from "./BookingTicket.js/BuyTicket";
 import Loading from "../../components/Loading";
+import { notifiError } from "../../utils/MyToys";
 
 class TicketBooking extends Component {
   constructor(props) {
@@ -29,9 +30,24 @@ class TicketBooking extends Component {
     }
     this.setState({
       listChair: listChairUpdate,
+    },()=>{console.log(this.state.listChair);
     });
   };
-
+  checkChair = () => {
+    for (let i = this.state.listChair.length - 1; i >= 0 ; i--) {
+       if (this.state.listChair.length >= 2) {
+        const count = Math.abs(this.state.listChair[i].maGhe - this.state.listChair[i-1].maGhe)
+        if (count > 1) {
+          notifiError("Vui lòng đặt ghế gần nhau")
+        }
+        break;
+       }
+    }   
+     
+  }
+  // array.length = 2 
+ 
+  
   render() {
     if (this.props.loading) {
       return <Loading />
@@ -39,11 +55,13 @@ class TicketBooking extends Component {
       return (
         <div>
           <HeaderBooking />
+          {this.checkChair()}
           <div class="seatCheckOut">
             <div class="seatCheckOut__content">
               <BookingInfo FilmInfo={this.props.listChair.thongTinPhim} />
               <div class="clear"></div>
               <ListChair addTicket={this.handleAddCart} />
+              
             </div>
           </div>
           <BuyTicket
