@@ -110,7 +110,7 @@ class SearchBar extends Component {
         <div style={{ width: 200 }} className="input">
           <Autocomplete
             value={this.state.tenHeThongRap}
-            options={["Vui lòng chọn phim"]}
+            options={["Vui lòng chọn tên phim "]}
             renderInput={(params) => {
               return (
                 <TextField
@@ -168,7 +168,7 @@ class SearchBar extends Component {
         <div style={{ width: 200 }} className="input">
           <Autocomplete
             value={this.state.tenRap}
-            options={["Vui lòng chọn phim và thống rạp"]}
+            options={["Vui lòng chọn tên phim và thống rạp"]}
             renderInput={(params) => {
               return (
                 <TextField

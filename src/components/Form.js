@@ -4,8 +4,11 @@ import * as action from "../redux/action/userAction";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import { notifiSuccess, notifiError } from "../utils/MyToys";
 const signUpUserSchema = yup.object().shape({
   taiKhoan: yup.string().required("* Account is required"),
   matKhau: yup.string().required("* Password is required"),
@@ -26,11 +29,14 @@ const signInUserSchema = yup.object().shape({
   taiKhoan: yup.string().required("* Account is required"),
   matKhau: yup.string().required("* Password is required"),
 });
+
 class FormSignIn extends Component {
-  handleOnlogin = (values) => {
+  
+  handleOnlogin = (values,  {resetForm}) => {
     this.props.checkLoginUser(values, this.props.history);
+    resetForm({values: ""})
   };
-  handleSubmit = (values) => {
+  handleSubmit = (values, {resetForm}) => {
     console.log(values);
     //   callAPI
     Axios({
@@ -39,15 +45,12 @@ class FormSignIn extends Component {
       data: values,
     })
       .then((rs) => {
-        Swal.fire("Đăng kí thành công !", "Nhấn OK để thoát!", "success").then(
-          () => {
-            this.props.history.push("/");
-          }
-        );
+        notifiSuccess("Đăng kí thành công")
+        resetForm({values: ""})
       })
       .catch((error) => {
-        console.log({ ...error.response.data });
-        Swal.fire("Đăng kí không thành công", error.response.data, "error");
+        console.log({ ...error });
+        notifiError("Đăng kí không thành công" + " " + error.response.data)
       });
   };
   render() {

@@ -16,6 +16,7 @@ import Modal from '@material-ui/core/Modal';
 import EmailIcon from '@material-ui/icons/Email';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
+import QRcode from  "../../images/img/QRcode.png"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -122,6 +123,7 @@ export default function ModalUserBook(props) {
          <StyledTableCell  align="right" >
            {item.tenGhe}
          </StyledTableCell>
+         <StyledTableCell align="right"><img src={QRcode} style={{width: 100, height: 50}}/></StyledTableCell>
         </StyledTableRow>
         )
       )
@@ -138,6 +140,7 @@ export default function ModalUserBook(props) {
                   Tên Rạp
                 </StyledTableCell>
                 <StyledTableCell align="right">Tên ghế</StyledTableCell>
+                <StyledTableCell align="right">Mã QR Code</StyledTableCell>
               </TableRow>
           </TableHead>
           <TableBody>
@@ -164,6 +167,7 @@ export default function ModalUserBook(props) {
           </StyledTableCell>
           <StyledTableCell style={{textAlign: "center"}}>
            <EventSeatIcon /> <span
+           style={{cursor: "pointer"}}
            onClick={()=>{
             handleOpen()
             setMaVe(item.maVe)
@@ -172,6 +176,7 @@ export default function ModalUserBook(props) {
           </StyledTableCell>
           <StyledTableCell align="right">  {moment(item.ngayDat).format("DD/MM/YYYY")} { moment(item.ngayDat).format("HH:mm A")}</StyledTableCell>
           <StyledTableCell align="right">{item.giaVe.toLocaleString()} VNĐ</StyledTableCell>
+         
           <StyledTableCell align="right">{item.thoiLuongPhim} phút</StyledTableCell>
         </StyledTableRow>
       ))

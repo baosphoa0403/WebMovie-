@@ -1,6 +1,7 @@
 import Axios from "axios";
 import * as ActionType from "../constants/ActionType";
 import Swal from "sweetalert2";
+import { notifiSuccess, notifiError } from "../../utils/MyToys";
 
 export const actGetListUserAPI = () => {
   return (dispatch) => {
@@ -25,16 +26,17 @@ export const actCheckSignInAdmin = (user, history) => {
       .then((rs) => {
         if (rs.data.maLoaiNguoiDung === "QuanTri") {
           localStorage.setItem("userAdmin", JSON.stringify(rs.data));
-          Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+          notifiSuccess("Đăng nhập thành công !")
           setTimeout(() => {
             history.push("/admin/dashboardUser");
           }, 2000);
         } else {
-          Swal.fire("Bạn có quyền đăng nhập !", "Nhấn OK để thoát!", "error");
+          notifiError("Bạn có quyền đăng nhập !")
         }
       })
       .catch((error) => {
-        Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
+        notifiError("Đăng nhập không thành công  !" + " " + error.response.data,)
+        // Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
       });
   };
 };
@@ -48,7 +50,7 @@ export const actCheckSignInUser = (user, history) => {
     })
       .then((rs) => {
         if (JSON.parse(localStorage.getItem("maLichChieu")) !== null) {
-          Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+          notifiSuccess("Đăng nhập thành công !")
           setTimeout(() => {
             history.push(
               `/booking/${JSON.parse(localStorage.getItem("maLichChieu"))}`
@@ -57,14 +59,16 @@ export const actCheckSignInUser = (user, history) => {
           localStorage.setItem("user", JSON.stringify(rs.data));
           dispatch(actPostUser(rs.data));
         } else {
-          Swal.fire("Đăng nhập thành công !", "Nhấn OK để thoát!", "success");
+          notifiSuccess("Đăng nhập thành công !")
           localStorage.setItem("user", JSON.stringify(rs.data));
-          history.push("/");
+          setTimeout(() => {
+            history.push("/");
+          }, 2000);
           dispatch(actPostUser(rs.data));
         }
       })
       .catch((error) => {
-        Swal.fire("Đăng nhập không thành công !", error.response.data, "error");
+        notifiError("Đăng nhập không thành công !" + " " + error.response.data)
       });
   };
 };
@@ -80,3 +84,6 @@ const actPostUser = (dataUser) => {
     data: dataUser,
   };
 };
+
+
+const arrColor = [];
