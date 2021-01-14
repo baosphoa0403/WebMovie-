@@ -4,6 +4,9 @@ import SeatUpLoad from "./SeatUpLoad";
 import Swal from "sweetalert2";
 import Axios from "axios";
 import { withRouter } from "react-router";
+import { notifiSuccess, notifiError } from "../../../utils/MyToys";
+import { RadioGroup, FormControlLabel, Radio, Grid } from "@material-ui/core";
+import PaymentIcon from "@material-ui/icons/Payment";
 class BuyTicket extends Component {
   constructor(props) {
     super(props);
@@ -13,13 +16,15 @@ class BuyTicket extends Component {
       giaVe: null,
       hiddenBooking: false,
       buyTicketBooking: [],
+      isFlag: false,
+      value: ""
     };
   }
   booking = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (this.props.buyTicket) {
       let arrBooking = [];
-      arrBooking = this.props.buyTicket.map((item) => {
+      arrBooking = this.props.buyTicket.map(item => {
         return { maGhe: item.maGhe, giaVe: item.giaVe };
       });
       Axios({
@@ -28,28 +33,24 @@ class BuyTicket extends Component {
         data: {
           maLichChieu: this.state.maLichChieu,
           danhSachVe: arrBooking,
-          taiKhoanNguoiDung: user.taiKhoan,
+          taiKhoanNguoiDung: user.taiKhoan
         },
         headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
+          Authorization: `Bearer ${user.accessToken}`
+        }
       })
-        .then((rs) => {
+        .then(rs => {
           if (this.props.buyTicket.length > 0) {
-            Swal.fire("Đặt vé thành công !", "Nhấn OK để thoát!", "success");
-            setTimeout(()=>{
-              this.props.history.replace("/")
-            }, 2000)
+            notifiSuccess("Đặt vé thành công !");
+            setTimeout(() => {
+              this.props.history.replace("/inFoUserBooking");
+            }, 2000);
           } else {
-            Swal.fire(
-              "Đặt không vé thành công !",
-              "Vui lòng chọn ghế",
-              "error"
-            );
+            notifiError("Đặt không vé thành công !");
           }
         })
-        .catch((error) => {
-          Swal.fire("Đặt không vé thành công !", "Vui lòng chọn ghế", "error");
+        .catch(error => {
+          notifiError("Đặt không vé thành công !");
         });
     }
   };
@@ -64,7 +65,7 @@ class BuyTicket extends Component {
     let { FilmInfo } = this.props;
 
     if (FilmInfo) {
-      console.log(this.props.FilmInfo);
+      // console.log(this.props.FilmInfo);
       return (
         <div class="row right__filmName">
           <div class="col-12 right__text">
@@ -86,12 +87,22 @@ class BuyTicket extends Component {
     this.setState({
       maLichChieu: nextProps.FilmInfo.maLichChieu,
       buyTicketBooking: nextProps.buyTicket,
-      hiddenBooking: true,
+      hiddenBooking: true
     });
   }
+  handleChange = event => {
+    console.log(event.target.value);
+    
+    this.setState({value: event.target.value,isFlag: true });
+  };
+  color = {
+    color: "#fbbd61"
+  };
+
   render() {
     let { buyTicket } = this.props;
     let user = JSON.parse(localStorage.getItem("user"));
+
     return (
       <div>
         <div class="right">
@@ -142,7 +153,44 @@ class BuyTicket extends Component {
                     hợp.
                   </p>
                 ) : (
-                  ""
+                  <RadioGroup
+                    aria-label="payment"
+                    name="payment"
+                    onChange={this.handleChange}
+                    value={this.state.value}
+                  >
+                    <Grid container direction="row" alignItems="center">
+                      <img
+                        style={{ width: 34, height: 34 }}
+                        src="https://s3img.vcdn.vn/123phim/2018/12/08075f42d0c4bfc8f2063a35d5b9fca7.jpg"
+                      />
+                      <FormControlLabel
+                        value="ZaloPay"
+                        control={<Radio color="default" />}
+                        label="ZaloPay"
+                      />
+                    </Grid>
+                    <Grid container direction="row" alignItems="center">
+                      <img
+                        style={{ width: 34, height: 34 }}
+                        src="https://developers.momo.vn/images/logo.png"
+                      />
+
+                      <FormControlLabel
+                        value="MoMo"
+                        control={<Radio color="default" />}
+                        label="MoMo"
+                      />
+                    </Grid>
+                    <Grid container direction="row" alignItems="center">
+                      <PaymentIcon fontSize="large" />
+                      <FormControlLabel
+                        value="Thanh Toán Bằng Tiền Mặt"
+                        control={<Radio color="default" />}
+                        label="Thanh Toán Bằng Tiền Mặt"
+                      />
+                    </Grid>
+                  </RadioGroup>
                 )}
               </div>
             </div>
@@ -161,12 +209,13 @@ class BuyTicket extends Component {
               </div>
             </div>
           </div>
-          <div class="right__button" onClick={this.booking}>
+        
+          <button   className={this.state.isFlag ? "right__button" : "left__button"} disabled={!this.state.isFlag} onClick={this.booking}>
             Đặt Vé
-          </div>
+          </button>
         </div>
       </div>
     );
   }
 }
-export default (withRouter(BuyTicket))
+export default withRouter(BuyTicket);

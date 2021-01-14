@@ -11,7 +11,7 @@ export default class Chair extends Component {
     let { item } = this.props;
     
     return (
-      <div>
+      <>
         {item.daDat === true ? (
           <div
             disabled={item.daDat}
@@ -61,7 +61,7 @@ export default class Chair extends Component {
           </div>
           ) 
         )}
-      </div>
+      </>
     );
   }
 }

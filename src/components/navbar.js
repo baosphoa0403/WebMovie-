@@ -3,6 +3,7 @@ import React from "react";
 import logo from "../images/img/logo2.png";
 import NavBarSrcoll from "./NavBarSrcoll";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { notifiSuccess } from "../utils/MyToys";
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,7 @@ export default class Navbar extends React.Component {
   }
 
   handleLoginOut = () => {
+    notifiSuccess(`goodbye` + " " + this.state.detailUser.hoTen)
     localStorage.removeItem("user");
     this.setState({
       detailUser: null,
