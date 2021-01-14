@@ -4,7 +4,7 @@ cd build
 
 cp index.html 200.html
 
-surge . cinemaxMovie.surge.sh 
+surge . cinemax-movie.surge.sh 
 
 
 
